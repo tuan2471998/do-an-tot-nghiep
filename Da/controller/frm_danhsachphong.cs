@@ -45,7 +45,7 @@ namespace Da.controller
             {
                 if (int.Parse(row["TINHTRANG"].ToString()) == 0)
                 {
-                    frm_phongtrong phongtrong = new frm_phongtrong(row["MAPH"].ToString());
+                    frm_phongtrong phongtrong = new frm_phongtrong(row["MAPH"].ToString(), this);
                     phongtrong.Location = new Point(x, y);
                     panelphong.Controls.Add(phongtrong);
                     x += 280;
@@ -81,7 +81,7 @@ namespace Da.controller
                 }
                 if (int.Parse(row["TINHTRANG"].ToString()) == 2)
                 {
-                    frm_phongdattruoc dattruoc = new frm_phongdattruoc(row["MAPH"].ToString());
+                    frm_phongdattruoc dattruoc = new frm_phongdattruoc(row["MAPH"].ToString(), this);
                     dattruoc.Location = new Point(x, y);
                     panelphong.Controls.Add(dattruoc);
                     x += 280;

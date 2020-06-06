@@ -105,6 +105,7 @@
             this.txtten.Properties.Appearance.Options.UseForeColor = true;
             this.txtten.Size = new System.Drawing.Size(287, 32);
             this.txtten.TabIndex = 7;
+            this.txtten.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_dangnhap_KeyDown);
             // 
             // txtmk
             // 
@@ -116,6 +117,7 @@
             this.txtmk.Properties.PasswordChar = '*';
             this.txtmk.Size = new System.Drawing.Size(287, 32);
             this.txtmk.TabIndex = 8;
+            this.txtmk.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_dangnhap_KeyDown);
             // 
             // frm_dangnhap
             // 
@@ -136,6 +138,7 @@
             this.Name = "frm_dangnhap";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_dangnhap_FormClosing);
             this.Load += new System.EventHandler(this.frm_dangnhap_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_dangnhap_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.txtten.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtmk.Properties)).EndInit();
             this.ResumeLayout(false);

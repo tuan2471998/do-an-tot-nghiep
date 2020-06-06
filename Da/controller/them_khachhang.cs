@@ -51,13 +51,7 @@ namespace Da.controller
                     return 0;
                 }
             }
-            if (string.IsNullOrEmpty(txt_tenkh.Text))
-            {
-                MessageBox.Show("Chưa nhập tên khách hàng");
-                txt_tenkh.Focus();
-                return 0;
-            }
-            else if (string.IsNullOrEmpty(txt_cmnd.Text))
+            if (string.IsNullOrEmpty(txt_cmnd.Text))
             {
                 MessageBox.Show("Chưa nhập số chứng minh khách hàng");
                 txt_tenkh.Focus();
@@ -67,11 +61,6 @@ namespace Da.controller
             {
                 MessageBox.Show("Chưa nhập số điện thoại khách hàng");
                 txt_tenkh.Focus();
-                return 0;
-            }
-            else if (cbb_quoctich.SelectedIndex == 0)
-            {
-                MessageBox.Show("Chưa chọn quốc tịch khách hàng");
                 return 0;
             }
             else

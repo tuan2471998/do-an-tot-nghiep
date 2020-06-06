@@ -32,10 +32,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.hủyĐặtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lb_sophong = new System.Windows.Forms.Label();
-            this.thuêPhòngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hủyĐặtToànBộToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hủyĐặtPhòngĐangChọnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thuêPhòngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lb_sophong = new System.Windows.Forms.Label();
+            this.lb_maphieudat = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -68,8 +69,27 @@
             this.hủyĐặtPhòngĐangChọnToolStripMenuItem});
             this.hủyĐặtToolStripMenuItem.Name = "hủyĐặtToolStripMenuItem";
             this.hủyĐặtToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.hủyĐặtToolStripMenuItem.Text = "Hủy đặt";
-            this.hủyĐặtToolStripMenuItem.Click += new System.EventHandler(this.hủyĐặtToolStripMenuItem_Click);
+            this.hủyĐặtToolStripMenuItem.Text = "Hủy đặt phòng";
+            // 
+            // hủyĐặtToànBộToolStripMenuItem
+            // 
+            this.hủyĐặtToànBộToolStripMenuItem.Name = "hủyĐặtToànBộToolStripMenuItem";
+            this.hủyĐặtToànBộToolStripMenuItem.Size = new System.Drawing.Size(265, 26);
+            this.hủyĐặtToànBộToolStripMenuItem.Text = "Hủy đặt toàn bộ";
+            this.hủyĐặtToànBộToolStripMenuItem.Click += new System.EventHandler(this.hủyĐặtToànBộToolStripMenuItem_Click);
+            // 
+            // hủyĐặtPhòngĐangChọnToolStripMenuItem
+            // 
+            this.hủyĐặtPhòngĐangChọnToolStripMenuItem.Name = "hủyĐặtPhòngĐangChọnToolStripMenuItem";
+            this.hủyĐặtPhòngĐangChọnToolStripMenuItem.Size = new System.Drawing.Size(265, 26);
+            this.hủyĐặtPhòngĐangChọnToolStripMenuItem.Text = "Hủy đặt phòng đang chọn";
+            this.hủyĐặtPhòngĐangChọnToolStripMenuItem.Click += new System.EventHandler(this.hủyĐặtPhòngĐangChọnToolStripMenuItem_Click);
+            // 
+            // thuêPhòngToolStripMenuItem
+            // 
+            this.thuêPhòngToolStripMenuItem.Name = "thuêPhòngToolStripMenuItem";
+            this.thuêPhòngToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.thuêPhòngToolStripMenuItem.Text = "Thuê phòng";
             // 
             // lb_sophong
             // 
@@ -80,30 +100,24 @@
             this.lb_sophong.Size = new System.Drawing.Size(75, 32);
             this.lb_sophong.TabIndex = 5;
             this.lb_sophong.Text = "P101";
+            this.lb_sophong.TextChanged += new System.EventHandler(this.lb_sophong_TextChanged);
             // 
-            // thuêPhòngToolStripMenuItem
+            // lb_maphieudat
             // 
-            this.thuêPhòngToolStripMenuItem.Name = "thuêPhòngToolStripMenuItem";
-            this.thuêPhòngToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.thuêPhòngToolStripMenuItem.Text = "Thuê phòng";
-            // 
-            // hủyĐặtToànBộToolStripMenuItem
-            // 
-            this.hủyĐặtToànBộToolStripMenuItem.Name = "hủyĐặtToànBộToolStripMenuItem";
-            this.hủyĐặtToànBộToolStripMenuItem.Size = new System.Drawing.Size(265, 26);
-            this.hủyĐặtToànBộToolStripMenuItem.Text = "Hủy đặt toàn bộ";
-            // 
-            // hủyĐặtPhòngĐangChọnToolStripMenuItem
-            // 
-            this.hủyĐặtPhòngĐangChọnToolStripMenuItem.Name = "hủyĐặtPhòngĐangChọnToolStripMenuItem";
-            this.hủyĐặtPhòngĐangChọnToolStripMenuItem.Size = new System.Drawing.Size(265, 26);
-            this.hủyĐặtPhòngĐangChọnToolStripMenuItem.Text = "Hủy đặt phòng đang chọn";
+            this.lb_maphieudat.AutoSize = true;
+            this.lb_maphieudat.Location = new System.Drawing.Point(3, 197);
+            this.lb_maphieudat.Name = "lb_maphieudat";
+            this.lb_maphieudat.Size = new System.Drawing.Size(65, 27);
+            this.lb_maphieudat.TabIndex = 6;
+            this.lb_maphieudat.Text = "mapd";
             // 
             // frm_phongdattruoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 26F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.ContextMenuStrip = this.contextMenuStrip1;
+            this.Controls.Add(this.lb_maphieudat);
             this.Controls.Add(this.lb_sophong);
             this.Controls.Add(this.pictureBox1);
             this.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -126,5 +140,6 @@
         private System.Windows.Forms.ToolStripMenuItem hủyĐặtToànBộToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hủyĐặtPhòngĐangChọnToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thuêPhòngToolStripMenuItem;
+        private System.Windows.Forms.Label lb_maphieudat;
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace Da
+﻿namespace Da.controller
 {
-    partial class themchitietdichvu
+    partial class chitiet_hoadon_dichvu
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(themchitietdichvu));
             this.txt_mahddv = new System.Windows.Forms.TextBox();
-            this.btndong = new DevExpress.XtraEditors.SimpleButton();
             this.dgv_cthddv = new System.Windows.Forms.DataGridView();
-            this.btn_luu = new DevExpress.XtraEditors.SimpleButton();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DONGIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txt_thanhtien = new System.Windows.Forms.TextBox();
-            this.cbo_dichvu = new System.Windows.Forms.ComboBox();
             this.txt_dongia = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -42,39 +43,23 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txt_soluong = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DONGIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_tendichvu = new System.Windows.Forms.TextBox();
+            this.txt_madichvu = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_cthddv)).BeginInit();
             this.SuspendLayout();
             // 
             // txt_mahddv
             // 
+            this.txt_mahddv.BackColor = System.Drawing.Color.White;
             this.txt_mahddv.Enabled = false;
             this.txt_mahddv.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_mahddv.Location = new System.Drawing.Point(201, 14);
+            this.txt_mahddv.Location = new System.Drawing.Point(197, 10);
             this.txt_mahddv.Margin = new System.Windows.Forms.Padding(4);
             this.txt_mahddv.Name = "txt_mahddv";
+            this.txt_mahddv.ReadOnly = true;
             this.txt_mahddv.Size = new System.Drawing.Size(324, 34);
-            this.txt_mahddv.TabIndex = 32;
-            // 
-            // btndong
-            // 
-            this.btndong.Appearance.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btndong.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.btndong.Appearance.Options.UseFont = true;
-            this.btndong.Appearance.Options.UseForeColor = true;
-            this.btndong.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btndong.ImageOptions.Image")));
-            this.btndong.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btndong.Location = new System.Drawing.Point(367, 101);
-            this.btndong.Margin = new System.Windows.Forms.Padding(4);
-            this.btndong.Name = "btndong";
-            this.btndong.Size = new System.Drawing.Size(158, 63);
-            this.btndong.TabIndex = 31;
-            this.btndong.Text = "Đóng";
-            this.btndong.Click += new System.EventHandler(this.btndong_Click);
+            this.txt_mahddv.TabIndex = 45;
             // 
             // dgv_cthddv
             // 
@@ -88,129 +73,16 @@
             this.Column4,
             this.DONGIA,
             this.Column3});
-            this.dgv_cthddv.Location = new System.Drawing.Point(15, 174);
+            this.dgv_cthddv.Location = new System.Drawing.Point(11, 170);
             this.dgv_cthddv.Margin = new System.Windows.Forms.Padding(6);
             this.dgv_cthddv.Name = "dgv_cthddv";
             this.dgv_cthddv.RowHeadersVisible = false;
             this.dgv_cthddv.RowHeadersWidth = 51;
             this.dgv_cthddv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_cthddv.Size = new System.Drawing.Size(964, 322);
-            this.dgv_cthddv.TabIndex = 26;
-            // 
-            // btn_luu
-            // 
-            this.btn_luu.Appearance.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_luu.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.btn_luu.Appearance.Options.UseFont = true;
-            this.btn_luu.Appearance.Options.UseForeColor = true;
-            this.btn_luu.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_luu.ImageOptions.Image")));
-            this.btn_luu.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btn_luu.Location = new System.Drawing.Point(201, 101);
-            this.btn_luu.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_luu.Name = "btn_luu";
-            this.btn_luu.Size = new System.Drawing.Size(158, 63);
-            this.btn_luu.TabIndex = 30;
-            this.btn_luu.Text = "Lưu";
-            this.btn_luu.Click += new System.EventHandler(this.btn_luu_Click);
-            // 
-            // txt_thanhtien
-            // 
-            this.txt_thanhtien.Enabled = false;
-            this.txt_thanhtien.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_thanhtien.Location = new System.Drawing.Point(655, 104);
-            this.txt_thanhtien.Margin = new System.Windows.Forms.Padding(6);
-            this.txt_thanhtien.Name = "txt_thanhtien";
-            this.txt_thanhtien.Size = new System.Drawing.Size(324, 34);
-            this.txt_thanhtien.TabIndex = 29;
-            this.txt_thanhtien.TextChanged += new System.EventHandler(this.txt_thanhtien_TextChanged);
-            // 
-            // cbo_dichvu
-            // 
-            this.cbo_dichvu.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbo_dichvu.FormattingEnabled = true;
-            this.cbo_dichvu.Location = new System.Drawing.Point(201, 58);
-            this.cbo_dichvu.Margin = new System.Windows.Forms.Padding(6);
-            this.cbo_dichvu.Name = "cbo_dichvu";
-            this.cbo_dichvu.Size = new System.Drawing.Size(324, 33);
-            this.cbo_dichvu.TabIndex = 24;
-            this.cbo_dichvu.SelectedIndexChanged += new System.EventHandler(this.cbo_dichvu_SelectedIndexChanged);
-            // 
-            // txt_dongia
-            // 
-            this.txt_dongia.Enabled = false;
-            this.txt_dongia.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_dongia.Location = new System.Drawing.Point(655, 58);
-            this.txt_dongia.Margin = new System.Windows.Forms.Padding(6);
-            this.txt_dongia.Name = "txt_dongia";
-            this.txt_dongia.Size = new System.Drawing.Size(324, 34);
-            this.txt_dongia.TabIndex = 28;
-            this.txt_dongia.TextChanged += new System.EventHandler(this.txt_dongia_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(13, 63);
-            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 23);
-            this.label2.TabIndex = 21;
-            this.label2.Text = "Dịch vụ:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(535, 109);
-            this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(107, 23);
-            this.label4.TabIndex = 27;
-            this.label4.Text = "Thành tiền:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(535, 19);
-            this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(91, 23);
-            this.label5.TabIndex = 22;
-            this.label5.Text = "Số lượng:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(535, 63);
-            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 23);
-            this.label3.TabIndex = 25;
-            this.label3.Text = "Đơn giá:";
-            // 
-            // txt_soluong
-            // 
-            this.txt_soluong.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_soluong.Location = new System.Drawing.Point(655, 14);
-            this.txt_soluong.Margin = new System.Windows.Forms.Padding(6);
-            this.txt_soluong.Name = "txt_soluong";
-            this.txt_soluong.Size = new System.Drawing.Size(324, 34);
-            this.txt_soluong.TabIndex = 23;
-            this.txt_soluong.TextChanged += new System.EventHandler(this.cbo_dichvu_SelectedIndexChanged);
-            this.txt_soluong.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_soluong_KeyPress);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(11, 19);
-            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(180, 23);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "Mã hóa đơn dịch vụ:";
+            this.dgv_cthddv.TabIndex = 39;
+            this.dgv_cthddv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_cthddv_CellContentClick);
+            this.dgv_cthddv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_cthddv_CellContentClick);
             // 
             // Column1
             // 
@@ -251,17 +123,143 @@
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
             // 
-            // themchitietdichvu
+            // txt_thanhtien
+            // 
+            this.txt_thanhtien.BackColor = System.Drawing.Color.White;
+            this.txt_thanhtien.Enabled = false;
+            this.txt_thanhtien.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_thanhtien.Location = new System.Drawing.Point(651, 96);
+            this.txt_thanhtien.Margin = new System.Windows.Forms.Padding(6);
+            this.txt_thanhtien.Name = "txt_thanhtien";
+            this.txt_thanhtien.ReadOnly = true;
+            this.txt_thanhtien.Size = new System.Drawing.Size(324, 34);
+            this.txt_thanhtien.TabIndex = 42;
+            // 
+            // txt_dongia
+            // 
+            this.txt_dongia.BackColor = System.Drawing.Color.White;
+            this.txt_dongia.Enabled = false;
+            this.txt_dongia.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_dongia.Location = new System.Drawing.Point(651, 54);
+            this.txt_dongia.Margin = new System.Windows.Forms.Padding(6);
+            this.txt_dongia.Name = "txt_dongia";
+            this.txt_dongia.ReadOnly = true;
+            this.txt_dongia.Size = new System.Drawing.Size(324, 34);
+            this.txt_dongia.TabIndex = 41;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(15, 101);
+            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(113, 23);
+            this.label2.TabIndex = 34;
+            this.label2.Text = "Tên dịch vụ:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
+            this.label4.Location = new System.Drawing.Point(531, 101);
+            this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(107, 23);
+            this.label4.TabIndex = 40;
+            this.label4.Text = "Thành tiền:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
+            this.label5.Location = new System.Drawing.Point(531, 15);
+            this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(91, 23);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "Số lượng:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
+            this.label3.Location = new System.Drawing.Point(531, 59);
+            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(82, 23);
+            this.label3.TabIndex = 38;
+            this.label3.Text = "Đơn giá:";
+            // 
+            // txt_soluong
+            // 
+            this.txt_soluong.BackColor = System.Drawing.Color.White;
+            this.txt_soluong.Enabled = false;
+            this.txt_soluong.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_soluong.Location = new System.Drawing.Point(651, 10);
+            this.txt_soluong.Margin = new System.Windows.Forms.Padding(6);
+            this.txt_soluong.Name = "txt_soluong";
+            this.txt_soluong.ReadOnly = true;
+            this.txt_soluong.Size = new System.Drawing.Size(324, 34);
+            this.txt_soluong.TabIndex = 36;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(15, 15);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(180, 23);
+            this.label1.TabIndex = 33;
+            this.label1.Text = "Mã hóa đơn dịch vụ:";
+            // 
+            // txt_tendichvu
+            // 
+            this.txt_tendichvu.BackColor = System.Drawing.Color.White;
+            this.txt_tendichvu.Enabled = false;
+            this.txt_tendichvu.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_tendichvu.Location = new System.Drawing.Point(197, 96);
+            this.txt_tendichvu.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_tendichvu.Name = "txt_tendichvu";
+            this.txt_tendichvu.ReadOnly = true;
+            this.txt_tendichvu.Size = new System.Drawing.Size(324, 34);
+            this.txt_tendichvu.TabIndex = 46;
+            // 
+            // txt_madichvu
+            // 
+            this.txt_madichvu.BackColor = System.Drawing.Color.White;
+            this.txt_madichvu.Enabled = false;
+            this.txt_madichvu.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_madichvu.Location = new System.Drawing.Point(197, 54);
+            this.txt_madichvu.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_madichvu.Name = "txt_madichvu";
+            this.txt_madichvu.ReadOnly = true;
+            this.txt_madichvu.Size = new System.Drawing.Size(324, 34);
+            this.txt_madichvu.TabIndex = 48;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
+            this.label6.Location = new System.Drawing.Point(15, 59);
+            this.label6.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(102, 23);
+            this.label6.TabIndex = 47;
+            this.label6.Text = "Mã dịch vụ";
+            // 
+            // chitiet_hoadon_dichvu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(998, 524);
+            this.ClientSize = new System.Drawing.Size(991, 512);
+            this.Controls.Add(this.txt_madichvu);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txt_tendichvu);
             this.Controls.Add(this.txt_mahddv);
-            this.Controls.Add(this.btndong);
             this.Controls.Add(this.dgv_cthddv);
-            this.Controls.Add(this.btn_luu);
             this.Controls.Add(this.txt_thanhtien);
-            this.Controls.Add(this.cbo_dichvu);
             this.Controls.Add(this.txt_dongia);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
@@ -271,10 +269,9 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "themchitietdichvu";
-            this.Text = "themchitietdichvu";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.themchitietdichvu_FormClosing);
-            this.Load += new System.EventHandler(this.Themchitietdichvu_Load);
+            this.Name = "chitiet_hoadon_dichvu";
+            this.Text = "chitiet_hoadon_dichvu";
+            this.Load += new System.EventHandler(this.chitiet_hoadon_dichvu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_cthddv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -284,11 +281,13 @@
         #endregion
 
         private System.Windows.Forms.TextBox txt_mahddv;
-        private DevExpress.XtraEditors.SimpleButton btndong;
         private System.Windows.Forms.DataGridView dgv_cthddv;
-        private DevExpress.XtraEditors.SimpleButton btn_luu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DONGIA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.TextBox txt_thanhtien;
-        private System.Windows.Forms.ComboBox cbo_dichvu;
         private System.Windows.Forms.TextBox txt_dongia;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
@@ -296,10 +295,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txt_soluong;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DONGIA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.TextBox txt_tendichvu;
+        private System.Windows.Forms.TextBox txt_madichvu;
+        private System.Windows.Forms.Label label6;
     }
 }

@@ -416,12 +416,12 @@ namespace Da.controller
                         chuyenTrangThaiPhong();
                         themPhieuDAt();
                         themChiTietPhieuDat();                       
-                        MessageBox.Show("Bạn đã thêm thành công !!!!!!");
+                        MessageBox.Show("Lập phiếu đặt thành công");
                         reload();
                     }
                     catch
                     {
-                        MessageBox.Show("Bạn đã thêm thất bại !!!!!!");
+                        MessageBox.Show("Lỗi");
                     }
 
                 }

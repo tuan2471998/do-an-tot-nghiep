@@ -41,14 +41,14 @@ namespace Da
             }
         }
 
-        private void btndn_Click(object sender, EventArgs e)
+        private void dangnhap()
         {
             //lưu nhân viên đang xài chương trình !!!cấm xóa  
             Properties.Settings.Default.MaNV = txtten.Text;
 
             //kiểm tra đăng nhập
 
-           try
+            try
             {
                 connect conn = new connect();
                 string selsql = "select * from TAIKHOAN where TENTK='" + txtten.Text + "' and MK='" + txtmk.Text + "'";
@@ -78,6 +78,19 @@ namespace Da
             catch
             {
                 MessageBox.Show("Lỗi kết nối");
+            }
+        }
+
+        private void btndn_Click(object sender, EventArgs e)
+        {
+            dangnhap();
+        }
+
+        private void frm_dangnhap_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                dangnhap();
             }
         }
     }

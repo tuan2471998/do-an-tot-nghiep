@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lb_sophong = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.hoànThànhToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lb_sophong = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lb_giay = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -55,16 +55,6 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // lb_sophong
-            // 
-            this.lb_sophong.AutoSize = true;
-            this.lb_sophong.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_sophong.Location = new System.Drawing.Point(180, 0);
-            this.lb_sophong.Name = "lb_sophong";
-            this.lb_sophong.Size = new System.Drawing.Size(75, 32);
-            this.lb_sophong.TabIndex = 6;
-            this.lb_sophong.Text = "P101";
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -76,9 +66,19 @@
             // hoànThànhToolStripMenuItem
             // 
             this.hoànThànhToolStripMenuItem.Name = "hoànThànhToolStripMenuItem";
-            this.hoànThànhToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.hoànThànhToolStripMenuItem.Size = new System.Drawing.Size(155, 24);
             this.hoànThànhToolStripMenuItem.Text = "Hoàn thành";
             this.hoànThànhToolStripMenuItem.Click += new System.EventHandler(this.hoànThànhToolStripMenuItem_Click);
+            // 
+            // lb_sophong
+            // 
+            this.lb_sophong.AutoSize = true;
+            this.lb_sophong.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_sophong.Location = new System.Drawing.Point(180, 0);
+            this.lb_sophong.Name = "lb_sophong";
+            this.lb_sophong.Size = new System.Drawing.Size(75, 32);
+            this.lb_sophong.TabIndex = 6;
+            this.lb_sophong.Text = "P101";
             // 
             // lb_giay
             // 
@@ -130,6 +130,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 26F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.lb_gio);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lb_phut);

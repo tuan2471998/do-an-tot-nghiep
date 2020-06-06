@@ -350,7 +350,6 @@ namespace Da.controller
             // Tạo Adapter
             SqlDataAdapter da = new SqlDataAdapter("select * from PHIEUTHUE", conn.cnn);
 
-
             // Tạo và lấp đầy DataSet
             ds = new DataSet();
             da.Fill(ds, "PhieuThem1");
@@ -372,8 +371,6 @@ namespace Da.controller
             // Tiến hành insert vào database Source
             SqlCommandBuilder builda = new SqlCommandBuilder(da);
             da.Update(ds, "PhieuThem1");
-
-
         }
 
         private void btnxoa_Click(object sender, EventArgs e)

@@ -18,6 +18,7 @@ namespace Da.controller
         DataSet ds_loaiph = new DataSet();
         SqlDataAdapter da;
         DataSet ds;
+       
 
         DataColumn[] key = new DataColumn[1];
         public DM_dichvu2()

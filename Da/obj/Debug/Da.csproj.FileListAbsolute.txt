@@ -2212,7 +2212,6 @@ D:\Do-an-tot-nghiep-Quan-ly-khach-san\Da\obj\Debug\Da.controller.frm_phongdattru
 D:\Do-an-tot-nghiep-Quan-ly-khach-san\Da\obj\Debug\Da.controller.frm_phongsuachua.resources
 D:\Do-an-tot-nghiep-Quan-ly-khach-san\Da\obj\Debug\Da.controller.frm_phongsudung.resources
 D:\Do-an-tot-nghiep-Quan-ly-khach-san\Da\obj\Debug\Da.controller.frm_phongtrong.resources
-D:\Do-an-tot-nghiep-Quan-ly-khach-san\Da\obj\Debug\Da.controller.frm_quanlythietbi.resources
 D:\Do-an-tot-nghiep-Quan-ly-khach-san\Da\obj\Debug\Da.controller.frm_thongtinnhanvien.resources
 D:\Do-an-tot-nghiep-Quan-ly-khach-san\Da\obj\Debug\Da.controller.qlthietbi.resources
 D:\Do-an-tot-nghiep-Quan-ly-khach-san\Da\obj\Debug\Da.controller.them_dichvu.resources
@@ -2244,3 +2243,5 @@ D:\Do-an-tot-nghiep-Quan-ly-khach-san\Da\bin\Debug\DevExpress.Printing.v19.2.Cor
 D:\Do-an-tot-nghiep-Quan-ly-khach-san\Da\bin\Debug\DevExpress.Sparkline.v19.2.Core.dll
 D:\Do-an-tot-nghiep-Quan-ly-khach-san\Da\bin\Debug\DevExpress.Utils.v19.2.dll
 D:\Do-an-tot-nghiep-Quan-ly-khach-san\Da\bin\Debug\DevExpress.XtraEditors.v19.2.dll
+D:\Do-an-tot-nghiep-Quan-ly-khach-san\Da\obj\Debug\Da.controller.frm_thuephongtrong.resources
+D:\Do-an-tot-nghiep-Quan-ly-khach-san\Da\obj\Debug\Da.controller.chitiet_hoadon_dichvu.resources

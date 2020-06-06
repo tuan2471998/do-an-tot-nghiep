@@ -94,6 +94,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="connect.cs" />
+    <Compile Include="controller\chitiet_hoadon_dichvu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="controller\chitiet_hoadon_dichvu.Designer.cs">
+      <DependentUpon>chitiet_hoadon_dichvu.cs</DependentUpon>
+    </Compile>
     <Compile Include="controller\DM_dichvu2.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -190,17 +196,17 @@
     <Compile Include="controller\frm_phongtrong.Designer.cs">
       <DependentUpon>frm_phongtrong.cs</DependentUpon>
     </Compile>
-    <Compile Include="controller\frm_quanlythietbi.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="controller\frm_quanlythietbi.Designer.cs">
-      <DependentUpon>frm_quanlythietbi.cs</DependentUpon>
-    </Compile>
     <Compile Include="controller\frm_thongtinnhanvien.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="controller\frm_thongtinnhanvien.Designer.cs">
       <DependentUpon>frm_thongtinnhanvien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="controller\frm_thuephongtrong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="controller\frm_thuephongtrong.Designer.cs">
+      <DependentUpon>frm_thuephongtrong.cs</DependentUpon>
     </Compile>
     <Compile Include="controller\qlthietbi.cs">
       <SubType>UserControl</SubType>
@@ -329,6 +335,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>BAOCAOTHONGKE.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="controller\chitiet_hoadon_dichvu.resx">
+      <DependentUpon>chitiet_hoadon_dichvu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="controller\DM_dichvu2.resx">
       <DependentUpon>DM_dichvu2.cs</DependentUpon>
     </EmbeddedResource>
@@ -374,11 +383,11 @@
     <EmbeddedResource Include="controller\frm_phongtrong.resx">
       <DependentUpon>frm_phongtrong.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="controller\frm_quanlythietbi.resx">
-      <DependentUpon>frm_quanlythietbi.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="controller\frm_thongtinnhanvien.resx">
       <DependentUpon>frm_thongtinnhanvien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controller\frm_thuephongtrong.resx">
+      <DependentUpon>frm_thuephongtrong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="controller\qlthietbi.resx">
       <DependentUpon>qlthietbi.cs</DependentUpon>
