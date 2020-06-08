@@ -19,6 +19,7 @@ namespace Da.controller
         DataSet ds_ph;
         SqlDataAdapter da_ph;
         connect conn = new connect();
+        DataColumn[] key = new DataColumn[1];
         public frm_phieuthue()
         {
 
@@ -141,9 +142,13 @@ namespace Da.controller
                 bien2 = bien1;
                 bien3 = 1;
             }
+            if (dt1.Rows.Count == 0)
+            {
+                return "TP001";
+            }
             else
             {
-                bien1 = dt1.Rows.Count + 2;
+                bien1 = dt1.Rows.Count + 1;
                 bien2 = bien1;
                 bien3 = 1;
             }
@@ -341,8 +346,6 @@ namespace Da.controller
             SqlCommandBuilder builda = new SqlCommandBuilder(da);
             da.Update(ds, "CTPhieuThem1");
 
-
-
         }
 
         private void themPhieuThue()
@@ -373,6 +376,26 @@ namespace Da.controller
             da.Update(ds, "PhieuThem1");
         }
 
+        private void chuyenTrangThaiPhong()
+        {
+            DataSet ds_phong = new DataSet();
+            SqlDataAdapter da_phong = new SqlDataAdapter("select * from PHONG", conn.cnn);
+            da_phong.Fill(ds_phong, "PHONG");
+            key[0] = ds_phong.Tables["PHONG"].Columns[0];
+            ds_phong.Tables["PHONG"].PrimaryKey = key;
+
+            foreach (DataGridViewRow row in dataGridView2.Rows)
+            {
+                DataRow update = ds_phong.Tables["PHONG"].Rows.Find(row.Cells[1].Value.ToString());
+                if (update != null)
+                {
+                    update["TINHTRANG"] = 1;
+                    SqlCommandBuilder cmb = new SqlCommandBuilder(da_phong);
+                    da_phong.Update(ds_phong, "PHONG");
+                }
+            }
+        }
+
         private void btnxoa_Click(object sender, EventArgs e)
         {
             if (dataGridView2.CurrentRow != null)
@@ -392,6 +415,7 @@ namespace Da.controller
             {
                 try
                 {
+                    chuyenTrangThaiPhong();
                     themPhieuThue();
                     themChiTietPhieuTHUE();
 

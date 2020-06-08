@@ -68,6 +68,7 @@ namespace Da
             this.barButtonItem_huongdan = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -86,11 +87,12 @@ namespace Da
             this.xtraOpenFileDialog1 = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
             this.hideContainerLeft = new DevExpress.XtraBars.Docking.AutoHideContainer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.hienthi = new DevExpress.XtraTab.XtraTabControl();
             this.panel2 = new System.Windows.Forms.Panel();
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemphieudatphong = new DevExpress.XtraNavBar.NavBarItem();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.hienthi = new DevExpress.XtraTab.XtraTabControl();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.dockPanel4.SuspendLayout();
             this.dockPanel3.SuspendLayout();
@@ -98,7 +100,9 @@ namespace Da
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hienthi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // dockManager1
@@ -484,6 +488,14 @@ namespace Da
             this.barButtonItem1.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
             | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
             // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Caption = "Quản lý thiết bị";
+            this.barButtonItem2.Id = 23;
+            this.barButtonItem2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem2.ImageOptions.SvgImage")));
+            this.barButtonItem2.Name = "barButtonItem2";
+            this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -595,18 +607,6 @@ namespace Da
             this.panel1.Size = new System.Drawing.Size(1008, 556);
             this.panel1.TabIndex = 0;
             // 
-            // hienthi
-            // 
-            this.hienthi.Appearance.BackColor = System.Drawing.Color.White;
-            this.hienthi.Appearance.Options.UseBackColor = true;
-            this.hienthi.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hienthi.BackgroundImage")));
-            this.hienthi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.hienthi.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hienthi.Location = new System.Drawing.Point(192, 183);
-            this.hienthi.Name = "hienthi";
-            this.hienthi.Size = new System.Drawing.Size(1086, 558);
-            this.hienthi.TabIndex = 11;
-            // 
             // panel2
             // 
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -629,13 +629,37 @@ namespace Da
             this.navBarItemphieudatphong.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItemphieudatphong.ImageOptions.SmallImage")));
             this.navBarItemphieudatphong.Name = "navBarItemphieudatphong";
             // 
-            // barButtonItem2
+            // pictureBox1
             // 
-            this.barButtonItem2.Caption = "Quản lý thiết bị";
-            this.barButtonItem2.Id = 23;
-            this.barButtonItem2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem2.ImageOptions.SvgImage")));
-            this.barButtonItem2.Name = "barButtonItem2";
-            this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(1, 1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1084, 556);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // hienthi
+            // 
+            this.hienthi.Appearance.BackColor = System.Drawing.Color.White;
+            this.hienthi.Appearance.Options.UseBackColor = true;
+            this.hienthi.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hienthi.BackgroundImage")));
+            this.hienthi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.hienthi.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hienthi.Location = new System.Drawing.Point(192, 183);
+            this.hienthi.Name = "hienthi";
+            this.hienthi.Size = new System.Drawing.Size(1086, 558);
+            this.hienthi.TabIndex = 11;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox2.Image = global::Da.Properties.Resources._1_1;
+            this.pictureBox2.Location = new System.Drawing.Point(1, 1);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(1084, 556);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
             // 
             // frm_khachsan
             // 
@@ -657,7 +681,9 @@ namespace Da
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hienthi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -713,7 +739,6 @@ namespace Da
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup6;
         private DevExpress.XtraBars.Docking.DockPanel dockPanel4;
         private DevExpress.XtraBars.Docking.ControlContainer dockPanel4_Container;
-        private DevExpress.XtraTab.XtraTabControl hienthi;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private DevExpress.XtraNavBar.NavBarControl navBarControl1;
@@ -725,6 +750,9 @@ namespace Da
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraNavBar.NavBarItem navBar_danhsachphong;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraTab.XtraTabControl hienthi;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
     
 }

@@ -167,6 +167,7 @@
             this.comboBox_madatphong.Name = "comboBox_madatphong";
             this.comboBox_madatphong.Size = new System.Drawing.Size(309, 33);
             this.comboBox_madatphong.TabIndex = 23;
+            this.comboBox_madatphong.SelectedIndexChanged += new System.EventHandler(this.comboBox_madatphong_SelectedIndexChanged);
             this.comboBox_madatphong.SelectedValueChanged += new System.EventHandler(this.comboBox_madatphong_SelectedValueChanged);
             // 
             // textBoxsl

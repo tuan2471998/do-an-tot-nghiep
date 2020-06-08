@@ -252,10 +252,10 @@
       <DependentUpon>frm_thongke.cs</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="controller\HoaDonTong.cs">
+    <Compile Include="HoaDonTong.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="controller\HoaDonTong.Designer.cs">
+    <Compile Include="HoaDonTong.Designer.cs">
       <DependentUpon>HoaDonTong.cs</DependentUpon>
     </Compile>
     <Compile Include="controller\Phanquyen.cs">
@@ -288,6 +288,12 @@
     <Compile Include="controller\frm_phong.Designer.cs">
       <DependentUpon>frm_phong.cs</DependentUpon>
     </Compile>
+    <Compile Include="controller\frm_tt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="controller\frm_tt.Designer.cs">
+      <DependentUpon>frm_tt.cs</DependentUpon>
+    </Compile>
     <Compile Include="HDTONG.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -318,6 +324,12 @@
     <Compile Include="Hoadon_phong.Designer.cs">
       <DependentUpon>Hoadon_phong.cs</DependentUpon>
     </Compile>
+    <Compile Include="controller\Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="controller\Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QL_KHACHSANDataSet.Designer.cs">
@@ -325,10 +337,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QL_KHACHSANDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="themchitietdichvu.cs">
+    <Compile Include="controller\ThanhToanHoaDon.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="themchitietdichvu.Designer.cs">
+    <Compile Include="controller\ThanhToanHoaDon.Designer.cs">
+      <DependentUpon>ThanhToanHoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="controller\themchitietdichvu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="controller\themchitietdichvu.Designer.cs">
       <DependentUpon>themchitietdichvu.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="BAOCAOTHONGKE.rpt">
@@ -411,7 +429,7 @@
       <DependentUpon>frm_thongke.cs</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="controller\HoaDonTong.resx">
+    <EmbeddedResource Include="HoaDonTong.resx">
       <DependentUpon>HoaDonTong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="controller\Phanquyen.resx">
@@ -428,6 +446,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="controller\frm_phong.resx">
       <DependentUpon>frm_phong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controller\frm_tt.resx">
+      <DependentUpon>frm_tt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HDTONG.resx">
       <DependentUpon>HDTONG.cs</DependentUpon>
@@ -446,13 +467,19 @@
     <EmbeddedResource Include="Hoadon_phong.resx">
       <DependentUpon>Hoadon_phong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="controller\Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="themchitietdichvu.resx">
+    <EmbeddedResource Include="controller\ThanhToanHoaDon.resx">
+      <DependentUpon>ThanhToanHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controller\themchitietdichvu.resx">
       <DependentUpon>themchitietdichvu.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />

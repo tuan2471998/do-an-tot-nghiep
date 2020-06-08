@@ -60,9 +60,13 @@ namespace Da.controller
                 bien2 = bien1;
                 bien3 = 1;
             }
+            if (dt1.Rows.Count == 0)
+            {
+                return "TP001";
+            }
             else
             {
-                bien1 = dt1.Rows.Count + 2;
+                bien1 = dt1.Rows.Count + 1;
                 bien2 = bien1;
                 bien3 = 1;
             }
@@ -195,8 +199,36 @@ namespace Da.controller
         {
             chuyenTrangThaiPhong();
             themPhieuThue();
+            themChiTietThue();
             xoaPhieuDat();
             loadcbxMaKH();
+        }
+
+        private void themChiTietThue()
+        {
+            try
+            {
+                int sl = int.Parse(textBoxsl.Text);
+                string sel = "INSERT INTO PHIEUTHUE VALUES('" + textBox_MATP.Text + "','" + textBox_MANV.Text + "','" + textBoxmkh.Text + "','" + comboBox_madatphong.SelectedValue.ToString() + "','" + dtp_ngaychuyen.Value + "','" + dtp_ngaytra.Value + "'," + sl + ",'" + textBox_tiencoc.Text + "')";
+                SqlCommand cmd = new SqlCommand(sel, conn.cnn);
+                cmd.ExecuteNonQuery();
+                textBox_MATP.Clear();
+            }
+            catch
+            {
+                MessageBox.Show("Vui lòng thực hiện lại thao tác chuyển phòng!");
+            }
+
+
+           
+            
+
+
+        }
+
+        private void comboBox_madatphong_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
