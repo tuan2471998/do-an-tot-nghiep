@@ -339,6 +339,14 @@ namespace Da.controller
             //    txt_gia.Select(txt_gia.Text.Length, 0);
             //}
         }
+
+        private void txt_gia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
 

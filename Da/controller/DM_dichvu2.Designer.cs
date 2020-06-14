@@ -155,7 +155,7 @@
             // 
             this.panel3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel3.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.panel3.Location = new System.Drawing.Point(139, 109);
+            this.panel3.Location = new System.Drawing.Point(317, 109);
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(241, 2);
@@ -165,7 +165,7 @@
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.panel1.Location = new System.Drawing.Point(630, 109);
+            this.panel1.Location = new System.Drawing.Point(745, 109);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(241, 2);
@@ -175,7 +175,7 @@
             // 
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel2.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.panel2.Location = new System.Drawing.Point(1116, 104);
+            this.panel2.Location = new System.Drawing.Point(1191, 104);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(241, 2);
@@ -188,7 +188,7 @@
             this.txt_giadv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_giadv.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_giadv.ForeColor = System.Drawing.Color.DimGray;
-            this.txt_giadv.Location = new System.Drawing.Point(1116, 76);
+            this.txt_giadv.Location = new System.Drawing.Point(1191, 76);
             this.txt_giadv.Margin = new System.Windows.Forms.Padding(4);
             this.txt_giadv.Name = "txt_giadv";
             this.txt_giadv.Size = new System.Drawing.Size(311, 27);
@@ -202,7 +202,7 @@
             this.txt_tendv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_tendv.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_tendv.ForeColor = System.Drawing.Color.DimGray;
-            this.txt_tendv.Location = new System.Drawing.Point(630, 79);
+            this.txt_tendv.Location = new System.Drawing.Point(745, 79);
             this.txt_tendv.Margin = new System.Windows.Forms.Padding(4);
             this.txt_tendv.Name = "txt_tendv";
             this.txt_tendv.Size = new System.Drawing.Size(241, 27);
@@ -215,7 +215,7 @@
             this.txt_madv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_madv.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_madv.ForeColor = System.Drawing.Color.DimGray;
-            this.txt_madv.Location = new System.Drawing.Point(139, 79);
+            this.txt_madv.Location = new System.Drawing.Point(317, 79);
             this.txt_madv.Margin = new System.Windows.Forms.Padding(4);
             this.txt_madv.Name = "txt_madv";
             this.txt_madv.Size = new System.Drawing.Size(241, 27);
@@ -224,14 +224,14 @@
             // btnLammoi
             // 
             this.btnLammoi.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnLammoi.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.btnLammoi.Appearance.BackColor = System.Drawing.Color.White;
             this.btnLammoi.Appearance.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLammoi.Appearance.Options.UseBackColor = true;
             this.btnLammoi.Appearance.Options.UseBorderColor = true;
             this.btnLammoi.Appearance.Options.UseFont = true;
             this.btnLammoi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLammoi.ImageOptions.Image")));
             this.btnLammoi.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnLammoi.Location = new System.Drawing.Point(1359, 146);
+            this.btnLammoi.Location = new System.Drawing.Point(935, 146);
             this.btnLammoi.Margin = new System.Windows.Forms.Padding(4, 7, 4, 7);
             this.btnLammoi.Name = "btnLammoi";
             this.btnLammoi.Size = new System.Drawing.Size(306, 61);
@@ -242,14 +242,14 @@
             // btnTimkiem
             // 
             this.btnTimkiem.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnTimkiem.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTimkiem.Appearance.BackColor = System.Drawing.Color.White;
             this.btnTimkiem.Appearance.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimkiem.Appearance.Options.UseBackColor = true;
             this.btnTimkiem.Appearance.Options.UseBorderColor = true;
             this.btnTimkiem.Appearance.Options.UseFont = true;
             this.btnTimkiem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnTimkiem.ImageOptions.Image")));
             this.btnTimkiem.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnTimkiem.Location = new System.Drawing.Point(1453, 57);
+            this.btnTimkiem.Location = new System.Drawing.Point(777, 146);
             this.btnTimkiem.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnTimkiem.Name = "btnTimkiem";
             this.btnTimkiem.Size = new System.Drawing.Size(150, 61);
@@ -260,16 +260,16 @@
             // btnThem
             // 
             this.btnThem.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnThem.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.btnThem.Appearance.BackColor = System.Drawing.Color.White;
             this.btnThem.Appearance.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThem.Appearance.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnThem.Appearance.ForeColor = System.Drawing.Color.Black;
             this.btnThem.Appearance.Options.UseBackColor = true;
             this.btnThem.Appearance.Options.UseBorderColor = true;
             this.btnThem.Appearance.Options.UseFont = true;
             this.btnThem.Appearance.Options.UseForeColor = true;
             this.btnThem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.Image")));
             this.btnThem.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnThem.Location = new System.Drawing.Point(757, 146);
+            this.btnThem.Location = new System.Drawing.Point(1249, 146);
             this.btnThem.Margin = new System.Windows.Forms.Padding(4, 7, 4, 7);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(149, 61);
@@ -280,7 +280,7 @@
             // btnXoa
             // 
             this.btnXoa.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnXoa.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.btnXoa.Appearance.BackColor = System.Drawing.Color.White;
             this.btnXoa.Appearance.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXoa.Appearance.Options.UseBackColor = true;
             this.btnXoa.Appearance.Options.UseBorderColor = true;
@@ -288,7 +288,7 @@
             this.btnXoa.Enabled = false;
             this.btnXoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.Image")));
             this.btnXoa.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnXoa.Location = new System.Drawing.Point(948, 146);
+            this.btnXoa.Location = new System.Drawing.Point(1406, 146);
             this.btnXoa.Margin = new System.Windows.Forms.Padding(4, 7, 4, 7);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(149, 61);
@@ -299,7 +299,7 @@
             // btnSua
             // 
             this.btnSua.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSua.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.btnSua.Appearance.BackColor = System.Drawing.Color.White;
             this.btnSua.Appearance.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSua.Appearance.Options.UseBackColor = true;
             this.btnSua.Appearance.Options.UseBorderColor = true;
@@ -307,7 +307,7 @@
             this.btnSua.Enabled = false;
             this.btnSua.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.Image")));
             this.btnSua.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnSua.Location = new System.Drawing.Point(1144, 146);
+            this.btnSua.Location = new System.Drawing.Point(1563, 146);
             this.btnSua.Margin = new System.Windows.Forms.Padding(4, 7, 4, 7);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(149, 61);
@@ -320,7 +320,7 @@
             this.labelControl4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(948, 84);
+            this.labelControl4.Location = new System.Drawing.Point(1045, 79);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(125, 26);
@@ -332,7 +332,7 @@
             this.labelControl3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(480, 84);
+            this.labelControl3.Location = new System.Drawing.Point(595, 76);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(127, 26);
@@ -344,7 +344,7 @@
             this.labelControl2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(8, 76);
+            this.labelControl2.Location = new System.Drawing.Point(186, 76);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(123, 26);

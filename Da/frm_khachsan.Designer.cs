@@ -93,6 +93,8 @@ namespace Da
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.hienthi = new DevExpress.XtraTab.XtraTabControl();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.dockPanel4.SuspendLayout();
             this.dockPanel3.SuspendLayout();
@@ -103,6 +105,7 @@ namespace Da
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hienthi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // dockManager1
@@ -216,6 +219,8 @@ namespace Da
             // 
             // navBarItemphong
             // 
+            this.navBarItemphong.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItemphong.Appearance.Options.UseFont = true;
             this.navBarItemphong.Caption = "Phiếu đặt phòng";
             this.navBarItemphong.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("navBarItemphong.ImageOptions.SvgImage")));
             this.navBarItemphong.Name = "navBarItemphong";
@@ -223,6 +228,8 @@ namespace Da
             // 
             // navBarchuyenphong
             // 
+            this.navBarchuyenphong.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarchuyenphong.Appearance.Options.UseFont = true;
             this.navBarchuyenphong.Caption = "Phiếu chuyển phòng";
             this.navBarchuyenphong.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("navBarchuyenphong.ImageOptions.SvgImage")));
             this.navBarchuyenphong.Name = "navBarchuyenphong";
@@ -230,6 +237,8 @@ namespace Da
             // 
             // navBarItemdichvu
             // 
+            this.navBarItemdichvu.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItemdichvu.Appearance.Options.UseFont = true;
             this.navBarItemdichvu.Caption = "Phiếu dịch vụ";
             this.navBarItemdichvu.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("navBarItemdichvu.ImageOptions.SvgImage")));
             this.navBarItemdichvu.Name = "navBarItemdichvu";
@@ -237,6 +246,8 @@ namespace Da
             // 
             // navBarthuephong
             // 
+            this.navBarthuephong.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarthuephong.Appearance.Options.UseFont = true;
             this.navBarthuephong.Caption = "Phiếu thuê phòng";
             this.navBarthuephong.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("navBarthuephong.ImageOptions.SvgImage")));
             this.navBarthuephong.Name = "navBarthuephong";
@@ -244,6 +255,8 @@ namespace Da
             // 
             // navBar_danhsachphong
             // 
+            this.navBar_danhsachphong.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBar_danhsachphong.Appearance.Options.UseFont = true;
             this.navBar_danhsachphong.Caption = "Danh sách phòng";
             this.navBar_danhsachphong.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("navBar_danhsachphong.ImageOptions.SvgImage")));
             this.navBar_danhsachphong.Name = "navBar_danhsachphong";
@@ -299,6 +312,7 @@ namespace Da
             // 
             // ribbonStatusBar1
             // 
+            this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem1);
             this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 741);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
@@ -327,9 +341,10 @@ namespace Da
             this.barButtonItem_huongdan,
             this.barSubItem1,
             this.barButtonItem1,
-            this.barButtonItem2});
+            this.barButtonItem2,
+            this.barStaticItem1});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 24;
+            this.ribbonControl1.MaxItemId = 26;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -351,7 +366,7 @@ namespace Da
             // 
             // barButtonItem_doimatkhau
             // 
-            this.barButtonItem_doimatkhau.Caption = "Đổi mật khẩu";
+            this.barButtonItem_doimatkhau.Caption = "Thông tin người dùng";
             this.barButtonItem_doimatkhau.Id = 5;
             this.barButtonItem_doimatkhau.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem_doimatkhau.ImageOptions.Image")));
             this.barButtonItem_doimatkhau.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem_doimatkhau.ImageOptions.LargeImage")));
@@ -642,13 +657,13 @@ namespace Da
             // 
             this.hienthi.Appearance.BackColor = System.Drawing.Color.White;
             this.hienthi.Appearance.Options.UseBackColor = true;
-            this.hienthi.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hienthi.BackgroundImage")));
             this.hienthi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.hienthi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hienthi.Location = new System.Drawing.Point(192, 183);
             this.hienthi.Name = "hienthi";
             this.hienthi.Size = new System.Drawing.Size(1086, 558);
             this.hienthi.TabIndex = 11;
+            this.hienthi.Visible = false;
             // 
             // pictureBox2
             // 
@@ -661,11 +676,29 @@ namespace Da
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox3.Image = global::Da.Properties.Resources._1_1;
+            this.pictureBox3.Location = new System.Drawing.Point(192, 183);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(1086, 558);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 0;
+            this.pictureBox3.TabStop = false;
+            // 
+            // barStaticItem1
+            // 
+            this.barStaticItem1.Caption = "barStaticItem1";
+            this.barStaticItem1.Id = 25;
+            this.barStaticItem1.Name = "barStaticItem1";
+            // 
             // frm_khachsan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 774);
+            this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.hienthi);
             this.Controls.Add(this.dockPanel3);
             this.Controls.Add(this.ribbonControl1);
@@ -674,6 +707,7 @@ namespace Da
             this.Text = "frm_khachsan";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_khachsan_FormClosing);
+            this.Load += new System.EventHandler(this.frm_khachsan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
             this.dockPanel4.ResumeLayout(false);
             this.dockPanel3.ResumeLayout(false);
@@ -684,6 +718,7 @@ namespace Da
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hienthi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -753,6 +788,8 @@ namespace Da
         private DevExpress.XtraTab.XtraTabControl hienthi;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem1;
     }
     
 }

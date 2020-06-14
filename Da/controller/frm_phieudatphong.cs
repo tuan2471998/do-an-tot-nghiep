@@ -11,6 +11,8 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 using System.Data.SqlClient;
 using DevExpress.Charts.Native;
+using System.IO.Ports;
+using System.Threading;
 
 namespace Da.controller
 {
@@ -96,56 +98,12 @@ namespace Da.controller
 
                 //load danh sach
                 Load_hinhanh();
-            }
-            //if (chb_tang.Checked && !chb_loai.Checked)
-            //{
-            //    ds_ph = new DataSet();
-            //    int index = cbb_tang.SelectedIndex + 1;
-            //    da_ph = new SqlDataAdapter("select distinct PHONG.MAPH from PHONG,CT_PHIEUDAT,PHIEUDAT WHERE PHONG.MAPH=CT_PHIEUDAT.MAPH AND CT_PHIEUDAT.MADP=PHIEUDAT.MADP AND VTPHONG = '" + index + "' AND (NGAYNHAN_DUKIEN>='" + dtp_ngaytra.Value + "' OR NGAYTRA_DUKIEN<='" + dtp_ngaydat.Value + "')", conn.cnn);
-            //    da_ph.Fill(ds_ph, "PHONG");
-
-            //    //load danh sach
-            //    Load_hinhanh();
-            //}
-            //else if (chb_loai.Checked && !chb_tang.Checked)
-            //{
-            //    ds_ph = new DataSet();
-            //    da_ph = new SqlDataAdapter("select distinct PHONG.MAPH from PHONG,CT_PHIEUDAT,PHIEUDAT WHERE PHONG.MAPH=CT_PHIEUDAT.MAPH AND CT_PHIEUDAT.MADP=PHIEUDAT.MADP AND PHONG.MALOAI='" + cbb_loai.SelectedValue + "'AND NGAYNHAN_DUKIEN>='" + dtp_ngaytra.Value + "' OR NGAYTRA_DUKIEN<='" + dtp_ngaydat.Value + "')", conn.cnn);
-            //    da_ph.Fill(ds_ph, "PHONG");
-
-            //    //load danh sach
-            //    Load_hinhanh();
-            //}
-            //else if (chb_loai.Checked && chb_tang.Checked)
-            //{
-            //    ds_ph = new DataSet();
-            //    int index = cbb_tang.SelectedIndex + 1;
-            //    da_ph = new SqlDataAdapter("select distinct PHONG.MAPH from PHONG,CT_PHIEUDAT,PHIEUDAT WHERE PHONG.MAPH=CT_PHIEUDAT.MAPH AND CT_PHIEUDAT.MADP=PHIEUDAT.MADP AND VTPHONG = '" + index + "' AND MALOAI= '" + cbb_loai.SelectedValue + "'AND (NGAYNHAN_DUKIEN>='" + dtp_ngaytra.Value + "' OR NGAYTRA_DUKIEN<='" + dtp_ngaydat.Value + "')", conn.cnn);
-            //    da_ph.Fill(ds_ph, "PHONG");
-
-            //    //load danh sach
-            //    Load_hinhanh();
-            //}
-            //else
-            //{
-            //    ds_ph = new DataSet();
-            //    da_ph = new SqlDataAdapter("select distinct PHONG.MAPH from PHONG,CT_PHIEUDAT,PHIEUDAT WHERE PHONG.MAPH=CT_PHIEUDAT.MAPH AND CT_PHIEUDAT.MADP=PHIEUDAT.MADP AND (NGAYNHAN_DUKIEN>='" + dtp_ngaytra.Value + "' OR NGAYTRA_DUKIEN<='" + dtp_ngaydat.Value + "')", conn.cnn);
-            //    da_ph.Fill(ds_ph, "PHONG");
-
-            //    //load danh sach
-            //    Load_hinhanh();
-            //}
-
+            }           
         }
 
         private void Load_hinhanh()
         {
             panelphong.Controls.Clear();
-
-            //DataSet ds_ph = new DataSet();
-            //SqlDataAdapter da_ph = new SqlDataAdapter("select MAPH from PHONG", conn.cnn);
-            //// Ánh xạ dữ liệu từ DB vào dataset, đặt tên Sach
-            //da_ph.Fill(ds_ph, "PHONG");
             DataTable dtPHONG = ds_ph.Tables["PHONG"];
             int x = 0;
             int y = 0;
@@ -192,7 +150,6 @@ namespace Da.controller
                 }
             }
             SqlDataAdapter da_phCTThue = new SqlDataAdapter("select PHONG.MAPH from PHONG,CT_THUEPHONG,PHIEUTHUE WHERE PHONG.MAPH=CT_THUEPHONG.MAPH AND CT_THUEPHONG.MATP=PHIEUTHUE.MATP AND NGAYNHAN<='" + dtp_ngaytra.Value + "' AND NGAYTRA>='" + dtp_ngaytra.Value + "'", conn.cnn);
-            // Ánh xạ dữ liệu từ DB vào dataset, đặt tên Sach
             da_phCTThue.Fill(ds_ph, "PHONG2");
             DataTable dt2 = ds_ph.Tables["PHONG2"];
 
@@ -204,7 +161,7 @@ namespace Da.controller
                 }
             }
             return true;
-        } 
+        }
 
         DataSet ds_phchitiet = new DataSet();
         DataTable dt1chitiet;
@@ -282,8 +239,6 @@ namespace Da.controller
                     bien3 *= 10;
                 }
             }
-
-           
             return "DP" + bien2.ToString().Substring(1, 3);
         }
 
@@ -332,17 +287,13 @@ namespace Da.controller
             // Tạo và lấp đầy DataSet
             ds = new DataSet();
             da.Fill(ds, "PhieuThem");
-            // Lấy thông tin Table vào DataTable
-            // DataTable dt = ds.Tables["PhieuThem"];
 
-            // Tạo thêm row mới
             DataRow newRow = ds.Tables["PhieuThem"].NewRow();
             newRow[0] = textBoxmaphieudat.Text;
             newRow[1] = textBoxmanhanvien.Text;
             newRow[2] = txtMaKH.Text;
-            var a = DateTime.Parse(dtp_ngaytra.Value.ToString("yyyy/MM/dd") + " 12:00:00 PM");
-            newRow[3] = DateTime.Parse(dtp_ngaydat.Value.ToString("yyyy/MM/dd") +" 2:00:00 PM");
-            newRow[4] = DateTime.Parse(dtp_ngaytra.Value.ToString("yyyy/MM/dd") +" 12:00:00 PM");
+            newRow[3] = DateTime.Parse(dtp_ngaydat.Value.ToString("yyyy/MM/dd") + " 2:00:00 PM");
+            newRow[4] = DateTime.Parse(dtp_ngaytra.Value.ToString("yyyy/MM/dd") + " 12:00:00 PM");
             newRow[5] = int.Parse(textBoxsoluong.Text);
             newRow[6] = textBoxtiencoc.Text;
             //dt.Rows.Add(newRow);
@@ -453,6 +404,57 @@ namespace Da.controller
             }
         }
 
+        string dsphong;
+        private string danhsachphong()
+        {
+            dsphong = "";
+            foreach (DataGridViewRow row in dataGridViewchitiet.Rows)
+            {
+                dsphong += row.Cells[1].Value.ToString().Trim() + ", ";
+            }
+            return dsphong;
+        }
+
+        private string get_sdt(string makh)
+        {
+            string sql = "select SDT from KHACHHANG where MAKH = '" + makh + "'";
+            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+            return (string)cmd.ExecuteScalar().ToString().Trim();
+        }
+
+        SerialPort sp;
+        private void guisms()
+        {
+            string sdt = get_sdt(txtMaKH.Text);
+            string sdt_dung = "+84" + sdt.Substring(1);
+            danhsachphong();
+            string message = "Ban da dat thanh cong phong " + dsphong;
+            message += " vao ngay " + dtp_ngaydat.Value.ToString("dd/MM/yyyy");
+            message += " voi Ma Dat Phong la " + textBoxmaphieudat.Text.Trim();
+            message += ". Vui long den truoc 14 gio de nhan phong.";
+            sp = new SerialPort();
+            sp.PortName = "COM5";
+            sp.Open();
+            sp.WriteLine("AT" + Environment.NewLine);
+            Thread.Sleep(100);
+            sp.WriteLine("AT+CMGF=1" + Environment.NewLine);
+            Thread.Sleep(100);
+            sp.WriteLine("AT+CSCS=\"GSM\"" + Environment.NewLine);
+            Thread.Sleep(100);
+            sp.WriteLine("AT+CMGS=\"" + sdt_dung + "\"" + Environment.NewLine);
+            Thread.Sleep(100);
+            sp.WriteLine(message + Environment.NewLine);
+            Thread.Sleep(100);
+            sp.Write(new byte[] { 26 }, 0, 1);
+            Thread.Sleep(100);
+            var res = sp.ReadExisting();
+            if (res.Contains("ERROR"))
+            {
+                MessageBox.Show("Gui tin nhan khong thanh cong");
+            }
+            sp.Close();
+        }
+
         private void btnLuu_Click(object sender, EventArgs e)
         {
             if (textBoxmanhanvien.Text.Length > 0 && string.IsNullOrEmpty(txtMaKH.Text) == false && textBoxtiencoc.Text.Length > 0 && textBoxmaphieudat.Text.Length > 0 && textBoxsoluong.Text.Length > 0)
@@ -461,7 +463,8 @@ namespace Da.controller
                     {
                         chuyenTrangThaiPhong();
                         themPhieuDAt();
-                        themChiTietPhieuDat();                       
+                        themChiTietPhieuDat();
+                        //guisms();
                         MessageBox.Show("Lập phiếu đặt thành công");
                         reload();
                     }
@@ -508,9 +511,9 @@ namespace Da.controller
                 return 0;
             }
     
-            else if ( dtp_ngaydat.Value >= dtp_ngaytra.Value)
+            else if ( dtp_ngaydat.Value < dtp_ngaytra.Value)
             {
-                MessageBox.Show("Ngày trả phòng phải sau ngày đặt phòng");
+                MessageBox.Show("Ngày đặt phòng không hợp lệ");
                 return 0;
             }
             else

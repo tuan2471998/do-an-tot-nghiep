@@ -24,16 +24,4 @@ namespace Da
             Application.Run(frm_dangnhap= new frm_dangnhap());
         }
     }
-    ////ktra form chính tồn tại chưa
-    //private frm_khachsan kiemtraform(Type ftype)
-    //{
-    //    foreach (frm_khachsan f in this.MdiChildren)
-    //    {
-    //        if (f.GetType() == ftype)
-    //        {
-    //            return f;
-    //        }
-    //    }
-    //    return null;
-    //}
 }

@@ -116,10 +116,9 @@ namespace Da.controller
             try
             {
                 int sl = int.Parse(textBoxsl.Text);
-                string sel = "INSERT INTO PHIEUTHUE VALUES('" + textBox_MATP.Text + "','" + textBox_MANV.Text + "','" + textBoxmkh.Text + "','" + comboBox_madatphong.SelectedValue.ToString() + "','" + dtp_ngaychuyen.Value + "','" + dtp_ngaytra.Value + "'," + sl + ",'" + textBox_tiencoc.Text + "')";
-                SqlCommand cmd = new SqlCommand(sel, conn.cnn);
-                cmd.ExecuteNonQuery();
-                textBox_MATP.Clear();
+                string sql = "INSERT INTO PHIEUTHUE VALUES('" + textBox_MATP.Text + "','" + textBox_MANV.Text + "','" + textBoxmkh.Text + "','" + comboBox_madatphong.SelectedValue.ToString() + "','" + DateTime.Now + "','" + dtp_ngaytra.Value + "'," + sl + ",'" + textBox_tiencoc.Text + "')";
+                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                cmd.ExecuteNonQuery();         
             }
             catch
             {
@@ -127,33 +126,42 @@ namespace Da.controller
             }
         }
 
-        private int xoaCTPhieuDat()
+        private void themChiTietThue()
         {
-            string sql = "delete from CT_PHIEUDAT where MADP = '" + comboBox_madatphong.SelectedValue.ToString() + "'";
+            try
+            {
+                ds = new DataSet();
+                da = new SqlDataAdapter("select MAPH from CT_PHIEUDAT where MADP = '" + comboBox_madatphong.SelectedValue + "'", conn.cnn);
+                da.Fill(ds, "DS_PHONG");
+                foreach (DataRow row in ds.Tables["DS_PHONG"].Rows)
+                {
+                    string sql = "insert into CT_THUEPHONG values ('" + textBox_MATP.Text + "','" + row["MAPH"].ToString() + "')";
+                    SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                    int kq = cmd.ExecuteNonQuery();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Vui lòng thực hiện lại thao tác chuyển phòng!");
+            }
+        }
+
+        private void xoaCTPhieuDat()
+        {
+            string sql = "delete from CT_PHIEUDAT where MADP = '" + comboBox_madatphong.SelectedValue + "'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             int kq = (int)cmd.ExecuteNonQuery();
-            if (kq != 0)
-                return 1;
-            else
-                return 0;
         }
 
         private void xoaPhieuDat()
         {
             try
             {
-                int xoactpd = xoaCTPhieuDat();
-                if (xoactpd == 1)
-                {
-
-                    string sql = "delete from PHIEUDAT where MADP = '" + comboBox_madatphong.SelectedValue.ToString() + "'";
-                    SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-                    int kq = (int)cmd.ExecuteNonQuery();
-                    if (kq != 0)
-                        MessageBox.Show("Lập phiếu thành công");
-                }
-                else
-                    MessageBox.Show("Lập phiếu thất bại");
+                string sql = "delete from PHIEUDAT where MADP = '" + comboBox_madatphong.SelectedValue.ToString() + "'";
+                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                int kq = (int)cmd.ExecuteNonQuery();
+                if (kq != 0)
+                    MessageBox.Show("Lập phiếu thành công");
             }
             catch
             {
@@ -195,40 +203,27 @@ namespace Da.controller
             load_dgvPD();
         }
 
+        private void clear_control()
+        {
+            textBox_MATP.Clear();
+            dtp_ngaychuyen.Value = dtp_ngaytra.Value = DateTime.Now;
+            textBoxsl.Clear();
+            textBoxmkh.Clear();
+            textBox_MATP.Clear();
+            textBox_tiencoc.Clear();
+            ds.Tables["PHIEUDAT"].Clear();
+            dataGridView_thongtinchitietchuyen.DataSource = ds.Tables["PHIEUDAT"];
+        }
+
         private void btnLapphieu_Click(object sender, EventArgs e)
         {
             chuyenTrangThaiPhong();
             themPhieuThue();
             themChiTietThue();
+            xoaCTPhieuDat();
             xoaPhieuDat();
             loadcbxMaKH();
-        }
-
-        private void themChiTietThue()
-        {
-            try
-            {
-                int sl = int.Parse(textBoxsl.Text);
-                string sel = "INSERT INTO PHIEUTHUE VALUES('" + textBox_MATP.Text + "','" + textBox_MANV.Text + "','" + textBoxmkh.Text + "','" + comboBox_madatphong.SelectedValue.ToString() + "','" + dtp_ngaychuyen.Value + "','" + dtp_ngaytra.Value + "'," + sl + ",'" + textBox_tiencoc.Text + "')";
-                SqlCommand cmd = new SqlCommand(sel, conn.cnn);
-                cmd.ExecuteNonQuery();
-                textBox_MATP.Clear();
-            }
-            catch
-            {
-                MessageBox.Show("Vui lòng thực hiện lại thao tác chuyển phòng!");
-            }
-
-
-           
-            
-
-
-        }
-
-        private void comboBox_madatphong_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            clear_control();
         }
     }
 }

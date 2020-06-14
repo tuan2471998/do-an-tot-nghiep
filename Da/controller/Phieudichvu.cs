@@ -97,6 +97,7 @@ namespace Da.controller
                     MessageBox.Show("Thao tác của bạn đã bị lỗi");
                 }
             }
+            btn_lap.Enabled = false;
         }
         private string sinhtudongMaHOADON()
         {
@@ -133,6 +134,8 @@ namespace Da.controller
         {
             themchitietdichvu ctdv = new themchitietdichvu(this);
             ctdv.get_mahddv(txt_maphdv.Text);
+            simpleButton2.Enabled = false;
+            txt_maphdv.Clear();
             ctdv.StartPosition = FormStartPosition.CenterScreen;
             ctdv.Show();
         }
@@ -143,7 +146,8 @@ namespace Da.controller
             txt_matp.Text = dgv_dsphieuthue.CurrentRow.Cells[0].Value.ToString();
             txt_maph.Text = dgv_dsphieuthue.CurrentRow.Cells[1].Value.ToString();
             delete_dgv();
-            load_hd_dichvu();         
+            load_hd_dichvu();
+            btn_lap.Enabled = true;
         }
 
         private void clear_row_dgv_ctphieuthue()

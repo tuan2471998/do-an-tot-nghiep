@@ -164,7 +164,6 @@
             this.cbb_nhomquyen.Name = "cbb_nhomquyen";
             this.cbb_nhomquyen.Size = new System.Drawing.Size(251, 32);
             this.cbb_nhomquyen.TabIndex = 16;
-            
             // 
             // txttentk
             // 
@@ -231,6 +230,7 @@
             this.lb_tentk.Name = "lb_tentk";
             this.lb_tentk.Size = new System.Drawing.Size(0, 23);
             this.lb_tentk.TabIndex = 22;
+            this.lb_tentk.Visible = false;
             // 
             // btnxoaquyen
             // 
@@ -264,7 +264,7 @@
             // 
             this.dgv_tktheonhomquyen.AllowUserToAddRows = false;
             this.dgv_tktheonhomquyen.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv_tktheonhomquyen.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.dgv_tktheonhomquyen.BackgroundColor = System.Drawing.Color.White;
             this.dgv_tktheonhomquyen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_tktheonhomquyen.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -341,7 +341,7 @@
             // 
             this.dgv_taikhoan.AllowUserToAddRows = false;
             this.dgv_taikhoan.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv_taikhoan.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.dgv_taikhoan.BackgroundColor = System.Drawing.Color.White;
             this.dgv_taikhoan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_taikhoan.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,

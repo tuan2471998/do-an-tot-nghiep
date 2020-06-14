@@ -77,29 +77,36 @@ namespace Da.controller
 
         private void TimTenKH()
         {
-            if (string.IsNullOrEmpty(txt_cmnd.Text))
+            try
             {
-                string sql = "select HOTEN, SOCMND from KHACHHANG where SDT = '" + txt_sdt.Text + "'";
-                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-                SqlDataReader rd = cmd.ExecuteReader();
-                if (rd.Read())
+                if (string.IsNullOrEmpty(txt_cmnd.Text))
                 {
-                    txt_hoten.Text = (string)rd["HOTEN"];
-                    txt_cmnd.Text = (string)rd["SOCMND"];
+                    string sql = "select HOTEN, SOCMND from KHACHHANG where SDT = '" + txt_sdt.Text + "'";
+                    SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                    SqlDataReader rd = cmd.ExecuteReader();
+                    if (rd.Read())
+                    {
+                        txt_hoten.Text = (string)rd["HOTEN"];
+                        txt_cmnd.Text = (string)rd["SOCMND"];
+                    }
+                    rd.Close();
                 }
-                rd.Close();
+                else if (string.IsNullOrEmpty(txt_sdt.Text))
+                {
+                    string sql = "select HOTEN, SDt from KHACHHANG where SOCMND = '" + txt_cmnd.Text + "'";
+                    SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                    SqlDataReader rd = cmd.ExecuteReader();
+                    if (rd.Read())
+                    {
+                        txt_hoten.Text = (string)rd["HOTEN"];
+                        txt_sdt.Text = (string)rd["SDT"];
+                    }
+                    rd.Close();
+                }
             }
-            else if (string.IsNullOrEmpty(txt_sdt.Text))
+            catch
             {
-                string sql = "select HOTEN, SDt from KHACHHANG where SOCMND = '" + txt_cmnd.Text + "'";
-                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-                SqlDataReader rd = cmd.ExecuteReader();
-                if (rd.Read())
-                {
-                    txt_hoten.Text = (string)rd["HOTEN"];
-                    txt_sdt.Text = (string)rd["SDT"];
-                }
-                rd.Close();
+                MessageBox.Show("Thông tin khách hàng không chính xác");
             }
         }
 
@@ -143,7 +150,7 @@ namespace Da.controller
 
         private string get_makh(string cmnd)
         {
-            string sql = "select MAKH from KHACHHANG where SDT = '" + cmnd + "'";
+            string sql = "select MAKH from KHACHHANG where SOCMND = '" + cmnd + "'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             return (string)cmd.ExecuteScalar();
         }

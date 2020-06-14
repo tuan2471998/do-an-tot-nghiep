@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Data.SqlClient;
+using DevExpress.Data.Mask;
 
 namespace Da.controller
 {
@@ -38,9 +39,15 @@ namespace Da.controller
             cbb_loai.DataSource = ds.Tables["LOAIPHONG"];
         }
 
+
         private void frm_phieuthue_Load(object sender, EventArgs e)
         {
             load_cbb_loai();
+
+            DateTime ngaytra = DateTime.Now;
+            TimeSpan ts = new TimeSpan(23, 59, 59);
+            ngaytra = ngaytra.Date + ts;
+            dtp_ngaytra.Value = ngaytra;
 
             cbb_loai.SelectedIndex = cbb_tang.SelectedIndex = 0;
             da = new SqlDataAdapter("select * from KHACHHANG", conn.cnn);
@@ -271,15 +278,12 @@ namespace Da.controller
                 textBoxmanhanvien.Text = Properties.Settings.Default.MaNV.ToString();
                 textBoxmathuephong.Text = dataGridView2.Rows[0].Cells[0].Value.ToString();
                 textBoxsl.Text = (dataGridView2.Rows.Count).ToString();
-                textBoxtiencoc.Text = (tiencoc / 2).ToString();
             }
             else
             {
                 textBoxmanhanvien.Text = "";
                 textBoxmathuephong.Text = "";
                 textBoxsl.Text = "";
-
-                textBoxtiencoc.Text = "";
             }
         }
       
@@ -288,10 +292,12 @@ namespace Da.controller
 
             textBoxmanhanvien.Text = "";
             textBoxmathuephong.Text = "";
-            dtp_ngaydat.Value = dtp_ngaytra.Value = DateTime.Now.Date;
+            DateTime ngaytra = DateTime.Now;
+            TimeSpan ts = new TimeSpan(23, 59, 59);
+            ngaytra = ngaytra.Date + ts;
+            dtp_ngaytra.Value = ngaytra;
             textBoxsl.Text = ""; 
             panel_ph.Controls.Clear();
-            textBoxtiencoc.Text = "";
             dt2chitiet.Clear();
             try
             {
@@ -364,10 +370,9 @@ namespace Da.controller
             newRow[0] = textBoxmathuephong.Text;
             newRow[1] = textBoxmanhanvien.Text;
             newRow[2] = txtMaKH.Text;
-            newRow[4] = dtp_ngaydat.Value;
+            newRow[4] = DateTime.Now;
             newRow[5] = dtp_ngaytra.Value;
             newRow[6] = int.Parse(textBoxsl.Text);
-            newRow[7] = textBoxtiencoc.Text;
             //dt.Rows.Add(newRow);
 
             ds.Tables["PhieuThem1"].Rows.Add(newRow);
@@ -411,7 +416,7 @@ namespace Da.controller
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            if (textBoxmanhanvien.Text.Length > 0 && string.IsNullOrEmpty(txtMaKH.Text) == false && textBoxtiencoc.Text.Length > 0 && textBoxmathuephong.Text.Length > 0 && textBoxsl.Text.Length > 0 )
+            if (textBoxmanhanvien.Text.Length > 0 && string.IsNullOrEmpty(txtMaKH.Text) == false  && textBoxmathuephong.Text.Length > 0 && textBoxsl.Text.Length > 0 )
             {
                 try
                 {
@@ -419,7 +424,7 @@ namespace Da.controller
                     themPhieuThue();
                     themChiTietPhieuTHUE();
 
-                    MessageBox.Show("Bạn đã thêm thành công !!!!!!");
+                    MessageBox.Show("Lập phiếu thuê thành công");
                     reload();
 
                 }
@@ -434,17 +439,6 @@ namespace Da.controller
                 MessageBox.Show("Bạn vui lòng nhập đầy đủ dữ liệu !!!!!");
             }
 
-        }
-
-        private void textBoxtiencoc_TextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(textBoxtiencoc.Text) == false)
-            {
-                System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
-                double value = double.Parse(textBoxtiencoc.Text, System.Globalization.NumberStyles.AllowThousands);
-                textBoxtiencoc.Text = String.Format(culture, "{0:N0}", value);
-                textBoxtiencoc.Select(textBoxtiencoc.Text.Length, 0);
-            }
         }
 
         private void chb_tang_CheckedChanged(object sender, EventArgs e)
@@ -477,9 +471,9 @@ namespace Da.controller
                 txtMaKH.Focus();
                 return 0;
             }
-            else if (dtp_ngaydat.Value >= dtp_ngaytra.Value)
+            else if (dtp_ngaydat.Value > dtp_ngaytra.Value)
             {
-                MessageBox.Show("Ngày trả phòng phải sau ngày đặt phòng");
+                MessageBox.Show("Ngày đặt phòng không hợp lệ");
                 return 0;
             }
             else

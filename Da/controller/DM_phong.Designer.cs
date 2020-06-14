@@ -248,7 +248,7 @@
             // 
             // btn_Suaphong
             // 
-            this.btn_Suaphong.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_Suaphong.Appearance.BackColor = System.Drawing.Color.White;
             this.btn_Suaphong.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Suaphong.Appearance.Options.UseBackColor = true;
             this.btn_Suaphong.Appearance.Options.UseBorderColor = true;
@@ -266,7 +266,7 @@
             // 
             // btn_Xoaphong
             // 
-            this.btn_Xoaphong.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_Xoaphong.Appearance.BackColor = System.Drawing.Color.White;
             this.btn_Xoaphong.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Xoaphong.Appearance.Options.UseBackColor = true;
             this.btn_Xoaphong.Appearance.Options.UseBorderColor = true;
@@ -284,7 +284,7 @@
             // 
             // btn_Themphong
             // 
-            this.btn_Themphong.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_Themphong.Appearance.BackColor = System.Drawing.Color.White;
             this.btn_Themphong.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Themphong.Appearance.Options.UseBackColor = true;
             this.btn_Themphong.Appearance.Options.UseBorderColor = true;
@@ -421,7 +421,7 @@
             // 
             // btnLammoiloaiphong
             // 
-            this.btnLammoiloaiphong.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.btnLammoiloaiphong.Appearance.BackColor = System.Drawing.Color.White;
             this.btnLammoiloaiphong.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLammoiloaiphong.Appearance.Options.UseBackColor = true;
             this.btnLammoiloaiphong.Appearance.Options.UseBorderColor = true;
@@ -478,7 +478,7 @@
             // 
             // btn_Sualoaiphong
             // 
-            this.btn_Sualoaiphong.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_Sualoaiphong.Appearance.BackColor = System.Drawing.Color.White;
             this.btn_Sualoaiphong.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Sualoaiphong.Appearance.Options.UseBackColor = true;
             this.btn_Sualoaiphong.Appearance.Options.UseBorderColor = true;
@@ -496,7 +496,7 @@
             // 
             // btn_Xoaloaiphong
             // 
-            this.btn_Xoaloaiphong.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_Xoaloaiphong.Appearance.BackColor = System.Drawing.Color.White;
             this.btn_Xoaloaiphong.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Xoaloaiphong.Appearance.Options.UseBackColor = true;
             this.btn_Xoaloaiphong.Appearance.Options.UseBorderColor = true;
@@ -514,7 +514,7 @@
             // 
             // btn_Themloaiphong
             // 
-            this.btn_Themloaiphong.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_Themloaiphong.Appearance.BackColor = System.Drawing.Color.White;
             this.btn_Themloaiphong.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Themloaiphong.Appearance.Options.UseBackColor = true;
             this.btn_Themloaiphong.Appearance.Options.UseBorderColor = true;
@@ -560,6 +560,7 @@
             this.txt_gia.TabIndex = 14;
             this.txt_gia.TextChanged += new System.EventHandler(this.txt_gia_TextChanged);
             this.txt_gia.Click += new System.EventHandler(this.txt_gia_Click);
+            this.txt_gia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_gia_KeyPress);
             // 
             // dgv_loaiph
             // 

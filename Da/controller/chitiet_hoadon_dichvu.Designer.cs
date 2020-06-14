@@ -54,7 +54,7 @@
             this.txt_mahddv.BackColor = System.Drawing.Color.White;
             this.txt_mahddv.Enabled = false;
             this.txt_mahddv.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_mahddv.Location = new System.Drawing.Point(197, 10);
+            this.txt_mahddv.Location = new System.Drawing.Point(196, 28);
             this.txt_mahddv.Margin = new System.Windows.Forms.Padding(4);
             this.txt_mahddv.Name = "txt_mahddv";
             this.txt_mahddv.ReadOnly = true;
@@ -128,7 +128,7 @@
             this.txt_thanhtien.BackColor = System.Drawing.Color.White;
             this.txt_thanhtien.Enabled = false;
             this.txt_thanhtien.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_thanhtien.Location = new System.Drawing.Point(651, 96);
+            this.txt_thanhtien.Location = new System.Drawing.Point(650, 114);
             this.txt_thanhtien.Margin = new System.Windows.Forms.Padding(6);
             this.txt_thanhtien.Name = "txt_thanhtien";
             this.txt_thanhtien.ReadOnly = true;
@@ -140,7 +140,7 @@
             this.txt_dongia.BackColor = System.Drawing.Color.White;
             this.txt_dongia.Enabled = false;
             this.txt_dongia.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_dongia.Location = new System.Drawing.Point(651, 54);
+            this.txt_dongia.Location = new System.Drawing.Point(650, 72);
             this.txt_dongia.Margin = new System.Windows.Forms.Padding(6);
             this.txt_dongia.Name = "txt_dongia";
             this.txt_dongia.ReadOnly = true;
@@ -151,7 +151,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(15, 101);
+            this.label2.Location = new System.Drawing.Point(14, 119);
             this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(113, 23);
@@ -162,7 +162,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(531, 101);
+            this.label4.Location = new System.Drawing.Point(530, 119);
             this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(107, 23);
@@ -173,7 +173,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(531, 15);
+            this.label5.Location = new System.Drawing.Point(530, 33);
             this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(91, 23);
@@ -184,7 +184,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(531, 59);
+            this.label3.Location = new System.Drawing.Point(530, 77);
             this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 23);
@@ -196,7 +196,7 @@
             this.txt_soluong.BackColor = System.Drawing.Color.White;
             this.txt_soluong.Enabled = false;
             this.txt_soluong.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_soluong.Location = new System.Drawing.Point(651, 10);
+            this.txt_soluong.Location = new System.Drawing.Point(650, 28);
             this.txt_soluong.Margin = new System.Windows.Forms.Padding(6);
             this.txt_soluong.Name = "txt_soluong";
             this.txt_soluong.ReadOnly = true;
@@ -207,7 +207,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(15, 15);
+            this.label1.Location = new System.Drawing.Point(14, 33);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(180, 23);
@@ -219,7 +219,7 @@
             this.txt_tendichvu.BackColor = System.Drawing.Color.White;
             this.txt_tendichvu.Enabled = false;
             this.txt_tendichvu.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_tendichvu.Location = new System.Drawing.Point(197, 96);
+            this.txt_tendichvu.Location = new System.Drawing.Point(196, 114);
             this.txt_tendichvu.Margin = new System.Windows.Forms.Padding(4);
             this.txt_tendichvu.Name = "txt_tendichvu";
             this.txt_tendichvu.ReadOnly = true;
@@ -231,7 +231,7 @@
             this.txt_madichvu.BackColor = System.Drawing.Color.White;
             this.txt_madichvu.Enabled = false;
             this.txt_madichvu.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_madichvu.Location = new System.Drawing.Point(197, 54);
+            this.txt_madichvu.Location = new System.Drawing.Point(196, 72);
             this.txt_madichvu.Margin = new System.Windows.Forms.Padding(4);
             this.txt_madichvu.Name = "txt_madichvu";
             this.txt_madichvu.ReadOnly = true;
@@ -242,7 +242,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(15, 59);
+            this.label6.Location = new System.Drawing.Point(14, 77);
             this.label6.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(102, 23);

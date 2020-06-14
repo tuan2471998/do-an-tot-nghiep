@@ -61,12 +61,12 @@ namespace Da
                     {
                         Program.frm_khachsan = new frm_khachsan();
                         this.Hide();
-                        Program.frm_khachsan.Show();
+                        Program.frm_khachsan.Show();                        
                     }
                     else
                     {
                         this.Hide();
-                        Program.frm_khachsan.Show();
+                        Program.frm_khachsan.Show();                       
                     }
 
                 }

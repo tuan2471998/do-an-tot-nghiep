@@ -90,6 +90,7 @@
             this.thuêPhòngToolStripMenuItem.Name = "thuêPhòngToolStripMenuItem";
             this.thuêPhòngToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.thuêPhòngToolStripMenuItem.Text = "Thuê phòng";
+            this.thuêPhòngToolStripMenuItem.Click += new System.EventHandler(this.thuêPhòngToolStripMenuItem_Click);
             // 
             // lb_sophong
             // 

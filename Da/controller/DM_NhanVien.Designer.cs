@@ -38,6 +38,8 @@
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtp_ngayvaolam = new System.Windows.Forms.DateTimePicker();
+            this.dtp_ngaysinh = new System.Windows.Forms.DateTimePicker();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -84,8 +86,6 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.xóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sửaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dtp_ngaysinh = new System.Windows.Forms.DateTimePicker();
-            this.dtp_ngayvaolam = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datatk)).BeginInit();
@@ -226,6 +226,26 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // dtp_ngayvaolam
+            // 
+            this.dtp_ngayvaolam.CalendarFont = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtp_ngayvaolam.CustomFormat = "dd/MM/yyyy";
+            this.dtp_ngayvaolam.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtp_ngayvaolam.Location = new System.Drawing.Point(883, 215);
+            this.dtp_ngayvaolam.Name = "dtp_ngayvaolam";
+            this.dtp_ngayvaolam.Size = new System.Drawing.Size(273, 28);
+            this.dtp_ngayvaolam.TabIndex = 240;
+            // 
+            // dtp_ngaysinh
+            // 
+            this.dtp_ngaysinh.CalendarFont = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtp_ngaysinh.CustomFormat = "dd/MM/yyyy";
+            this.dtp_ngaysinh.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtp_ngaysinh.Location = new System.Drawing.Point(883, 143);
+            this.dtp_ngaysinh.Name = "dtp_ngaysinh";
+            this.dtp_ngaysinh.Size = new System.Drawing.Size(273, 28);
+            this.dtp_ngaysinh.TabIndex = 239;
+            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.AppWorkspace;
@@ -331,7 +351,7 @@
             // 
             // btn_Sua
             // 
-            this.btn_Sua.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_Sua.Appearance.BackColor = System.Drawing.Color.White;
             this.btn_Sua.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Sua.Appearance.Options.UseBackColor = true;
             this.btn_Sua.Appearance.Options.UseBorderColor = true;
@@ -349,7 +369,7 @@
             // 
             // btn_Xoa
             // 
-            this.btn_Xoa.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_Xoa.Appearance.BackColor = System.Drawing.Color.White;
             this.btn_Xoa.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Xoa.Appearance.Options.UseBackColor = true;
             this.btn_Xoa.Appearance.Options.UseBorderColor = true;
@@ -367,7 +387,7 @@
             // 
             // btn_Them
             // 
-            this.btn_Them.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_Them.Appearance.BackColor = System.Drawing.Color.White;
             this.btn_Them.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Them.Appearance.Options.UseBackColor = true;
             this.btn_Them.Appearance.Options.UseBorderColor = true;
@@ -478,7 +498,7 @@
             // 
             // btn_lammoi
             // 
-            this.btn_lammoi.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_lammoi.Appearance.BackColor = System.Drawing.Color.White;
             this.btn_lammoi.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_lammoi.Appearance.Options.UseBackColor = true;
             this.btn_lammoi.Appearance.Options.UseBorderColor = true;
@@ -762,26 +782,6 @@
             this.sửaToolStripMenuItem.Size = new System.Drawing.Size(104, 24);
             this.sửaToolStripMenuItem.Text = "Sửa";
             this.sửaToolStripMenuItem.Click += new System.EventHandler(this.sửaToolStripMenuItem_Click);
-            // 
-            // dtp_ngaysinh
-            // 
-            this.dtp_ngaysinh.CalendarFont = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_ngaysinh.CustomFormat = "dd/MM/yyyy";
-            this.dtp_ngaysinh.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtp_ngaysinh.Location = new System.Drawing.Point(883, 143);
-            this.dtp_ngaysinh.Name = "dtp_ngaysinh";
-            this.dtp_ngaysinh.Size = new System.Drawing.Size(273, 28);
-            this.dtp_ngaysinh.TabIndex = 239;
-            // 
-            // dtp_ngayvaolam
-            // 
-            this.dtp_ngayvaolam.CalendarFont = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_ngayvaolam.CustomFormat = "dd/MM/yyyy";
-            this.dtp_ngayvaolam.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtp_ngayvaolam.Location = new System.Drawing.Point(883, 215);
-            this.dtp_ngayvaolam.Name = "dtp_ngayvaolam";
-            this.dtp_ngayvaolam.Size = new System.Drawing.Size(273, 28);
-            this.dtp_ngayvaolam.TabIndex = 240;
             // 
             // DM_NhanVien
             // 

@@ -72,6 +72,7 @@
             this.btndn.Appearance.Options.UseFont = true;
             this.btndn.Appearance.Options.UseForeColor = true;
             this.btndn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btndn.ImageOptions.Image")));
+            this.btndn.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btndn.Location = new System.Drawing.Point(157, 290);
             this.btndn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btndn.Name = "btndn";
@@ -85,6 +86,7 @@
             this.btnthoat.Appearance.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnthoat.Appearance.Options.UseFont = true;
             this.btnthoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnthoat.ImageOptions.Image")));
+            this.btnthoat.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnthoat.Location = new System.Drawing.Point(343, 290);
             this.btnthoat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnthoat.Name = "btnthoat";
@@ -121,7 +123,9 @@
             // 
             // frm_dangnhap
             // 
+            this.Appearance.BackColor = System.Drawing.Color.White;
             this.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.Appearance.Options.UseBackColor = true;
             this.Appearance.Options.UseForeColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

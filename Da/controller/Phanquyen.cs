@@ -206,8 +206,10 @@ namespace Da.controller
             cbb_nhomquyen.SelectedIndex = 0;
         }
 
+        string manv;
         private void btncapquyen_Click(object sender, EventArgs e)
         {
+            manv = Properties.Settings.Default.MaNV;
             if (dgv_tktheonhomquyen.Rows.Count == 0)
             {
                 MessageBox.Show("Chưa chọn nhóm quyền");
@@ -224,16 +226,25 @@ namespace Da.controller
                             lb_tentk.Text = dgv_taikhoan.Rows[i].Cells[1].Value.ToString();
                     }
 
-                    string sql = "UPDATE TAIKHOAN SET QUYEN = '" + nhomquyen + "' WHERE TENTK = '" + lb_tentk.Text + "'";
-                    SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-                    int kq = cmd.ExecuteNonQuery();
+                    if (lb_tentk.Text.Trim() == manv.Trim())
+                    {
+                        MessageBox.Show("Mã nhân viên không hợp lệ");
+                    }
 
-                    if (kq != 0)
-                        MessageBox.Show("Cấp quyền thành công");
+                    else
+                    {
+                        string sql = "UPDATE TAIKHOAN SET QUYEN = '" + nhomquyen + "' WHERE TENTK = '" + lb_tentk.Text + "'";
+                        SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                        int kq = cmd.ExecuteNonQuery();
 
-                    LoadTK();
-                    LoadTK_nhomquyen();
-                    cbb_nhomquyen.SelectedIndex = 0;
+                        if (kq != 0)
+                            MessageBox.Show("Cấp quyền thành công");
+
+                        LoadTK();
+                        LoadTK_nhomquyen();
+                        cbb_nhomquyen.SelectedIndex = 0;
+                    }
+                    
                 }
                 catch
                 {
@@ -244,24 +255,32 @@ namespace Da.controller
 
         private void btnxoaquyen_Click(object sender, EventArgs e)
         {
+            manv = Properties.Settings.Default.MaNV;
             for (int i = 0; i < dgv_tktheonhomquyen.Rows.Count; i++)
             {
                 if (dgv_tktheonhomquyen.Rows[i].Selected == true)
                     lb_tentk.Text = dgv_tktheonhomquyen.Rows[i].Cells[1].Value.ToString();
             }
-
+            
             try
             {
-                string sql = "UPDATE TAIKHOAN SET QUYEN = NULL WHERE TENTK = '" + lb_tentk.Text + "'";
-                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-                int kq = cmd.ExecuteNonQuery();
+                if (lb_tentk.Text.Trim() == manv.Trim())
+                {
+                    MessageBox.Show("Mã nhân viên không hợp lệ");
+                }
+                else
+                {
+                    string sql = "UPDATE TAIKHOAN SET QUYEN = NULL WHERE TENTK = '" + lb_tentk.Text + "'";
+                    SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                    int kq = cmd.ExecuteNonQuery();
 
-                if (kq != 0)
-                    MessageBox.Show("Xóa quyền thành công");
+                    if (kq != 0)
+                        MessageBox.Show("Xóa quyền thành công");
 
-                LoadTK();
-                LoadTK_nhomquyen();
-                cbb_nhomquyen.SelectedIndex = 0;
+                    LoadTK();
+                    LoadTK_nhomquyen();
+                    cbb_nhomquyen.SelectedIndex = 0;
+                }
             }
             catch
             {

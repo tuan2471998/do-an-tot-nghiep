@@ -67,6 +67,7 @@
             this.btn_lap.Appearance.ForeColor = System.Drawing.Color.Black;
             this.btn_lap.Appearance.Options.UseFont = true;
             this.btn_lap.Appearance.Options.UseForeColor = true;
+            this.btn_lap.Enabled = false;
             this.btn_lap.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btn_lap.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_lap.ImageOptions.SvgImage")));
             this.btn_lap.Location = new System.Drawing.Point(6, 111);
