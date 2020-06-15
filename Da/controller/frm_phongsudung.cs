@@ -86,7 +86,7 @@ namespace Da.controller
             get_dichvu();
             get_tratruoc();
             frm_tt tt = new frm_tt();
-            tt.get_thongtinphong(mathuephong, tenkh, sdt, ngayvao.ToString("dd/MM/yyyy - hh:mm:ss"), thoigian);
+            tt.get_thongtinphong(mathuephong, tenkh, sdt, ngayvao.ToString("dd/MM/yyyy - hh:mm:ss tt"), thoigian);
             tt.get_tiendichvu(tiendichvu.ToString());
             tt.get_tientratruoc(tientratruoc);
             tt.StartPosition = FormStartPosition.CenterScreen;

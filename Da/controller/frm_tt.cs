@@ -72,7 +72,7 @@ namespace Da
 
         private void frm_tt_Load(object sender, EventArgs e)
         {
-            string ngaytra = DateTime.Now.ToString("dd/MM/yyyy - hh:mm:ss");
+            string ngaytra = DateTime.Now.ToString("dd/MM/yyyy - hh:mm:ss tt");
             txt_ngaytra.Text = ngaytra;
 
             get_thongtin_dichvu(txt_mathuephong.Text);
@@ -146,17 +146,17 @@ namespace Da
                     newrow = phong.NewRow();
                     tienphong = double.Parse(row["giaphong"].ToString());
                     if (time.Hours < 1)
-                        giatien = tienphong + 30000;
+                        giatien = time.Days * tienphong + 30000;
                     else if (time.Hours < 2)
-                        giatien = tienphong + 60000;
+                        giatien = time.Days * tienphong + 60000;
                     else if (time.Hours < 4)
-                        giatien = tienphong + 100000;
+                        giatien = time.Days * tienphong + 100000;
                     else if (time.Hours < 6)
-                        giatien = tienphong + (tienphong * 0.3);
+                        giatien = time.Days * tienphong + (tienphong * 0.3);
                     else if(time.Hours < 8)
-                        giatien = tienphong + (tienphong * 0.4);
+                        giatien = time.Days * tienphong + (tienphong * 0.4);
                     else
-                        giatien = tienphong + (tienphong * 0.5);
+                        giatien = time.Days * tienphong + (tienphong * 0.5);
                     newrow["maph"] = row["maph"];
                     newrow["giaphong"] = tienphong;
                     newrow["thanhtien"] = giatien;
