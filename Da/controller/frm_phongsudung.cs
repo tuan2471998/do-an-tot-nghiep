@@ -88,12 +88,12 @@ namespace Da.controller
             get_thongtin();
             get_dichvu();
             get_tratruoc();
-            frm_tt tt = new frm_tt();
-            tt.get_thongtinphong(mathuephong, tenkh, sdt, ngayvao.ToString("dd/MM/yyyy - hh:mm:ss tt"), thoigian);
-            tt.get_tiendichvu(tiendichvu.ToString());
-            tt.get_tientratruoc(tientratruoc);
-            tt.StartPosition = FormStartPosition.CenterScreen;
-            tt.ShowDialog();
+            Program.frm_tt = new frm_tt();
+            Program.frm_tt.get_thongtinphong(mathuephong, tenkh, sdt, ngayvao.ToString("dd/MM/yyyy - hh:mm:ss tt"), thoigian);
+            Program.frm_tt.get_tiendichvu(tiendichvu.ToString());
+            Program.frm_tt.get_tientratruoc(tientratruoc);
+            Program.frm_tt.StartPosition = FormStartPosition.CenterScreen;
+            Program.frm_tt.ShowDialog();
         }
 
         private void lb_sophong_TextChanged(object sender, EventArgs e)

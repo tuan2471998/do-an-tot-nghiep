@@ -293,6 +293,7 @@ namespace Da
                     chuyen_trangthai_phieuthue();
                     luu_thongtin_thanhtoan();
                     MessageBox.Show("Lập hóa đơn thành công");
+                    Program.frm_tt.Close();
                     this.Close();
                 }
             }

@@ -13,6 +13,7 @@ namespace Da
 
         public static frm_dangnhap frm_dangnhap;
         public static frm_khachsan frm_khachsan;
+        public static frm_tt frm_tt;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

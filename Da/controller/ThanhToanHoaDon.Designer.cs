@@ -37,6 +37,9 @@
             this.txt_tralai = new System.Windows.Forms.TextBox();
             this.btn_luuvain = new DevExpress.XtraEditors.SimpleButton();
             this.btn_luukhongin = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton_thanhtoan = new DevExpress.XtraEditors.SimpleButton();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txt_tongtien
@@ -110,9 +113,9 @@
             this.btn_luuvain.Appearance.Options.UseFont = true;
             this.btn_luuvain.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_luuvain.ImageOptions.Image")));
             this.btn_luuvain.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btn_luuvain.Location = new System.Drawing.Point(130, 211);
+            this.btn_luuvain.Location = new System.Drawing.Point(469, 211);
             this.btn_luuvain.Name = "btn_luuvain";
-            this.btn_luuvain.Size = new System.Drawing.Size(189, 60);
+            this.btn_luuvain.Size = new System.Drawing.Size(151, 60);
             this.btn_luuvain.TabIndex = 8;
             this.btn_luuvain.Text = "Lưu và in";
             this.btn_luuvain.Click += new System.EventHandler(this.btn_luuvain_Click);
@@ -123,18 +126,51 @@
             this.btn_luukhongin.Appearance.Options.UseFont = true;
             this.btn_luukhongin.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_luukhongin.ImageOptions.Image")));
             this.btn_luukhongin.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btn_luukhongin.Location = new System.Drawing.Point(364, 211);
-            this.btn_luukhongin.Name = "simpleButton1";
+            this.btn_luukhongin.Location = new System.Drawing.Point(262, 211);
+            this.btn_luukhongin.Name = "btn_luukhongin";
             this.btn_luukhongin.Size = new System.Drawing.Size(189, 60);
             this.btn_luukhongin.TabIndex = 9;
             this.btn_luukhongin.Text = "Lưu không in";
             this.btn_luukhongin.Click += new System.EventHandler(this.btn_luukhongin_Click);
             // 
+            // simpleButton_thanhtoan
+            // 
+            this.simpleButton_thanhtoan.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton_thanhtoan.Appearance.Options.UseFont = true;
+            this.simpleButton_thanhtoan.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.simpleButton_thanhtoan.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage")));
+            this.simpleButton_thanhtoan.Location = new System.Drawing.Point(63, 211);
+            this.simpleButton_thanhtoan.Name = "simpleButton_thanhtoan";
+            this.simpleButton_thanhtoan.Size = new System.Drawing.Size(174, 60);
+            this.simpleButton_thanhtoan.TabIndex = 10;
+            this.simpleButton_thanhtoan.Text = "TT Thẻ";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(426, 297);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(115, 26);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Số lần in: ";
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(530, 286);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(90, 34);
+            this.textBox1.TabIndex = 12;
+            // 
             // ThanhToanHoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(660, 291);
+            this.ClientSize = new System.Drawing.Size(656, 332);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.simpleButton_thanhtoan);
             this.Controls.Add(this.btn_luukhongin);
             this.Controls.Add(this.btn_luuvain);
             this.Controls.Add(this.txt_tralai);
@@ -162,5 +198,8 @@
         private System.Windows.Forms.TextBox txt_tralai;
         private DevExpress.XtraEditors.SimpleButton btn_luuvain;
         private DevExpress.XtraEditors.SimpleButton btn_luukhongin;
+        private DevExpress.XtraEditors.SimpleButton simpleButton_thanhtoan;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
