@@ -116,7 +116,7 @@ namespace Da.controller
             try
             {
                 int sl = int.Parse(textBoxsl.Text);
-                string sql = "INSERT INTO PHIEUTHUE VALUES('" + textBox_MATP.Text + "','" + textBox_MANV.Text + "','" + textBoxmkh.Text + "','" + comboBox_madatphong.SelectedValue.ToString() + "','" + DateTime.Now + "','" + dtp_ngaytra.Value + "'," + sl + ",'" + textBox_tiencoc.Text + "')";
+                string sql = "INSERT INTO PHIEUTHUE VALUES('" + textBox_MATP.Text + "','" + textBox_MANV.Text + "','" + textBoxmkh.Text + "','" + comboBox_madatphong.SelectedValue.ToString() + "','" + DateTime.Now + "','" + dtp_ngaytra.Value + "'," + sl + ",1,'" + textBox_tiencoc.Text + "')";
                 SqlCommand cmd = new SqlCommand(sql, conn.cnn);
                 cmd.ExecuteNonQuery();         
             }

@@ -79,6 +79,13 @@
             this.lb_sophong.Size = new System.Drawing.Size(75, 32);
             this.lb_sophong.TabIndex = 6;
             this.lb_sophong.Text = "P101";
+            this.lb_sophong.TextChanged += new System.EventHandler(this.lb_sophong_TextChanged);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // lb_giay
             // 
@@ -142,6 +149,7 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frm_phongdondep";
             this.Size = new System.Drawing.Size(255, 224);
+            this.Load += new System.EventHandler(this.frm_phongdondep_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);

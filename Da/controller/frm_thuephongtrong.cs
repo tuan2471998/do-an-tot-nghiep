@@ -76,7 +76,7 @@ namespace Da.controller
         }
 
         private void TimTenKH()
-        {
+        {          
             try
             {
                 if (string.IsNullOrEmpty(txt_cmnd.Text))
@@ -106,7 +106,7 @@ namespace Da.controller
             }
             catch
             {
-                MessageBox.Show("Thông tin khách hàng không chính xác");
+                MessageBox.Show("Thông tin khách hàng không chính xác.\nVui lòng bổ sung thêm tại danh mục khách hàng");
             }
         }
 
@@ -169,7 +169,7 @@ namespace Da.controller
             newRow[4] = dtp_ngaythue.Value;
             newRow[5] = dtp_ngaytra.Value;
             newRow[6] = 1;
-            newRow[7] = txt_giathue.Text;
+            newRow[7] = 1;
 
             ds.Tables["PhieuThem"].Rows.Add(newRow);
             SqlCommandBuilder builda = new SqlCommandBuilder(da);

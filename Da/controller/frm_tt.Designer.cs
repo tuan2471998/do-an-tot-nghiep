@@ -58,16 +58,16 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txt_mathuephong = new System.Windows.Forms.TextBox();
             this.dgv_thongtin_dichvu = new System.Windows.Forms.DataGridView();
-            this.dgv_thongtin_phong = new System.Windows.Forms.DataGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgv_thongtin_phong = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_thongtin_dichvu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_thongtin_phong)).BeginInit();
@@ -283,6 +283,7 @@
             this.txt_phuthu.Size = new System.Drawing.Size(352, 30);
             this.txt_phuthu.TabIndex = 15;
             this.txt_phuthu.Visible = false;
+            this.txt_phuthu.TextChanged += new System.EventHandler(this.txt_phuthu_TextChanged);
             // 
             // txt_tienthucdon
             // 
@@ -299,6 +300,10 @@
             // cbb_hinhthuc
             // 
             this.cbb_hinhthuc.FormattingEnabled = true;
+            this.cbb_hinhthuc.Items.AddRange(new object[] {
+            "[Chọn]",
+            "TIỀN MẶT",
+            "THẺ NGÂN HÀNG"});
             this.cbb_hinhthuc.Location = new System.Drawing.Point(635, 22);
             this.cbb_hinhthuc.Margin = new System.Windows.Forms.Padding(4);
             this.cbb_hinhthuc.Name = "cbb_hinhthuc";
@@ -447,49 +452,6 @@
             this.dgv_thongtin_dichvu.Size = new System.Drawing.Size(601, 464);
             this.dgv_thongtin_dichvu.TabIndex = 3;
             // 
-            // dgv_thongtin_phong
-            // 
-            this.dgv_thongtin_phong.AllowUserToAddRows = false;
-            this.dgv_thongtin_phong.BackgroundColor = System.Drawing.Color.White;
-            this.dgv_thongtin_phong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_thongtin_phong.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column5,
-            this.Column6});
-            this.dgv_thongtin_phong.Location = new System.Drawing.Point(8, 29);
-            this.dgv_thongtin_phong.Margin = new System.Windows.Forms.Padding(4);
-            this.dgv_thongtin_phong.Name = "dgv_thongtin_phong";
-            this.dgv_thongtin_phong.RowHeadersVisible = false;
-            this.dgv_thongtin_phong.RowHeadersWidth = 51;
-            this.dgv_thongtin_phong.RowTemplate.Height = 24;
-            this.dgv_thongtin_phong.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_thongtin_phong.Size = new System.Drawing.Size(586, 464);
-            this.dgv_thongtin_phong.TabIndex = 4;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.dgv_thongtin_dichvu);
-            this.groupBox2.Location = new System.Drawing.Point(13, 354);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(609, 505);
-            this.groupBox2.TabIndex = 5;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Thông tin thực đơn - dịch vụ";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.dgv_thongtin_phong);
-            this.groupBox3.Location = new System.Drawing.Point(630, 354);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(602, 505);
-            this.groupBox3.TabIndex = 6;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Thông tin phòng";
-            // 
             // Column2
             // 
             this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -522,6 +484,25 @@
             this.Column7.MinimumWidth = 6;
             this.Column7.Name = "Column7";
             // 
+            // dgv_thongtin_phong
+            // 
+            this.dgv_thongtin_phong.AllowUserToAddRows = false;
+            this.dgv_thongtin_phong.BackgroundColor = System.Drawing.Color.White;
+            this.dgv_thongtin_phong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_thongtin_phong.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column5,
+            this.Column6});
+            this.dgv_thongtin_phong.Location = new System.Drawing.Point(8, 29);
+            this.dgv_thongtin_phong.Margin = new System.Windows.Forms.Padding(4);
+            this.dgv_thongtin_phong.Name = "dgv_thongtin_phong";
+            this.dgv_thongtin_phong.RowHeadersVisible = false;
+            this.dgv_thongtin_phong.RowHeadersWidth = 51;
+            this.dgv_thongtin_phong.RowTemplate.Height = 24;
+            this.dgv_thongtin_phong.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_thongtin_phong.Size = new System.Drawing.Size(586, 464);
+            this.dgv_thongtin_phong.TabIndex = 4;
+            // 
             // Column1
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -545,6 +526,30 @@
             this.Column6.HeaderText = "Thành tiền";
             this.Column6.MinimumWidth = 6;
             this.Column6.Name = "Column6";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dgv_thongtin_dichvu);
+            this.groupBox2.Location = new System.Drawing.Point(13, 354);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Size = new System.Drawing.Size(609, 505);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Thông tin thực đơn - dịch vụ";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dgv_thongtin_phong);
+            this.groupBox3.Location = new System.Drawing.Point(630, 354);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox3.Size = new System.Drawing.Size(602, 505);
+            this.groupBox3.TabIndex = 6;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Thông tin phòng";
             // 
             // frm_tt
             // 

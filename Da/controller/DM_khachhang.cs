@@ -26,9 +26,9 @@ namespace Da.controller
 
         public void clear_row()
         {
-            for (int i = 0; i < datakhachhang.Rows.Count - 1; i++)
+            foreach (DataGridViewRow row in datakhachhang.Rows)
             {
-                datakhachhang.Rows[i].Selected = false;
+                row.Selected = false;
             }
         }
 
@@ -42,7 +42,7 @@ namespace Da.controller
         }
 
         public void loadData()
-        {           
+        {
             da = new SqlDataAdapter(" select * from KHACHHANG", conn.cnn);
             da.Fill(ds, "KHACHHANG");
             datakhachhang.DataSource = ds.Tables["KHACHHANG"];
@@ -57,6 +57,16 @@ namespace Da.controller
 
             txttenkh.AutoCompleteMode = AutoCompleteMode.Append;
             txttenkh.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            conn.cnn.Close();
+        }
+
+        private void clear_gridview()
+        {
+            foreach (DataGridViewRow row in datakhachhang.Rows)
+            {
+                datakhachhang.Rows.Remove(row);
+            }
         }
 
         public void loadData_makh(string ma)
@@ -66,6 +76,8 @@ namespace Da.controller
             datakhachhang.DataSource = ds.Tables["KHACHHANG_ma"];
             key[0] = ds.Tables["KHACHHANG_ma"].Columns[0];
             ds.Tables["KHACHHANG_ma"].PrimaryKey = key;
+
+            conn.cnn.Close();
         }
 
         public void loadData_tenkh(string ten)
@@ -75,6 +87,8 @@ namespace Da.controller
             datakhachhang.DataSource = ds.Tables["KHACHHANG_tenkh"];
             key[0] = ds.Tables["KHACHHANG_tenkh"].Columns[0];
             ds.Tables["KHACHHANG_tenkh"].PrimaryKey = key;
+
+            conn.cnn.Close();
         }
 
         public void loadData_cmnd(string cmnd)
@@ -84,6 +98,8 @@ namespace Da.controller
             datakhachhang.DataSource = ds.Tables["KHACHHANG_cmnd"];
             key[0] = ds.Tables["KHACHHANG_cmnd"].Columns[0];
             ds.Tables["KHACHHANG_cmnd"].PrimaryKey = key;
+
+            conn.cnn.Close();
         }
 
         public void loadData_sdt(string sdt)
@@ -93,6 +109,8 @@ namespace Da.controller
             datakhachhang.DataSource = ds.Tables["KHACHHANG_sdt"];
             key[0] = ds.Tables["KHACHHANG_sdt"].Columns[0];
             ds.Tables["KHACHHANG_sdt"].PrimaryKey = key;
+
+            conn.cnn.Close();
         }
 
         public void loadData_quoctich(string quoctich)
@@ -102,6 +120,8 @@ namespace Da.controller
             datakhachhang.DataSource = ds.Tables["KHACHHANG_quoctich"];
             key[0] = ds.Tables["KHACHHANG_quoctich"].Columns[0];
             ds.Tables["KHACHHANG_quoctich"].PrimaryKey = key;
+
+            conn.cnn.Close();
         }
 
         public void DM_khachhang_Load(object sender, EventArgs e)
@@ -181,34 +201,30 @@ namespace Da.controller
 
         private void btn_timkiem_Click(object sender, EventArgs e)
         {
+            clear_gridview();
             //tìm theo mã khách hàng
             if (string.IsNullOrEmpty(txtmkh.Text) == false)
             {
-                datakhachhang.DataSource = null;
                 loadData_makh(txtmkh.Text.TrimEnd());
             }
             //tìm theo tên khách hàng
             else if (string.IsNullOrEmpty(txttenkh.Text) == false)
             {
-                datakhachhang.DataSource = null;
                 loadData_tenkh(txttenkh.Text.TrimEnd());
             }
             //tìm theo số căn cước/cmnd
             else if (string.IsNullOrEmpty(txtcmnd.Text) == false)
             {
-                datakhachhang.DataSource = null;
                 loadData_cmnd(txtcmnd.Text.TrimEnd());
             }
             //tìm theo số điện thoại
             else if (string.IsNullOrEmpty(txtsdt.Text) == false)
             {
-                datakhachhang.DataSource = null;
                 loadData_sdt(txtsdt.Text.TrimEnd());
             }
             // tìm theo quốc tịch
             else if (string.IsNullOrEmpty(txtquoctich.Text) == false)
             {
-                datakhachhang.DataSource = null;
                 loadData_quoctich(txtquoctich.Text.TrimEnd());
             }
             else

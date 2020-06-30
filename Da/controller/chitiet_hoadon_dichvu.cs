@@ -35,10 +35,16 @@ namespace Da.controller
             key[0] = ds_cthd.Tables["CT_HD_DICHVU"].Columns[0];
             key[1] = ds_cthd.Tables["CT_HD_DICHVU"].Columns[1];
             ds_cthd.Tables["CT_HD_DICHVU"].PrimaryKey = key;
+
+            conn.cnn.Close();
         }
 
         private string get_tendichvu(string madv)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             string sql = "select TENDV from DICHVU where MADV = '" + madv + "'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             return (string)cmd.ExecuteScalar();

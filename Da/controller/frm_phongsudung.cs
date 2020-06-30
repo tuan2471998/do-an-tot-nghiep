@@ -40,7 +40,7 @@ namespace Da.controller
         private void get_thongtin()
         {
             mathuephong = lb_maphieudat.Text;
-            string sql = "select hoten, sdt, ngaynhan, ngaytra, tinhtrang from khachhang kh";
+            string sql = "select hoten, sdt, ngaynhan, ngaytra, tiencoc from khachhang kh";
             sql += " inner join phieuthue pt on kh.makh = pt.makh";
             sql += " where pt.matp = '" + lb_maphieudat.Text + "'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
@@ -49,7 +49,7 @@ namespace Da.controller
             {
                 tenkh = rd["hoten"].ToString();
                 sdt = rd["sdt"].ToString();
-                tientratruoc = rd["tinhtrang"].ToString();
+                tientratruoc = rd["tiencoc"].ToString();
                 ngayvao = rd.GetDateTime(2);
                 time = DateTime.Now.Subtract(ngayvao);
                 thoigian = time.Days.ToString() + " ngày " + time.Hours.ToString() + " giờ " + time.Minutes.ToString() + " phút";
@@ -70,12 +70,15 @@ namespace Da.controller
 
         private void get_tratruoc()
         {
-            string sql = "select tinhtrang from phieuthue where matp = '" + mathuephong + "'";
+            string sql = "select tiencoc from phieuthue where matp = '" + mathuephong + "'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             SqlDataReader rd = cmd.ExecuteReader();
             while (rd.Read())
             {
-                tientratruoc = rd["tinhtrang"].ToString();
+                if (string.IsNullOrEmpty(rd["tiencoc"].ToString()))
+                    tientratruoc = "0";
+                else
+                    tientratruoc = rd["tiencoc"].ToString();
             }
             rd.Close();
         }
@@ -95,7 +98,10 @@ namespace Da.controller
 
         private void lb_sophong_TextChanged(object sender, EventArgs e)
         {
-            string sql = "select MATP from CT_THUEPHONG where MAPH = '" + lb_sophong.Text + "'";
+            string sql = "select ctpt.matp from CT_THUEPHONG ctpt\n";
+            sql += "inner join phieuthue pt on ctpt.MATP = pt.MATP\n";
+            sql += "where maph = '" + lb_sophong.Text + "'\n";
+            sql += "and tinhtrang = 1";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             lb_maphieudat.Text = ((string)cmd.ExecuteScalar()).Trim();
         }

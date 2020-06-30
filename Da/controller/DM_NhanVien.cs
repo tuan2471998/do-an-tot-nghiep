@@ -29,6 +29,10 @@ namespace Da.controller
 
         public void loadNhanVien()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             DataSet ds = new DataSet();
             da = new SqlDataAdapter(" select * from NHANVIEN", conn.cnn);
             da.Fill(ds, "NHANVIEN");
@@ -36,17 +40,29 @@ namespace Da.controller
             key[0] = ds.Tables["NHANVIEN"].Columns[0];
             ds.Tables["NHANVIEN"].PrimaryKey = key;
 
+            conn.cnn.Close();
+
         }
         public void loadNV()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             da = new SqlDataAdapter(" select * from NHANVIEN", conn.cnn);
             ds = new DataSet();
             da.Fill(ds, "NHANVIEN");
             key[0] = ds.Tables["NHANVIEN"].Columns[0];
             ds.Tables["NHANVIEN"].PrimaryKey = key;
+
+            conn.cnn.Close();
         }
         public void loadTKNhanVien()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             ds = new DataSet();
             da = new SqlDataAdapter(" select * from TAIKHOAN ", conn.cnn);
             da.Fill(ds, "TAIKHOAN");
@@ -54,10 +70,16 @@ namespace Da.controller
             key[0] = ds.Tables["TAIKHOAN"].Columns[0];
             ds.Tables["TAIKHOAN"].PrimaryKey = key;
 
+            conn.cnn.Close();
+
         }
 
         public void loadTK()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             ds = new DataSet();
             da = new SqlDataAdapter(" select * from TAIKHOAN ", conn.cnn);
             da.Fill(ds, "TAIKHOAN");
@@ -65,6 +87,7 @@ namespace Da.controller
             key[0] = ds.Tables["TAIKHOAN"].Columns[0];
             ds.Tables["TAIKHOAN"].PrimaryKey = key;
 
+            conn.cnn.Close();
         }
 
         void clear_row()

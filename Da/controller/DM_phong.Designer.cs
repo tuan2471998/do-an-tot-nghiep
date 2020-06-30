@@ -31,11 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DM_phong));
             this.dgv_ph = new System.Windows.Forms.DataGridView();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colum1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -76,6 +71,12 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colum1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ph)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_giatheotang.Properties)).BeginInit();
@@ -101,7 +102,8 @@
             this.Column7,
             this.Column8,
             this.colum1,
-            this.Column1});
+            this.Column1,
+            this.Column9});
             this.dgv_ph.Location = new System.Drawing.Point(6, 325);
             this.dgv_ph.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgv_ph.Name = "dgv_ph";
@@ -113,47 +115,6 @@
             this.dgv_ph.EditModeChanged += new System.EventHandler(this.DM_phong_Load);
             this.dgv_ph.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ph_CellContentClick);
             this.dgv_ph.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ph_CellContentClick);
-            // 
-            // Column6
-            // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column6.DataPropertyName = "MAPH";
-            this.Column6.HeaderText = "Mã phòng";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            // 
-            // Column7
-            // 
-            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column7.DataPropertyName = "VTPHONG";
-            this.Column7.HeaderText = "Vị trí ( tầng )";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            // 
-            // Column8
-            // 
-            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column8.DataPropertyName = "TINHTRANG";
-            this.Column8.HeaderText = "Tình trạng";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            // 
-            // colum1
-            // 
-            this.colum1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colum1.DataPropertyName = "GIAPHONG";
-            this.colum1.HeaderText = "Giá theo tầng (VNĐ)";
-            this.colum1.MinimumWidth = 6;
-            this.colum1.Name = "colum1";
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "MALOAI";
-            this.Column1.HeaderText = "Column1";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.Visible = false;
-            this.Column1.Width = 125;
             // 
             // groupBox3
             // 
@@ -236,6 +197,9 @@
             this.txt_giatheotang.Location = new System.Drawing.Point(244, 188);
             this.txt_giatheotang.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_giatheotang.Name = "txt_giatheotang";
+            // 
+            // 
+            // 
             this.txt_giatheotang.Properties.Appearance.BackColor = System.Drawing.Color.LightBlue;
             this.txt_giatheotang.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_giatheotang.Properties.Appearance.ForeColor = System.Drawing.Color.DimGray;
@@ -327,6 +291,9 @@
             this.txt_maph.Location = new System.Drawing.Point(244, 43);
             this.txt_maph.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_maph.Name = "txt_maph";
+            // 
+            // 
+            // 
             this.txt_maph.Properties.Appearance.BackColor = System.Drawing.Color.LightBlue;
             this.txt_maph.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_maph.Properties.Appearance.ForeColor = System.Drawing.Color.DimGray;
@@ -343,6 +310,9 @@
             this.txt_vitri.Location = new System.Drawing.Point(247, 90);
             this.txt_vitri.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_vitri.Name = "txt_vitri";
+            // 
+            // 
+            // 
             this.txt_vitri.Properties.Appearance.BackColor = System.Drawing.Color.LightBlue;
             this.txt_vitri.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_vitri.Properties.Appearance.ForeColor = System.Drawing.Color.DimGray;
@@ -534,6 +504,9 @@
             this.txt_ghichu.Location = new System.Drawing.Point(179, 187);
             this.txt_ghichu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_ghichu.Name = "txt_ghichu";
+            // 
+            // 
+            // 
             this.txt_ghichu.Properties.Appearance.BackColor = System.Drawing.Color.LightBlue;
             this.txt_ghichu.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_ghichu.Properties.Appearance.ForeColor = System.Drawing.Color.DimGray;
@@ -549,6 +522,9 @@
             this.txt_gia.Location = new System.Drawing.Point(179, 137);
             this.txt_gia.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_gia.Name = "txt_gia";
+            // 
+            // 
+            // 
             this.txt_gia.Properties.Appearance.BackColor = System.Drawing.Color.LightBlue;
             this.txt_gia.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_gia.Properties.Appearance.ForeColor = System.Drawing.Color.DimGray;
@@ -620,6 +596,9 @@
             this.txt_tenloai.Location = new System.Drawing.Point(179, 89);
             this.txt_tenloai.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_tenloai.Name = "txt_tenloai";
+            // 
+            // 
+            // 
             this.txt_tenloai.Properties.Appearance.BackColor = System.Drawing.Color.LightBlue;
             this.txt_tenloai.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_tenloai.Properties.Appearance.ForeColor = System.Drawing.Color.DimGray;
@@ -636,6 +615,9 @@
             this.txt_maloai.Location = new System.Drawing.Point(179, 37);
             this.txt_maloai.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_maloai.Name = "txt_maloai";
+            // 
+            // 
+            // 
             this.txt_maloai.Properties.Appearance.BackColor = System.Drawing.Color.LightBlue;
             this.txt_maloai.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_maloai.Properties.Appearance.ForeColor = System.Drawing.Color.DimGray;
@@ -689,6 +671,56 @@
             this.labelControl1.Size = new System.Drawing.Size(87, 26);
             this.labelControl1.TabIndex = 4;
             this.labelControl1.Text = "Mã loại:";
+            // 
+            // Column6
+            // 
+            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column6.DataPropertyName = "MAPH";
+            this.Column6.HeaderText = "Mã phòng";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            // 
+            // Column7
+            // 
+            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column7.DataPropertyName = "VTPHONG";
+            this.Column7.HeaderText = "Vị trí ( tầng )";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            // 
+            // Column8
+            // 
+            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column8.DataPropertyName = "TINHTRANG";
+            this.Column8.HeaderText = "Tình trạng";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
+            // 
+            // colum1
+            // 
+            this.colum1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colum1.DataPropertyName = "GIAPHONG";
+            this.colum1.HeaderText = "Giá theo tầng (VNĐ)";
+            this.colum1.MinimumWidth = 6;
+            this.colum1.Name = "colum1";
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "MALOAI";
+            this.Column1.HeaderText = "Column1";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.Visible = false;
+            this.Column1.Width = 125;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "TIME_DONDEP_KT";
+            this.Column9.HeaderText = "Column9";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            this.Column9.Visible = false;
+            this.Column9.Width = 125;
             // 
             // DM_phong
             // 
@@ -751,11 +783,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colum1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private DevExpress.XtraEditors.TextEdit txt_giatheotang;
         private DevExpress.XtraEditors.TextEdit txt_vitri;
         private DevExpress.XtraEditors.TextEdit txt_maph;
@@ -769,5 +796,11 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private DevExpress.XtraEditors.SimpleButton btnLammoiloaiphong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colum1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
     }
 }

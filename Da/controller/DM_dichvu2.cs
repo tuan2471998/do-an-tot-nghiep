@@ -32,6 +32,8 @@ namespace Da.controller
             dgv_dichvu.DataSource = ds.Tables["DICHVU_madv"];
             key[0] = ds.Tables["DICHVU_madv"].Columns[0];
             ds.Tables["DICHVU_madv"].PrimaryKey = key;
+
+            conn.cnn.Close();
         }
 
         public void loadData_tendv(string ten)
@@ -41,6 +43,8 @@ namespace Da.controller
             dgv_dichvu.DataSource = ds.Tables["DICHVU_tendv"];
             key[0] = ds.Tables["DICHVU_tendv"].Columns[0];
             ds.Tables["DICHVU_tendv"].PrimaryKey = key;
+
+            conn.cnn.Close();
         }
 
         public void Load_DGV_Dichvu()
@@ -63,6 +67,8 @@ namespace Da.controller
 
             txt_tendv.AutoCompleteMode = AutoCompleteMode.Append;
             txt_tendv.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            conn.cnn.Close();
         }
 
         private void Clear_txt()
@@ -76,6 +82,7 @@ namespace Da.controller
         {
             try
             {
+                conn.cnn.Open();
                 DialogResult r;
                 r = MessageBox.Show("Bạn có chắc muốn xóa không?", "Thông báo xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                 if (r == DialogResult.Yes)
@@ -100,6 +107,7 @@ namespace Da.controller
 
                         MessageBox.Show("Vui lòng chọn một dịch vụ");
                 }
+                conn.cnn.Close();
             }
             catch
             {
@@ -153,6 +161,7 @@ namespace Da.controller
         {
             try
             {
+                conn.cnn.Open();
                 ds = new DataSet();
                 Load_DGV_Dichvu();
                 DataRow update_New = ds.Tables["DICHVU"].Rows.Find(txt_madv.Text);
@@ -170,6 +179,7 @@ namespace Da.controller
                     Clear_txt();
                     btnSua.Enabled = btnXoa.Enabled = false;
                 }
+                conn.cnn.Close();
             }
             catch
             {

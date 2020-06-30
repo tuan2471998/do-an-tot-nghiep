@@ -74,7 +74,7 @@ namespace Da.controller
                 if (kq)
                 {
                     //tạo control động cho các phòng , tạo user controll tương ứng cho mổi nút
-                    frm_phong2 frm = new frm_phong2(drPhong[0].ToString());
+                    frm_phong2 frm = new frm_phong2(this, drPhong[0].ToString());
 
                     frm.Location = new Point(x, y);
                     panel_ph.Controls.Add(frm);
@@ -169,8 +169,10 @@ namespace Da.controller
         }
         private bool kiemtra(DataRow drPhong)
         {
+            DateTime ngaydat = Convert.ToDateTime(dtp_ngaydat.Value.ToShortDateString());
+            DateTime ngaytra = Convert.ToDateTime(dtp_ngaytra.Value.ToShortDateString());
             DataSet ds_ph = new DataSet();
-            SqlDataAdapter da_phCT = new SqlDataAdapter("select PHONG.MAPH from PHONG,CT_PHIEUDAT,PHIEUDAT WHERE PHONG.MAPH=CT_PHIEUDAT.MAPH AND CT_PHIEUDAT.MADP=PHIEUDAT.MADP AND NGAYNHAN_DUKIEN<='" +dtp_ngaytra.Value + "' AND NGAYTRA_DUKIEN>='" + dtp_ngaydat.Value + "'", conn.cnn);
+            SqlDataAdapter da_phCT = new SqlDataAdapter("select PHONG.MAPH from PHONG,CT_PHIEUDAT,PHIEUDAT WHERE PHONG.MAPH=CT_PHIEUDAT.MAPH AND CT_PHIEUDAT.MADP=PHIEUDAT.MADP AND NGAYNHAN_DUKIEN<='" + ngaytra + "' AND NGAYTRA_DUKIEN>='" + ngaydat + "'", conn.cnn);
             // Ánh xạ dữ liệu từ DB vào dataset, đặt tên Sach
             da_phCT.Fill(ds_ph, "PHONG1");
             DataTable dt1 = ds_ph.Tables["PHONG1"];
@@ -182,7 +184,7 @@ namespace Da.controller
                     return false;
                 }
             }
-            SqlDataAdapter da_phCTThue = new SqlDataAdapter("select PHONG.MAPH from PHONG,CT_THUEPHONG,PHIEUTHUE WHERE PHONG.MAPH=CT_THUEPHONG.MAPH AND CT_THUEPHONG.MATP=PHIEUTHUE.MATP AND NGAYNHAN<='" + dtp_ngaytra.Value + "' AND NGAYTRA >='" + dtp_ngaydat.Value + "'", conn.cnn);
+            SqlDataAdapter da_phCTThue = new SqlDataAdapter("select PHONG.MAPH from PHONG,CT_THUEPHONG,PHIEUTHUE WHERE PHONG.MAPH=CT_THUEPHONG.MAPH AND CT_THUEPHONG.MATP=PHIEUTHUE.MATP AND NGAYNHAN<='" + ngaytra + "' AND NGAYTRA >='" + ngaydat + "'", conn.cnn);
             // Ánh xạ dữ liệu từ DB vào dataset, đặt tên Sach
             da_phCTThue.Fill(ds_ph, "PHONG2");
             DataTable dt2 = ds_ph.Tables["PHONG2"];
@@ -198,9 +200,10 @@ namespace Da.controller
         }
         DataSet ds_phchitiet = new DataSet();
         DataTable dt2chitiet;
-
-        private void timer_phieuthue_Tick(object sender, EventArgs e)
+       
+        public void getthongtinphong()
         {
+
             if (Properties.Settings.Default.value2 != 0.ToString() && Properties.Settings.Default.value2 != null)
             {
                 if (kiemtratrongdatagridview(Properties.Settings.Default.value2.ToString().Trim().ToString()))
@@ -221,7 +224,6 @@ namespace Da.controller
                 }
                 else
                 {
-
                     Properties.Settings.Default.value2 = 0.ToString();
                     MessageBox.Show("Phòng này đã chọn! Vui lòng chọn phòng khác!");
                 }
@@ -373,6 +375,7 @@ namespace Da.controller
             newRow[4] = DateTime.Now;
             newRow[5] = dtp_ngaytra.Value;
             newRow[6] = int.Parse(textBoxsl.Text);
+            newRow[7] = 1;
             //dt.Rows.Add(newRow);
 
             ds.Tables["PhieuThem1"].Rows.Add(newRow);
@@ -465,13 +468,15 @@ namespace Da.controller
 
         private int kiemtra()
         {
+            DateTime ngaydat = Convert.ToDateTime(dtp_ngaydat.Value.ToShortDateString());
+            DateTime ngaytra = Convert.ToDateTime(dtp_ngaytra.Value.ToShortDateString());
             if (string.IsNullOrEmpty(txtMaKH.Text) == true)
             {
                 MessageBox.Show("Chưa nhập mã khách hàng");
                 txtMaKH.Focus();
                 return 0;
             }
-            else if (dtp_ngaydat.Value > dtp_ngaytra.Value)
+            else if (ngaydat > ngaytra)
             {
                 MessageBox.Show("Ngày đặt phòng không hợp lệ");
                 return 0;

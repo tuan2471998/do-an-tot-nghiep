@@ -30,7 +30,7 @@ namespace Da.controller
 
         private void dọnDẹpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string sql = "update PHONG set TINHTRANG = 3 where MAPH = '" + lb_sophong.Text + "'";
+            string sql = "update PHONG set TINHTRANG = 3, TIME_DONDEP_KT = '" + DateTime.Now.AddHours(2) + "' where MAPH = '" + lb_sophong.Text + "'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             int kq = cmd.ExecuteNonQuery();
             if (kq == 1)

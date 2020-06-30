@@ -13,10 +13,19 @@ namespace Da.controller
 {
     public partial class frm_phong : DevExpress.XtraEditors.XtraUserControl
     {
+        frm_phieudatphong _frm_phieudatphong;
         public frm_phong()
         {
             InitializeComponent();
         }
+
+        public frm_phong(frm_phieudatphong frm_Phieudatphong, string pSoPhong)
+        {
+            InitializeComponent();
+            _frm_phieudatphong = frm_Phieudatphong;
+            labelmaphong.Text = pSoPhong;
+        }
+
         public frm_phong(string pSoPhong)
         {
 
@@ -27,6 +36,7 @@ namespace Da.controller
         private void frm_phong_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.value = labelmaphong.Text;
+            _frm_phieudatphong.laythongtinphong();
         }
     }
 }

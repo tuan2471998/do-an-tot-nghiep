@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_phieudatphong));
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -60,7 +59,6 @@
             this.cbb_loai = new System.Windows.Forms.ComboBox();
             this.cbb_tang = new System.Windows.Forms.ComboBox();
             this.panelphong = new System.Windows.Forms.Panel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewchitiet)).BeginInit();
@@ -410,11 +408,6 @@
             this.panelphong.Size = new System.Drawing.Size(1187, 440);
             this.panelphong.TabIndex = 0;
             // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // frm_phieudatphong
             // 
             this.Appearance.BackColor = System.Drawing.Color.LightBlue;
@@ -454,7 +447,6 @@
         private System.Windows.Forms.Panel panelphong;
         private System.Windows.Forms.TextBox textBoxsoluong;
         private System.Windows.Forms.TextBox textBoxmanhanvien;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.DataGridViewTextBoxColumn MAPD;
         private System.Windows.Forms.DataGridViewTextBoxColumn MAPH;
         private System.Windows.Forms.Label labelkhachhang;

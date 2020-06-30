@@ -36,7 +36,7 @@
             this.txt_khachdua = new System.Windows.Forms.TextBox();
             this.txt_tralai = new System.Windows.Forms.TextBox();
             this.btn_luuvain = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_luukhongin = new DevExpress.XtraEditors.SimpleButton();
             this.SuspendLayout();
             // 
             // txt_tongtien
@@ -77,9 +77,9 @@
             this.label3.Location = new System.Drawing.Point(21, 150);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 26);
+            this.label3.Size = new System.Drawing.Size(94, 26);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Trả lại:";
+            this.label3.Text = "Còn lại:";
             // 
             // txt_khachdua
             // 
@@ -89,8 +89,8 @@
             this.txt_khachdua.Size = new System.Drawing.Size(434, 34);
             this.txt_khachdua.TabIndex = 4;
             this.txt_khachdua.TextChanged += new System.EventHandler(this.txt_khachdua_TextChanged);
-            this.txt_khachdua.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_khachdua_KeyDown);
             this.txt_khachdua.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_khachdua_KeyPress);
+            this.txt_khachdua.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txt_khachdua_KeyUp);
             // 
             // txt_tralai
             // 
@@ -115,25 +115,27 @@
             this.btn_luuvain.Size = new System.Drawing.Size(189, 60);
             this.btn_luuvain.TabIndex = 8;
             this.btn_luuvain.Text = "Lưu và in";
+            this.btn_luuvain.Click += new System.EventHandler(this.btn_luuvain_Click);
             // 
-            // simpleButton1
+            // btn_luukhongin
             // 
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.simpleButton1.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.simpleButton1.Location = new System.Drawing.Point(364, 211);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(189, 60);
-            this.simpleButton1.TabIndex = 9;
-            this.simpleButton1.Text = "Lưu không in";
+            this.btn_luukhongin.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_luukhongin.Appearance.Options.UseFont = true;
+            this.btn_luukhongin.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_luukhongin.ImageOptions.Image")));
+            this.btn_luukhongin.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btn_luukhongin.Location = new System.Drawing.Point(364, 211);
+            this.btn_luukhongin.Name = "simpleButton1";
+            this.btn_luukhongin.Size = new System.Drawing.Size(189, 60);
+            this.btn_luukhongin.TabIndex = 9;
+            this.btn_luukhongin.Text = "Lưu không in";
+            this.btn_luukhongin.Click += new System.EventHandler(this.btn_luukhongin_Click);
             // 
             // ThanhToanHoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(660, 291);
-            this.Controls.Add(this.simpleButton1);
+            this.Controls.Add(this.btn_luukhongin);
             this.Controls.Add(this.btn_luuvain);
             this.Controls.Add(this.txt_tralai);
             this.Controls.Add(this.txt_khachdua);
@@ -145,7 +147,6 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "ThanhToanHoaDon";
             this.Text = "ThanhToanHoaDon";
-            this.Load += new System.EventHandler(this.ThanhToanHoaDon_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,6 +161,6 @@
         private System.Windows.Forms.TextBox txt_khachdua;
         private System.Windows.Forms.TextBox txt_tralai;
         private DevExpress.XtraEditors.SimpleButton btn_luuvain;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton btn_luukhongin;
     }
 }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_phieuthue));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtMaKH = new System.Windows.Forms.TextBox();
@@ -58,7 +57,6 @@
             this.cbb_tang = new System.Windows.Forms.ComboBox();
             this.panel_ph = new System.Windows.Forms.Panel();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.timer_phieuthue = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -390,11 +388,6 @@
             this.panel_ph.Size = new System.Drawing.Size(1187, 445);
             this.panel_ph.TabIndex = 0;
             // 
-            // timer_phieuthue
-            // 
-            this.timer_phieuthue.Enabled = true;
-            this.timer_phieuthue.Tick += new System.EventHandler(this.timer_phieuthue_Tick);
-            // 
             // frm_phieuthue
             // 
             this.Appearance.BackColor = System.Drawing.Color.LightBlue;
@@ -447,6 +440,5 @@
         private System.Windows.Forms.DateTimePicker dtp_ngaytra;
         private System.Windows.Forms.DateTimePicker dtp_ngaydat;
         private System.Windows.Forms.TextBox txtMaKH;
-        private System.Windows.Forms.Timer timer_phieuthue;
     }
 }

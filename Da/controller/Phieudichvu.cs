@@ -31,7 +31,10 @@ namespace Da.controller
         }
         private void load_ct_thuephong()
         {
-            da = new SqlDataAdapter(" select * from CT_THUEPHONG", conn.cnn);
+            string sql = "select ct.MATP, ct.MAPH from CT_THUEPHONG ct\n";
+            sql += "inner join PHIEUTHUE pt on ct.MATP = pt.MATP\n";
+            sql += "where TINHTRANG = 1";
+            da = new SqlDataAdapter(sql, conn.cnn);
             da.Fill(ds, "CT_THUEPHONG");
             dgv_dsphieuthue.DataSource = ds.Tables["CT_THUEPHONG"];
             key1[0] = ds.Tables["CT_THUEPHONG"].Columns[0];
@@ -168,6 +171,7 @@ namespace Da.controller
         private void btn_lammoi_Click(object sender, EventArgs e)
         {
             clear_row_dgv_ctphieuthue();
+            txt_maphieuthue.Clear();
             ds.Tables["CT_THUEPHONG"].Clear();
             load_ct_thuephong();
         }

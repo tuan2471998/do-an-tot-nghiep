@@ -281,7 +281,8 @@ namespace Da.controller
                 DataRow dr_update_giaphong = ds_ph.Tables["PHONG"].Rows.Find(row["MAPH"].ToString());
                 if (dr_update_giaphong != null)
                 {
-                    double gialoaiph = double.Parse(txt_gia.Text);
+                    string giaphong = txt_gia.Text.Replace(",", "");
+                    double gialoaiph = double.Parse(giaphong.Replace(" VNĐ", ""));
                     int vitri = int.Parse(row["VTPHONG"].ToString());
                     dr_update_giaphong["GIAPHONG"] = gialoaiph + (vitri - 1) * 50000;
                     SqlCommandBuilder db = new SqlCommandBuilder(da_ph);
@@ -292,41 +293,43 @@ namespace Da.controller
 
         private void btn_Sualoaiphong_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txt_tenloai.Text) || string.IsNullOrEmpty(txt_gia.Text) || string.IsNullOrEmpty(txt_ghichu.Text))
+            DataRow update_New = ds_loaiph.Tables["LOAIPHONG"].Rows.Find(txt_maloai.Text);
+            if (update_New != null)
             {
-                MessageBox.Show("Thông tin loại phòng không chính xác");
+                string giaphong = txt_gia.Text.Replace(",", "");               
+                update_New["TENLOAI"] = txt_tenloai.Text;
+                update_New["GIAPH"] = giaphong.Replace(" VNĐ", "");
+                update_New["GHICHU"] = txt_ghichu.Text;
+
+                SqlCommandBuilder cmb = new SqlCommandBuilder(da_loaiph);
+                da_loaiph.Update(ds_loaiph, "LOAIPHONG");
+                cap_nhat_gia_phong();
+
+                MessageBox.Show(" Cập nhật Thành công");
+
+                Load_LoaiPH();
+                Load_PH();
+                clear_txt_loaiphong();
+                clear_row_loaiphong();
+
+                btn_Sualoaiphong.Enabled = false;
+                btn_Xoaloaiphong.Enabled = false;
             }
-            else
-            {
-                try
-                {
-                    DataRow update_New = ds_loaiph.Tables["LOAIPHONG"].Rows.Find(txt_maloai.Text);
-                    if (update_New != null)
-                    {
-                        update_New["TENLOAI"] = txt_tenloai.Text;
-                        update_New["GIAPH"] = txt_gia.Text;
-                        update_New["GHICHU"] = txt_ghichu.Text;
-
-                        SqlCommandBuilder cmb = new SqlCommandBuilder(da_loaiph);
-                        da_loaiph.Update(ds_loaiph, "LOAIPHONG");
-                        cap_nhat_gia_phong();
-
-                        MessageBox.Show(" Cập nhật Thành công");
-
-                        Load_LoaiPH();
-                        Load_PH();
-                        clear_txt_loaiphong();
-                        clear_row_loaiphong();
-
-                        btn_Sualoaiphong.Enabled = false;
-                        btn_Xoaloaiphong.Enabled = false;
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show(" Cập nhật không thành công");
-                }
-            }
+            //if (string.IsNullOrEmpty(txt_tenloai.Text) || string.IsNullOrEmpty(txt_gia.Text) || string.IsNullOrEmpty(txt_ghichu.Text))
+            //{
+            //    MessageBox.Show("Thông tin loại phòng không chính xác");
+            //}
+            //else
+            //{
+            //    try
+            //    {
+                    
+            //    }
+            //    catch
+            //    {
+            //        MessageBox.Show(" Cập nhật không thành công");
+            //    }
+            //}
         }
 
         private void txt_gia_TextChanged(object sender, EventArgs e)

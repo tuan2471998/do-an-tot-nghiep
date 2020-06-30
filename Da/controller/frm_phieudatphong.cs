@@ -98,7 +98,7 @@ namespace Da.controller
 
                 //load danh sach
                 Load_hinhanh();
-            }           
+            }
         }
 
         private void Load_hinhanh()
@@ -114,7 +114,7 @@ namespace Da.controller
                 if (kq)
                 {
                     //tạo control động cho các phòng
-                    frm_phong frm = new frm_phong(drPhong[0].ToString());
+                    frm_phong frm = new frm_phong(this, drPhong[0].ToString());
 
                     frm.Location = new Point(x, y);
                     panelphong.Controls.Add(frm);
@@ -136,8 +136,10 @@ namespace Da.controller
 
         private bool kiemtra(DataRow drPhong)
         {
+            DateTime ngaydat = Convert.ToDateTime(dtp_ngaydat.Value.ToShortDateString());
+            DateTime ngaytra = Convert.ToDateTime(dtp_ngaytra.Value.ToShortDateString());
             DataSet ds_ph = new DataSet();
-            SqlDataAdapter da_phCT = new SqlDataAdapter("select PHONG.MAPH from PHONG,CT_PHIEUDAT,PHIEUDAT WHERE PHONG.MAPH=CT_PHIEUDAT.MAPH AND CT_PHIEUDAT.MADP=PHIEUDAT.MADP AND NGAYNHAN_DUKIEN<='" + dtp_ngaytra.Value + "' AND NGAYTRA_DUKIEN>='" + dtp_ngaydat.Value + "'", conn.cnn);
+            SqlDataAdapter da_phCT = new SqlDataAdapter("select PHONG.MAPH from PHONG,CT_PHIEUDAT,PHIEUDAT WHERE PHONG.MAPH=CT_PHIEUDAT.MAPH AND CT_PHIEUDAT.MADP=PHIEUDAT.MADP AND NGAYNHAN_DUKIEN<='" + ngaytra + "' AND NGAYTRA_DUKIEN>='" + ngaydat + "'", conn.cnn);
             // Ánh xạ dữ liệu từ DB vào dataset, đặt tên Sach
             da_phCT.Fill(ds_ph, "PHONG1");
             DataTable dt1 = ds_ph.Tables["PHONG1"];
@@ -149,7 +151,7 @@ namespace Da.controller
                     return false;
                 }
             }
-            SqlDataAdapter da_phCTThue = new SqlDataAdapter("select PHONG.MAPH from PHONG,CT_THUEPHONG,PHIEUTHUE WHERE PHONG.MAPH=CT_THUEPHONG.MAPH AND CT_THUEPHONG.MATP=PHIEUTHUE.MATP AND NGAYNHAN<='" + dtp_ngaytra.Value + "' AND NGAYTRA>='" + dtp_ngaytra.Value + "'", conn.cnn);
+            SqlDataAdapter da_phCTThue = new SqlDataAdapter("select PHONG.MAPH from PHONG,CT_THUEPHONG,PHIEUTHUE WHERE PHONG.MAPH=CT_THUEPHONG.MAPH AND CT_THUEPHONG.MATP=PHIEUTHUE.MATP AND NGAYNHAN<='" + ngaytra + "' AND NGAYTRA>='" + ngaytra + "'", conn.cnn);
             da_phCTThue.Fill(ds_ph, "PHONG2");
             DataTable dt2 = ds_ph.Tables["PHONG2"];
 
@@ -165,7 +167,9 @@ namespace Da.controller
 
         DataSet ds_phchitiet = new DataSet();
         DataTable dt1chitiet;
-        private void timer1_Tick(object sender, EventArgs e)
+        
+
+        public void laythongtinphong()
         {
             if (Properties.Settings.Default.value != 0.ToString() && Properties.Settings.Default.value != null)
             {
@@ -190,9 +194,7 @@ namespace Da.controller
                     MessageBox.Show("Phòng này đã chọn! Vui lòng chọn phòng khác!");
                 }
             }
-
         }
-
         private bool kiemtratrongdatagridview(string v)
         {
             foreach (DataGridViewRow dr in dataGridViewchitiet.Rows)
@@ -504,6 +506,8 @@ namespace Da.controller
 
         private int kiemtra()
         {
+            DateTime ngaydat = Convert.ToDateTime(dtp_ngaydat.Value.ToShortDateString());
+            DateTime ngaytra = Convert.ToDateTime(dtp_ngaytra.Value.ToShortDateString());
             if (string.IsNullOrEmpty(txtMaKH.Text) == true)
             {
                 MessageBox.Show("Chưa nhập mã khách hàng");
@@ -511,7 +515,7 @@ namespace Da.controller
                 return 0;
             }
     
-            else if ( dtp_ngaydat.Value < dtp_ngaytra.Value)
+            else if ( ngaydat > ngaytra )
             {
                 MessageBox.Show("Ngày đặt phòng không hợp lệ");
                 return 0;

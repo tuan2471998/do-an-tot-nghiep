@@ -72,6 +72,7 @@ namespace Da
 
         private void frm_tt_Load(object sender, EventArgs e)
         {
+            cbb_hinhthuc.SelectedIndex = 0;
             string ngaytra = DateTime.Now.ToString("dd/MM/yyyy - hh:mm:ss tt");
             txt_ngaytra.Text = ngaytra;
 
@@ -82,7 +83,6 @@ namespace Da
             get_thongtin_phong(txt_mathuephong.Text);
             dgv_thongtin_phong.Columns[1].DefaultCellStyle.Format = "N0";
             dgv_thongtin_phong.Columns[2].DefaultCellStyle.Format = "N0";
-
         }
 
         private DateTime get_ngaynhan(string matp)
@@ -179,27 +179,56 @@ namespace Da
             menu.ShowDialog();
         }
 
-        double tiendichvu = 0;
-        double tienthuephong = 0;
         private void get_thanhtoan()
         {
-            foreach (DataGridViewRow row in dgv_thongtin_dichvu.Rows)
-            {
-                tiendichvu += double.Parse(row.Cells[3].Value.ToString());
-            }
-            foreach (DataGridViewRow row1 in dgv_thongtin_phong.Rows)
-            {
-                tienthuephong += double.Parse(row1.Cells[2].Value.ToString());
-            }
+            
         }
 
         private void btn_thanhtoan_Click(object sender, EventArgs e)
         {
-            ThanhToanHoaDon thanhtoan = new ThanhToanHoaDon();
-            get_thanhtoan();
-            thanhtoan.get_tongtien(tiendichvu + tienthuephong);
-            thanhtoan.StartPosition = FormStartPosition.CenterScreen;
-            thanhtoan.ShowDialog();
+            if (cbb_hinhthuc.SelectedIndex == 0)
+            {
+                MessageBox.Show("Chưa chọn hình thức thanh toán");
+            }
+            else
+            {
+                string tentt = cbb_hinhthuc.Text;
+                double tiendichvu = 0;
+                double tienthuephong = 0;
+                double tienphuthu;
+                double tientratruoc = double.Parse(txt_tientratruoc.Text);
+                double tongtien;
+                if (chb_phuthu.Checked && !string.IsNullOrEmpty(txt_phuthu.Text))
+                    tienphuthu = double.Parse(txt_phuthu.Text.Replace(",", ""));
+                else
+                    tienphuthu = 0;
+                ThanhToanHoaDon thanhtoan = new ThanhToanHoaDon();
+                foreach (DataGridViewRow row in dgv_thongtin_dichvu.Rows)
+                {
+                    tiendichvu += double.Parse(row.Cells[3].Value.ToString());
+                }
+                foreach (DataGridViewRow row1 in dgv_thongtin_phong.Rows)
+                {
+                    tienthuephong += double.Parse(row1.Cells[2].Value.ToString());
+                }
+                tongtien = tiendichvu + tienthuephong - tientratruoc + tienphuthu;
+                thanhtoan.get_tongtien(tongtien);
+                thanhtoan.get_thongtin_thanhtoan(tentt, tienthuephong, tiendichvu, txt_mathuephong.Text, tongtien);
+                thanhtoan.get_maphieuthue(txt_mathuephong.Text);
+                thanhtoan.StartPosition = FormStartPosition.CenterScreen;
+                thanhtoan.ShowDialog();
+            }
+        }
+
+        private void txt_phuthu_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txt_phuthu.Text) == false)
+            {
+                System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
+                double value = double.Parse(txt_phuthu.Text, System.Globalization.NumberStyles.AllowThousands);
+                txt_phuthu.Text = String.Format(culture, "{0:N0}", value);
+                txt_phuthu.Select(txt_phuthu.Text.Length, 0);
+            }
         }
     }
 }

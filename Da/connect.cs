@@ -15,8 +15,10 @@ namespace Da
         {
            
             cnn = new SqlConnection(@"Data Source=DESKTOP-1QO3BV3;Initial Catalog=QL_KHACHSAN;Integrated Security=True");
-            if(cnn.State == System.Data.ConnectionState.Closed)
-            cnn.Open();
+            if (cnn.State == System.Data.ConnectionState.Closed)
+            {
+                cnn.Open();
+            }
 
         }
 
