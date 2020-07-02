@@ -117,99 +117,104 @@ namespace Da.controller
 
         private void them_thong_tin_nhan_vien()
         {
-            da = new SqlDataAdapter(" select * from NHANVIEN", conn.cnn);
-            ds = new DataSet();
-            da.Fill(ds, "NHANVIEN");
-            key[0] = ds.Tables["NHANVIEN"].Columns[0];
-            ds.Tables["NHANVIEN"].PrimaryKey = key;
-
-            // tự động tạo mã nhân viên
-            int max = 0;
-            foreach (DataRow row in ds.Tables["NHANVIEN"].Rows)
-            {
-                int stt = int.Parse(row["MANV"].ToString().Substring(2));
-                if (max < stt)
-                    max = stt;
-            }
-            string manv;
-            if (max > 0 && max < 10)
-            {
-                manv = "NV00" + (max + 1).ToString();
-            }
-            else if (max >= 10 && max < 100)
-            {
-                manv = "NV0" + (max + 1).ToString();
-            }
-            else
-            {
-                manv = "NV" + (max + 1).ToString();
-            }
-            string image = ImageToBase64(url);
-
-            // kết quả thêm thông tin vào bảng NHANVIEN: 1 = thêm thành công, 0 = thêm thất bại
-            int kq = 0;
-            int kq_kt = kiemtra_thongtin();
-            if (kq_kt == 1)
-            {
-                string gioitinh;
-                if (rdb_nam.Checked)
-                    gioitinh = rdb_nam.Text;
-                else
-                    gioitinh = rdb_nu.Text;
-
-                DataRow insert_New = ds.Tables["NHANVIEN"].NewRow();
-                insert_New["MANV"] = manv;
-                insert_New["HOTEN"] = txt_hoten.Text;
-                insert_New["SOCMND"] = txt_cmnd.Text;
-                insert_New["SDT"] = txt_sdt.Text;
-                insert_New["EMAIL"] = txt_email.Text;
-                insert_New["GIOITINH"] = gioitinh;
-                insert_New["DIACHI"] = txt_diachi.Text;
-                insert_New["BANGCAP"] = cbb_bangcap.SelectedItem.ToString();
-                insert_New["NGAYVAOLAM"] = dateTimePicker_ngayvaolam.Text;
-                insert_New["NGAYSINH"] = dateTimePicker_ngaysinh.Text;
-                insert_New["HINHANH"] = image;
-
-                ds.Tables["NHANVIEN"].Rows.Add(insert_New);
-                SqlCommandBuilder cmb = new SqlCommandBuilder(da);
-                da.Update(ds, "NHANVIEN");
-
-                ds.Tables["NHANVIEN"].Clear();
-
-                kq = 1;
-            }
-            else
-                kq = 0;
-
-            //tự động cấp tài khoản cho nhân viên vừa thêm
-            if (kq == 1)
-            {
-                da = new SqlDataAdapter(" select * from TAIKHOAN", conn.cnn);
-                ds = new DataSet();
-                da.Fill(ds, "TAIKHOAN");
-                key[0] = ds.Tables["TAIKHOAN"].Columns[0];
-                ds.Tables["TAIKHOAN"].PrimaryKey = key;
-
-                DataRow insert_New_tk = ds.Tables["TAIKHOAN"].NewRow();
-                insert_New_tk["TENTK"] = manv;
-                insert_New_tk["MANV"] = manv;
-                insert_New_tk["MK"] = "123";
-                insert_New_tk["QUYEN"] = "NVIEN";
-
-                ds.Tables["TAIKHOAN"].Rows.Add(insert_New_tk);
-                SqlCommandBuilder cmb = new SqlCommandBuilder(da);
-                da.Update(ds, "TAIKHOAN");
-                ds.Tables["TAIKHOAN"].Clear();
-
-                MessageBox.Show("Thêm Thành công");
-            }
             try
             {
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                da = new SqlDataAdapter(" select * from NHANVIEN", conn.cnn);
+                ds = new DataSet();
+                da.Fill(ds, "NHANVIEN");
+                key[0] = ds.Tables["NHANVIEN"].Columns[0];
+                ds.Tables["NHANVIEN"].PrimaryKey = key;
 
+                // tự động tạo mã nhân viên
+                int max = 0;
+                foreach (DataRow row in ds.Tables["NHANVIEN"].Rows)
+                {
+                    int stt = int.Parse(row["MANV"].ToString().Substring(2));
+                    if (max < stt)
+                        max = stt;
+                }
+                string manv;
+                if (max > 0 && max < 10)
+                {
+                    manv = "NV00" + (max + 1).ToString();
+                }
+                else if (max >= 10 && max < 100)
+                {
+                    manv = "NV0" + (max + 1).ToString();
+                }
+                else
+                {
+                    manv = "NV" + (max + 1).ToString();
+                }
+                string image = ImageToBase64(url);
+
+                // kết quả thêm thông tin vào bảng NHANVIEN: 1 = thêm thành công, 0 = thêm thất bại
+                int kq = 0;
+                int kq_kt = kiemtra_thongtin();
+                if (kq_kt == 1)
+                {
+                    string gioitinh;
+                    if (rdb_nam.Checked)
+                        gioitinh = rdb_nam.Text;
+                    else
+                        gioitinh = rdb_nu.Text;
+
+                    DataRow insert_New = ds.Tables["NHANVIEN"].NewRow();
+                    insert_New["MANV"] = manv;
+                    insert_New["HOTEN"] = txt_hoten.Text;
+                    insert_New["SOCMND"] = txt_cmnd.Text;
+                    insert_New["SDT"] = txt_sdt.Text;
+                    insert_New["EMAIL"] = txt_email.Text;
+                    insert_New["GIOITINH"] = gioitinh;
+                    insert_New["DIACHI"] = txt_diachi.Text;
+                    insert_New["BANGCAP"] = cbb_bangcap.SelectedItem.ToString();
+                    insert_New["NGAYVAOLAM"] = dateTimePicker_ngayvaolam.Text;
+                    insert_New["NGAYSINH"] = dateTimePicker_ngaysinh.Text;
+                    insert_New["HINHANH"] = image;
+
+                    ds.Tables["NHANVIEN"].Rows.Add(insert_New);
+                    SqlCommandBuilder cmb = new SqlCommandBuilder(da);
+                    da.Update(ds, "NHANVIEN");
+
+                    ds.Tables["NHANVIEN"].Clear();
+
+                    kq = 1;
+                }
+                else
+                    kq = 0;
+
+                //tự động cấp tài khoản cho nhân viên vừa thêm
+                if (kq == 1)
+                {
+                    da = new SqlDataAdapter(" select * from TAIKHOAN", conn.cnn);
+                    ds = new DataSet();
+                    da.Fill(ds, "TAIKHOAN");
+                    key[0] = ds.Tables["TAIKHOAN"].Columns[0];
+                    ds.Tables["TAIKHOAN"].PrimaryKey = key;
+
+                    DataRow insert_New_tk = ds.Tables["TAIKHOAN"].NewRow();
+                    insert_New_tk["TENTK"] = manv;
+                    insert_New_tk["MANV"] = manv;
+                    insert_New_tk["MK"] = "123";
+                    insert_New_tk["QUYEN"] = "NVIEN";
+
+                    ds.Tables["TAIKHOAN"].Rows.Add(insert_New_tk);
+                    SqlCommandBuilder cmb = new SqlCommandBuilder(da);
+                    da.Update(ds, "TAIKHOAN");
+                    ds.Tables["TAIKHOAN"].Clear();
+
+                    MessageBox.Show("Thêm Thành công");
+                }
+                conn.cnn.Close();
             }
             catch
             {
                 MessageBox.Show("Lỗi");
+                conn.cnn.Close();
             }
 
         }

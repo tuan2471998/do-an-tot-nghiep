@@ -61,7 +61,10 @@ namespace Da.controller
             {
                 try
                 {
-
+                    if (conn.cnn.State == ConnectionState.Closed)
+                    {
+                        conn.cnn.Open();
+                    }
                     DataSet ds = new DataSet();
                     da = new SqlDataAdapter(" select * from LOAIPHONG", conn.cnn);
                     da.Fill(ds, "LOAIPHONG");
@@ -92,10 +95,13 @@ namespace Da.controller
                     MessageBox.Show("Thêm thành công");
 
                     ds.Tables["LOAIPHONG"].Clear();
+
+                    conn.cnn.Close();
                 }
                 catch
                 {
                     MessageBox.Show("Đã xảy ra lỗi");
+                    conn.cnn.Close();
                 }
             }
         }

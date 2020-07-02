@@ -34,19 +34,31 @@ namespace Da.controller
 
         private void Load_LoaiPH()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             ds_loaiph = new DataSet();
             da_loaiph = new SqlDataAdapter("select * from LOAIPHONG", conn.cnn);
             da_loaiph.Fill(ds_loaiph, "LOAIPHONG");
             key[0] = ds_loaiph.Tables["LOAIPHONG"].Columns[0];
             ds_loaiph.Tables["LOAIPHONG"].PrimaryKey = key;
+
+            conn.cnn.Close();
         }
 
         private void Load_combobox_maloai()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             Load_LoaiPH();
             cbb_maloai.DataSource = ds_loaiph.Tables["LOAIPHONG"];
             cbb_maloai.ValueMember = "MALOAI";
             cbb_maloai.DisplayMember = "TENLOAI";
+
+            conn.cnn.Close();
         }
 
         private void btn_thoat_Click(object sender, EventArgs e)
@@ -64,6 +76,10 @@ namespace Da.controller
 
         private double gia_loai_phong(string loaiphong)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             string sql_cmd = "select GIAPH from LOAIPHONG where MALOAI = '" + loaiphong + "'";
             SqlCommand cmd = new SqlCommand(sql_cmd, conn.cnn);
             DbDataReader rd = cmd.ExecuteReader();
@@ -99,6 +115,10 @@ namespace Da.controller
         {
             try
             {
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
                 ds_ph = new DataSet();
                 string ma = "P" + cbb_vitri.Text.Substring(cbb_vitri.Text.Length - 1, 1);
                 da_ph = new SqlDataAdapter("select * from PHONG where MAPH like '" + ma + "%'", conn.cnn);
@@ -123,11 +143,14 @@ namespace Da.controller
                 ds_ph.Tables["PHONG"].Rows.Add(insert_New);
                 SqlCommandBuilder cmb = new SqlCommandBuilder(da_ph);
                 da_ph.Update(ds_ph, "PHONG");
+
+                conn.cnn.Close();
                 MessageBox.Show(" Thêm Thành công");
             }
             catch
             {
                 MessageBox.Show("Hãy thao tác lại");
+                conn.cnn.Close();
             }
         }
 

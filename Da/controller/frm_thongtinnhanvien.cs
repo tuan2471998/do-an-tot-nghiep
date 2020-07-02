@@ -42,13 +42,22 @@ namespace Da.controller
 
         public void loadNhanVien()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             DataSet ds = new DataSet();
             da = new SqlDataAdapter(" select * from NHANVIEN", conn.cnn);
             da.Fill(ds, "NHANVIEN");
+            conn.cnn.Close();
         }
 
         private void frm_thongtinnhanvien_Load(object sender, EventArgs e)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             DataSet ds = new DataSet();
             da = new SqlDataAdapter("select * from NHANVIEN where MANV = '" + tk + "'", conn.cnn);
             da.Fill(ds, "NHANVIEN");
@@ -65,6 +74,8 @@ namespace Da.controller
             txtngaysinh.Text += DateTime.Parse(ds.Tables["NHANVIEN"].Rows[0]["NGAYSINH"].ToString()).ToString("dd/MM/yyyy");
 
             pictureBox_avatar.Image = Base64ToImage(ds.Tables["NHANVIEN"].Rows[0]["HINHANH"].ToString());
+
+            conn.cnn.Close();
         }
     }
 }

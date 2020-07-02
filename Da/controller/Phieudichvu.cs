@@ -31,6 +31,10 @@ namespace Da.controller
         }
         private void load_ct_thuephong()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             string sql = "select ct.MATP, ct.MAPH from CT_THUEPHONG ct\n";
             sql += "inner join PHIEUTHUE pt on ct.MATP = pt.MATP\n";
             sql += "where TINHTRANG = 1";
@@ -40,25 +44,39 @@ namespace Da.controller
             key1[0] = ds.Tables["CT_THUEPHONG"].Columns[0];
             key1[1] = ds.Tables["CT_THUEPHONG"].Columns[1];
             ds.Tables["CT_THUEPHONG"].PrimaryKey = key1;
+
+            conn.cnn.Close();
         }
 
         private void load_ct_thuephong(string matp)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             da = new SqlDataAdapter(" select * from CT_THUEPHONG where MATP = '"+matp+"'", conn.cnn);
             da.Fill(ds, "CT_THUEPHONG");
             dgv_dsphieuthue.DataSource = ds.Tables["CT_THUEPHONG"];
             key1[0] = ds.Tables["CT_THUEPHONG"].Columns[0];
             key1[1] = ds.Tables["CT_THUEPHONG"].Columns[1];
             ds.Tables["CT_THUEPHONG"].PrimaryKey = key1;
+
+            conn.cnn.Close();
         }
 
         public void load_hd_dichvu()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             da = new SqlDataAdapter(" select * from HD_DICHVU where MATP='" + txt_matp.Text + "' and MAPH ='" + txt_maph.Text + "' ", conn.cnn);
             da.Fill(ds, "HD_DICHVU");
             dgv_phieudichvu.DataSource = ds.Tables["HD_DICHVU"];
             key[0] = ds.Tables["HD_DICHVU"].Columns[0];
             ds.Tables["HD_DICHVU"].PrimaryKey = key;
+
+            conn.cnn.Close();
         }
 
         private void delete_dgv()
@@ -84,6 +102,10 @@ namespace Da.controller
             {
                 try
                 {
+                    if (conn.cnn.State == ConnectionState.Closed)
+                    {
+                        conn.cnn.Open();
+                    }
                     DataRow insert_New = ds.Tables["HD_DICHVU"].NewRow();
                     insert_New["MAHD_DICHVU"] = txt_maphdv.Text;
                     insert_New["MATP"] = txt_matp.Text;
@@ -94,16 +116,23 @@ namespace Da.controller
                     SqlCommandBuilder cmb = new SqlCommandBuilder(da);
                     da.Update(ds, "HD_DICHVU");
 
+                    conn.cnn.Close();
+
                 }
                 catch
                 {
                     MessageBox.Show("Thao tác của bạn đã bị lỗi");
+                    conn.cnn.Close();
                 }
             }
             btn_lap.Enabled = false;
         }
         private string sinhtudongMaHOADON()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             DataSet ds_ph = new DataSet();
             SqlDataAdapter da_phCT = new SqlDataAdapter("select * from HD_DICHVU", conn.cnn);
             // Ánh xạ dữ liệu từ DB vào dataset, đặt tên Sach
@@ -130,6 +159,7 @@ namespace Da.controller
                 bien2 = bien1 + bien3;
                 bien3 *= 10;
             }
+            conn.cnn.Close();
             return "HDV" + bien2.ToString().Substring(1, 3);
         }
 

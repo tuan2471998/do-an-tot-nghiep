@@ -40,26 +40,42 @@ namespace Da
 
         private void Load_CT_HD_DV()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             da_cthd = new SqlDataAdapter(" select * from CT_HD_DICHVU where MAHD_DICHVU = '" + txt_mahddv.Text + "'", conn.cnn);
             da_cthd.Fill(ds_cthd, "CT_HD_DICHVU");
             dgv_cthddv.DataSource = ds_cthd.Tables["CT_HD_DICHVU"];
             key1[0] = ds_cthd.Tables["CT_HD_DICHVU"].Columns[0];
             key1[1] = ds_cthd.Tables["CT_HD_DICHVU"].Columns[1];
             ds_cthd.Tables["CT_HD_DICHVU"].PrimaryKey = key1;
+
+            conn.cnn.Close();
         }
 
         private void Load_HD_DV()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             ds_hd_dv = new DataSet();
             da_hd_dv = new SqlDataAdapter("select * from HD_DICHVU", conn.cnn);
             da_hd_dv.Fill(ds_hd_dv, "HD_DICHVU");
             dgv_cthddv.DataSource = ds_hd_dv.Tables["HD_DICHVU"];
             key[0] = ds_hd_dv.Tables["HD_DICHVU"].Columns[0];
             ds_hd_dv.Tables["HD_DICHVU"].PrimaryKey = key;
+
+            conn.cnn.Close();
         }
 
         private void load_cbo_dichvu()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             da_dv = new SqlDataAdapter(" select * from DICHVU", conn.cnn);
             da_dv.Fill(ds_dv, "DICHVU");
             key[0] = ds_dv.Tables["DICHVU"].Columns[0];
@@ -68,6 +84,8 @@ namespace Da
             cbo_dichvu.ValueMember = "MADV";
             cbo_dichvu.DisplayMember = "TENDV";
             cbo_dichvu.DataSource = ds_dv.Tables["DICHVU"];
+
+            conn.cnn.Close();
         }
 
         public void get_mahddv(string mahddv)
@@ -77,6 +95,10 @@ namespace Da
 
         public double capnhat_dongia()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             string sql = "select GIADV_HIENTAI from DICHVU where MADV = '" + cbo_dichvu.SelectedValue + "'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             return (double)((decimal)cmd.ExecuteScalar());
@@ -125,6 +147,10 @@ namespace Da
         {
             try
             {
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
                 DataRow insert_New = ds_cthd.Tables["CT_HD_DICHVU"].NewRow();
                 insert_New["MAHD_DICHVU"] = txt_mahddv.Text;
                 insert_New["MADV"] = cbo_dichvu.SelectedValue.ToString();
@@ -135,18 +161,25 @@ namespace Da
                 ds_cthd.Tables["CT_HD_DICHVU"].Rows.Add(insert_New);
                 SqlCommandBuilder cmb = new SqlCommandBuilder(da_cthd);
                 da_cthd.Update(ds_cthd, "CT_HD_DICHVU");
+
+                conn.cnn.Close();
                 //MessageBox.Show("Thêm Thành công");
 
             }
             catch
             {
                 MessageBox.Show("Lỗi");
+                conn.cnn.Close();
             }
         }
 
         double thanhtien;
         private void update_tongtien()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             thanhtien = 0;
             foreach (DataGridViewRow row in dgv_cthddv.Rows)
             {
@@ -166,6 +199,8 @@ namespace Da
                 SqlCommandBuilder cmb = new SqlCommandBuilder(da_hd_dv);
                 da_hd_dv.Update(ds_hd_dv, "HD_DICHVU");
             }
+
+            conn.cnn.Close();
         }
 
         private void btndong_Click(object sender, EventArgs e)

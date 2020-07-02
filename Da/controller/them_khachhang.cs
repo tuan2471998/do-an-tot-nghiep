@@ -33,10 +33,16 @@ namespace Da.controller
 
         public void loadData_themkh()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             da = new SqlDataAdapter(" select * from KHACHHANG", conn.cnn);
             da.Fill(ds, "KHACHHANG");
             key[0] = ds.Tables["KHACHHANG"].Columns[0];
             ds.Tables["KHACHHANG"].PrimaryKey = key;
+
+            conn.cnn.Close();
         }
 
         int kiemtra_thongtin()
@@ -69,6 +75,10 @@ namespace Da.controller
 
         void them_thong_tin_kh()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             da = new SqlDataAdapter(" select * from KHACHHANG", conn.cnn);
             da.Fill(ds, "KHACHHANG");
             key[0] = ds.Tables["KHACHHANG"].Columns[0];
@@ -103,10 +113,13 @@ namespace Da.controller
                 da.Update(ds, "KHACHHANG");
                 MessageBox.Show(" Thêm Thành công");
                 loadData_themkh();
+
+                conn.cnn.Close();
             }
             catch
             {
                 MessageBox.Show("Hãy thao tác lại");
+                conn.cnn.Close();
             }
         }
 

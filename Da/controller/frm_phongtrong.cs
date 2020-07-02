@@ -30,6 +30,10 @@ namespace Da.controller
 
         private void dọnDẹpToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             string sql = "update PHONG set TINHTRANG = 3, TIME_DONDEP_KT = '" + DateTime.Now.AddHours(2) + "' where MAPH = '" + lb_sophong.Text + "'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             int kq = cmd.ExecuteNonQuery();
@@ -37,11 +41,16 @@ namespace Da.controller
             {
                 MessageBox.Show("Cập nhật thành công");
             }
+            conn.cnn.Close();
             _frm_danhsachphong.Load_control_all();
         }
 
         private void sửaChữaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             string sql = "update PHONG set TINHTRANG = 4 where MAPH = '" + lb_sophong.Text + "'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             int kq = cmd.ExecuteNonQuery();
@@ -49,6 +58,7 @@ namespace Da.controller
             {
                 MessageBox.Show("Cập nhật thành công");
             }
+            conn.cnn.Close();
             _frm_danhsachphong.Load_control_all();
         }
 

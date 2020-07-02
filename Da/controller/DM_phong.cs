@@ -27,25 +27,33 @@ namespace Da.controller
 
         public void Load_LoaiPH()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+                conn.cnn.Open();
             da_loaiph = new SqlDataAdapter(" select * from LOAIPHONG", conn.cnn);
             da_loaiph.Fill(ds_loaiph, "LOAIPHONG");
             dgv_loaiph.DataSource = ds_loaiph.Tables["LOAIPHONG"];
             key[0] = ds_loaiph.Tables["LOAIPHONG"].Columns[0];
             ds_loaiph.Tables["LOAIPHONG"].PrimaryKey = key;
+
+            conn.cnn.Close();
         }
         public void Load_PH()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+                conn.cnn.Open();
             da_ph = new SqlDataAdapter(" select * from PHONG where MALOAI = '" + txt_maloai.Text + "'", conn.cnn);
             da_ph.Fill(ds_ph, "PHONG");
             dgv_ph.DataSource = ds_ph.Tables["PHONG"];
             key[0] = ds_ph.Tables["PHONG"].Columns[0];
             ds_ph.Tables["PHONG"].PrimaryKey = key;
+
+            conn.cnn.Close();
         }
 
         private void clear_txt_phong()
         {
             txt_maph.Text = txt_vitri.Text = txt_giatheotang.Text = null;
-            cbb_tinhtrang.Text = null;
+            txt_tinhtrang.Text = "";
         }
 
         private void clear_txt_loaiphong()
@@ -123,47 +131,39 @@ namespace Da.controller
             themphong.Show();
         }
 
+        private string tinhtrang(string _tinhtrang)
+        {
+            if (_tinhtrang == "0")
+                return "Trống";
+            else if (_tinhtrang == "1")
+                return "Đang sử dụng";
+            else if (_tinhtrang == "2")
+                return "Được đặt";
+            else if (_tinhtrang == "3")
+                return "Đang dọn dẹp";
+            else
+                return "Đang sửa chữa";
+        }
+
         private void dgv_ph_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             txt_maph.Text = dgv_ph.CurrentRow.Cells[0].Value.ToString();
             txt_vitri.Text = "Tầng " + dgv_ph.CurrentRow.Cells[2].Value.ToString();
-            cbb_tinhtrang.SelectedIndex = int.Parse(dgv_ph.CurrentRow.Cells[3].Value.ToString());
+            txt_tinhtrang.Text = tinhtrang(dgv_ph.CurrentRow.Cells[3].Value.ToString());
             txt_giatheotang.Text = string.Format("{0:0,0}", dgv_ph.CurrentRow.Cells[4].Value) + " VNĐ";
-            btn_Xoaphong.Enabled = btn_Suaphong.Enabled = true;
-        }
 
-        private void btn_Suaphong_Click(object sender, EventArgs e)
-        {
-            string maphong = dgv_ph.CurrentRow.Cells[0].Value.ToString();
-            try
-            {
-                DataRow update_New = ds_ph.Tables["PHONG"].Rows.Find(maphong);
-                if (update_New != null)
-                {
-                    update_New["TINHTRANG"] = cbb_tinhtrang.SelectedIndex;
-
-                    SqlCommandBuilder cmb = new SqlCommandBuilder(da_ph);
-                    da_ph.Update(ds_ph, "PHONG");
-                    MessageBox.Show(" Cập nhật Thành công");
-
-                    Load_PH();
-                    clear_txt_phong();
-                    clear_row_phong();
-
-                    btn_Suaphong.Enabled = false;
-                    btn_Xoaphong.Enabled = false;
-                }
-            }
-            catch
-            {
-                MessageBox.Show(" Cập nhật không thành công");
-            }
+            if(txt_tinhtrang.Text == "Đang sử dụng" || txt_tinhtrang.Text == "Được đặt")
+                btn_Xoaphong.Enabled = false;
+            else
+                btn_Xoaphong.Enabled = true;
         }
 
         private void btn_Xoaphong_Click(object sender, EventArgs e)
         {
             try
             {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
                 DialogResult r;
                 r = MessageBox.Show("Bạn có chắc muốn xóa không?", "Thông báo xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                 if (r == DialogResult.Yes)
@@ -184,12 +184,12 @@ namespace Da.controller
                         clear_txt_phong();
                         clear_row_phong();
 
-                        btn_Suaphong.Enabled = false;
                         btn_Xoaphong.Enabled = false;
                     }
                     else
                         MessageBox.Show("Vui lòng chọn mã khách hàng ");
                 }
+                conn.cnn.Close();
             }
             catch
             {
@@ -199,6 +199,8 @@ namespace Da.controller
 
         private void xoaphong()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+                conn.cnn.Open();
             ds_ph = new DataSet();
             da_ph = new SqlDataAdapter(" select * from PHONG where MALOAI = '" + txt_maloai.Text + "'", conn.cnn);
             da_ph.Fill(ds_ph, "PHONG");
@@ -215,12 +217,16 @@ namespace Da.controller
                     da_ph.Update(ds_ph, "PHONG");
                 }
             };
+
+            conn.cnn.Close();
         }
 
         private void btn_Xoaloaiphong_Click(object sender, EventArgs e)
         {
             try
             {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
                 DialogResult r;
                 r = MessageBox.Show("Nếu xóa loại phòng bạn cũng sẽ xóa toàn bộ phòng của loại phòng này.\nBạn có chắc muốn xóa không?", "Thông báo xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                 if (r == DialogResult.Yes)
@@ -253,6 +259,7 @@ namespace Da.controller
                     else
                         MessageBox.Show("Vui lòng chọn một dịch vụ");
                 }
+                conn.cnn.Close();
             }
             catch
             {
@@ -270,6 +277,8 @@ namespace Da.controller
 
         private void cap_nhat_gia_phong()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+                conn.cnn.Open();
             ds_ph = new DataSet();
             da_ph = new SqlDataAdapter(" select * from PHONG where MALOAI = '" + txt_maloai.Text + "'", conn.cnn);
             da_ph.Fill(ds_ph, "PHONG");
@@ -289,10 +298,13 @@ namespace Da.controller
                     da_ph.Update(ds_ph, "PHONG");
                 }
             }
+            conn.cnn.Close();
         }
 
         private void btn_Sualoaiphong_Click(object sender, EventArgs e)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+                conn.cnn.Open();
             DataRow update_New = ds_loaiph.Tables["LOAIPHONG"].Rows.Find(txt_maloai.Text);
             if (update_New != null)
             {
@@ -323,13 +335,15 @@ namespace Da.controller
             //{
             //    try
             //    {
-                    
+
             //    }
             //    catch
             //    {
             //        MessageBox.Show(" Cập nhật không thành công");
             //    }
             //}
+
+            conn.cnn.Close();
         }
 
         private void txt_gia_TextChanged(object sender, EventArgs e)

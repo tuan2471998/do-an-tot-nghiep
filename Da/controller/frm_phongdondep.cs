@@ -34,6 +34,10 @@ namespace Da.controller
 
         private void hoànThànhToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             string sql = "update PHONG set TINHTRANG = 0, TIME_DONDEP_KT = null where MAPH = '" + lb_sophong.Text + "'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             int kq = cmd.ExecuteNonQuery();
@@ -42,6 +46,8 @@ namespace Da.controller
                 MessageBox.Show("Cập nhật thành công");
             }
             _frm_danhsachphong.Load_control_all();
+
+            conn.cnn.Close();
         }
 
         DateTime batdau;
@@ -49,9 +55,15 @@ namespace Da.controller
 
         private void get_time_ketthuc()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             string sql = "select TIME_DONDEP_KT from PHONG where MAPH = '" + lb_sophong.Text + "'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             ketthuc = (DateTime)cmd.ExecuteScalar();
+
+            conn.cnn.Close();
         }
 
         private void lb_sophong_TextChanged(object sender, EventArgs e)
@@ -79,11 +91,16 @@ namespace Da.controller
         {
             if (gio <= 0 && phut <= 0 && giay <= 0)
             {
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
                 timer1.Stop();
                 string sql = "update PHONG set TINHTRANG = 0, TIME_DONDEP_KT = null where MAPH = '" + lb_sophong.Text + "'";
                 SqlCommand cmd = new SqlCommand(sql, conn.cnn);
                 int kq = cmd.ExecuteNonQuery();
                 _frm_danhsachphong.Load_control_all();
+                conn.cnn.Close();
             }
             else
             {

@@ -21,9 +21,16 @@ namespace Da
             InitializeComponent();
         }
 
+        public frm_tt(frm_danhsachphong _frm_danhsachphong)
+        {
+            InitializeComponent();
+            dsphong = _frm_danhsachphong;
+        }
+
         connect conn = new connect();
         DataSet ds;
         SqlDataAdapter da;
+        private frm_danhsachphong dsphong;
 
         private void chb_phuthu_CheckedChanged(object sender, EventArgs e)
         {
@@ -83,10 +90,17 @@ namespace Da
             get_thongtin_phong(txt_mathuephong.Text);
             dgv_thongtin_phong.Columns[1].DefaultCellStyle.Format = "N0";
             dgv_thongtin_phong.Columns[2].DefaultCellStyle.Format = "N0";
+
+            dgv_thongtin_thucdon.Columns[2].DefaultCellStyle.Format = "N0";
+            dgv_thongtin_thucdon.Columns[3].DefaultCellStyle.Format = "N0";
         }
 
         private DateTime get_ngaynhan(string matp)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             string sql = "select ngaynhan from phieuthue where matp = '" + matp + "'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             return (DateTime)cmd.ExecuteScalar();
@@ -98,6 +112,10 @@ namespace Da
 
         private void get_thongtin_dichvu(string matp)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             string sql = "select tendv, soluong, dongia, thanhtien from ct_hd_dichvu ct\n";
             sql += "inner join hd_dichvu hd on ct.MAHD_DICHVU = hd.MAHD_DICHVU\n";
             sql += "inner join dichvu dv on dv.madv = ct.madv\n";
@@ -108,10 +126,40 @@ namespace Da
             da.Fill(ds, "DICHVU");
 
             dgv_thongtin_dichvu.DataSource = ds.Tables["DICHVU"];
+
+            conn.cnn.Close();
+        }
+
+        public void get_thongtin_menu(DataTable _menu)
+        {
+            DataTable menu = new DataTable();
+            menu.Columns.Add("tentd");
+            menu.Columns.Add("soluong");
+            menu.Columns.Add("dongia");
+            menu.Columns.Add("thanhtien");
+
+            DataRow newrow;
+
+            foreach (DataRow row in _menu.Rows)
+            {
+                newrow = menu.NewRow();
+                newrow["tentd"] = row["tentd"].ToString();
+                newrow["soluong"] = row["soluong"].ToString();
+                newrow["dongia"] = row["dongia"].ToString();
+                newrow["thanhtien"] = row["thanhtien"].ToString();
+
+                menu.Rows.Add(newrow);
+            }
+
+            dgv_thongtin_thucdon.DataSource = menu;
         }
 
         private void get_thongtin_phong(string matp)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             string sql = "select tp.maph, giaphong from ct_thuephong tp\n";
             sql += "inner join phong ph on tp.maph = ph.maph\n";
             sql += "where tp.matp = '" + matp + "'";
@@ -153,7 +201,7 @@ namespace Da
                         giatien = time.Days * tienphong + 100000;
                     else if (time.Hours < 6)
                         giatien = time.Days * tienphong + (tienphong * 0.3);
-                    else if(time.Hours < 8)
+                    else if (time.Hours < 8)
                         giatien = time.Days * tienphong + (tienphong * 0.4);
                     else
                         giatien = time.Days * tienphong + (tienphong * 0.5);
@@ -165,6 +213,8 @@ namespace Da
             }
 
             dgv_thongtin_phong.DataSource = phong;
+
+            conn.cnn.Close();
         }
 
         private void btn_dong_Click(object sender, EventArgs e)
@@ -174,14 +224,27 @@ namespace Da
 
         private void btn_menu_Click(object sender, EventArgs e)
         {
-            Menu menu = new Menu();
+            Menu menu = new Menu(this);
             menu.StartPosition = FormStartPosition.CenterScreen;
             menu.ShowDialog();
         }
 
-        private void get_thanhtoan()
+        double tien_menu = 0;
+
+        public void get_tienmenu()
         {
-            
+            foreach (DataGridViewRow row in dgv_thongtin_thucdon.Rows)
+            {
+                tien_menu += double.Parse(row.Cells[3].Value.ToString());
+            }
+
+            txt_tienthucdon.Text = string.Format("{0:0,0}", double.Parse(tien_menu.ToString()));
+        }
+
+        public void format_dgv_menu()
+        {
+            dgv_thongtin_thucdon.Columns[2].DefaultCellStyle.Format = "N0";
+            dgv_thongtin_thucdon.Columns[3].DefaultCellStyle.Format = "N0";
         }
 
         private void btn_thanhtoan_Click(object sender, EventArgs e)
@@ -196,13 +259,24 @@ namespace Da
                 double tiendichvu = 0;
                 double tienthuephong = 0;
                 double tienphuthu;
+                double tienmenu;
                 double tientratruoc = double.Parse(txt_tientratruoc.Text);
                 double tongtien;
+                
                 if (chb_phuthu.Checked && !string.IsNullOrEmpty(txt_phuthu.Text))
                     tienphuthu = double.Parse(txt_phuthu.Text.Replace(",", ""));
                 else
                     tienphuthu = 0;
-                ThanhToanHoaDon thanhtoan = new ThanhToanHoaDon();
+
+                if (!string.IsNullOrEmpty(txt_tienthucdon.Text))
+                {
+                    tienmenu = double.Parse(txt_tienthucdon.Text);
+                }
+                else
+                {
+                    tienmenu = 0;
+                }
+
                 foreach (DataGridViewRow row in dgv_thongtin_dichvu.Rows)
                 {
                     tiendichvu += double.Parse(row.Cells[3].Value.ToString());
@@ -211,12 +285,27 @@ namespace Da
                 {
                     tienthuephong += double.Parse(row1.Cells[2].Value.ToString());
                 }
-                tongtien = tiendichvu + tienthuephong - tientratruoc + tienphuthu;
-                thanhtoan.get_tongtien(tongtien);
-                thanhtoan.get_thongtin_thanhtoan(tentt, tienthuephong, tiendichvu, txt_mathuephong.Text, tongtien);
-                thanhtoan.get_maphieuthue(txt_mathuephong.Text);
-                thanhtoan.StartPosition = FormStartPosition.CenterScreen;
-                thanhtoan.ShowDialog();
+                tongtien = tiendichvu + tienthuephong - tientratruoc + tienphuthu + tienmenu;
+
+                if (cbb_hinhthuc.SelectedIndex == 1)
+                {
+                    ThanhToanHoaDon thanhtoan = new ThanhToanHoaDon(this);
+                    thanhtoan.get_tongtien(tongtien);
+                    thanhtoan.get_thongtin_thanhtoan(tentt, tienthuephong, tiendichvu, txt_mathuephong.Text, tongtien, tienphuthu, txt_ghichu.Text);
+                    thanhtoan.get_maphieuthue(txt_mathuephong.Text);
+                    thanhtoan.StartPosition = FormStartPosition.CenterScreen;
+                    thanhtoan.ShowDialog();
+                }
+                else if (cbb_hinhthuc.SelectedIndex == 2)
+                {
+                    ThanhToanThe the = new ThanhToanThe(this);
+                    the.nguon("frm_thanhtoan");
+                    the.get_matp_from_frmThanhtoan(txt_mathuephong.Text);
+                    the.get_tien(tienthuephong, tiendichvu, tienphuthu, txt_ghichu.Text);
+                    the.get_thongtin_thanhtoan(tongtien);
+                    the.StartPosition = FormStartPosition.CenterScreen;
+                    the.ShowDialog();
+                }
             }
         }
 
@@ -229,6 +318,11 @@ namespace Da
                 txt_phuthu.Text = String.Format(culture, "{0:N0}", value);
                 txt_phuthu.Select(txt_phuthu.Text.Length, 0);
             }
+        }
+
+        private void frm_tt_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            dsphong.Load_control_all();
         }
     }
 }

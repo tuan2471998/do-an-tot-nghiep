@@ -49,6 +49,10 @@ namespace Da.controller
         {
             try
             {
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
                 DataSet ds = new DataSet();
                 da = new SqlDataAdapter(" select * from DICHVU", conn.cnn);
                 da.Fill(ds, "DICHVU");
@@ -83,10 +87,13 @@ namespace Da.controller
                 MessageBox.Show("Thêm thành công");
 
                 ds.Tables["DICHVU"].Clear();
+
+                conn.cnn.Close();
             }
             catch
             {
                 MessageBox.Show("Đã xảy ra lỗi");
+                conn.cnn.Close();
             }
         }
         private void txtGiatien_TextChanged(object sender, EventArgs e)

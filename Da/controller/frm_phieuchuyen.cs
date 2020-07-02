@@ -25,6 +25,10 @@ namespace Da.controller
 
         public void loadcbxMaKH()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             SqlDataAdapter da = new SqlDataAdapter("select * from PHIEUDAT", conn.cnn);
 
             ds = new DataSet();
@@ -33,19 +37,30 @@ namespace Da.controller
             comboBox_madatphong.DisplayMember = "MADP";
             comboBox_madatphong.ValueMember = "MADP";
             comboBox_madatphong.SelectedIndex = -1;
+
+            conn.cnn.Close();
         }
         public void load_dgvPD()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             ds = new DataSet();
             da = new SqlDataAdapter("select * from PHIEUDAT where MADP = '" + comboBox_madatphong.SelectedValue.ToString() + "'", conn.cnn);
             da.Fill(ds, "PHIEUDAT");
             dataGridView_thongtinchitietchuyen.DataSource = ds.Tables["PHIEUDAT"];
             key[0] = ds.Tables["PHIEUDAT"].Columns[0];
             ds.Tables["PHIEUDAT"].PrimaryKey = key;
+            conn.cnn.Close();
         }
 
         private string sinhtudongMaphieuthue()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             DataSet ds_ph = new DataSet();
             SqlDataAdapter da_phCT = new SqlDataAdapter("select * from PHIEUTHUE", conn.cnn);
             // Ánh xạ dữ liệu từ DB vào dataset, đặt tên Sach
@@ -76,6 +91,7 @@ namespace Da.controller
                 bien2 = bien1 + bien3;
                 bien3 *= 10;
             }
+            conn.cnn.Close();
             return "TP" + bien2.ToString().Substring(1, 3);
         }
 
@@ -115,14 +131,20 @@ namespace Da.controller
         {
             try
             {
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
                 int sl = int.Parse(textBoxsl.Text);
                 string sql = "INSERT INTO PHIEUTHUE VALUES('" + textBox_MATP.Text + "','" + textBox_MANV.Text + "','" + textBoxmkh.Text + "','" + comboBox_madatphong.SelectedValue.ToString() + "','" + DateTime.Now + "','" + dtp_ngaytra.Value + "'," + sl + ",1,'" + textBox_tiencoc.Text + "')";
                 SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-                cmd.ExecuteNonQuery();         
+                cmd.ExecuteNonQuery();
+                conn.cnn.Close();
             }
             catch
             {
                 MessageBox.Show("Vui lòng thực hiện lại thao tác chuyển phòng!");
+                conn.cnn.Close();
             }
         }
 
@@ -130,6 +152,10 @@ namespace Da.controller
         {
             try
             {
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
                 ds = new DataSet();
                 da = new SqlDataAdapter("select MAPH from CT_PHIEUDAT where MADP = '" + comboBox_madatphong.SelectedValue + "'", conn.cnn);
                 da.Fill(ds, "DS_PHONG");
@@ -139,38 +165,56 @@ namespace Da.controller
                     SqlCommand cmd = new SqlCommand(sql, conn.cnn);
                     int kq = cmd.ExecuteNonQuery();
                 }
+                conn.cnn.Close();
             }
             catch
             {
                 MessageBox.Show("Vui lòng thực hiện lại thao tác chuyển phòng!");
+                conn.cnn.Close();
             }
         }
 
         private void xoaCTPhieuDat()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             string sql = "delete from CT_PHIEUDAT where MADP = '" + comboBox_madatphong.SelectedValue + "'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             int kq = (int)cmd.ExecuteNonQuery();
+
+            conn.cnn.Close();
         }
 
         private void xoaPhieuDat()
         {
             try
             {
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
                 string sql = "delete from PHIEUDAT where MADP = '" + comboBox_madatphong.SelectedValue.ToString() + "'";
                 SqlCommand cmd = new SqlCommand(sql, conn.cnn);
                 int kq = (int)cmd.ExecuteNonQuery();
                 if (kq != 0)
                     MessageBox.Show("Lập phiếu thành công");
+                conn.cnn.Close();
             }
             catch
             {
                 MessageBox.Show("Đã xảy ra lỗi");
+                conn.cnn.Close();
             }
         }
 
         private void chuyenTrangThaiPhong()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             DataSet ds_ctphieudat = new DataSet();
             SqlDataAdapter da_ctphieudat = new SqlDataAdapter("select * from CT_PHIEUDAT where MADP = '" + comboBox_madatphong.SelectedValue.ToString() + "'", conn.cnn);
             da_ctphieudat.Fill(ds_ctphieudat, "CT_PHIEUDAT");
@@ -191,6 +235,7 @@ namespace Da.controller
                     da_phong.Update(ds_phong, "PHONG");
                 }
             }
+            conn.cnn.Close();
         }
 
         private void comboBox_madatphong_SelectedValueChanged(object sender, EventArgs e)

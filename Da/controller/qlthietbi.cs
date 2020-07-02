@@ -29,6 +29,10 @@ namespace Da.controller
 
         private void load_cbb_loaiphong()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             ds = new DataSet();
             da = new SqlDataAdapter("select * from LOAIPHONG", conn.cnn);
             da.Fill(ds, "LOAIPHONG");
@@ -40,6 +44,7 @@ namespace Da.controller
             DataRow row = ds.Tables["LOAIPHONG"].NewRow();
             row[1] = "[Chọn loại phòng]";
             ds.Tables["LOAIPHONG"].Rows.InsertAt(row, 0);
+            conn.cnn.Close();
         }
 
         private void qlthietbi_Load(object sender, EventArgs e)
@@ -85,6 +90,10 @@ namespace Da.controller
 
         private void numeric_giuongdoi_ValueChanged(object sender, EventArgs e)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             lay_tentb((sender as NumericUpDown).Name);
             if ((sender as NumericUpDown).Enabled)
             {
@@ -102,6 +111,7 @@ namespace Da.controller
                 chitiet.Rows.Add(dr);
                 dgv_danhsachloaiphong.DataSource = chitiet;
             }
+            conn.cnn.Close();
         }
 
         private void clear_gridview()
@@ -149,6 +159,10 @@ namespace Da.controller
         //kiểm tra xem thiết bị đã có trong bảng CT_THIETBI chưa
         private int kiemtra_data(string maloai, string tentb)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             string sql = "select count(*) from CT_THIETBI where MALOAI = '" + maloai + "' and TENTB = N'" + tentb + "'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             return (int)cmd.ExecuteScalar();
@@ -156,6 +170,10 @@ namespace Da.controller
 
         private void insert_ct_thietbi(string maloai, string tentb, int soluong)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             DataSet ds = new DataSet();
             da = new SqlDataAdapter("select * from CT_THIETBI", conn.cnn);
             da.Fill(ds, "INSERT_CT_THIETBI");
@@ -170,24 +188,42 @@ namespace Da.controller
             da.Update(ds, "INSERT_CT_THIETBI");
 
             ds.Tables["INSERT_CT_THIETBI"].Clear();
+
+            conn.cnn.Close();
         }
 
         private void update_ct_thietbi(string loaiphong, string tentb, int slmoi)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             string sql = "update CT_THIETBI set SOLUONGTB = " + slmoi + "  where MALOAI = '" + loaiphong + "' and TENTB = N'" + tentb + "'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             int kq = cmd.ExecuteNonQuery();
+
+            conn.cnn.Close();
         }
 
         private void xoa_ct_thietbi(string loaiphong, string tentb)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             string sql = "delete from CT_THIETBI where MALOAI = '"+loaiphong+"' and TENTB = N'"+tentb+"'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             int kq = cmd.ExecuteNonQuery();
+
+            conn.cnn.Close();
         }
 
         private void btn_luu_Click(object sender, EventArgs e)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             foreach (DataGridViewRow row in dgv_danhsachloaiphong.Rows)
             {
                 if (kiemtra_data(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString()) != 0)
@@ -208,6 +244,8 @@ namespace Da.controller
             }
             MessageBox.Show("Cập nhật dữ liệu thành công");
             clear_control();
+
+            conn.cnn.Close();
         }
 
         string tentb;
@@ -237,11 +275,17 @@ namespace Da.controller
 
         private void load_data_ct_thietbi()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             ds = new DataSet();
             da = new SqlDataAdapter("select * from CT_THIETBI where MALOAI = '" + cbb_loai.SelectedValue + "'", conn.cnn);
             da.Fill(ds, "CT_THIETBI");
 
             dgv_danhsachloaiphong.DataSource = ds.Tables["CT_THIETBI"];
+
+            conn.cnn.Close();
         }
 
         private void cbb_loai_SelectionChangeCommitted(object sender, EventArgs e)
@@ -267,6 +311,10 @@ namespace Da.controller
         {
             if (cbb_loai.SelectedIndex != 0)
             {
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
                 foreach (Control control in this.Controls)
                 {
                     if (control is GroupBox && control.Name == "groupBox2")
@@ -300,6 +348,7 @@ namespace Da.controller
                         }
                     }
                 }
+                conn.cnn.Close();
             }
             else
             {

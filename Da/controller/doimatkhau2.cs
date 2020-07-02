@@ -65,6 +65,8 @@ namespace Da.controller
         {
             try
             {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
                 int kt = kiemtra_thongtin();
                 if (kt == 1)
                 {
@@ -88,6 +90,7 @@ namespace Da.controller
                         MessageBox.Show("Mật khẩu mới trùng mật khẩu cũ !");
                     }
                 }
+                conn.cnn.Close();
             }
             catch
             {

@@ -30,6 +30,10 @@ namespace Da.controller
 
         private void load_cbb_loai()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             ds = new DataSet();
             da = new SqlDataAdapter("select * from LOAIPHONG", conn.cnn);
             da.Fill(ds, "LOAIPHONG");
@@ -37,11 +41,16 @@ namespace Da.controller
             cbb_loai.DisplayMember = "TENLOAI";
             cbb_loai.ValueMember = "MALOAI";
             cbb_loai.DataSource = ds.Tables["LOAIPHONG"];
+            conn.cnn.Close();
         }
 
 
         private void frm_phieuthue_Load(object sender, EventArgs e)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             load_cbb_loai();
 
             DateTime ngaytra = DateTime.Now;
@@ -61,9 +70,15 @@ namespace Da.controller
             }
             txtMaKH.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             txtMaKH.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            conn.cnn.Close();
         }
         private void Load_hinhanh()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             panel_ph.Controls.Clear();
             int x = 0;
             int y = 0;
@@ -92,10 +107,15 @@ namespace Da.controller
                     }
                 }
             }
+            conn.cnn.Close();
         }
 
         private void Loadctroldong()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             if (chb_tang.Checked && !chb_loai.Checked)
             {
                 ds_ph = new DataSet();
@@ -132,9 +152,15 @@ namespace Da.controller
                 //load danh sach
                 Load_hinhanh();
             }
+
+            conn.cnn.Close();
         }
         private string sinhtudongMaPhieuthue()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             DataSet ds_ph = new DataSet();
             SqlDataAdapter da_phCT = new SqlDataAdapter("select * from PHIEUTHUE", conn.cnn);
             // Ánh xạ dữ liệu từ DB vào dataset, đặt tên Sach
@@ -165,12 +191,17 @@ namespace Da.controller
                 bien2 = bien1 + bien3;
                 bien3 *= 10;
             }
+            conn.cnn.Close();
             return "TP" + bien2.ToString().Substring(1, 3);
         }
         private bool kiemtra(DataRow drPhong)
         {
-            DateTime ngaydat = Convert.ToDateTime(dtp_ngaydat.Value.ToShortDateString());
-            DateTime ngaytra = Convert.ToDateTime(dtp_ngaytra.Value.ToShortDateString());
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
+            string ngaydat = dtp_ngaydat.Value.ToShortDateString();
+            string ngaytra = dtp_ngaytra.Value.ToShortDateString();
             DataSet ds_ph = new DataSet();
             SqlDataAdapter da_phCT = new SqlDataAdapter("select PHONG.MAPH from PHONG,CT_PHIEUDAT,PHIEUDAT WHERE PHONG.MAPH=CT_PHIEUDAT.MAPH AND CT_PHIEUDAT.MADP=PHIEUDAT.MADP AND NGAYNHAN_DUKIEN<='" + ngaytra + "' AND NGAYTRA_DUKIEN>='" + ngaydat + "'", conn.cnn);
             // Ánh xạ dữ liệu từ DB vào dataset, đặt tên Sach
@@ -196,6 +227,7 @@ namespace Da.controller
                     return false;
                 }
             }
+            conn.cnn.Close();
             return true;
         }
         DataSet ds_phchitiet = new DataSet();
@@ -203,7 +235,10 @@ namespace Da.controller
        
         public void getthongtinphong()
         {
-
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             if (Properties.Settings.Default.value2 != 0.ToString() && Properties.Settings.Default.value2 != null)
             {
                 if (kiemtratrongdatagridview(Properties.Settings.Default.value2.ToString().Trim().ToString()))
@@ -228,6 +263,7 @@ namespace Da.controller
                     MessageBox.Show("Phòng này đã chọn! Vui lòng chọn phòng khác!");
                 }
             }
+            conn.cnn.Close();
         }
 
         private bool kiemtratrongdatagridview(string v)
@@ -254,6 +290,10 @@ namespace Da.controller
 
         private double tinhtien()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             tien = 0;
             if (dataGridView2.Rows.Count != 0)
             {
@@ -266,7 +306,7 @@ namespace Da.controller
                     tien += double.Parse(ds.Tables["GIAPHONG"].Rows[0]["GIAPHONG"].ToString());
                 }
             }
-
+            conn.cnn.Close();
             return tien;
         }
 
@@ -332,6 +372,10 @@ namespace Da.controller
         }
         private void themChiTietPhieuTHUE()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             // Tạo Adapter
             SqlDataAdapter da = new SqlDataAdapter("select * from CT_THUEPHONG", conn.cnn);
 
@@ -354,10 +398,15 @@ namespace Da.controller
             SqlCommandBuilder builda = new SqlCommandBuilder(da);
             da.Update(ds, "CTPhieuThem1");
 
+            conn.cnn.Close();
         }
 
         private void themPhieuThue()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             // Tạo Adapter
             SqlDataAdapter da = new SqlDataAdapter("select * from PHIEUTHUE", conn.cnn);
 
@@ -382,10 +431,16 @@ namespace Da.controller
             // Tiến hành insert vào database Source
             SqlCommandBuilder builda = new SqlCommandBuilder(da);
             da.Update(ds, "PhieuThem1");
+
+            conn.cnn.Close();
         }
 
         private void chuyenTrangThaiPhong()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             DataSet ds_phong = new DataSet();
             SqlDataAdapter da_phong = new SqlDataAdapter("select * from PHONG", conn.cnn);
             da_phong.Fill(ds_phong, "PHONG");
@@ -402,6 +457,7 @@ namespace Da.controller
                     da_phong.Update(ds_phong, "PHONG");
                 }
             }
+            conn.cnn.Close();
         }
 
         private void btnxoa_Click(object sender, EventArgs e)
@@ -470,13 +526,14 @@ namespace Da.controller
         {
             DateTime ngaydat = Convert.ToDateTime(dtp_ngaydat.Value.ToShortDateString());
             DateTime ngaytra = Convert.ToDateTime(dtp_ngaytra.Value.ToShortDateString());
+            DateTime hientai = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             if (string.IsNullOrEmpty(txtMaKH.Text) == true)
             {
                 MessageBox.Show("Chưa nhập mã khách hàng");
                 txtMaKH.Focus();
                 return 0;
             }
-            else if (ngaydat > ngaytra)
+            else if (ngaydat > ngaytra || hientai < ngaydat || hientai < ngaytra)
             {
                 MessageBox.Show("Ngày đặt phòng không hợp lệ");
                 return 0;
@@ -499,6 +556,10 @@ namespace Da.controller
 
         private void TimMAKH()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             ds_makh = new DataSet();
             da_makh = new SqlDataAdapter("select MAKH from KHACHHANG where SDT = '" + txtMaKH.Text + "'", conn.cnn);
             da_makh.Fill(ds_makh, "MAKH");
@@ -510,6 +571,7 @@ namespace Da.controller
                     txtMaKH.Text = row["MAKH"].ToString();
                 }
             }
+            conn.cnn.Close();
         }
 
         private void txtMaKH_Leave(object sender, EventArgs e)

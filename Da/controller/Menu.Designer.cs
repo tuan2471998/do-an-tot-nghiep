@@ -28,306 +28,368 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox9 = new System.Windows.Forms.CheckBox();
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
-            this.checkBox11 = new System.Windows.Forms.CheckBox();
-            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown10 = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).BeginInit();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
+            this.nuocsuoi = new System.Windows.Forms.CheckBox();
+            this.nuocngot = new System.Windows.Forms.CheckBox();
+            this.nuocyen = new System.Windows.Forms.CheckBox();
+            this.bia = new System.Windows.Forms.CheckBox();
+            this.numeric_nuocsuoi = new System.Windows.Forms.NumericUpDown();
+            this.numeric_nuocngot = new System.Windows.Forms.NumericUpDown();
+            this.numeric_nuocyen = new System.Windows.Forms.NumericUpDown();
+            this.numeric_bia = new System.Windows.Forms.NumericUpDown();
+            this.comchien = new System.Windows.Forms.CheckBox();
+            this.mixao = new System.Windows.Forms.CheckBox();
+            this.mitrung = new System.Windows.Forms.CheckBox();
+            this.banhquy = new System.Windows.Forms.CheckBox();
+            this.snack = new System.Windows.Forms.CheckBox();
+            this.xucxich = new System.Windows.Forms.CheckBox();
+            this.numeric_banhquy = new System.Windows.Forms.NumericUpDown();
+            this.numeric_snack = new System.Windows.Forms.NumericUpDown();
+            this.numeric_xucxich = new System.Windows.Forms.NumericUpDown();
+            this.numeric_comchien = new System.Windows.Forms.NumericUpDown();
+            this.numeric_mixao = new System.Windows.Forms.NumericUpDown();
+            this.numeric_mitrung = new System.Windows.Forms.NumericUpDown();
+            this.btn_luu = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_huy = new DevExpress.XtraEditors.SimpleButton();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_nuocsuoi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_nuocngot)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_nuocyen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_bia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_banhquy)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_snack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_xucxich)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_comchien)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_mixao)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_mitrung)).BeginInit();
             this.SuspendLayout();
             // 
-            // checkBox1
+            // nuocsuoi
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(16, 21);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(95, 21);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Nước Suối";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.nuocsuoi.AutoSize = true;
+            this.nuocsuoi.Location = new System.Drawing.Point(37, 31);
+            this.nuocsuoi.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.nuocsuoi.Name = "nuocsuoi";
+            this.nuocsuoi.Size = new System.Drawing.Size(140, 30);
+            this.nuocsuoi.TabIndex = 0;
+            this.nuocsuoi.Text = "Nước Suối";
+            this.nuocsuoi.UseVisualStyleBackColor = true;
+            this.nuocsuoi.CheckedChanged += new System.EventHandler(this.nuocsuoi_CheckedChanged);
             // 
-            // checkBox2
+            // nuocngot
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(16, 65);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(97, 21);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "Nước Ngọt";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.nuocngot.AutoSize = true;
+            this.nuocngot.Location = new System.Drawing.Point(37, 100);
+            this.nuocngot.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.nuocngot.Name = "nuocngot";
+            this.nuocngot.Size = new System.Drawing.Size(144, 30);
+            this.nuocngot.TabIndex = 1;
+            this.nuocngot.Text = "Nước Ngọt";
+            this.nuocngot.UseVisualStyleBackColor = true;
+            this.nuocngot.CheckedChanged += new System.EventHandler(this.nuocsuoi_CheckedChanged);
             // 
-            // checkBox3
+            // nuocyen
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(16, 116);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(92, 21);
-            this.checkBox3.TabIndex = 2;
-            this.checkBox3.Text = "Nước Yến";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.nuocyen.AutoSize = true;
+            this.nuocyen.Location = new System.Drawing.Point(37, 179);
+            this.nuocyen.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.nuocyen.Name = "nuocyen";
+            this.nuocyen.Size = new System.Drawing.Size(135, 30);
+            this.nuocyen.TabIndex = 2;
+            this.nuocyen.Text = "Nước Yến";
+            this.nuocyen.UseVisualStyleBackColor = true;
+            this.nuocyen.CheckedChanged += new System.EventHandler(this.nuocsuoi_CheckedChanged);
             // 
-            // checkBox4
+            // bia
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(16, 163);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(50, 21);
-            this.checkBox4.TabIndex = 3;
-            this.checkBox4.Text = "Bia";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.bia.AutoSize = true;
+            this.bia.Location = new System.Drawing.Point(37, 253);
+            this.bia.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.bia.Name = "bia";
+            this.bia.Size = new System.Drawing.Size(69, 30);
+            this.bia.TabIndex = 3;
+            this.bia.Text = "Bia";
+            this.bia.UseVisualStyleBackColor = true;
+            this.bia.CheckedChanged += new System.EventHandler(this.nuocsuoi_CheckedChanged);
             // 
-            // numericUpDown1
+            // numeric_nuocsuoi
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(141, 20);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(44, 22);
-            this.numericUpDown1.TabIndex = 4;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.numeric_nuocsuoi.Enabled = false;
+            this.numeric_nuocsuoi.Location = new System.Drawing.Point(214, 29);
+            this.numeric_nuocsuoi.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.numeric_nuocsuoi.Name = "numeric_nuocsuoi";
+            this.numeric_nuocsuoi.Size = new System.Drawing.Size(77, 34);
+            this.numeric_nuocsuoi.TabIndex = 4;
+            this.numeric_nuocsuoi.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // numericUpDown2
+            // numeric_nuocngot
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(141, 64);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(44, 22);
-            this.numericUpDown2.TabIndex = 5;
-            this.numericUpDown2.Value = new decimal(new int[] {
+            this.numeric_nuocngot.Enabled = false;
+            this.numeric_nuocngot.Location = new System.Drawing.Point(214, 98);
+            this.numeric_nuocngot.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.numeric_nuocngot.Name = "numeric_nuocngot";
+            this.numeric_nuocngot.Size = new System.Drawing.Size(77, 34);
+            this.numeric_nuocngot.TabIndex = 5;
+            this.numeric_nuocngot.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // numericUpDown3
+            // numeric_nuocyen
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(141, 115);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(44, 22);
-            this.numericUpDown3.TabIndex = 6;
-            this.numericUpDown3.Value = new decimal(new int[] {
+            this.numeric_nuocyen.Enabled = false;
+            this.numeric_nuocyen.Location = new System.Drawing.Point(214, 178);
+            this.numeric_nuocyen.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.numeric_nuocyen.Name = "numeric_nuocyen";
+            this.numeric_nuocyen.Size = new System.Drawing.Size(77, 34);
+            this.numeric_nuocyen.TabIndex = 6;
+            this.numeric_nuocyen.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // numericUpDown4
+            // numeric_bia
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(141, 162);
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(44, 22);
-            this.numericUpDown4.TabIndex = 7;
-            this.numericUpDown4.Value = new decimal(new int[] {
+            this.numeric_bia.Enabled = false;
+            this.numeric_bia.Location = new System.Drawing.Point(214, 251);
+            this.numeric_bia.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.numeric_bia.Name = "numeric_bia";
+            this.numeric_bia.Size = new System.Drawing.Size(77, 34);
+            this.numeric_bia.TabIndex = 7;
+            this.numeric_bia.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // checkBox5
+            // comchien
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(209, 116);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(175, 21);
-            this.checkBox5.TabIndex = 8;
-            this.checkBox5.Text = "Cơm chiên dương châu";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.comchien.AutoSize = true;
+            this.comchien.Location = new System.Drawing.Point(333, 179);
+            this.comchien.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.comchien.Name = "comchien";
+            this.comchien.Size = new System.Drawing.Size(270, 30);
+            this.comchien.TabIndex = 8;
+            this.comchien.Text = "Cơm chiên dương châu";
+            this.comchien.UseVisualStyleBackColor = true;
+            this.comchien.CheckedChanged += new System.EventHandler(this.nuocsuoi_CheckedChanged);
             // 
-            // checkBox6
+            // mixao
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(209, 162);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(120, 21);
-            this.checkBox6.TabIndex = 9;
-            this.checkBox6.Text = "Mì xào hải sản";
-            this.checkBox6.UseVisualStyleBackColor = true;
+            this.mixao.AutoSize = true;
+            this.mixao.Location = new System.Drawing.Point(333, 251);
+            this.mixao.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.mixao.Name = "mixao";
+            this.mixao.Size = new System.Drawing.Size(184, 30);
+            this.mixao.TabIndex = 9;
+            this.mixao.Text = "Mì xào hải sản";
+            this.mixao.UseVisualStyleBackColor = true;
+            this.mixao.CheckedChanged += new System.EventHandler(this.nuocsuoi_CheckedChanged);
             // 
-            // checkBox7
+            // mitrung
             // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(209, 213);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(134, 21);
-            this.checkBox7.TabIndex = 10;
-            this.checkBox7.Text = "Mì trứng xúc xích";
-            this.checkBox7.UseVisualStyleBackColor = true;
+            this.mitrung.AutoSize = true;
+            this.mitrung.Location = new System.Drawing.Point(333, 331);
+            this.mitrung.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.mitrung.Name = "mitrung";
+            this.mitrung.Size = new System.Drawing.Size(219, 30);
+            this.mitrung.TabIndex = 10;
+            this.mitrung.Text = "Mì trứng xúc xích";
+            this.mitrung.UseVisualStyleBackColor = true;
+            this.mitrung.CheckedChanged += new System.EventHandler(this.nuocsuoi_CheckedChanged);
             // 
-            // checkBox9
+            // banhquy
             // 
-            this.checkBox9.AutoSize = true;
-            this.checkBox9.Location = new System.Drawing.Point(16, 213);
-            this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(86, 21);
-            this.checkBox9.TabIndex = 12;
-            this.checkBox9.Text = "Bánh qui";
-            this.checkBox9.UseVisualStyleBackColor = true;
+            this.banhquy.AutoSize = true;
+            this.banhquy.Location = new System.Drawing.Point(37, 331);
+            this.banhquy.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.banhquy.Name = "banhquy";
+            this.banhquy.Size = new System.Drawing.Size(127, 30);
+            this.banhquy.TabIndex = 12;
+            this.banhquy.Text = "Bánh qui";
+            this.banhquy.UseVisualStyleBackColor = true;
+            this.banhquy.CheckedChanged += new System.EventHandler(this.nuocsuoi_CheckedChanged);
             // 
-            // checkBox10
+            // snack
             // 
-            this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(209, 21);
-            this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(69, 21);
-            this.checkBox10.TabIndex = 13;
-            this.checkBox10.Text = "Snack";
-            this.checkBox10.UseVisualStyleBackColor = true;
+            this.snack.AutoSize = true;
+            this.snack.Location = new System.Drawing.Point(333, 31);
+            this.snack.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.snack.Name = "snack";
+            this.snack.Size = new System.Drawing.Size(96, 30);
+            this.snack.TabIndex = 13;
+            this.snack.Text = "Snack";
+            this.snack.UseVisualStyleBackColor = true;
+            this.snack.CheckedChanged += new System.EventHandler(this.nuocsuoi_CheckedChanged);
             // 
-            // checkBox11
+            // xucxich
             // 
-            this.checkBox11.AutoSize = true;
-            this.checkBox11.Location = new System.Drawing.Point(209, 65);
-            this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(82, 21);
-            this.checkBox11.TabIndex = 14;
-            this.checkBox11.Text = "Xúc xích";
-            this.checkBox11.UseVisualStyleBackColor = true;
+            this.xucxich.AutoSize = true;
+            this.xucxich.Location = new System.Drawing.Point(333, 100);
+            this.xucxich.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.xucxich.Name = "xucxich";
+            this.xucxich.Size = new System.Drawing.Size(123, 30);
+            this.xucxich.TabIndex = 14;
+            this.xucxich.Text = "Xúc xích";
+            this.xucxich.UseVisualStyleBackColor = true;
+            this.xucxich.CheckedChanged += new System.EventHandler(this.nuocsuoi_CheckedChanged);
             // 
-            // numericUpDown5
+            // numeric_banhquy
             // 
-            this.numericUpDown5.Location = new System.Drawing.Point(141, 212);
-            this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(44, 22);
-            this.numericUpDown5.TabIndex = 15;
-            this.numericUpDown5.Value = new decimal(new int[] {
+            this.numeric_banhquy.Enabled = false;
+            this.numeric_banhquy.Location = new System.Drawing.Point(214, 329);
+            this.numeric_banhquy.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.numeric_banhquy.Name = "numeric_banhquy";
+            this.numeric_banhquy.Size = new System.Drawing.Size(77, 34);
+            this.numeric_banhquy.TabIndex = 15;
+            this.numeric_banhquy.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // numericUpDown6
+            // numeric_snack
             // 
-            this.numericUpDown6.Location = new System.Drawing.Point(384, 21);
-            this.numericUpDown6.Name = "numericUpDown6";
-            this.numericUpDown6.Size = new System.Drawing.Size(44, 22);
-            this.numericUpDown6.TabIndex = 16;
-            this.numericUpDown6.Value = new decimal(new int[] {
+            this.numeric_snack.Enabled = false;
+            this.numeric_snack.Location = new System.Drawing.Point(608, 29);
+            this.numeric_snack.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.numeric_snack.Name = "numeric_snack";
+            this.numeric_snack.Size = new System.Drawing.Size(77, 34);
+            this.numeric_snack.TabIndex = 16;
+            this.numeric_snack.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // numericUpDown7
+            // numeric_xucxich
             // 
-            this.numericUpDown7.Location = new System.Drawing.Point(384, 64);
-            this.numericUpDown7.Name = "numericUpDown7";
-            this.numericUpDown7.Size = new System.Drawing.Size(44, 22);
-            this.numericUpDown7.TabIndex = 17;
-            this.numericUpDown7.Value = new decimal(new int[] {
+            this.numeric_xucxich.Enabled = false;
+            this.numeric_xucxich.Location = new System.Drawing.Point(608, 96);
+            this.numeric_xucxich.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.numeric_xucxich.Name = "numeric_xucxich";
+            this.numeric_xucxich.Size = new System.Drawing.Size(77, 34);
+            this.numeric_xucxich.TabIndex = 17;
+            this.numeric_xucxich.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // numericUpDown8
+            // numeric_comchien
             // 
-            this.numericUpDown8.Location = new System.Drawing.Point(384, 115);
-            this.numericUpDown8.Name = "numericUpDown8";
-            this.numericUpDown8.Size = new System.Drawing.Size(44, 22);
-            this.numericUpDown8.TabIndex = 18;
-            this.numericUpDown8.Value = new decimal(new int[] {
+            this.numeric_comchien.Enabled = false;
+            this.numeric_comchien.Location = new System.Drawing.Point(608, 176);
+            this.numeric_comchien.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.numeric_comchien.Name = "numeric_comchien";
+            this.numeric_comchien.Size = new System.Drawing.Size(77, 34);
+            this.numeric_comchien.TabIndex = 18;
+            this.numeric_comchien.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // numericUpDown9
+            // numeric_mixao
             // 
-            this.numericUpDown9.Location = new System.Drawing.Point(384, 161);
-            this.numericUpDown9.Name = "numericUpDown9";
-            this.numericUpDown9.Size = new System.Drawing.Size(44, 22);
-            this.numericUpDown9.TabIndex = 19;
-            this.numericUpDown9.Value = new decimal(new int[] {
+            this.numeric_mixao.Enabled = false;
+            this.numeric_mixao.Location = new System.Drawing.Point(608, 248);
+            this.numeric_mixao.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.numeric_mixao.Name = "numeric_mixao";
+            this.numeric_mixao.Size = new System.Drawing.Size(77, 34);
+            this.numeric_mixao.TabIndex = 19;
+            this.numeric_mixao.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // numericUpDown10
+            // numeric_mitrung
             // 
-            this.numericUpDown10.Location = new System.Drawing.Point(384, 212);
-            this.numericUpDown10.Name = "numericUpDown10";
-            this.numericUpDown10.Size = new System.Drawing.Size(44, 22);
-            this.numericUpDown10.TabIndex = 20;
-            this.numericUpDown10.Value = new decimal(new int[] {
+            this.numeric_mitrung.Enabled = false;
+            this.numeric_mitrung.Location = new System.Drawing.Point(608, 327);
+            this.numeric_mitrung.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.numeric_mitrung.Name = "numeric_mitrung";
+            this.numeric_mitrung.Size = new System.Drawing.Size(77, 34);
+            this.numeric_mitrung.TabIndex = 20;
+            this.numeric_mitrung.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // button1
+            // btn_luu
             // 
-            this.button1.Location = new System.Drawing.Point(293, 256);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(103, 41);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_luu.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_luu.Appearance.Options.UseFont = true;
+            this.btn_luu.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_luu.ImageOptions.Image")));
+            this.btn_luu.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btn_luu.Location = new System.Drawing.Point(214, 398);
+            this.btn_luu.Name = "btn_luu";
+            this.btn_luu.Size = new System.Drawing.Size(143, 57);
+            this.btn_luu.TabIndex = 21;
+            this.btn_luu.Text = "Lưu";
+            this.btn_luu.Click += new System.EventHandler(this.btn_luu_Click);
+            // 
+            // btn_huy
+            // 
+            this.btn_huy.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_huy.Appearance.Options.UseFont = true;
+            this.btn_huy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.btn_huy.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btn_huy.Location = new System.Drawing.Point(374, 398);
+            this.btn_huy.Name = "btn_huy";
+            this.btn_huy.Size = new System.Drawing.Size(143, 57);
+            this.btn_huy.TabIndex = 22;
+            this.btn_huy.Text = "Hủy";
+            this.btn_huy.Click += new System.EventHandler(this.btn_huy_Click);
             // 
             // Menu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(440, 309);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.numericUpDown10);
-            this.Controls.Add(this.numericUpDown9);
-            this.Controls.Add(this.numericUpDown8);
-            this.Controls.Add(this.numericUpDown7);
-            this.Controls.Add(this.numericUpDown6);
-            this.Controls.Add(this.numericUpDown5);
-            this.Controls.Add(this.checkBox11);
-            this.Controls.Add(this.checkBox10);
-            this.Controls.Add(this.checkBox9);
-            this.Controls.Add(this.checkBox7);
-            this.Controls.Add(this.checkBox6);
-            this.Controls.Add(this.checkBox5);
-            this.Controls.Add(this.numericUpDown4);
-            this.Controls.Add(this.numericUpDown3);
-            this.Controls.Add(this.numericUpDown2);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.checkBox4);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
+            this.ClientSize = new System.Drawing.Size(732, 483);
+            this.Controls.Add(this.btn_huy);
+            this.Controls.Add(this.btn_luu);
+            this.Controls.Add(this.numeric_mitrung);
+            this.Controls.Add(this.numeric_mixao);
+            this.Controls.Add(this.numeric_comchien);
+            this.Controls.Add(this.numeric_xucxich);
+            this.Controls.Add(this.numeric_snack);
+            this.Controls.Add(this.numeric_banhquy);
+            this.Controls.Add(this.xucxich);
+            this.Controls.Add(this.snack);
+            this.Controls.Add(this.banhquy);
+            this.Controls.Add(this.mitrung);
+            this.Controls.Add(this.mixao);
+            this.Controls.Add(this.comchien);
+            this.Controls.Add(this.numeric_bia);
+            this.Controls.Add(this.numeric_nuocyen);
+            this.Controls.Add(this.numeric_nuocngot);
+            this.Controls.Add(this.numeric_nuocsuoi);
+            this.Controls.Add(this.bia);
+            this.Controls.Add(this.nuocyen);
+            this.Controls.Add(this.nuocngot);
+            this.Controls.Add(this.nuocsuoi);
+            this.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "Menu";
             this.Text = "Menu";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_nuocsuoi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_nuocngot)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_nuocyen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_bia)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_banhquy)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_snack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_xucxich)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_comchien)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_mixao)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_mitrung)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -335,26 +397,27 @@
 
         #endregion
 
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox7;
-        private System.Windows.Forms.CheckBox checkBox9;
-        private System.Windows.Forms.CheckBox checkBox10;
-        private System.Windows.Forms.CheckBox checkBox11;
-        private System.Windows.Forms.NumericUpDown numericUpDown5;
-        private System.Windows.Forms.NumericUpDown numericUpDown6;
-        private System.Windows.Forms.NumericUpDown numericUpDown7;
-        private System.Windows.Forms.NumericUpDown numericUpDown8;
-        private System.Windows.Forms.NumericUpDown numericUpDown9;
-        private System.Windows.Forms.NumericUpDown numericUpDown10;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox nuocsuoi;
+        private System.Windows.Forms.CheckBox nuocngot;
+        private System.Windows.Forms.CheckBox nuocyen;
+        private System.Windows.Forms.CheckBox bia;
+        private System.Windows.Forms.NumericUpDown numeric_nuocsuoi;
+        private System.Windows.Forms.NumericUpDown numeric_nuocngot;
+        private System.Windows.Forms.NumericUpDown numeric_nuocyen;
+        private System.Windows.Forms.NumericUpDown numeric_bia;
+        private System.Windows.Forms.CheckBox comchien;
+        private System.Windows.Forms.CheckBox mixao;
+        private System.Windows.Forms.CheckBox mitrung;
+        private System.Windows.Forms.CheckBox banhquy;
+        private System.Windows.Forms.CheckBox snack;
+        private System.Windows.Forms.CheckBox xucxich;
+        private System.Windows.Forms.NumericUpDown numeric_banhquy;
+        private System.Windows.Forms.NumericUpDown numeric_snack;
+        private System.Windows.Forms.NumericUpDown numeric_xucxich;
+        private System.Windows.Forms.NumericUpDown numeric_comchien;
+        private System.Windows.Forms.NumericUpDown numeric_mixao;
+        private System.Windows.Forms.NumericUpDown numeric_mitrung;
+        private DevExpress.XtraEditors.SimpleButton btn_luu;
+        private DevExpress.XtraEditors.SimpleButton btn_huy;
     }
 }

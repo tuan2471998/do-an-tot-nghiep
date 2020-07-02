@@ -31,13 +31,17 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DM_phong));
             this.dgv_ph = new System.Windows.Forms.DataGridView();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colum1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.cbb_tinhtrang = new System.Windows.Forms.ComboBox();
             this.txt_giatheotang = new DevExpress.XtraEditors.TextEdit();
-            this.btn_Suaphong = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Xoaphong = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Themphong = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
@@ -71,12 +75,8 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colum1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.txt_tinhtrang = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ph)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_giatheotang.Properties)).BeginInit();
@@ -90,6 +90,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_loaiph)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_tenloai.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_maloai.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_tinhtrang.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // dgv_ph
@@ -116,15 +117,65 @@
             this.dgv_ph.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ph_CellContentClick);
             this.dgv_ph.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ph_CellContentClick);
             // 
+            // Column6
+            // 
+            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column6.DataPropertyName = "MAPH";
+            this.Column6.HeaderText = "Mã phòng";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            // 
+            // Column7
+            // 
+            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column7.DataPropertyName = "VTPHONG";
+            this.Column7.HeaderText = "Vị trí ( tầng )";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            // 
+            // Column8
+            // 
+            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column8.DataPropertyName = "TINHTRANG";
+            this.Column8.HeaderText = "Tình trạng";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
+            // 
+            // colum1
+            // 
+            this.colum1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colum1.DataPropertyName = "GIAPHONG";
+            this.colum1.HeaderText = "Giá theo tầng (VNĐ)";
+            this.colum1.MinimumWidth = 6;
+            this.colum1.Name = "colum1";
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "MALOAI";
+            this.Column1.HeaderText = "Column1";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.Visible = false;
+            this.Column1.Width = 125;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "TIME_DONDEP_KT";
+            this.Column9.HeaderText = "Column9";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            this.Column9.Visible = false;
+            this.Column9.Width = 125;
+            // 
             // groupBox3
             // 
             this.groupBox3.AutoSize = true;
+            this.groupBox3.Controls.Add(this.panel8);
+            this.groupBox3.Controls.Add(this.txt_tinhtrang);
             this.groupBox3.Controls.Add(this.panel7);
             this.groupBox3.Controls.Add(this.panel6);
             this.groupBox3.Controls.Add(this.panel5);
-            this.groupBox3.Controls.Add(this.cbb_tinhtrang);
             this.groupBox3.Controls.Add(this.txt_giatheotang);
-            this.groupBox3.Controls.Add(this.btn_Suaphong);
             this.groupBox3.Controls.Add(this.btn_Xoaphong);
             this.groupBox3.Controls.Add(this.btn_Themphong);
             this.groupBox3.Controls.Add(this.dgv_ph);
@@ -174,32 +225,12 @@
             this.panel5.Size = new System.Drawing.Size(534, 2);
             this.panel5.TabIndex = 243;
             // 
-            // cbb_tinhtrang
-            // 
-            this.cbb_tinhtrang.BackColor = System.Drawing.Color.LightBlue;
-            this.cbb_tinhtrang.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbb_tinhtrang.ForeColor = System.Drawing.Color.DimGray;
-            this.cbb_tinhtrang.FormattingEnabled = true;
-            this.cbb_tinhtrang.Items.AddRange(new object[] {
-            "Trống",
-            "Đang sử dụng",
-            "Được đặt",
-            "Đang dọn dẹp",
-            "Sửa chữa"});
-            this.cbb_tinhtrang.Location = new System.Drawing.Point(244, 138);
-            this.cbb_tinhtrang.Name = "cbb_tinhtrang";
-            this.cbb_tinhtrang.Size = new System.Drawing.Size(534, 33);
-            this.cbb_tinhtrang.TabIndex = 56;
-            // 
             // txt_giatheotang
             // 
             this.txt_giatheotang.Enabled = false;
             this.txt_giatheotang.Location = new System.Drawing.Point(244, 188);
             this.txt_giatheotang.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_giatheotang.Name = "txt_giatheotang";
-            // 
-            // 
-            // 
             this.txt_giatheotang.Properties.Appearance.BackColor = System.Drawing.Color.LightBlue;
             this.txt_giatheotang.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_giatheotang.Properties.Appearance.ForeColor = System.Drawing.Color.DimGray;
@@ -209,24 +240,6 @@
             this.txt_giatheotang.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.txt_giatheotang.Size = new System.Drawing.Size(534, 30);
             this.txt_giatheotang.TabIndex = 55;
-            // 
-            // btn_Suaphong
-            // 
-            this.btn_Suaphong.Appearance.BackColor = System.Drawing.Color.White;
-            this.btn_Suaphong.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Suaphong.Appearance.Options.UseBackColor = true;
-            this.btn_Suaphong.Appearance.Options.UseBorderColor = true;
-            this.btn_Suaphong.Appearance.Options.UseFont = true;
-            this.btn_Suaphong.Enabled = false;
-            this.btn_Suaphong.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_Suaphong.ImageOptions.Image")));
-            this.btn_Suaphong.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btn_Suaphong.Location = new System.Drawing.Point(634, 238);
-            this.btn_Suaphong.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_Suaphong.Name = "btn_Suaphong";
-            this.btn_Suaphong.Size = new System.Drawing.Size(144, 60);
-            this.btn_Suaphong.TabIndex = 54;
-            this.btn_Suaphong.Text = "Cập nhật";
-            this.btn_Suaphong.Click += new System.EventHandler(this.btn_Suaphong_Click);
             // 
             // btn_Xoaphong
             // 
@@ -238,7 +251,7 @@
             this.btn_Xoaphong.Enabled = false;
             this.btn_Xoaphong.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_Xoaphong.ImageOptions.Image")));
             this.btn_Xoaphong.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btn_Xoaphong.Location = new System.Drawing.Point(482, 238);
+            this.btn_Xoaphong.Location = new System.Drawing.Point(637, 238);
             this.btn_Xoaphong.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Xoaphong.Name = "btn_Xoaphong";
             this.btn_Xoaphong.Size = new System.Drawing.Size(144, 60);
@@ -255,7 +268,7 @@
             this.btn_Themphong.Appearance.Options.UseFont = true;
             this.btn_Themphong.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_Themphong.ImageOptions.Image")));
             this.btn_Themphong.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btn_Themphong.Location = new System.Drawing.Point(330, 238);
+            this.btn_Themphong.Location = new System.Drawing.Point(485, 238);
             this.btn_Themphong.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Themphong.Name = "btn_Themphong";
             this.btn_Themphong.Size = new System.Drawing.Size(144, 60);
@@ -291,9 +304,6 @@
             this.txt_maph.Location = new System.Drawing.Point(244, 43);
             this.txt_maph.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_maph.Name = "txt_maph";
-            // 
-            // 
-            // 
             this.txt_maph.Properties.Appearance.BackColor = System.Drawing.Color.LightBlue;
             this.txt_maph.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_maph.Properties.Appearance.ForeColor = System.Drawing.Color.DimGray;
@@ -310,9 +320,6 @@
             this.txt_vitri.Location = new System.Drawing.Point(247, 90);
             this.txt_vitri.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_vitri.Name = "txt_vitri";
-            // 
-            // 
-            // 
             this.txt_vitri.Properties.Appearance.BackColor = System.Drawing.Color.LightBlue;
             this.txt_vitri.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_vitri.Properties.Appearance.ForeColor = System.Drawing.Color.DimGray;
@@ -504,9 +511,6 @@
             this.txt_ghichu.Location = new System.Drawing.Point(179, 187);
             this.txt_ghichu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_ghichu.Name = "txt_ghichu";
-            // 
-            // 
-            // 
             this.txt_ghichu.Properties.Appearance.BackColor = System.Drawing.Color.LightBlue;
             this.txt_ghichu.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_ghichu.Properties.Appearance.ForeColor = System.Drawing.Color.DimGray;
@@ -522,9 +526,6 @@
             this.txt_gia.Location = new System.Drawing.Point(179, 137);
             this.txt_gia.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_gia.Name = "txt_gia";
-            // 
-            // 
-            // 
             this.txt_gia.Properties.Appearance.BackColor = System.Drawing.Color.LightBlue;
             this.txt_gia.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_gia.Properties.Appearance.ForeColor = System.Drawing.Color.DimGray;
@@ -596,9 +597,6 @@
             this.txt_tenloai.Location = new System.Drawing.Point(179, 89);
             this.txt_tenloai.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_tenloai.Name = "txt_tenloai";
-            // 
-            // 
-            // 
             this.txt_tenloai.Properties.Appearance.BackColor = System.Drawing.Color.LightBlue;
             this.txt_tenloai.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_tenloai.Properties.Appearance.ForeColor = System.Drawing.Color.DimGray;
@@ -615,9 +613,6 @@
             this.txt_maloai.Location = new System.Drawing.Point(179, 37);
             this.txt_maloai.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_maloai.Name = "txt_maloai";
-            // 
-            // 
-            // 
             this.txt_maloai.Properties.Appearance.BackColor = System.Drawing.Color.LightBlue;
             this.txt_maloai.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_maloai.Properties.Appearance.ForeColor = System.Drawing.Color.DimGray;
@@ -672,55 +667,31 @@
             this.labelControl1.TabIndex = 4;
             this.labelControl1.Text = "Mã loại:";
             // 
-            // Column6
+            // panel8
             // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column6.DataPropertyName = "MAPH";
-            this.Column6.HeaderText = "Mã phòng";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
+            this.panel8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel8.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel8.Location = new System.Drawing.Point(244, 168);
+            this.panel8.Margin = new System.Windows.Forms.Padding(4);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(534, 2);
+            this.panel8.TabIndex = 245;
             // 
-            // Column7
+            // txt_tinhtrang
             // 
-            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column7.DataPropertyName = "VTPHONG";
-            this.Column7.HeaderText = "Vị trí ( tầng )";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            // 
-            // Column8
-            // 
-            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column8.DataPropertyName = "TINHTRANG";
-            this.Column8.HeaderText = "Tình trạng";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            // 
-            // colum1
-            // 
-            this.colum1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colum1.DataPropertyName = "GIAPHONG";
-            this.colum1.HeaderText = "Giá theo tầng (VNĐ)";
-            this.colum1.MinimumWidth = 6;
-            this.colum1.Name = "colum1";
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "MALOAI";
-            this.Column1.HeaderText = "Column1";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.Visible = false;
-            this.Column1.Width = 125;
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "TIME_DONDEP_KT";
-            this.Column9.HeaderText = "Column9";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.Visible = false;
-            this.Column9.Width = 125;
+            this.txt_tinhtrang.Enabled = false;
+            this.txt_tinhtrang.Location = new System.Drawing.Point(247, 140);
+            this.txt_tinhtrang.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txt_tinhtrang.Name = "txt_tinhtrang";
+            this.txt_tinhtrang.Properties.Appearance.BackColor = System.Drawing.Color.LightBlue;
+            this.txt_tinhtrang.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_tinhtrang.Properties.Appearance.ForeColor = System.Drawing.Color.DimGray;
+            this.txt_tinhtrang.Properties.Appearance.Options.UseBackColor = true;
+            this.txt_tinhtrang.Properties.Appearance.Options.UseFont = true;
+            this.txt_tinhtrang.Properties.Appearance.Options.UseForeColor = true;
+            this.txt_tinhtrang.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.txt_tinhtrang.Size = new System.Drawing.Size(534, 30);
+            this.txt_tinhtrang.TabIndex = 244;
             // 
             // DM_phong
             // 
@@ -749,6 +720,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_loaiph)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_tenloai.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_maloai.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_tinhtrang.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -786,8 +758,6 @@
         private DevExpress.XtraEditors.TextEdit txt_giatheotang;
         private DevExpress.XtraEditors.TextEdit txt_vitri;
         private DevExpress.XtraEditors.TextEdit txt_maph;
-        private System.Windows.Forms.ComboBox cbb_tinhtrang;
-        private DevExpress.XtraEditors.SimpleButton btn_Suaphong;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel5;
@@ -802,5 +772,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colum1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.Panel panel8;
+        private DevExpress.XtraEditors.TextEdit txt_tinhtrang;
     }
 }

@@ -27,10 +27,13 @@ namespace Da.controller
 
         public void Load_control_all()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+                conn.cnn.Open();
             panelphong.Controls.Clear();
             ds = new DataSet();
             da = new SqlDataAdapter("select * from PHONG", conn.cnn);
             da.Fill(ds, "PHONG");
+            conn.cnn.Close();
 
             Load_control();
         }
@@ -43,6 +46,8 @@ namespace Da.controller
 
             foreach (DataRow row in ds.Tables["PHONG"].Rows)
             {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
                 if (int.Parse(row["TINHTRANG"].ToString()) == 0)
                 {
                     frm_phongtrong phongtrong = new frm_phongtrong(row["MAPH"].ToString(), this);
@@ -63,7 +68,7 @@ namespace Da.controller
                 }
                 if (int.Parse(row["TINHTRANG"].ToString()) == 1)
                 {
-                    frm_phongsudung sudung = new frm_phongsudung(row["MAPH"].ToString());
+                    frm_phongsudung sudung = new frm_phongsudung(row["MAPH"].ToString(), this);
                     sudung.Location = new Point(x, y);
                     panelphong.Controls.Add(sudung);
                     x += 280;
@@ -133,32 +138,42 @@ namespace Da.controller
                         dem++;
                     }
                 }
+                conn.cnn.Close();
             }
         }
 
         private void Load_control_theotang(int tang)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+                conn.cnn.Open();
             ds = new DataSet();
             da = new SqlDataAdapter("select * from PHONG where VTPHONG = " + tang, conn.cnn);
             da.Fill(ds, "PHONG");
+            conn.cnn.Close();
 
             Load_control();
         }
 
         private void Load_control_theotinhtrang(int tinhtrang)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+                conn.cnn.Open();
             ds = new DataSet();
             da = new SqlDataAdapter("select * from PHONG where TINHTRANG = " + tinhtrang.ToString(), conn.cnn);
             da.Fill(ds, "PHONG");
+            conn.cnn.Close();
 
             Load_control();
         }
 
         private void Load_control_theoloai(string loai)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+                conn.cnn.Open();
             ds = new DataSet();
             da = new SqlDataAdapter("select * from PHONG where MALOAI = '" + loai + "'", conn.cnn);
             da.Fill(ds, "PHONG");
+            conn.cnn.Close();
 
             Load_control();
         }
@@ -179,10 +194,13 @@ namespace Da.controller
 
         private void Load_control_3dieukien()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+                conn.cnn.Open();
             int tinhtrang = get_tinhtrang();
             ds = new DataSet();
             da = new SqlDataAdapter("select * from PHONG where VTPHONG = " + (cbb_tang.SelectedIndex + 1)+" and TINHTRANG = "+tinhtrang+" and MALOAI = '"+cbb_loai.SelectedValue.ToString()+"'", conn.cnn);
             da.Fill(ds, "PHONG");
+            conn.cnn.Close();
 
             Load_control();
         }
@@ -192,14 +210,19 @@ namespace Da.controller
             int tinhtrang = get_tinhtrang();
             if (!chb_tinhtrang.Checked)
             {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
                 ds = new DataSet();
                 da = new SqlDataAdapter("select * from PHONG where VTPHONG = " + (cbb_tang.SelectedIndex + 1) + " and MALOAI = '" + cbb_loai.SelectedValue.ToString() + "'", conn.cnn);
                 da.Fill(ds, "PHONG");
+                conn.cnn.Close();
 
                 Load_control();
             }
             else
             {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
                 if (!chb_tang.Checked)
                 {
                     ds = new DataSet();
@@ -216,11 +239,14 @@ namespace Da.controller
 
                     Load_control();
                 }
+                conn.cnn.Close();
             }
         }
 
         private void load_cbb_loai()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+                conn.cnn.Open();
             ds = new DataSet();
             da = new SqlDataAdapter("select * from LOAIPHONG", conn.cnn);
             da.Fill(ds, "LOAIPHONG");
@@ -228,6 +254,8 @@ namespace Da.controller
             cbb_loai.DisplayMember = "TENLOAI";
             cbb_loai.ValueMember = "MALOAI";
             cbb_loai.DataSource = ds.Tables["LOAIPHONG"];
+
+            conn.cnn.Close();
         }
 
         private void frm_danhsachphong_Load(object sender, EventArgs e)

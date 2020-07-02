@@ -37,6 +37,10 @@ namespace Da.controller
 
         private void LoadTK()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             ds = new DataSet();
             string sql = "SELECT TENTK, TAIKHOAN.MANV, HOTEN, QUYEN FROM TAIKHOAN, NHANVIEN WHERE TAIKHOAN.MANV = NHANVIEN.MANV";
             da = new SqlDataAdapter(sql, conn.cnn);
@@ -56,10 +60,16 @@ namespace Da.controller
 
             txttennv.AutoCompleteMode = AutoCompleteMode.Append;
             txttennv.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            conn.cnn.Close();
         }
 
         private void LoadTK_nhomquyen()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             lay_nhomquyen();
 
             DataSet ds = new DataSet();
@@ -69,10 +79,16 @@ namespace Da.controller
             dgv_tktheonhomquyen.DataSource = ds.Tables["TAIKHOAN_nhomquyen"];
             key[0] = ds.Tables["TAIKHOAN_nhomquyen"].Columns[0];
             ds.Tables["TAIKHOAN_nhomquyen"].PrimaryKey = key;
+
+            conn.cnn.Close();
         }
 
         private void LoadTK_nhomquyen(string nhomquyen)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             DataSet ds = new DataSet();
             string sql = "SELECT TENTK, TAIKHOAN.MANV, HOTEN, QUYEN FROM TAIKHOAN, NHANVIEN WHERE TAIKHOAN.MANV = NHANVIEN.MANV AND QUYEN = '" + nhomquyen + "'";
             da = new SqlDataAdapter(sql, conn.cnn);
@@ -80,10 +96,16 @@ namespace Da.controller
             dgv_tktheonhomquyen.DataSource = ds.Tables["TAIKHOAN_nhomquyen"];
             key[0] = ds.Tables["TAIKHOAN_nhomquyen"].Columns[0];
             ds.Tables["TAIKHOAN_nhomquyen"].PrimaryKey = key;
+
+            conn.cnn.Close();
         }
 
         private void LoadTK_nhomquyen_tentk(string tentk)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             DataSet ds = new DataSet();
             string sql = "SELECT TENTK, TAIKHOAN.MANV, HOTEN, QUYEN FROM TAIKHOAN, NHANVIEN WHERE TAIKHOAN.MANV = NHANVIEN.MANV AND TENTK like '" + tentk + "%'";
             da = new SqlDataAdapter(sql, conn.cnn);
@@ -91,10 +113,15 @@ namespace Da.controller
             dgv_tktheonhomquyen.DataSource = ds.Tables["TAIKHOAN_nhomquyen"];
             key[0] = ds.Tables["TAIKHOAN_nhomquyen"].Columns[0];
             ds.Tables["TAIKHOAN_nhomquyen"].PrimaryKey = key;
+            conn.cnn.Close();
         }
 
         private void LoadTK_nhomquyen_tennv(string tennv)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             DataSet ds = new DataSet();
             string sql = "SELECT TENTK, TAIKHOAN.MANV, HOTEN, QUYEN FROM TAIKHOAN, NHANVIEN WHERE TAIKHOAN.MANV = NHANVIEN.MANV AND HOTEN like N'" + tennv + "%'";
             da = new SqlDataAdapter(sql, conn.cnn);
@@ -102,6 +129,8 @@ namespace Da.controller
             dgv_tktheonhomquyen.DataSource = ds.Tables["TAIKHOAN_nhomquyen"];
             key[0] = ds.Tables["TAIKHOAN_nhomquyen"].Columns[0];
             ds.Tables["TAIKHOAN_nhomquyen"].PrimaryKey = key;
+
+            conn.cnn.Close();
         }
 
         private void Phanquyen_Load(object sender, EventArgs e)
@@ -109,17 +138,6 @@ namespace Da.controller
             LoadTK();
             cbb_nhomquyen.SelectedIndex = 0;
             btnlammoi.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-        }
-
-        private void btn_xoaquyen_Click(object sender, EventArgs e)
-        {
-
-            
-        }
-
-        private void btn_capquyen_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private void btntimkiem_Click(object sender, EventArgs e)
@@ -180,12 +198,6 @@ namespace Da.controller
         private void dgv_taikhoan_SelectionChanged(object sender, EventArgs e)
         {
             clear_row_tknhomquyen();
-
-            //for (int i = 0; i < dgv_tktheonhomquyen.Rows.Count; i++)
-            //{
-            //    if (string.Compare(dgv_taikhoan.CurrentRow.Cells[0].Value.ToString(), dgv_tktheonhomquyen.Rows[i].Cells[0].Value.ToString()) == 0)
-            //        dgv_tktheonhomquyen.Rows[i].Selected = true;
-            //}
         }
 
         private void txttennv_Click(object sender, EventArgs e)
@@ -218,6 +230,10 @@ namespace Da.controller
             {
                 try
                 {
+                    if (conn.cnn.State == ConnectionState.Closed)
+                    {
+                        conn.cnn.Open();
+                    }
                     lay_nhomquyen();
 
                     for (int i = 0; i < dgv_taikhoan.Rows.Count; i++)
@@ -244,11 +260,13 @@ namespace Da.controller
                         LoadTK_nhomquyen();
                         cbb_nhomquyen.SelectedIndex = 0;
                     }
+                    conn.cnn.Close();
                     
                 }
                 catch
                 {
                     MessageBox.Show("Tài khoản chọn không phù hợp");
+                    conn.cnn.Close();
                 }
             }
         }
@@ -264,6 +282,10 @@ namespace Da.controller
             
             try
             {
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
                 if (lb_tentk.Text.Trim() == manv.Trim())
                 {
                     MessageBox.Show("Mã nhân viên không hợp lệ");
@@ -281,10 +303,12 @@ namespace Da.controller
                     LoadTK_nhomquyen();
                     cbb_nhomquyen.SelectedIndex = 0;
                 }
+                conn.cnn.Close();
             }
             catch
             {
                 MessageBox.Show("Hãy thao tác lại");
+                conn.cnn.Close();
             }
         }
 

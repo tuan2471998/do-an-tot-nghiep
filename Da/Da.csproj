@@ -208,6 +208,12 @@
     <Compile Include="controller\qlthietbi.Designer.cs">
       <DependentUpon>qlthietbi.cs</DependentUpon>
     </Compile>
+    <Compile Include="controller\ThanhToanThe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="controller\ThanhToanThe.Designer.cs">
+      <DependentUpon>ThanhToanThe.cs</DependentUpon>
+    </Compile>
     <Compile Include="controller\them_dichvu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -403,6 +409,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="controller\qlthietbi.resx">
       <DependentUpon>qlthietbi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controller\ThanhToanThe.resx">
+      <DependentUpon>ThanhToanThe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="controller\them_dichvu.resx">
       <DependentUpon>them_dichvu.cs</DependentUpon>

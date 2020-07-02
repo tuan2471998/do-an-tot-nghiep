@@ -31,13 +31,22 @@ namespace Da.controller
 
         public void get_giaphong(string maphong)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             string sql = "select GIAPHONG from PHONG where MAPH = '" + maphong + "'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             txt_giathue.Text = string.Format("{0:0,0}", (decimal)cmd.ExecuteScalar());
+            conn.cnn.Close();
         }
 
         public void get_maphieuthue()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             int max = 0;
             ds = new DataSet();
             da = new SqlDataAdapter("select MATP from PHIEUTHUE", conn.cnn);
@@ -48,16 +57,22 @@ namespace Da.controller
                 if (max < stt)
                     max = stt;
             }
-            if (max >= 0 && max <= 9)
+            if (max >= 0 && max <= 8)
                 txt_maphieuthue.Text = "TP00" + (max + 1).ToString();
-            else if (max >= 10 && max <= 99)
+            else if (max >= 9 && max <= 99)
                 txt_maphieuthue.Text = "TP0" + (max + 1).ToString();
             else
                 txt_maphieuthue.Text = "TP" + (max + 1).ToString();
+
+            conn.cnn.Close();
         }
 
         private void frm_thuephongtrong_Load(object sender, EventArgs e)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             da = new SqlDataAdapter("select * from KHACHHANG", conn.cnn);
             ds = new DataSet();
             da.Fill(ds, "KHACHHANG");
@@ -73,12 +88,18 @@ namespace Da.controller
 
             txt_sdt.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             txt_sdt.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            conn.cnn.Close();
         }
 
         private void TimTenKH()
         {          
             try
             {
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
                 if (string.IsNullOrEmpty(txt_cmnd.Text))
                 {
                     string sql = "select HOTEN, SOCMND from KHACHHANG where SDT = '" + txt_sdt.Text + "'";
@@ -103,10 +124,12 @@ namespace Da.controller
                     }
                     rd.Close();
                 }
+                conn.cnn.Close();
             }
             catch
             {
                 MessageBox.Show("Thông tin khách hàng không chính xác.\nVui lòng bổ sung thêm tại danh mục khách hàng");
+                conn.cnn.Close();
             }
         }
 
@@ -117,11 +140,14 @@ namespace Da.controller
 
         private int kiemtra()
         {
+            DateTime ngaydat = Convert.ToDateTime(dtp_ngaythue.Value.ToShortDateString());
+            DateTime ngaytra = Convert.ToDateTime(dtp_ngaytra.Value.ToShortDateString());
+            DateTime hientai = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             if (!string.IsNullOrEmpty(txt_cmnd.Text) && !string.IsNullOrEmpty(txt_sdt.Text))
             {
                 return 1;
             }
-            else if (dtp_ngaytra.Value >= dtp_ngaythue.Value)
+            else if (ngaydat > ngaytra || hientai < ngaydat || hientai < ngaytra)
             {
                 return 1;
             }
@@ -150,6 +176,10 @@ namespace Da.controller
 
         private string get_makh(string cmnd)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             string sql = "select MAKH from KHACHHANG where SOCMND = '" + cmnd + "'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             return (string)cmd.ExecuteScalar();
@@ -157,6 +187,10 @@ namespace Da.controller
 
         private void themPhieuThue()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             string manv = Properties.Settings.Default.MaNV.ToString();
             SqlDataAdapter da = new SqlDataAdapter("select * from PHIEUTHUE", conn.cnn);
             ds = new DataSet();
@@ -174,9 +208,15 @@ namespace Da.controller
             ds.Tables["PhieuThem"].Rows.Add(newRow);
             SqlCommandBuilder builda = new SqlCommandBuilder(da);
             da.Update(ds, "PhieuThem");
+
+            conn.cnn.Close();
         }
         private void themChiTietPhieuTHUE()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             SqlDataAdapter da = new SqlDataAdapter("select * from CT_THUEPHONG", conn.cnn);
             DataSet ds = new DataSet();
             da.Fill(ds, "CTPhieuThem");
@@ -188,17 +228,29 @@ namespace Da.controller
             ds.Tables["CTPhieuThem"].Rows.Add(row);
             SqlCommandBuilder builda = new SqlCommandBuilder(da);
             da.Update(ds, "CTPhieuThem");
+
+            conn.cnn.Close();
         }
 
         private void update_tinhtrang_phong()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             string sql = "update PHONG set TINHTRANG = 1 where MAPH = '" + txt_maphong.Text + "'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             int kq = cmd.ExecuteNonQuery();
+
+            conn.cnn.Close();
         }
 
         private string tao_makh()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             string makh;
             int max = 0;
             ds = new DataSet();
@@ -210,9 +262,9 @@ namespace Da.controller
                 if (max < stt)
                     max = stt;
             }
-            if (max >= 0 && max <= 9)
+            if (max >= 0 && max <= 8)
                 makh = "KH00" + (max + 1).ToString();
-            else if (max >= 10 && max <= 99)
+            else if (max >= 9 && max <= 98)
                 makh = "KH0" + (max + 1).ToString();
             else
                 makh = "KH" + (max + 1).ToString();
@@ -221,12 +273,17 @@ namespace Da.controller
 
         private void kiemtra_tenkh()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             if (string.IsNullOrEmpty(txt_hoten.Text))
             {
-                string sql = "insert into KHACHHANG (MAKH, SOCMND, SDT ) values ('" + tao_makh() + "','" + txt_cmnd.Text + "','" + txt_sdt.Text + "')";
+                string sql = "insert into KHACHHANG (MAKH, SOCMND, SDT) values ('" + tao_makh() + "','" + txt_cmnd.Text + "','" + txt_sdt.Text + "')";
                 SqlCommand cmd = new SqlCommand(sql, conn.cnn);
                 int kq = cmd.ExecuteNonQuery();
             }
+            conn.cnn.Close();
         }
 
         private void btn_thuephong_Click(object sender, EventArgs e)
