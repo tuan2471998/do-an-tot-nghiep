@@ -505,3 +505,8 @@ D:\Do-an-tot-nghiep-Quan-ly-khach-san\do-an-tot-nghiep\Da\bin\Debug\CrystalDecis
 D:\Do-an-tot-nghiep-Quan-ly-khach-san\do-an-tot-nghiep\Da\bin\Debug\CrystalDecisions.ReportSource.dll
 D:\Do-an-tot-nghiep-Quan-ly-khach-san\do-an-tot-nghiep\Da\bin\Debug\CrystalDecisions.Shared.dll
 D:\Do-an-tot-nghiep-Quan-ly-khach-san\do-an-tot-nghiep\Da\bin\Debug\CrystalDecisions.Windows.Forms.dll
+C:\Users\user\Desktop\do_an_tot_nghiep\do-an-tot-nghiep\Da\obj\Debug\Da.controller.ThanhToanThe.resources
+C:\Users\user\Desktop\do_an_tot_nghiep\do-an-tot-nghiep\Da\obj\Debug\Da.controller.BAOCAOTONGHOP.resources
+C:\Users\user\Desktop\do_an_tot_nghiep\do-an-tot-nghiep\Da\obj\Debug\Da.controller.DS_HOADON.resources
+C:\Users\user\Desktop\do_an_tot_nghiep\do-an-tot-nghiep\Da\obj\Debug\Da.controller.DS_NHAPHANG.resources
+C:\Users\user\Desktop\do_an_tot_nghiep\do-an-tot-nghiep\Da\obj\Debug\Da.controller.frm_Nhaphang.resources

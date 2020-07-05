@@ -138,11 +138,11 @@ namespace Da.controller
                         max = stt;
                 }
                 string manv;
-                if (max > 0 && max < 10)
+                if (max > 0 && max < 9)
                 {
                     manv = "NV00" + (max + 1).ToString();
                 }
-                else if (max >= 10 && max < 100)
+                else if (max >= 9 && max < 99)
                 {
                     manv = "NV0" + (max + 1).ToString();
                 }

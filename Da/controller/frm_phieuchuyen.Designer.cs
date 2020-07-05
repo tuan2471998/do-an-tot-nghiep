@@ -125,6 +125,7 @@
             // dtp_ngaytra
             // 
             this.dtp_ngaytra.CustomFormat = "dd/MM/yyyy";
+            this.dtp_ngaytra.Enabled = false;
             this.dtp_ngaytra.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtp_ngaytra.Location = new System.Drawing.Point(828, 92);
             this.dtp_ngaytra.Name = "dtp_ngaytra";
@@ -134,6 +135,7 @@
             // dtp_ngaychuyen
             // 
             this.dtp_ngaychuyen.CustomFormat = "dd/MM/yyyy";
+            this.dtp_ngaychuyen.Enabled = false;
             this.dtp_ngaychuyen.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtp_ngaychuyen.Location = new System.Drawing.Point(828, 40);
             this.dtp_ngaychuyen.Name = "dtp_ngaychuyen";

@@ -345,7 +345,7 @@
             this.txtmkh.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtmkh.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtmkh.ForeColor = System.Drawing.Color.DimGray;
-            this.txtmkh.Location = new System.Drawing.Point(245, 24);
+            this.txtmkh.Location = new System.Drawing.Point(245, 25);
             this.txtmkh.Margin = new System.Windows.Forms.Padding(4);
             this.txtmkh.Name = "txtmkh";
             this.txtmkh.Size = new System.Drawing.Size(258, 27);
