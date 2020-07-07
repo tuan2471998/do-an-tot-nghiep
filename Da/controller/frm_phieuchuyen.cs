@@ -42,17 +42,25 @@ namespace Da.controller
         }
         public void load_dgvPD()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                ds = new DataSet();
+                da = new SqlDataAdapter("select * from PHIEUDAT where MADP = '" + comboBox_madatphong.SelectedValue.ToString() + "'", conn.cnn);
+                da.Fill(ds, "PHIEUDAT");
+                dataGridView_thongtinchitietchuyen.DataSource = ds.Tables["PHIEUDAT"];
+                key[0] = ds.Tables["PHIEUDAT"].Columns[0];
+                ds.Tables["PHIEUDAT"].PrimaryKey = key;
+                conn.cnn.Close();
             }
-            ds = new DataSet();
-            da = new SqlDataAdapter("select * from PHIEUDAT where MADP = '" + comboBox_madatphong.SelectedValue.ToString() + "'", conn.cnn);
-            da.Fill(ds, "PHIEUDAT");
-            dataGridView_thongtinchitietchuyen.DataSource = ds.Tables["PHIEUDAT"];
-            key[0] = ds.Tables["PHIEUDAT"].Columns[0];
-            ds.Tables["PHIEUDAT"].PrimaryKey = key;
-            conn.cnn.Close();
+            catch
+            {
+                MessageBox.Show("Hãy thao tác lại !");
+            }
+            
         }
 
         private string sinhtudongMaphieuthue()

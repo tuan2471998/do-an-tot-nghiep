@@ -121,7 +121,7 @@ namespace Da
             hienthi.TabPages.Clear();
             frm_phieuchuyen frm = new frm_phieuchuyen();
 
-            AddTabControl(frm, "Danh sách phòng");
+            AddTabControl(frm, "Phiếu chuyển phòng");
         }
 
         private void navBarthuephong_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -165,13 +165,13 @@ namespace Da
 
         }
 
-        private void barButtonItem_baocaodanhthu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            hienthi.TabPages.Clear();
-            frm_thongke frm = new frm_thongke();
+        //private void barButtonItem_baocaodanhthu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        //{
+        //    hienthi.TabPages.Clear();
+        //   BAOCAO frm = new BAOCAO();
 
-            AddTabControl(frm, "Thống kê");
-        }
+        //    AddTabControl(frm, "Thống kê");
+        //}
 
         private void barButtonItem_hoadon_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -234,6 +234,35 @@ namespace Da
                 barButtonItem_qlphong.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                 barButtonItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             }
+        }
+        
+
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            hienthi.TabPages.Clear();
+            frm_Nhaphang frm = new frm_Nhaphang();
+            AddTabControl(frm, "Quản lý nhập hàng");
+        }
+
+        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            hienthi.TabPages.Clear();
+            DS_NHAPHANG frm = new DS_NHAPHANG();
+            AddTabControl(frm, "Danh sách nhập hàng");
+        }
+
+        private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            hienthi.TabPages.Clear();
+            DS_HOADON frm = new DS_HOADON();
+            AddTabControl(frm, "Danh sách hóa đơn");
+        }
+
+        private void barButtonItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            hienthi.TabPages.Clear();
+            BAOCAOTONGHOP frm = new BAOCAOTONGHOP();
+            AddTabControl(frm, "Báo cáo tổng hợp");
         }
     }
 }

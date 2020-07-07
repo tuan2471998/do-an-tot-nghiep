@@ -94,6 +94,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="connect.cs" />
+    <Compile Include="controller\BAOCAOTONGHOP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controller\BAOCAOTONGHOP.Designer.cs">
+      <DependentUpon>BAOCAOTONGHOP.cs</DependentUpon>
+    </Compile>
     <Compile Include="controller\chitiet_hoadon_dichvu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,11 +136,29 @@
     <Compile Include="controller\doimatkhau2.Designer.cs">
       <DependentUpon>doimatkhau2.cs</DependentUpon>
     </Compile>
+    <Compile Include="controller\DS_HOADON.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controller\DS_HOADON.Designer.cs">
+      <DependentUpon>DS_HOADON.cs</DependentUpon>
+    </Compile>
+    <Compile Include="controller\DS_NHAPHANG.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controller\DS_NHAPHANG.Designer.cs">
+      <DependentUpon>DS_NHAPHANG.cs</DependentUpon>
+    </Compile>
     <Compile Include="controller\frm_danhsachphong.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="controller\frm_danhsachphong.Designer.cs">
       <DependentUpon>frm_danhsachphong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="controller\frm_Nhaphang.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controller\frm_Nhaphang.Designer.cs">
+      <DependentUpon>frm_Nhaphang.cs</DependentUpon>
     </Compile>
     <Compile Include="controller\frm_phongdondep.cs">
       <SubType>UserControl</SubType>
@@ -377,6 +401,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>BAOCAOTHONGKE.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="controller\BAOCAOTONGHOP.resx">
+      <DependentUpon>BAOCAOTONGHOP.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="controller\chitiet_hoadon_dichvu.resx">
       <DependentUpon>chitiet_hoadon_dichvu.cs</DependentUpon>
     </EmbeddedResource>
@@ -395,8 +422,17 @@
     <EmbeddedResource Include="controller\doimatkhau2.resx">
       <DependentUpon>doimatkhau2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="controller\DS_HOADON.resx">
+      <DependentUpon>DS_HOADON.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controller\DS_NHAPHANG.resx">
+      <DependentUpon>DS_NHAPHANG.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="controller\frm_danhsachphong.resx">
       <DependentUpon>frm_danhsachphong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controller\frm_Nhaphang.resx">
+      <DependentUpon>frm_Nhaphang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="controller\frm_phongdondep.resx">
       <DependentUpon>frm_phongdondep.cs</DependentUpon>
