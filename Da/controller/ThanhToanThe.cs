@@ -1,4 +1,5 @@
-﻿using DevExpress.PivotGrid.QueryMode;
+﻿using Da.report;
+using DevExpress.PivotGrid.QueryMode;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -67,49 +68,7 @@ namespace Da.controller
         string mahd;
         string ma_cthd;
         string matp;
-
-        private void create_matt()
-        {
-            if (conn.cnn.State == ConnectionState.Closed)
-            {
-                conn.cnn.Open();
-            }
-            ds = new DataSet();
-            da = new SqlDataAdapter("select * from THANHTOAN", conn.cnn);
-            da.Fill(ds, "THANHTOAN");
-            int max_matt = 0;
-            foreach (DataRow row in ds.Tables["THANHTOAN"].Rows)
-            {
-                int stt = int.Parse(row["matt"].ToString().Substring(2));
-                if (max_matt < stt)
-                {
-                    max_matt = stt;
-                }
-            }
-            if (max_matt <= 8)
-                matt = "TT00" + (max_matt + 1).ToString();
-            else
-                matt = "TT0" + (max_matt + 1).ToString();
-
-            conn.cnn.Close();
-        }
-
-        private void luu_thanhtoan()
-        {
-            if (conn.cnn.State == ConnectionState.Closed)
-            {
-                conn.cnn.Open();
-            }
-            DataRow insert_New = ds.Tables["THANHTOAN"].NewRow();
-            insert_New["MATT"] = matt;
-            insert_New["TENTT"] = "THẺ NGÂN HÀNG";
-
-            ds.Tables["THANHTOAN"].Rows.Add(insert_New);
-            SqlCommandBuilder cmb = new SqlCommandBuilder(da);
-            da.Update(ds, "THANHTOAN");
-
-            conn.cnn.Close();
-        }
+        string thanhtoan;
 
         private void create_mahd()
         {
@@ -133,10 +92,24 @@ namespace Da.controller
                 mahd = "HD00" + (max_mahd + 1).ToString();
             else
                 mahd = "HD0" + (max_mahd + 1).ToString();
-
             conn.cnn.Close();
         }
 
+        public void get_thanhtoan(string _thanhtoan)
+        {
+            thanhtoan = _thanhtoan;
+        }
+        private void get_mathanhtoan()
+        {
+            if (conn.cnn.State == ConnectionState.Closed)
+                conn.cnn.Open();
+
+            string sql = "select MATT from THANHTOAN where TENTT like N'%" + thanhtoan + "%'";
+            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+            matt = (string)cmd.ExecuteScalar();
+
+            conn.cnn.Close();
+        }
 
         private void luu_hoadon()
         {
@@ -144,14 +117,19 @@ namespace Da.controller
             {
                 conn.cnn.Open();
             }
+            get_mathanhtoan();
             string tongtien = txt_tongtien.Text.Replace(",", "");
             tongtien = tongtien.Replace(" VNĐ", "");
             DataRow insert_New = ds.Tables["HOADON"].NewRow();
             insert_New["MAHD"] = mahd;
             insert_New["MATT"] = matt;
+            insert_New["MANV_LAPPHIEU"] = Properties.Settings.Default.MaNV;
+            insert_New["TIENMAT"] = 0;
+            insert_New["TIENTHE"] = double.Parse(tongtien);
             insert_New["TONGTIEN"] = double.Parse(tongtien);
             insert_New["KHACHDUA"] = double.Parse(tongtien);
             insert_New["SOLANIN"] = 1;
+            insert_New["NGAYLAP"] = DateTime.Now;
 
             ds.Tables["HOADON"].Rows.Add(insert_New);
             SqlCommandBuilder cmb = new SqlCommandBuilder(da);
@@ -248,8 +226,6 @@ namespace Da.controller
         {
             if (lb_count.Text == "0")
             {
-                create_matt();
-                luu_thanhtoan();
                 create_mahd();
                 luu_hoadon();
                 create_macthd();
@@ -337,13 +313,42 @@ namespace Da.controller
             return (int)cmd.ExecuteScalar();
         }
 
+        string kt;
+
+        private void kiemtra()
+        {
+            if (conn.cnn.State == ConnectionState.Closed)
+                conn.cnn.Open();
+
+            string sql = "select MAHD_DICHVU from hd_dichvu where matp = '" + matp + "'";
+            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+            kt = (string)cmd.ExecuteScalar();
+
+            conn.cnn.Close();
+        }
+
         private void btn_thanhtoanthe_Click(object sender, EventArgs e)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+                conn.cnn.Open();
+
             luu_thongtin_thanhtoan();
             lb_count.Text = get_solanin().ToString();
             chuyen_trangthai_phieuthue();
-            chuyen_trang_thai_phong();
-            MessageBox.Show("Thanh toán thành công");
+            chuyen_trang_thai_phong();          
+            kiemtra();
+            if (!string.IsNullOrEmpty(kt))
+            {
+                Viewer_DichVu dichvu = new Viewer_DichVu(this);
+                dichvu.get_matp(matp);
+                dichvu.StartPosition = FormStartPosition.CenterScreen;
+                dichvu.Show();
+            }
+            Viewer_HoaDon viewer = new Viewer_HoaDon(this);
+            viewer.get_matp(matp);
+            viewer.StartPosition = FormStartPosition.CenterScreen;
+            viewer.Show();
+            conn.cnn.Close();
         }
 
         private void ThanhToanThe_FormClosed(object sender, FormClosedEventArgs e)

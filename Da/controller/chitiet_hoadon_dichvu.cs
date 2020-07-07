@@ -29,6 +29,10 @@ namespace Da.controller
         }
         private void Load_CT_HD_DV()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             da_cthd = new SqlDataAdapter(" select * from CT_HD_DICHVU where MAHD_DICHVU = '" + txt_mahddv.Text + "'", conn.cnn);
             da_cthd.Fill(ds_cthd, "CT_HD_DICHVU");
             dgv_cthddv.DataSource = ds_cthd.Tables["CT_HD_DICHVU"];

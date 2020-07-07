@@ -349,6 +349,30 @@
     <Compile Include="controller\themchitietdichvu.Designer.cs">
       <DependentUpon>themchitietdichvu.cs</DependentUpon>
     </Compile>
+    <Compile Include="report\Report_DichVu.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Report_DichVu.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="report\Report_HoaDon.cs">
+      <DependentUpon>Report_HoaDon.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="report\Viewer_DichVu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="report\Viewer_DichVu.Designer.cs">
+      <DependentUpon>Viewer_DichVu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="report\Viewer_HoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="report\Viewer_HoaDon.Designer.cs">
+      <DependentUpon>Viewer_HoaDon.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BAOCAOTHONGKE.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>BAOCAOTHONGKE.cs</LastGenOutput>
@@ -484,6 +508,20 @@
     </EmbeddedResource>
     <EmbeddedResource Include="controller\themchitietdichvu.resx">
       <DependentUpon>themchitietdichvu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="report\Report_DichVu.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Report_DichVu.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="report\Report_HoaDon.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Report_HoaDon.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="report\Viewer_DichVu.resx">
+      <DependentUpon>Viewer_DichVu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="report\Viewer_HoaDon.resx">
+      <DependentUpon>Viewer_HoaDon.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />

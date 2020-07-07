@@ -1,4 +1,5 @@
 ﻿using Da.controller;
+using Da.report;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,25 @@ namespace Da
     public partial class ThanhToanHoaDon : Form
     {
         private frm_tt tt;
+
+        string matt;
+        string mahd;
+        string ma_cthd;
+        string tentt;
+        double tienphong;
+        double tiendv;
+        double tienphuthu;
+        string ghichu_phuthu;
+        string matp;
+        double tienmat;
+        double tienthe;
+        double tongtien;
+        string thanhtoan;
+        int dem = 0;
+        DataSet ds;
+        SqlDataAdapter da;
+        connect conn = new connect();
+
         public ThanhToanHoaDon()
         {
             InitializeComponent();
@@ -93,24 +113,14 @@ namespace Da
 
         private void btn_thanhtoanthe_Click(object sender, EventArgs e)
         {
-            txt_khachdua.Text = (double.Parse(txt_khachdua.Text) - double.Parse(txt_tralai.Text)).ToString();
+            dem = 1;
+            tienthe = double.Parse(txt_tongtien.Text) - double.Parse(txt_khachdua.Text);
+            tienmat = double.Parse(txt_khachdua.Text);
+            txt_khachdua.Text = (tienmat + tienthe).ToString();
             txt_tralai.Text = "0";
             btn_thanhtoanthe.Enabled = false;
         }
 
-        string matt;
-        string mahd;
-        string ma_cthd;
-        string tentt;
-        double tienphong;
-        double tiendv;
-        double tienphuthu;
-        string ghichu_phuthu;
-        string matp;
-        double tongtien;
-        DataSet ds;
-        SqlDataAdapter da;
-        connect conn = new connect();
 
         public void get_thongtin_thanhtoan(string _tentt, double _tienphong, double _tiendv, string _matp, double _tongtien, double _tienphuthu, string _ghichu)
         {
@@ -190,19 +200,50 @@ namespace Da
                 mahd = "HD0" + (max_mahd + 1).ToString();
             conn.cnn.Close();
         }
+
+        public void get_thanhtoan(string _thanhtoan)
+        {
+            thanhtoan = _thanhtoan;
+        }
+
+        private void get_mathanhtoan()
+        {
+            if (conn.cnn.State == ConnectionState.Closed)
+                conn.cnn.Open();
+
+            string sql = "select MATT from THANHTOAN where TENTT like N'%" + thanhtoan + "%'";
+            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+            matt = (string)cmd.ExecuteScalar();
+
+            conn.cnn.Close();
+        }
+
         private void luu_hoadon()
         {
             if (conn.cnn.State == ConnectionState.Closed)
             {
                 conn.cnn.Open();
             }
+            get_mathanhtoan();
             string khachdua = txt_khachdua.Text.Replace(",", "");
             DataRow insert_New = ds.Tables["HOADON"].NewRow();
             insert_New["MAHD"] = mahd;
             insert_New["MATT"] = matt;
+            insert_New["MANV_LAPPHIEU"] = Properties.Settings.Default.MaNV;
+            if (dem == 0)
+            {
+                insert_New["TIENMAT"] = double.Parse(txt_khachdua.Text);
+                insert_New["TIENTHE"] = 0;
+            }
+            else
+            {
+                insert_New["TIENMAT"] = tienmat;
+                insert_New["TIENTHE"] = tienthe;
+            }
             insert_New["TONGTIEN"] = tongtien;
             insert_New["KHACHDUA"] = double.Parse(khachdua);
             insert_New["SOLANIN"] = 1;
+            insert_New["NGAYLAP"] = DateTime.Now;
 
             ds.Tables["HOADON"].Rows.Add(insert_New);
             SqlCommandBuilder cmb = new SqlCommandBuilder(da);
@@ -275,8 +316,6 @@ namespace Da
         {
             if (lb_count.Text == "0")
             {
-                create_matt();
-                luu_thanhtoan();
                 create_mahd();
                 luu_hoadon();
                 create_macthd();
@@ -362,6 +401,21 @@ namespace Da
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             return (int)cmd.ExecuteScalar();
         }
+
+        string kt;
+
+        private void kiemtra()
+        {
+            if (conn.cnn.State == ConnectionState.Closed)
+                conn.cnn.Open();
+
+            string sql = "select MAHD_DICHVU from hd_dichvu where matp = '" + matp + "'";
+            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+            kt = (string)cmd.ExecuteScalar();
+
+            conn.cnn.Close();
+        }
+
         private void btn_luuvain_Click(object sender, EventArgs e)
         {           
             try
@@ -381,7 +435,18 @@ namespace Da
                     lb_count.Text = get_solanin().ToString();
                     chuyen_trang_thai_phong();
                     chuyen_trangthai_phieuthue();
-                    MessageBox.Show("Lập hóa đơn thành công");
+                    kiemtra();
+                    if (!string.IsNullOrEmpty(kt))
+                    {
+                        Viewer_DichVu dichvu = new Viewer_DichVu(this);
+                        dichvu.get_matp(maphieuthue);
+                        dichvu.StartPosition = FormStartPosition.CenterScreen;
+                        dichvu.Show();
+                    }
+                    Viewer_HoaDon viewer = new Viewer_HoaDon(this);
+                    viewer.get_matp(maphieuthue);
+                    viewer.StartPosition = FormStartPosition.CenterScreen;                   
+                    viewer.Show();                    
                 }
                 conn.cnn.Close();
             }

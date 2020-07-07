@@ -56,9 +56,10 @@
             this.btn_thanhtoanthe.Appearance.Options.UseFont = true;
             this.btn_thanhtoanthe.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_thanhtoanthe.ImageOptions.Image")));
             this.btn_thanhtoanthe.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btn_thanhtoanthe.Location = new System.Drawing.Point(305, 206);
+            this.btn_thanhtoanthe.Location = new System.Drawing.Point(265, 192);
+            this.btn_thanhtoanthe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_thanhtoanthe.Name = "btn_thanhtoanthe";
-            this.btn_thanhtoanthe.Size = new System.Drawing.Size(173, 54);
+            this.btn_thanhtoanthe.Size = new System.Drawing.Size(216, 68);
             this.btn_thanhtoanthe.TabIndex = 19;
             this.btn_thanhtoanthe.Text = "In hóa đơn";
             this.btn_thanhtoanthe.Click += new System.EventHandler(this.btn_thanhtoanthe_Click);

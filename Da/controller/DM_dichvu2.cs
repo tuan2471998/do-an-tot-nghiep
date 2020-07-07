@@ -27,6 +27,10 @@ namespace Da.controller
         }
         public void loadData_madv(string ma)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             da = new SqlDataAdapter("select * from DICHVU where MADV like'" + ma + "%'", conn.cnn);
             da.Fill(ds, "DICHVU_madv");
             dgv_dichvu.DataSource = ds.Tables["DICHVU_madv"];
@@ -38,6 +42,10 @@ namespace Da.controller
 
         public void loadData_tendv(string ten)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             da = new SqlDataAdapter("select * from DICHVU where TENDV like'" + ten + "%'", conn.cnn);
             da.Fill(ds, "DICHVU_tendv");
             dgv_dichvu.DataSource = ds.Tables["DICHVU_tendv"];
@@ -49,6 +57,10 @@ namespace Da.controller
 
         public void Load_DGV_Dichvu()
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             ds = new DataSet();
             da = new SqlDataAdapter(" select * from DICHVU", conn.cnn);
             da.Fill(ds, "DICHVU");
@@ -82,6 +94,10 @@ namespace Da.controller
         {
             try
             {
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
                 conn.cnn.Open();
                 DialogResult r;
                 r = MessageBox.Show("Bạn có chắc muốn xóa không?", "Thông báo xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
@@ -161,7 +177,10 @@ namespace Da.controller
         {
             try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
                 ds = new DataSet();
                 Load_DGV_Dichvu();
                 DataRow update_New = ds.Tables["DICHVU"].Rows.Find(txt_madv.Text);

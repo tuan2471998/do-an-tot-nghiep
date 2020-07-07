@@ -113,9 +113,10 @@
             this.btn_thanhtoanthe.Enabled = false;
             this.btn_thanhtoanthe.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btn_thanhtoanthe.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_thanhtoanthe.ImageOptions.SvgImage")));
-            this.btn_thanhtoanthe.Location = new System.Drawing.Point(399, 200);
+            this.btn_thanhtoanthe.Location = new System.Drawing.Point(405, 191);
+            this.btn_thanhtoanthe.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btn_thanhtoanthe.Name = "btn_thanhtoanthe";
-            this.btn_thanhtoanthe.Size = new System.Drawing.Size(221, 54);
+            this.btn_thanhtoanthe.Size = new System.Drawing.Size(215, 61);
             this.btn_thanhtoanthe.TabIndex = 10;
             this.btn_thanhtoanthe.Text = "Thanh toán thẻ";
             this.btn_thanhtoanthe.Click += new System.EventHandler(this.btn_thanhtoanthe_Click);
@@ -136,9 +137,10 @@
             this.btn_luuvain.Appearance.Options.UseFont = true;
             this.btn_luuvain.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_luuvain.ImageOptions.Image")));
             this.btn_luuvain.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btn_luuvain.Location = new System.Drawing.Point(172, 200);
+            this.btn_luuvain.Location = new System.Drawing.Point(172, 191);
+            this.btn_luuvain.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btn_luuvain.Name = "btn_luuvain";
-            this.btn_luuvain.Size = new System.Drawing.Size(221, 54);
+            this.btn_luuvain.Size = new System.Drawing.Size(215, 61);
             this.btn_luuvain.TabIndex = 8;
             this.btn_luuvain.Text = "In hóa đơn";
             this.btn_luuvain.Click += new System.EventHandler(this.btn_luuvain_Click);

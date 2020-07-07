@@ -1,4 +1,5 @@
 ﻿using Da.controller;
+using Da.report;
 using DevExpress.Data.Mask;
 using DevExpress.XtraEditors;
 using System;
@@ -293,6 +294,7 @@ namespace Da
                     thanhtoan.get_tongtien(tongtien);
                     thanhtoan.get_thongtin_thanhtoan(tentt, tienthuephong, tiendichvu, txt_mathuephong.Text, tongtien, tienphuthu, txt_ghichu.Text);
                     thanhtoan.get_maphieuthue(txt_mathuephong.Text);
+                    thanhtoan.get_thanhtoan(cbb_hinhthuc.Text);
                     thanhtoan.StartPosition = FormStartPosition.CenterScreen;
                     thanhtoan.ShowDialog();
                 }
@@ -303,6 +305,7 @@ namespace Da
                     the.get_matp_from_frmThanhtoan(txt_mathuephong.Text);
                     the.get_tien(tienthuephong, tiendichvu, tienphuthu, txt_ghichu.Text);
                     the.get_thongtin_thanhtoan(tongtien);
+                    the.get_thanhtoan(cbb_hinhthuc.Text);
                     the.StartPosition = FormStartPosition.CenterScreen;
                     the.ShowDialog();
                 }
@@ -318,7 +321,7 @@ namespace Da
                 txt_phuthu.Text = String.Format(culture, "{0:N0}", value);
                 txt_phuthu.Select(txt_phuthu.Text.Length, 0);
             }
-        }
+        }      
 
         private void frm_tt_FormClosing(object sender, FormClosingEventArgs e)
         {
