@@ -14,14 +14,15 @@ namespace Da.controller
 {
     public partial class frm_thuephongtrong : Form
     {
-        connect conn = new connect();
+        public connect conn;
         DataSet ds;
         SqlDataAdapter da;
         private frm_danhsachphong _frm_danhsachphong;
-        public frm_thuephongtrong(frm_danhsachphong danhsachphong)
+        public frm_thuephongtrong(frm_danhsachphong danhsachphong, connect _conn)
         {
             InitializeComponent();
             _frm_danhsachphong = danhsachphong;
+            conn = _conn;
         }
 
         public void get_maphong(string maphong)
@@ -111,6 +112,7 @@ namespace Da.controller
                         txt_cmnd.Text = (string)rd["SOCMND"];
                     }
                     rd.Close();
+                    btn_thuephong.Enabled = true;
                 }
                 else if (string.IsNullOrEmpty(txt_sdt.Text))
                 {
@@ -123,12 +125,14 @@ namespace Da.controller
                         txt_sdt.Text = (string)rd["SDT"];
                     }
                     rd.Close();
+                    btn_thuephong.Enabled = true;
                 }
                 conn.cnn.Close();
             }
             catch
             {
                 MessageBox.Show("Thông tin khách hàng không chính xác.\nVui lòng bổ sung thêm tại danh mục khách hàng");
+                btn_thuephong.Enabled = false;
                 conn.cnn.Close();
             }
         }
@@ -204,6 +208,7 @@ namespace Da.controller
             newRow[5] = dtp_ngaytra.Value;
             newRow[6] = 1;
             newRow[7] = 1;
+            newRow[8] = 0;
 
             ds.Tables["PhieuThem"].Rows.Add(newRow);
             SqlCommandBuilder builda = new SqlCommandBuilder(da);

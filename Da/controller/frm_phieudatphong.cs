@@ -24,11 +24,17 @@ namespace Da.controller
         SqlDataAdapter da;
         DataSet ds_ph;
         SqlDataAdapter da_ph;
-        connect conn = new connect();
+        public connect conn;
         DataColumn[] key = new DataColumn[1];
         public frm_phieudatphong()
         {
             InitializeComponent();
+        }
+
+        public frm_phieudatphong(connect _conn)
+        {
+            InitializeComponent();
+            conn = _conn;
         }
 
         private void frm_phieudatphong_Load(object sender, EventArgs e)
@@ -165,8 +171,8 @@ namespace Da.controller
             string ngaydat = dtp_ngaydat.Value.ToShortDateString();
             string ngaytra = dtp_ngaytra.Value.ToShortDateString();
             DataSet ds_ph = new DataSet();
-            SqlDataAdapter da_phCT = new SqlDataAdapter("select PHONG.MAPH from PHONG,CT_PHIEUDAT,PHIEUDAT WHERE PHONG.MAPH=CT_PHIEUDAT.MAPH AND CT_PHIEUDAT.MADP=PHIEUDAT.MADP AND NGAYNHAN_DUKIEN<='" + ngaytra + "' AND NGAYTRA_DUKIEN>='" + ngaydat + "'", conn.cnn);
-            // Ánh xạ dữ liệu từ DB vào dataset, đặt tên Sach
+            SqlDataAdapter da_phCT = new SqlDataAdapter("select PHONG.MAPH from PHONG,CT_PHIEUDAT,PHIEUDAT WHERE PHONG.MAPH=CT_PHIEUDAT.MAPH  AND CT_PHIEUDAT.MADP=PHIEUDAT.MADP AND NGAYNHAN_DUKIEN<='" + ngaytra + "' AND NGAYTRA_DUKIEN>='" + ngaydat + "'", conn.cnn);
+
             da_phCT.Fill(ds_ph, "PHONG1");
             DataTable dt1 = ds_ph.Tables["PHONG1"];
 

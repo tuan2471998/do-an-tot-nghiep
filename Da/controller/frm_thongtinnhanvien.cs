@@ -14,11 +14,13 @@ namespace Da.controller
 {
     public partial class frm_thongtinnhanvien : UserControl
     {
-        public frm_thongtinnhanvien()
+        public connect conn;
+
+        public frm_thongtinnhanvien(connect _conn)
         {
             InitializeComponent();
+            conn = _conn;
         }
-        connect conn = new connect();
 
         DataSet ds = new DataSet();
         SqlDataAdapter da;
@@ -26,7 +28,7 @@ namespace Da.controller
 
         private void btn_doimatkhau_Click(object sender, EventArgs e)
         {
-            doimatkhau2 doimk = new doimatkhau2();
+            doimatkhau2 doimk = new doimatkhau2(conn);
             doimk.StartPosition = FormStartPosition.CenterScreen;
             doimk.Show();
         }

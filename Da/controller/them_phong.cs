@@ -14,7 +14,7 @@ namespace Da.controller
 {
     public partial class them_phong : Form
     {
-        connect conn = new connect();
+        public connect conn;
 
         DataSet ds_loaiph;
         SqlDataAdapter da_loaiph;
@@ -26,10 +26,11 @@ namespace Da.controller
         double gialoaiphong;
 
         private DM_phong _dm_phong;
-        public them_phong(DM_phong phong)
+        public them_phong(DM_phong phong, connect _conn)
         {
             InitializeComponent();
             _dm_phong = phong;
+            conn = _conn;
         }
 
         private void Load_LoaiPH()

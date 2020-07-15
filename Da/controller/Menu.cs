@@ -13,17 +13,21 @@ namespace Da
 {
     public partial class Menu : Form
     {
-        public Menu()
-        {
-            InitializeComponent();
-        }
 
         private frm_tt tt;
+        public connect conn;
+        private string mahd;
 
-        public Menu(frm_tt _frm_tt)
+        public Menu(frm_tt _frm_tt, connect _conn)
         {
             InitializeComponent();
             tt = _frm_tt;
+            conn = _conn;
+        }
+
+        public void get_mahd(string _mahd)
+        {
+            mahd = _mahd;
         }
 
         private void btn_huy_Click(object sender, EventArgs e)
@@ -33,7 +37,6 @@ namespace Da
 
         DataSet ds;
         SqlDataAdapter da;
-        connect conn = new connect();
 
         private decimal get_dongia(string tenmenu)
         {
@@ -44,6 +47,40 @@ namespace Da
             string sql = "select DONGIA from MENU where TENMENU like N'%" + tenmenu + "%'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             return (decimal)cmd.ExecuteScalar();
+        }
+
+        private string get_mamenu(string tenmenu)
+        {
+            if (conn.cnn.State == ConnectionState.Closed)
+                conn.cnn.Open();
+
+            string sql = "select IDMENU from MENU where TENMENU like N'%" + tenmenu + "%'";
+            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+            return (string)cmd.ExecuteScalar();
+        }
+
+        private void update_soluong_hang()
+        {
+            foreach (Control chb in this.Controls)
+            {
+                if (chb is CheckBox && ((CheckBox)chb).Checked)
+                {
+                    foreach (Control num in this.Controls)
+                    {
+                        if (num is NumericUpDown && num.Name == "numeric_" + chb.Name && num.Enabled == true)
+                        {
+                            if (conn.cnn.State == ConnectionState.Closed)
+                                conn.cnn.Open();
+
+                            string sql = "update HANG set SOLUONGHANG = SOLUONGHANG - " + ((NumericUpDown)num).Value + " where TENHANG = '" + get_mamenu(chb.Text) + "'";
+                            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                            int kq = cmd.ExecuteNonQuery();
+
+                            conn.cnn.Close();
+                        }
+                    }
+                }
+            }
         }
 
         private void btn_luu_Click(object sender, EventArgs e)
@@ -85,10 +122,17 @@ namespace Da
                 }
             }
 
+            update_soluong_hang();
+
             tt.get_thongtin_menu(menu);
             tt.get_tienmenu();
             tt.format_dgv_menu();
-            conn.cnn.Close();
+
+            if (conn.cnn.State == ConnectionState.Open)
+            {
+                conn.cnn.Close();
+            }
+
             this.Close();
         }
 

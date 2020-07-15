@@ -19,13 +19,15 @@ namespace Da.controller
     {
         DataSet ds;
         SqlDataAdapter da;
-        connect conn = new connect();
+        public connect conn;
         DataColumn[] key = new DataColumn[1];
 
-        public qlthietbi()
+        public qlthietbi(connect _conn)
         {
             InitializeComponent();
+            conn = _conn;
         }
+
 
         private void load_cbb_loaiphong()
         {
@@ -97,7 +99,7 @@ namespace Da.controller
             lay_tentb((sender as NumericUpDown).Name);
             if ((sender as NumericUpDown).Enabled)
             {
-                da_chitiet = new SqlDataAdapter("select * from CT_THIETBI where MALOAI = '0'", conn.cnn);
+                da_chitiet = new SqlDataAdapter("select MALOAI, TENTB, SOLUONGTB, CT_THIETBI.MATB from CT_THIETBI, THIETBI where CT_THIETBI.MATB = THIETBI.MATB and MALOAI = '0'", conn.cnn);
                 da_chitiet.Fill(ds_chitiet, "CHITIET");
                 chitiet = ds_chitiet.Tables["CHITIET"];
 
@@ -105,6 +107,7 @@ namespace Da.controller
                 dr[0] = cbb_loai.SelectedValue.ToString();
                 dr[1] = tentb;
                 dr[2] = (sender as NumericUpDown).Value;
+                dr[3] = get_matb(tentb);
 
                 clear_gridview(dr[0].ToString(), dr[1].ToString());
 
@@ -116,11 +119,11 @@ namespace Da.controller
 
         private void clear_gridview()
         {
-            for (int i = chitiet.Rows.Count - 1; i >= 0; i--)
+            chitiet.Clear();
+            while (dgv_danhsachloaiphong.Rows.Count > 0)
             {
-                chitiet.Rows.RemoveAt(i);
+                dgv_danhsachloaiphong.Rows.RemoveAt(0);
             }
-            dgv_danhsachloaiphong.DataSource = chitiet;
         }
 
         private void clear_control()
@@ -163,9 +166,19 @@ namespace Da.controller
             {
                 conn.cnn.Open();
             }
-            string sql = "select count(*) from CT_THIETBI where MALOAI = '" + maloai + "' and TENTB = N'" + tentb + "'";
+            string sql = "select count(*) from CT_THIETBI where MALOAI = '" + maloai + "' and MATB = '" + get_matb(tentb) + "'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             return (int)cmd.ExecuteScalar();
+        }
+
+        private string get_matb(string tentb)
+        {
+            if (conn.cnn.State == ConnectionState.Closed)
+                conn.cnn.Open();
+
+            string sql = "select MATB from THIETBI where TENTB like N'%" + tentb + "%'";
+            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+            return (string)cmd.ExecuteScalar();
         }
 
         private void insert_ct_thietbi(string maloai, string tentb, int soluong)
@@ -180,7 +193,7 @@ namespace Da.controller
 
             DataRow insert_New = ds.Tables["INSERT_CT_THIETBI"].NewRow();
             insert_New["MALOAI"] = maloai;
-            insert_New["TENTB"] = tentb;
+            insert_New["MATB"] = get_matb(tentb);
             insert_New["SOLUONGTB"] = soluong;
 
             ds.Tables["INSERT_CT_THIETBI"].Rows.Add(insert_New);
@@ -198,7 +211,7 @@ namespace Da.controller
             {
                 conn.cnn.Open();
             }
-            string sql = "update CT_THIETBI set SOLUONGTB = " + slmoi + "  where MALOAI = '" + loaiphong + "' and TENTB = N'" + tentb + "'";
+            string sql = "update CT_THIETBI set SOLUONGTB = " + slmoi + "  where MALOAI = '" + loaiphong + "' and MATB = '" + get_matb(tentb) + "'";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             int kq = cmd.ExecuteNonQuery();
 
@@ -211,7 +224,33 @@ namespace Da.controller
             {
                 conn.cnn.Open();
             }
-            string sql = "delete from CT_THIETBI where MALOAI = '"+loaiphong+"' and TENTB = N'"+tentb+"'";
+            string sql = "delete from CT_THIETBI where MALOAI = '" + loaiphong + "' and MATB = '" + get_matb(tentb) + "'";
+            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+            int kq = cmd.ExecuteNonQuery();
+
+            conn.cnn.Close();
+        }
+
+        private int get_soluong_hang(string mahang)
+        {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
+
+            string sql = "select SOLUONGHANG from HANG where TENHANG = '" + mahang + "'";
+            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+            return (int)cmd.ExecuteScalar();
+        }
+
+        private void update_soluong_hang(string mahang, int soluong)
+        {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
+
+            string sql = "update HANG set SOLUONGHANG = SOLUONGHANG - " + soluong + " where TENHANG = '" + mahang + "' ";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             int kq = cmd.ExecuteNonQuery();
 
@@ -234,15 +273,33 @@ namespace Da.controller
                     }
                     else
                     {
-                        update_ct_thietbi(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), int.Parse(row.Cells[2].Value.ToString()));
+                        if (get_soluong_hang(get_matb(row.Cells[1].Value.ToString())) < int.Parse(row.Cells[2].Value.ToString()))
+                        {
+                            MessageBox.Show("Số lượng " + row.Cells[1].Value.ToString() + " trong kho không đủ");
+                        }
+                        else
+                        {
+                            update_ct_thietbi(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), int.Parse(row.Cells[2].Value.ToString()));
+                            update_soluong_hang(get_matb(row.Cells[1].Value.ToString()), int.Parse(row.Cells[2].Value.ToString()));
+                            MessageBox.Show("Cập nhật dữ liệu thành công");
+                        }
                     }
                 }
                 else
                 {
-                    insert_ct_thietbi(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), int.Parse(row.Cells[2].Value.ToString()));
+                    if (get_soluong_hang(get_matb(row.Cells[1].Value.ToString())) < int.Parse(row.Cells[2].Value.ToString()))
+                    {
+                        MessageBox.Show("Số lượng " + row.Cells[1].Value.ToString() + " trong kho không đủ");
+                    }
+                    else
+                    {
+                        insert_ct_thietbi(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), int.Parse(row.Cells[2].Value.ToString()));
+                        update_soluong_hang(get_matb(row.Cells[1].Value.ToString()), int.Parse(row.Cells[2].Value.ToString()));
+                        MessageBox.Show("Cập nhật dữ liệu thành công");
+                    }
                 }
             }
-            MessageBox.Show("Cập nhật dữ liệu thành công");
+
             clear_control();
 
             conn.cnn.Close();
@@ -280,7 +337,7 @@ namespace Da.controller
                 conn.cnn.Open();
             }
             ds = new DataSet();
-            da = new SqlDataAdapter("select * from CT_THIETBI where MALOAI = '" + cbb_loai.SelectedValue + "'", conn.cnn);
+            da = new SqlDataAdapter("select MALOAI, TENTB, SOLUONGTB, CT_THIETBI.MATB from CT_THIETBI, THIETBI where CT_THIETBI.MATB = THIETBI.MATB and MALOAI = '" + cbb_loai.SelectedValue + "'", conn.cnn);
             da.Fill(ds, "CT_THIETBI");
 
             dgv_danhsachloaiphong.DataSource = ds.Tables["CT_THIETBI"];
@@ -290,7 +347,7 @@ namespace Da.controller
 
         private void cbb_loai_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            clear_gridview();
+            clear_gridview();           
             foreach (Control control in this.Controls)
             {
                 if (control is GroupBox && control.Name == "groupBox2")
@@ -311,10 +368,6 @@ namespace Da.controller
         {
             if (cbb_loai.SelectedIndex != 0)
             {
-                if (conn.cnn.State == ConnectionState.Closed)
-                {
-                    conn.cnn.Open();
-                }
                 foreach (Control control in this.Controls)
                 {
                     if (control is GroupBox && control.Name == "groupBox2")
@@ -329,17 +382,22 @@ namespace Da.controller
                                 {
                                     if (chb is System.Windows.Forms.CheckBox && num.Name == "numeric_" + ((System.Windows.Forms.CheckBox)chb).Name)
                                     {
+                                        if (conn.cnn.State == ConnectionState.Closed)
+                                        {
+                                            conn.cnn.Open();
+                                        }
                                         foreach (DataGridViewRow row in dgv_danhsachloaiphong.Rows)
                                         {
                                             if (((System.Windows.Forms.CheckBox)chb).Text == row.Cells[1].Value.ToString())
                                             {
-                                                string sql = "select SOLUONGTB from CT_THIETBI where MALOAI = '" + row.Cells[0].Value.ToString() + "' and TENTB = N'" + row.Cells[1].Value.ToString() + "'";
+                                                string sql = "select SOLUONGTB from CT_THIETBI where MALOAI = '" + row.Cells[0].Value.ToString() + "' and MATB = '" + get_matb(row.Cells[1].Value.ToString()) + "'";
                                                 SqlCommand cmd = new SqlCommand(sql, conn.cnn);
                                                 ((NumericUpDown)num).Value = (int)cmd.ExecuteScalar();
                                             }
                                         }
-                                    }                  
-                                }                               
+                                        conn.cnn.Close();
+                                    }
+                                }
                             }
                             else if (num is System.Windows.Forms.CheckBox)
                             {
@@ -348,17 +406,35 @@ namespace Da.controller
                         }
                     }
                 }
-                conn.cnn.Close();
             }
             else
             {
                 clear_gridview();
+                foreach (Control control in this.Controls)
+                {
+                    if (control is GroupBox && control.Name == "groupBox2")
+                    {
+                        foreach (Control chb in control.Controls)
+                        {
+                            if (chb is System.Windows.Forms.CheckBox && ((System.Windows.Forms.CheckBox)chb).Enabled == true)
+                                chb.Enabled = false;
+                            foreach (Control num in control.Controls)
+                            {
+                                if (num is NumericUpDown && num.Name == "numeric_" + chb.Name)
+                                {
+                                    num.Enabled = false;
+                                    ((NumericUpDown)num).Value = 0;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 
         private void btn_huy_Click(object sender, EventArgs e)
         {
-            clear_control();
+            cbb_loai.SelectedIndex = 0;
         }
     }
     

@@ -15,7 +15,7 @@ namespace Da.controller
 {
     public partial class Phieudichvu : DevExpress.XtraEditors.XtraUserControl
     {
-        connect conn = new connect();
+        public connect conn;
 
         DataSet ds = new DataSet();
         SqlDataAdapter da;
@@ -23,11 +23,11 @@ namespace Da.controller
 
         DataColumn[] key = new DataColumn[1];
         DataColumn[] key1 = new DataColumn[2];
-        public Phieudichvu()
+
+        public Phieudichvu(connect _conn)
         {
             InitializeComponent();
-            load_ct_thuephong();
-            load_hd_dichvu();
+            conn = _conn;
         }
         private void load_ct_thuephong()
         {
@@ -87,6 +87,8 @@ namespace Da.controller
         private void Phieudichvu_Load(object sender, EventArgs e)
         {
             txt_ngaylap.Text = DateTime.Now.ToString();
+            load_ct_thuephong();
+            load_hd_dichvu();
             sinhtudongMaHOADON();
             dgv_phieudichvu.Columns[4].DefaultCellStyle.Format = "N0";
         }
@@ -165,7 +167,7 @@ namespace Da.controller
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            themchitietdichvu ctdv = new themchitietdichvu(this);
+            themchitietdichvu ctdv = new themchitietdichvu(this, conn);
             ctdv.get_mahddv(txt_maphdv.Text);
             simpleButton2.Enabled = false;
             txt_maphdv.Clear();
@@ -228,7 +230,7 @@ namespace Da.controller
 
         private void btn_xemchitiet_Click(object sender, EventArgs e)
         {
-            chitiet_hoadon_dichvu ct = new chitiet_hoadon_dichvu();
+            chitiet_hoadon_dichvu ct = new chitiet_hoadon_dichvu(conn);
             ct.get_mahddv(txt_maphdv.Text);
             ct.StartPosition = FormStartPosition.CenterScreen;
             ct.Show();

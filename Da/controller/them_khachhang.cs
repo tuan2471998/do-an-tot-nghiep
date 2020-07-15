@@ -14,12 +14,13 @@ namespace Da.controller
     public partial class them_khachhang : Form
     {
         private DM_khachhang _dm_khachhang;
-        public them_khachhang(DM_khachhang khachhang)
+        public connect conn;
+        public them_khachhang(DM_khachhang khachhang, connect _conn)
         {
             InitializeComponent();
             _dm_khachhang = khachhang;
+            conn = _conn;
         }
-        connect conn = new connect();
 
         DataSet ds = new DataSet();
         SqlDataAdapter da;

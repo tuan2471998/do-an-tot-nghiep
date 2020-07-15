@@ -15,13 +15,14 @@ namespace Da.controller
     public partial class them_dichvu : Form
     {
         private DM_dichvu2 _dm_dichvu;
-        public them_dichvu(DM_dichvu2 dichvu)
+        public connect conn;
+        public them_dichvu(DM_dichvu2 dichvu, connect _conn)
         {
             InitializeComponent();
             _dm_dichvu = dichvu;
+            conn = _conn;
         }
 
-        connect conn = new connect();
 
         DataSet ds = new DataSet();
         SqlDataAdapter da;

@@ -14,11 +14,13 @@ namespace Da.controller
 {
     public partial class DM_khachhang : DevExpress.XtraEditors.XtraUserControl
     {
-        public DM_khachhang()
+        public connect conn;
+
+        public DM_khachhang(connect _conn)
         {
             InitializeComponent();
+            conn = _conn;
         }
-        connect conn = new connect();
 
         DataSet ds = new DataSet();
         SqlDataAdapter da;
@@ -130,21 +132,21 @@ namespace Da.controller
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
-        {
+        {           
             try 
-            { 
+            {
                 DialogResult r;
                 r = MessageBox.Show("Bạn có chắc muốn xóa không?", "Thông báo xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                 if (r == DialogResult.Yes)
                 {
-       
+
                     DataRow dr_xoa = ds.Tables["KHACHHANG"].Rows.Find(txtmkh.Text);
 
                     if (dr_xoa != null)
                     {
                         dr_xoa.Delete();
                         SqlCommandBuilder db = new SqlCommandBuilder(da);
-                         da.Update(ds, "KHACHHANG");
+                        da.Update(ds, "KHACHHANG");
 
                         ds.Tables["KHACHHANG"].Clear();
                         MessageBox.Show("Xóa thành công !");
@@ -163,25 +165,23 @@ namespace Da.controller
             }
             catch
             {
-                MessageBox.Show("Bạn đã xóa không thành công!");
+                MessageBox.Show("Khách hàng có trong dữ liệu thuê phòng.\nKhông thể xóa.");
             }
         }
 
         private void btnSua_Click(object sender, EventArgs e)
-        {
-            string makh = datakhachhang.CurrentRow.Cells[0].Value.ToString();
+        {           
             try 
-            { 
+            {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
+                string makh = datakhachhang.CurrentRow.Cells[0].Value.ToString();
                 DataRow update_New = ds.Tables["KHACHHANG"].Rows.Find(makh);
                 if (update_New != null)
                 {
-                    update_New["HOTEN"] = txttenkh.Text;
-                    update_New["SOCMND"] = txtcmnd.Text;
-                    update_New["SDT"] = txtsdt.Text;
-                    update_New["QUOCTICH"] = txtquoctich.Text;
-             
-                    SqlCommandBuilder cmb = new SqlCommandBuilder(da);
-                    da.Update(ds, "KHACHHANG");
+                    string sql = "update KHACHHANG set HOTEN = N'" + txttenkh.Text + "', SOCMND = '" + txtcmnd.Text + "', SDT = '" + txtsdt.Text + "', QUOCTICH = N'" + txtquoctich.Text + "' where MAKH = '" + makh + "'";
+                    SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                    int kq = cmd.ExecuteNonQuery();
                     MessageBox.Show(" Cập nhật Thành công");
 
                     loadData();
@@ -192,6 +192,7 @@ namespace Da.controller
                     btnSua.Enabled = false;
                     btnXoa.Enabled = false;
                 }
+                conn.cnn.Close();
             }
             catch
             {
@@ -255,7 +256,7 @@ namespace Da.controller
 
         private void btn_them_Click(object sender, EventArgs e)
         {
-            them_khachhang themkh = new them_khachhang(this);
+            them_khachhang themkh = new them_khachhang(this, conn);
             themkh.StartPosition = FormStartPosition.CenterScreen;
             themkh.Show();
         }       

@@ -14,22 +14,23 @@ namespace Da.controller
 {
     public partial class frm_phongdattruoc : UserControl
     {
-        public frm_phongdattruoc()
-        {
-            InitializeComponent();
-        }
-
-        connect conn = new connect();
+        public connect conn;
         private frm_danhsachphong _frm_danhsachphong;
         DataSet ds = new DataSet();
         SqlDataAdapter da;
         DataColumn[] key = new DataColumn[1];
+        string sophong;
 
-        public frm_phongdattruoc(string sophong, frm_danhsachphong danhsachphong)
+        public frm_phongdattruoc(frm_danhsachphong danhsachphong, connect _conn)
         {
             InitializeComponent();
-            lb_sophong.Text = sophong;
             _frm_danhsachphong = danhsachphong;
+            conn = _conn;
+        }
+
+        public void get_sophong(string _sophong)
+        {
+            sophong = _sophong;
         }
 
         private void lb_sophong_TextChanged(object sender, EventArgs e)
@@ -129,16 +130,17 @@ namespace Da.controller
         }
 
         private void hủyĐặtPhòngĐangChọnToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        {           
             try
             {
+                xoaphong(lb_sophong.Text, lb_maphieudat.Text);
+                update_soluong_phieudat(lb_maphieudat.Text);
+                update_phong(lb_sophong.Text, 0);
+
                 if (conn.cnn.State == ConnectionState.Closed)
                 {
                     conn.cnn.Open();
                 }
-                xoaphong(lb_sophong.Text, lb_maphieudat.Text);
-                update_soluong_phieudat(lb_maphieudat.Text);
-                update_phong(lb_sophong.Text,0);
 
                 string sql1 = "select count(*) from CT_PHIEUDAT where MADP='" + lb_maphieudat.Text + "'";
                 SqlCommand cmd1 = new SqlCommand(sql1, conn.cnn);
@@ -289,6 +291,11 @@ namespace Da.controller
             _frm_danhsachphong.Load_control_all();
 
             conn.cnn.Close();
+        }
+
+        private void frm_phongdattruoc_Load(object sender, EventArgs e)
+        {
+            lb_sophong.Text = sophong;
         }
     }
 }

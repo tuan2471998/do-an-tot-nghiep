@@ -14,13 +14,13 @@ namespace Da.controller
     public partial class them_loaiphong : Form
     {
         private DM_phong _dm_phong;
-        public them_loaiphong(DM_phong phong)
+        public connect conn;
+        public them_loaiphong(DM_phong phong, connect _conn)
         {
             InitializeComponent();
             _dm_phong = phong;
+            conn = _conn;
         }
-
-        connect conn = new connect();
 
         SqlDataAdapter da;
         DataColumn[] key = new DataColumn[1];

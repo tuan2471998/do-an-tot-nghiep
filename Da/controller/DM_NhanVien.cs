@@ -16,15 +16,17 @@ namespace Da.controller
     public partial class DM_NhanVien : DevExpress.XtraEditors.XtraUserControl
     {
 
-        connect conn = new connect();
+        public connect conn;
 
         DataSet ds;
 
         SqlDataAdapter da;
         DataColumn[] key = new DataColumn[1];
-        public DM_NhanVien()
+
+        public DM_NhanVien(connect _conn)
         {
             InitializeComponent();
+            conn = _conn;
         }
 
         public void loadNhanVien()
@@ -172,7 +174,7 @@ namespace Da.controller
 
         private void btn_Them_Click(object sender, EventArgs e)
         {
-            them_nhanvien _them_nhanvien = new them_nhanvien();
+            them_nhanvien _them_nhanvien = new them_nhanvien(conn, this);
             _them_nhanvien.StartPosition = FormStartPosition.CenterScreen;
             _them_nhanvien.Show();           
         }
@@ -186,30 +188,37 @@ namespace Da.controller
                 r = MessageBox.Show("Bạn có chắc muốn xóa không?", "Thông báo xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                 if (r == DialogResult.Yes)
                 {
-                    xoatk();
-                    loadNV();
-                    DataRow dr_xoa = ds.Tables["NHANVIEN"].Rows.Find(txtma.Text);
-
-                    if (dr_xoa != null)
+                    if (txtma.Text.Trim() == Properties.Settings.Default.MaNV.Trim())
                     {
-
-                        dr_xoa.Delete();
-                        SqlCommandBuilder db = new SqlCommandBuilder(da);
-                        da.Update(ds, "NHANVIEN");
-
-                        ds.Tables["NHANVIEN"].Clear();
-                        loadNhanVien();
-                        MessageBox.Show("Xóa thành công !");
-                        loadTK();
-                        ds.Tables["TAIKHOAN"].Clear();
-                        loadTKNhanVien();
-
-                        clear_txt();
-                        btn_Sua.Enabled = btn_Xoa.Enabled = false;
-
+                        MessageBox.Show("Mã nhân viên không hợp lệ");
                     }
                     else
-                        MessageBox.Show("Vui lòng chọn mã  nhân viên ");
+                    {
+                        xoatk();
+                        loadNV();
+                        DataRow dr_xoa = ds.Tables["NHANVIEN"].Rows.Find(txtma.Text);
+
+                        if (dr_xoa != null)
+                        {
+
+                            dr_xoa.Delete();
+                            SqlCommandBuilder db = new SqlCommandBuilder(da);
+                            da.Update(ds, "NHANVIEN");
+
+                            ds.Tables["NHANVIEN"].Clear();
+                            loadNhanVien();
+                            MessageBox.Show("Xóa thành công !");
+                            loadTK();
+                            ds.Tables["TAIKHOAN"].Clear();
+                            loadTKNhanVien();
+
+                            clear_txt();
+                            btn_Sua.Enabled = btn_Xoa.Enabled = false;
+
+                        }
+                        else
+                            MessageBox.Show("Vui lòng chọn mã nhân viên ");
+                    }
                 }
             }
             catch

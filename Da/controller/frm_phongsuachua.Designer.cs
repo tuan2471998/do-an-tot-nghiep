@@ -64,12 +64,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.hoànThànhToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 56);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(156, 28);
             // 
             // hoànThànhToolStripMenuItem
             // 
             this.hoànThànhToolStripMenuItem.Name = "hoànThànhToolStripMenuItem";
-            this.hoànThànhToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.hoànThànhToolStripMenuItem.Size = new System.Drawing.Size(155, 24);
             this.hoànThànhToolStripMenuItem.Text = "Hoàn thành";
             this.hoànThànhToolStripMenuItem.Click += new System.EventHandler(this.hoànThànhToolStripMenuItem_Click);
             // 
@@ -85,6 +85,7 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frm_phongsuachua";
             this.Size = new System.Drawing.Size(259, 224);
+            this.Load += new System.EventHandler(this.frm_phongsuachua_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);

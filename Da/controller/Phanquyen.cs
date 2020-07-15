@@ -11,20 +11,22 @@ using DevExpress.XtraEditors;
 using System.Data.SqlClient;
 using DevExpress.DataProcessing.InMemoryDataProcessor.GraphGenerator;
 using System.Web.UI;
+using DevExpress.DataAccess.UI.Native.Sql.DataConnectionControls;
 
 namespace Da.controller
 {
     public partial class Phanquyen : DevExpress.XtraEditors.XtraUserControl
     {
-        connect conn = new connect();
+        public connect conn;
         DataSet ds;
         SqlDataAdapter da;
         DataColumn[] key = new DataColumn[1];
         string nhomquyen;
 
-        public Phanquyen()
+        public Phanquyen(connect _conn)
         {
             InitializeComponent();
+            conn = _conn;
         }
 
         private void lay_nhomquyen()

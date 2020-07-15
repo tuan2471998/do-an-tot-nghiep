@@ -13,17 +13,17 @@ namespace Da.controller
 {
     public partial class DM_dichvu2 : UserControl
     {
-        connect conn = new connect();
+        public connect conn;
 
         DataSet ds_loaiph = new DataSet();
         SqlDataAdapter da;
         DataSet ds;
-       
-
         DataColumn[] key = new DataColumn[1];
-        public DM_dichvu2()
+
+        public DM_dichvu2(connect _conn)
         {
             InitializeComponent();
+            conn = _conn;
         }
         public void loadData_madv(string ma)
         {
@@ -139,7 +139,7 @@ namespace Da.controller
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            them_dichvu themdichvu = new them_dichvu(this);
+            them_dichvu themdichvu = new them_dichvu(this, conn);
             themdichvu.StartPosition = FormStartPosition.CenterScreen;
             themdichvu.Show();
         }

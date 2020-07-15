@@ -16,6 +16,8 @@ using Da.controller;
 using System.Data.SqlClient;
 using DevExpress.XtraRichEdit.Layout;
 using DevExpress.Utils.Extensions;
+using DevExpress.ClipboardSource.SpreadsheetML;
+using DevExpress.PivotGrid.Criteria;
 
 namespace Da
 {
@@ -24,12 +26,15 @@ namespace Da
 
         public DataSet ds_ph = new DataSet();
         public SqlDataAdapter da_ph;
-        connect conn = new connect();
-        public frm_khachsan()
+        public connect conn;
+
+        public frm_khachsan(connect _conn)
         {
             InitializeComponent();
             panel1.BackColor = Color.White;
+            conn = _conn;
         }
+
         public void AddTab(XtraTabControl XtraTabCha, string TabNameAdd, UserControl UserControl)
         {
             // Khởi tạo 1 Tab Con (XtraTabPage)
@@ -67,7 +72,7 @@ namespace Da
         }
         private void barButtonItem_qlnhanvien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            DM_NhanVien nv = new DM_NhanVien();
+            DM_NhanVien nv = new DM_NhanVien(conn);
             hienthi.TabPages.Clear();
             AddTabControl(nv, "Thông tin nhân viên");
 
@@ -75,7 +80,7 @@ namespace Da
 
         private void barButtonItem_doimatkhau_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frm_thongtinnhanvien frm = new frm_thongtinnhanvien();
+            frm_thongtinnhanvien frm = new frm_thongtinnhanvien(conn);
             hienthi.TabPages.Clear();
             AddTabControl(frm, "Thông tin nhân viên");
         }
@@ -83,7 +88,7 @@ namespace Da
         //int flag = 0;
         private void navBarItemphong_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-            frm_phieudatphong frm = new frm_phieudatphong();
+            frm_phieudatphong frm = new frm_phieudatphong(conn);
             hienthi.TabPages.Clear();
             AddTabControl(frm, "Đặt phòng");
         }
@@ -106,20 +111,16 @@ namespace Da
 
         private void barButtonItem_qlkhachhang_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            DM_khachhang nv = new DM_khachhang();
+            DM_khachhang nv = new DM_khachhang(conn);
             hienthi.TabPages.Clear();
             AddTabControl(nv, "Thông tin khách hàng");
         }
 
         private void navBarchuyenphong_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-            //hienthi.TabPages.Clear();
-            //frm_phieuchuyen frm = new frm_phieuchuyen();
-
-            //AddTabControl(frm, "Chuyển phiếu phòng");
 
             hienthi.TabPages.Clear();
-            frm_phieuchuyen frm = new frm_phieuchuyen();
+            frm_phieuchuyen frm = new frm_phieuchuyen(conn);
 
             AddTabControl(frm, "Phiếu chuyển phòng");
         }
@@ -127,7 +128,7 @@ namespace Da
         private void navBarthuephong_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             hienthi.TabPages.Clear();
-            frm_phieuthue frm = new frm_phieuthue();
+            frm_phieuthue frm = new frm_phieuthue(conn);
 
             AddTabControl(frm, "Thuê phòng");
         }
@@ -135,7 +136,7 @@ namespace Da
         private void barButtonItem_qlphong_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             hienthi.TabPages.Clear();
-            DM_phong frm = new DM_phong();
+            DM_phong frm = new DM_phong(conn);
 
             AddTabControl(frm, "Phòng");
         }
@@ -143,7 +144,7 @@ namespace Da
         private void barButtonItem_qldichvu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             hienthi.TabPages.Clear();
-            DM_dichvu2 frm = new DM_dichvu2();
+            DM_dichvu2 frm = new DM_dichvu2(conn);
 
             AddTabControl(frm, "Danh mục dịch vụ");
         }
@@ -151,7 +152,7 @@ namespace Da
         private void navBarItemdichvu_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             hienthi.TabPages.Clear();
-            Phieudichvu frm = new Phieudichvu();
+            Phieudichvu frm = new Phieudichvu(conn);
 
             AddTabControl(frm, "Phiếu dịch vụ");
         }
@@ -159,68 +160,43 @@ namespace Da
         private void barButtonItem_phanquyen_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             hienthi.TabPages.Clear();
-            Phanquyen frm = new Phanquyen();
+            Phanquyen frm = new Phanquyen(conn);
 
             AddTabControl(frm, "Phân quyền");
 
         }
 
-        //private void barButtonItem_baocaodanhthu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        //{
-        //    hienthi.TabPages.Clear();
-        //   BAOCAO frm = new BAOCAO();
-
-        //    AddTabControl(frm, "Thống kê");
-        //}
-
-        private void barButtonItem_hoadon_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-        }
-
-        private void barButtonItem_hoadon_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            //hienthi.TabPages.Clear();
-            //frm_thongke frm = new frm_thongke();
-
-            //AddTabControl(frm, "tk");
-            hienthi.TabPages.Clear();
-            HoaDonTong frm = new HoaDonTong();
-
-            AddTabControl(frm, "Hóa đơn");
-        }
-
-        private void navBar_danhsachphong_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            hienthi.TabPages.Clear();
-            frm_danhsachphong frm = new frm_danhsachphong();
-
-            AddTabControl(frm, "Danh sách phòng");
-        }
-
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             hienthi.TabPages.Clear();
-            qlthietbi frm = new qlthietbi();
+            qlthietbi frm = new qlthietbi(conn);
 
             AddTabControl(frm, "Quản lý thiết bị");
         }
 
         string quyen;
         string tennv;
+        DataSet ds;
+        SqlDataAdapter da;
         public void get_thongtin(string manv)
         {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
             string sql = "select hoten, quyen from nhanvien nv\n";
             sql += "inner join taikhoan tk on tk.manv = nv.manv\n";
             sql += "where nv.manv = '" + manv + "'";
-            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-            SqlDataReader rd = cmd.ExecuteReader();
-            while (rd.Read())
+            ds = new DataSet();
+            da = new SqlDataAdapter(sql, conn.cnn);
+            da.Fill(ds);
+            foreach (DataRow row in ds.Tables[0].Rows)
             {
-                quyen = rd["quyen"].ToString();
-                tennv = rd["hoten"].ToString();
+                quyen = row["quyen"].ToString();
+                tennv = row["hoten"].ToString();
             }
-            rd.Close();
+
+            conn.cnn.Close();
         }
 
         private void frm_khachsan_Load(object sender, EventArgs e)
@@ -229,40 +205,75 @@ namespace Da
             barStaticItem1.Caption = tennv;
             if (quyen == "NVIEN")
             {
-                ribbonPage1.Visible = false;
+                barButtonItem_phanquyen.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                 barButtonItem_qlnhanvien.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                 barButtonItem_qlphong.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                 barButtonItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             }
         }
-        
+
+        public void show_nhaphang()
+        {
+            hienthi.TabPages.Clear();
+            frm_Nhaphang frm = new frm_Nhaphang(conn);
+            AddTabControl(frm, "Quản lý nhập hàng");
+        }
 
         private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            hienthi.TabPages.Clear();
-            frm_Nhaphang frm = new frm_Nhaphang();
-            AddTabControl(frm, "Quản lý nhập hàng");
+            if (quyen == "NVIEN")
+            {
+                matkhau_nhaphang nhaphang = new matkhau_nhaphang(conn, this);
+                nhaphang.StartPosition = FormStartPosition.CenterScreen;
+                nhaphang.Show();
+            }
+            else
+            {
+                show_nhaphang();
+            }
         }
 
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             hienthi.TabPages.Clear();
-            DS_NHAPHANG frm = new DS_NHAPHANG();
+            DS_NHAPHANG frm = new DS_NHAPHANG(conn);
             AddTabControl(frm, "Danh sách nhập hàng");
+        }
+
+        public void show_baocaohoadon()
+        {
+            hienthi.TabPages.Clear();
+            DS_HOADON frm = new DS_HOADON(conn);
+            AddTabControl(frm, "Danh sách hóa đơn");
         }
 
         private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            hienthi.TabPages.Clear();
-            DS_HOADON frm = new DS_HOADON();
-            AddTabControl(frm, "Danh sách hóa đơn");
+            if (quyen == "NVIEN")
+            {
+                matkhau_baocaohoadon mk = new matkhau_baocaohoadon(conn, this);
+                mk.StartPosition = FormStartPosition.CenterScreen;
+                mk.Show();
+            }
+            else
+            {
+                show_baocaohoadon();
+            }
         }
 
         private void barButtonItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             hienthi.TabPages.Clear();
-            BAOCAOTONGHOP frm = new BAOCAOTONGHOP();
+            BAOCAOTONGHOP frm = new BAOCAOTONGHOP(conn);
             AddTabControl(frm, "Báo cáo tổng hợp");
+        }
+
+        private void navBar_danhsachphong_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            hienthi.TabPages.Clear();
+            frm_danhsachphong frm = new frm_danhsachphong(conn);
+
+            AddTabControl(frm, "Danh sách phòng");
         }
     }
 }

@@ -14,13 +14,19 @@ namespace Da.controller
 {
     public partial class frm_phieuchuyen : DevExpress.XtraEditors.XtraUserControl
     {
-        connect conn = new connect();
+        public connect conn;
         SqlDataAdapter da;
         DataColumn[] key = new DataColumn[1];
         DataSet ds;
         public frm_phieuchuyen()
         {
             InitializeComponent();
+        }
+
+        public frm_phieuchuyen(connect _conn)
+        {
+            InitializeComponent();
+            conn = _conn;
         }
 
         public void loadcbxMaKH()

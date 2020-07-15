@@ -61,7 +61,7 @@
             // thanhToánToolStripMenuItem
             // 
             this.thanhToánToolStripMenuItem.Name = "thanhToánToolStripMenuItem";
-            this.thanhToánToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.thanhToánToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.thanhToánToolStripMenuItem.Text = "Thanh toán";
             this.thanhToánToolStripMenuItem.Click += new System.EventHandler(this.thanhToánToolStripMenuItem_Click);
             // 
@@ -98,6 +98,7 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frm_phongsudung";
             this.Size = new System.Drawing.Size(259, 224);
+            this.Load += new System.EventHandler(this.frm_phongsudung_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);

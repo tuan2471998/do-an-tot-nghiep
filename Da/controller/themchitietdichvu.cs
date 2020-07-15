@@ -14,7 +14,7 @@ namespace Da
 {
     public partial class themchitietdichvu : Form
     {
-        connect conn = new connect();
+        public connect conn;
         DataSet ds_hd_dv = new DataSet();
         SqlDataAdapter da_hd_dv;
         DataSet ds_cthd = new DataSet();
@@ -25,10 +25,11 @@ namespace Da
         DataColumn[] key1 = new DataColumn[2];
         private Phieudichvu _phieudichvu;
 
-        public themchitietdichvu(Phieudichvu phieudichvu)
+        public themchitietdichvu(Phieudichvu phieudichvu, connect _conn)
         {
             InitializeComponent();
             _phieudichvu = phieudichvu;
+            conn = _conn;
         }
         private void Themchitietdichvu_Load(object sender, EventArgs e)
         {
@@ -180,7 +181,9 @@ namespace Da
             {
                 conn.cnn.Open();
             }
+
             thanhtien = 0;
+
             foreach (DataGridViewRow row in dgv_cthddv.Rows)
             {
                 thanhtien += double.Parse(row.Cells[4].Value.ToString());

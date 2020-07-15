@@ -60,7 +60,7 @@
             this.hủyĐặtToolStripMenuItem,
             this.thuêPhòngToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 80);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(178, 52);
             // 
             // hủyĐặtToolStripMenuItem
             // 
@@ -68,7 +68,7 @@
             this.hủyĐặtToànBộToolStripMenuItem,
             this.hủyĐặtPhòngĐangChọnToolStripMenuItem});
             this.hủyĐặtToolStripMenuItem.Name = "hủyĐặtToolStripMenuItem";
-            this.hủyĐặtToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.hủyĐặtToolStripMenuItem.Size = new System.Drawing.Size(177, 24);
             this.hủyĐặtToolStripMenuItem.Text = "Hủy đặt phòng";
             // 
             // hủyĐặtToànBộToolStripMenuItem
@@ -88,7 +88,7 @@
             // thuêPhòngToolStripMenuItem
             // 
             this.thuêPhòngToolStripMenuItem.Name = "thuêPhòngToolStripMenuItem";
-            this.thuêPhòngToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.thuêPhòngToolStripMenuItem.Size = new System.Drawing.Size(177, 24);
             this.thuêPhòngToolStripMenuItem.Text = "Thuê phòng";
             this.thuêPhòngToolStripMenuItem.Click += new System.EventHandler(this.thuêPhòngToolStripMenuItem_Click);
             // 
@@ -125,6 +125,7 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frm_phongdattruoc";
             this.Size = new System.Drawing.Size(266, 224);
+            this.Load += new System.EventHandler(this.frm_phongdattruoc_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);

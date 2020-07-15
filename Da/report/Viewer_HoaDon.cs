@@ -15,11 +15,6 @@ namespace Da.report
 {
     public partial class Viewer_HoaDon : Form
     {
-        public Viewer_HoaDon()
-        {
-            InitializeComponent();
-        }
-
         private ThanhToanHoaDon tthd;
         private ThanhToanThe ttt;
 
@@ -27,19 +22,22 @@ namespace Da.report
         SqlDataAdapter da;
         DataSet ds;
 
-        public Viewer_HoaDon(ThanhToanHoaDon _thanhtoan)
+        public connect conn;
+
+        public Viewer_HoaDon(ThanhToanHoaDon _thanhtoan, connect _conn)
         {
             InitializeComponent();
             tthd = _thanhtoan;
+            conn = _conn;
         }
 
-        public Viewer_HoaDon(ThanhToanThe _thanhtoan)
+        public Viewer_HoaDon(ThanhToanThe _thanhtoan, connect _conn)
         {
             InitializeComponent();
             ttt = _thanhtoan;
+            conn = _conn;
         }
 
-        connect conn = new connect();
         public void get_matp(string _matp)
         {
             matp = _matp;

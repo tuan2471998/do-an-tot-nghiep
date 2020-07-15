@@ -87,18 +87,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BAOCAOTHONGKE.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BAOCAOTHONGKE.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="connect.cs" />
     <Compile Include="controller\BAOCAOTONGHOP.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="controller\BAOCAOTONGHOP.Designer.cs">
       <DependentUpon>BAOCAOTONGHOP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="controller\chitiet_hoadon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="controller\chitiet_hoadon.Designer.cs">
+      <DependentUpon>chitiet_hoadon.cs</DependentUpon>
     </Compile>
     <Compile Include="controller\chitiet_hoadon_dichvu.cs">
       <SubType>Form</SubType>
@@ -226,6 +226,18 @@
     <Compile Include="controller\frm_thuephongtrong.Designer.cs">
       <DependentUpon>frm_thuephongtrong.cs</DependentUpon>
     </Compile>
+    <Compile Include="controller\matkhau_baocaohoadon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="controller\matkhau_baocaohoadon.Designer.cs">
+      <DependentUpon>matkhau_baocaohoadon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="controller\matkhau_nhaphang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="controller\matkhau_nhaphang.Designer.cs">
+      <DependentUpon>matkhau_nhaphang.cs</DependentUpon>
+    </Compile>
     <Compile Include="controller\qlthietbi.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -262,25 +274,17 @@
     <Compile Include="controller\them_nhanvien.Designer.cs">
       <DependentUpon>them_nhanvien.cs</DependentUpon>
     </Compile>
+    <Compile Include="controller\them_nhaphang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="controller\them_nhaphang.Designer.cs">
+      <DependentUpon>them_nhaphang.cs</DependentUpon>
+    </Compile>
     <Compile Include="controller\them_phong.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="controller\them_phong.Designer.cs">
       <DependentUpon>them_phong.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frm_thongke.cs">
-      <SubType>UserControl</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="frm_thongke.Designer.cs">
-      <DependentUpon>frm_thongke.cs</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="HoaDonTong.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HoaDonTong.Designer.cs">
-      <DependentUpon>HoaDonTong.cs</DependentUpon>
     </Compile>
     <Compile Include="controller\Phanquyen.cs">
       <SubType>UserControl</SubType>
@@ -318,36 +322,6 @@
     <Compile Include="controller\frm_tt.Designer.cs">
       <DependentUpon>frm_tt.cs</DependentUpon>
     </Compile>
-    <Compile Include="HDTONG.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HDTONG.Designer.cs">
-      <DependentUpon>HDTONG.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HOADONDICHVU.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HOADONDICHVU.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HOADONPHONG.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HOADONPHONG.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Hoadon_dichvu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Hoadon_dichvu.Designer.cs">
-      <DependentUpon>Hoadon_dichvu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Hoadon_phong.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Hoadon_phong.Designer.cs">
-      <DependentUpon>Hoadon_phong.cs</DependentUpon>
-    </Compile>
     <Compile Include="controller\Menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -356,11 +330,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QL_KHACHSANDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QL_KHACHSANDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="controller\ThanhToanHoaDon.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -397,12 +366,11 @@
     <Compile Include="report\Viewer_HoaDon.Designer.cs">
       <DependentUpon>Viewer_HoaDon.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="BAOCAOTHONGKE.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>BAOCAOTHONGKE.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="controller\BAOCAOTONGHOP.resx">
       <DependentUpon>BAOCAOTONGHOP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controller\chitiet_hoadon.resx">
+      <DependentUpon>chitiet_hoadon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="controller\chitiet_hoadon_dichvu.resx">
       <DependentUpon>chitiet_hoadon_dichvu.cs</DependentUpon>
@@ -467,6 +435,12 @@
     <EmbeddedResource Include="controller\frm_thuephongtrong.resx">
       <DependentUpon>frm_thuephongtrong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="controller\matkhau_baocaohoadon.resx">
+      <DependentUpon>matkhau_baocaohoadon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controller\matkhau_nhaphang.resx">
+      <DependentUpon>matkhau_nhaphang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="controller\qlthietbi.resx">
       <DependentUpon>qlthietbi.cs</DependentUpon>
     </EmbeddedResource>
@@ -485,15 +459,11 @@
     <EmbeddedResource Include="controller\them_nhanvien.resx">
       <DependentUpon>them_nhanvien.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="controller\them_nhaphang.resx">
+      <DependentUpon>them_nhaphang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="controller\them_phong.resx">
       <DependentUpon>them_phong.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frm_thongke.resx">
-      <DependentUpon>frm_thongke.cs</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HoaDonTong.resx">
-      <DependentUpon>HoaDonTong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="controller\Phanquyen.resx">
       <DependentUpon>Phanquyen.cs</DependentUpon>
@@ -512,23 +482,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="controller\frm_tt.resx">
       <DependentUpon>frm_tt.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HDTONG.resx">
-      <DependentUpon>HDTONG.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HOADONDICHVU.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>HOADONDICHVU.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HOADONPHONG.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>HOADONPHONG.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Hoadon_dichvu.resx">
-      <DependentUpon>Hoadon_dichvu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Hoadon_phong.resx">
-      <DependentUpon>Hoadon_phong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="controller\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
@@ -607,17 +560,6 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="QL_KHACHSANDataSet.xsc">
-      <DependentUpon>QL_KHACHSANDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="QL_KHACHSANDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>QL_KHACHSANDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="QL_KHACHSANDataSet.xss">
-      <DependentUpon>QL_KHACHSANDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Resources\Blank-avatar.png" />
   </ItemGroup>
   <ItemGroup>
@@ -682,6 +624,35 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon-cai-dat-54.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

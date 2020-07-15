@@ -16,14 +16,16 @@ namespace Da.controller
 {
     public partial class frm_danhsachphong : UserControl
     {
-        public frm_danhsachphong()
+        public connect conn;
+
+        public frm_danhsachphong(connect _conn)
         {
             InitializeComponent();
+            conn = _conn;
         }
 
         DataSet ds;
         SqlDataAdapter da;
-        connect conn = new connect();
 
         public void Load_control_all()
         {
@@ -50,7 +52,8 @@ namespace Da.controller
                     conn.cnn.Open();
                 if (int.Parse(row["TINHTRANG"].ToString()) == 0)
                 {
-                    frm_phongtrong phongtrong = new frm_phongtrong(row["MAPH"].ToString(), this);
+                    frm_phongtrong phongtrong = new frm_phongtrong(this, conn);
+                    phongtrong.get_sophong(row["MAPH"].ToString());
                     phongtrong.Location = new Point(x, y);
                     panelphong.Controls.Add(phongtrong);
                     x += 280;
@@ -68,7 +71,8 @@ namespace Da.controller
                 }
                 if (int.Parse(row["TINHTRANG"].ToString()) == 1)
                 {
-                    frm_phongsudung sudung = new frm_phongsudung(row["MAPH"].ToString(), this);
+                    frm_phongsudung sudung = new frm_phongsudung(this, conn);
+                    sudung.get_sophong(row["MAPH"].ToString());
                     sudung.Location = new Point(x, y);
                     panelphong.Controls.Add(sudung);
                     x += 280;
@@ -86,7 +90,8 @@ namespace Da.controller
                 }
                 if (int.Parse(row["TINHTRANG"].ToString()) == 2)
                 {
-                    frm_phongdattruoc dattruoc = new frm_phongdattruoc(row["MAPH"].ToString(), this);
+                    frm_phongdattruoc dattruoc = new frm_phongdattruoc(this, conn);
+                    dattruoc.get_sophong(row["MAPH"].ToString());
                     dattruoc.Location = new Point(x, y);
                     panelphong.Controls.Add(dattruoc);
                     x += 280;
@@ -104,7 +109,8 @@ namespace Da.controller
                 }
                 if (int.Parse(row["TINHTRANG"].ToString()) == 3)
                 {
-                    frm_phongdondep dondep = new frm_phongdondep(row["MAPH"].ToString(), this);
+                    frm_phongdondep dondep = new frm_phongdondep(this, conn);
+                    dondep.get_sophong(row["MAPH"].ToString());
                     dondep.Location = new Point(x, y);
                     panelphong.Controls.Add(dondep);
                     x += 280;
@@ -122,7 +128,8 @@ namespace Da.controller
                 }
                 if (int.Parse(row["TINHTRANG"].ToString()) == 4)
                 {
-                    frm_phongsuachua suachua = new frm_phongsuachua(row["MAPH"].ToString(),this);
+                    frm_phongsuachua suachua = new frm_phongsuachua(this, conn);
+                    suachua.get_sophong(row["MAPH"].ToString());
                     suachua.Location = new Point(x, y);
                     panelphong.Controls.Add(suachua);
                     x += 280;

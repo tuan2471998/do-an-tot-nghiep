@@ -22,13 +22,14 @@ namespace Da
             InitializeComponent();
         }
 
-        public frm_tt(frm_danhsachphong _frm_danhsachphong)
+        public frm_tt(frm_danhsachphong _frm_danhsachphong, connect _conn)
         {
             InitializeComponent();
             dsphong = _frm_danhsachphong;
+            conn = _conn;
         }
 
-        connect conn = new connect();
+        public connect conn;
         DataSet ds;
         SqlDataAdapter da;
         private frm_danhsachphong dsphong;
@@ -131,9 +132,10 @@ namespace Da
             conn.cnn.Close();
         }
 
+        DataTable menu;
         public void get_thongtin_menu(DataTable _menu)
         {
-            DataTable menu = new DataTable();
+            menu = new DataTable();
             menu.Columns.Add("tentd");
             menu.Columns.Add("soluong");
             menu.Columns.Add("dongia");
@@ -225,7 +227,7 @@ namespace Da
 
         private void btn_menu_Click(object sender, EventArgs e)
         {
-            Menu menu = new Menu(this);
+            Menu menu = new Menu(this, conn);
             menu.StartPosition = FormStartPosition.CenterScreen;
             menu.ShowDialog();
         }
@@ -290,21 +292,23 @@ namespace Da
 
                 if (cbb_hinhthuc.SelectedIndex == 1)
                 {
-                    ThanhToanHoaDon thanhtoan = new ThanhToanHoaDon(this);
+                    ThanhToanHoaDon thanhtoan = new ThanhToanHoaDon(this, conn);
                     thanhtoan.get_tongtien(tongtien);
-                    thanhtoan.get_thongtin_thanhtoan(tentt, tienthuephong, tiendichvu, txt_mathuephong.Text, tongtien, tienphuthu, txt_ghichu.Text);
+                    thanhtoan.get_thongtin_thanhtoan(tentt, tienthuephong, tiendichvu, txt_mathuephong.Text, tongtien, tienphuthu, tienmenu, txt_ghichu.Text);
                     thanhtoan.get_maphieuthue(txt_mathuephong.Text);
                     thanhtoan.get_thanhtoan(cbb_hinhthuc.Text);
+                    thanhtoan.get_thongtin_menu(menu);
                     thanhtoan.StartPosition = FormStartPosition.CenterScreen;
                     thanhtoan.ShowDialog();
                 }
                 else if (cbb_hinhthuc.SelectedIndex == 2)
                 {
-                    ThanhToanThe the = new ThanhToanThe(this);
+                    ThanhToanThe the = new ThanhToanThe(this, conn);
                     the.nguon("frm_thanhtoan");
                     the.get_matp_from_frmThanhtoan(txt_mathuephong.Text);
                     the.get_tien(tienthuephong, tiendichvu, tienphuthu, txt_ghichu.Text);
                     the.get_thongtin_thanhtoan(tongtien);
+                    the.get_thongtin_menu(menu);
                     the.get_thanhtoan(cbb_hinhthuc.Text);
                     the.StartPosition = FormStartPosition.CenterScreen;
                     the.ShowDialog();

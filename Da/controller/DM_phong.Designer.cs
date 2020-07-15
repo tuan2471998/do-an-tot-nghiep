@@ -50,9 +50,7 @@
             this.txt_vitri = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.qL_KHACHSANDataSet = new Da.QL_KHACHSANDataSet();
             this.pHONGBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pHONGTableAdapter = new Da.QL_KHACHSANDataSetTableAdapters.PHONGTableAdapter();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnLammoiloaiphong = new DevExpress.XtraEditors.SimpleButton();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -82,7 +80,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txt_giatheotang.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_maph.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_vitri.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.qL_KHACHSANDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pHONGBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_ghichu.Properties)).BeginInit();
@@ -351,20 +348,12 @@
             this.labelControl6.Size = new System.Drawing.Size(118, 26);
             this.labelControl6.TabIndex = 6;
             this.labelControl6.Text = "Tình trạng:";
-            // 
-            // qL_KHACHSANDataSet
-            // 
-            this.qL_KHACHSANDataSet.DataSetName = "QL_KHACHSANDataSet";
-            this.qL_KHACHSANDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+
             // 
             // pHONGBindingSource
             // 
             this.pHONGBindingSource.DataMember = "PHONG";
-            this.pHONGBindingSource.DataSource = this.qL_KHACHSANDataSet;
-            // 
-            // pHONGTableAdapter
-            // 
-            this.pHONGTableAdapter.ClearBeforeFill = true;
+
             // 
             // groupBox1
             // 
@@ -711,7 +700,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txt_giatheotang.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_maph.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_vitri.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.qL_KHACHSANDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pHONGBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -734,8 +722,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private System.Windows.Forms.BindingSource pHONGBindingSource;
-        private QL_KHACHSANDataSet qL_KHACHSANDataSet;
-        private QL_KHACHSANDataSetTableAdapters.PHONGTableAdapter pHONGTableAdapter;
         private DevExpress.XtraEditors.SimpleButton btn_Xoaphong;
         private DevExpress.XtraEditors.SimpleButton btn_Themphong;
         private System.Windows.Forms.GroupBox groupBox1;

@@ -14,19 +14,22 @@ namespace Da.controller
 {
     public partial class frm_phongsudung : UserControl
     {
-        public frm_phongsudung()
-        {
-            InitializeComponent();
-        }
-        connect conn = new connect();
+        public connect conn;
 
         private frm_danhsachphong dsphong;
 
-        public frm_phongsudung(string sophong, frm_danhsachphong _frm_danhsachphong)
+        public frm_phongsudung(frm_danhsachphong _frm_danhsachphong, connect _conn)
         {
             InitializeComponent();
-            lb_sophong.Text = sophong;
             dsphong = _frm_danhsachphong;
+            conn = _conn;
+        }
+
+        string sophong;
+
+        public void get_sophong(string _sophong)
+        {
+            sophong = _sophong;
         }
 
         DataSet ds;
@@ -106,7 +109,7 @@ namespace Da.controller
             get_thongtin();
             get_dichvu();
             get_tratruoc();
-            Program.frm_tt = new frm_tt(dsphong);
+            Program.frm_tt = new frm_tt(dsphong, conn);
             Program.frm_tt.get_thongtinphong(mathuephong, tenkh, sdt, ngayvao.ToString("dd/MM/yyyy - hh:mm:ss tt"), thoigian);
             Program.frm_tt.get_tiendichvu(tiendichvu.ToString());
             Program.frm_tt.get_tientratruoc(tientratruoc);
@@ -126,7 +129,13 @@ namespace Da.controller
             sql += "and tinhtrang = 1";
             SqlCommand cmd = new SqlCommand(sql, conn.cnn);
             lb_maphieudat.Text = ((string)cmd.ExecuteScalar()).Trim();
+
             conn.cnn.Close();
+        }
+
+        private void frm_phongsudung_Load(object sender, EventArgs e)
+        {
+            lb_sophong.Text = sophong;
         }
     }
 }

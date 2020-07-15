@@ -13,19 +13,20 @@ namespace Da.controller
 {
     public partial class frm_phongsuachua : UserControl
     {
-        public frm_phongsuachua()
-        {
-            InitializeComponent();
-        }
         private frm_danhsachphong _frm_danhsachphong;
-        connect conn = new connect();
-        public frm_phongsuachua(string sophong, frm_danhsachphong danhsachphong)
+        public connect conn;
+        string sophong;
+        public frm_phongsuachua(frm_danhsachphong danhsachphong, connect _conn)
         {
             InitializeComponent();
-            lb_sophong.Text = sophong;
             _frm_danhsachphong = danhsachphong;
+            conn = _conn;
         }
 
+        public void get_sophong(string _sophong)
+        {
+            sophong = _sophong;
+        }
         private void hoànThànhToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (conn.cnn.State == ConnectionState.Closed)
@@ -41,6 +42,11 @@ namespace Da.controller
             }
             _frm_danhsachphong.Load_control_all();
             conn.cnn.Close();
+        }
+
+        private void frm_phongsuachua_Load(object sender, EventArgs e)
+        {
+            lb_sophong.Text = sophong;
         }
     }
 }

@@ -331,6 +331,7 @@ namespace Da
             // 
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem1);
             this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 741);
+            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
             this.ribbonStatusBar1.Size = new System.Drawing.Size(1278, 33);
@@ -382,6 +383,7 @@ namespace Da
             this.barButtonItem5,
             this.barButtonItem6});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ribbonControl1.MaxItemId = 46;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -462,7 +464,6 @@ namespace Da
             this.barButtonItem_hoadon.Name = "barButtonItem_hoadon";
             this.barButtonItem_hoadon.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
             | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
-            this.barButtonItem_hoadon.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_hoadon_ItemClick_1);
             // 
             // barButtonItem_qlphong
             // 
@@ -511,9 +512,10 @@ namespace Da
             // 
             this.popupControlContainer1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.popupControlContainer1.Location = new System.Drawing.Point(0, 0);
+            this.popupControlContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.popupControlContainer1.Name = "popupControlContainer1";
             this.popupControlContainer1.Ribbon = this.ribbonControl1;
-            this.popupControlContainer1.Size = new System.Drawing.Size(250, 130);
+            this.popupControlContainer1.Size = new System.Drawing.Size(312, 162);
             this.popupControlContainer1.TabIndex = 15;
             this.popupControlContainer1.Visible = false;
             // 
@@ -829,6 +831,7 @@ namespace Da
             this.hienthi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.hienthi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hienthi.Location = new System.Drawing.Point(192, 183);
+            this.hienthi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.hienthi.Name = "hienthi";
             this.hienthi.Size = new System.Drawing.Size(1086, 558);
             this.hienthi.TabIndex = 11;

@@ -13,11 +13,12 @@ namespace Da.controller
 {
     public partial class doimatkhau2 : Form
     {
-        public doimatkhau2()
+        public doimatkhau2(connect _conn)
         {
             InitializeComponent();
+            conn = _conn;
         }
-        connect conn = new connect();
+        public connect conn;
         DataSet ds = new DataSet();
         SqlDataAdapter da;
 

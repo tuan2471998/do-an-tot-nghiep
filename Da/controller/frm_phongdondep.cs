@@ -15,21 +15,20 @@ namespace Da.controller
 {
     public partial class frm_phongdondep : UserControl
     {
-        connect conn = new connect();
-        private frm_danhsachphong _frm_danhsachphong;
-        private frm_phongtrong phongtrong;
+        public connect conn;
+        private frm_danhsachphong frm_danhsachphong;
 
-        public frm_phongdondep(string sophong, frm_danhsachphong danhsachphong)
+        public frm_phongdondep(frm_danhsachphong _danhsachphong, connect _conn)
         {
             InitializeComponent();
-            lb_sophong.Text = sophong;
-            _frm_danhsachphong = danhsachphong;
+            frm_danhsachphong = _danhsachphong;
+            conn = _conn;
         }
 
-        public frm_phongdondep(frm_phongtrong _phongtrong)
+        string sophong;
+        public void get_sophong(string _sophong)
         {
-            InitializeComponent();
-            phongtrong = _phongtrong;
+            sophong = _sophong;
         }
 
         private void hoànThànhToolStripMenuItem_Click(object sender, EventArgs e)
@@ -45,7 +44,7 @@ namespace Da.controller
             {
                 MessageBox.Show("Cập nhật thành công");
             }
-            _frm_danhsachphong.Load_control_all();
+            frm_danhsachphong.Load_control_all();
 
             conn.cnn.Close();
         }
@@ -84,7 +83,7 @@ namespace Da.controller
 
         private void frm_phongdondep_Load(object sender, EventArgs e)
         {
-
+            lb_sophong.Text = sophong;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -99,7 +98,7 @@ namespace Da.controller
                 string sql = "update PHONG set TINHTRANG = 0, TIME_DONDEP_KT = null where MAPH = '" + lb_sophong.Text + "'";
                 SqlCommand cmd = new SqlCommand(sql, conn.cnn);
                 int kq = cmd.ExecuteNonQuery();
-                _frm_danhsachphong.Load_control_all();
+                frm_danhsachphong.Load_control_all();
                 conn.cnn.Close();
             }
             else

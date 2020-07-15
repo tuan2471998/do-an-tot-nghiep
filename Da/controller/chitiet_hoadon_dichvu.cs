@@ -13,12 +13,13 @@ namespace Da.controller
 {
     public partial class chitiet_hoadon_dichvu : Form
     {
-        public chitiet_hoadon_dichvu()
+        public chitiet_hoadon_dichvu(connect _conn)
         {
             InitializeComponent();
+            conn = _conn;
         }
 
-        connect conn = new connect();
+        public connect conn;
         DataSet ds_cthd = new DataSet();
         SqlDataAdapter da_cthd;
         DataColumn[] key = new DataColumn[2];

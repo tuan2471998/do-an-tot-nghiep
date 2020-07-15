@@ -13,19 +13,20 @@ namespace Da.controller
 {
     public partial class frm_phongtrong : UserControl
     {
-        connect conn = new connect();
+        public connect conn;
         private frm_danhsachphong _frm_danhsachphong;
+        string sophong;
 
-        public frm_phongtrong()
+        public frm_phongtrong(frm_danhsachphong danhsachphong, connect _conn)
         {
             InitializeComponent();
+            _frm_danhsachphong = danhsachphong;
+            conn = _conn;
         }
 
-        public frm_phongtrong(string sophong, frm_danhsachphong danhsachphong)
+        public void get_sophong(string _sophong)
         {
-            InitializeComponent();
-            lb_sophong.Text = sophong;
-            _frm_danhsachphong = danhsachphong;
+            sophong = _sophong;
         }
 
         private void dọnDẹpToolStripMenuItem_Click(object sender, EventArgs e)
@@ -64,12 +65,17 @@ namespace Da.controller
 
         private void thuêPhòngToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frm_thuephongtrong thuephong = new frm_thuephongtrong(_frm_danhsachphong);
+            frm_thuephongtrong thuephong = new frm_thuephongtrong(_frm_danhsachphong, conn);
             thuephong.get_maphong(lb_sophong.Text);
             thuephong.get_giaphong(lb_sophong.Text);
             thuephong.get_maphieuthue();
             thuephong.StartPosition = FormStartPosition.CenterScreen;
             thuephong.ShowDialog();
+        }
+
+        private void frm_phongtrong_Load(object sender, EventArgs e)
+        {
+            lb_sophong.Text = sophong;
         }
     }
 }

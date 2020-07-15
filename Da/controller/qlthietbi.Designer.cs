@@ -30,13 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(qlthietbi));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_huy = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_luu = new DevExpress.XtraEditors.SimpleButton();
             this.cbb_loai = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.dgv_danhsachloaiphong = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tivi = new System.Windows.Forms.CheckBox();
             this.khan = new System.Windows.Forms.CheckBox();
             this.chan = new System.Windows.Forms.CheckBox();
@@ -76,8 +75,10 @@
             this.numeric_quattran = new System.Windows.Forms.NumericUpDown();
             this.numeric_maylanh = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btn_huy = new DevExpress.XtraEditors.SimpleButton();
-            this.btn_luu = new DevExpress.XtraEditors.SimpleButton();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_danhsachloaiphong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_giuongdoi)).BeginInit();
@@ -118,6 +119,38 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin chức năng";
             // 
+            // btn_huy
+            // 
+            this.btn_huy.Appearance.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_huy.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btn_huy.Appearance.Options.UseFont = true;
+            this.btn_huy.Appearance.Options.UseForeColor = true;
+            this.btn_huy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_huy.ImageOptions.Image")));
+            this.btn_huy.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btn_huy.Location = new System.Drawing.Point(703, 23);
+            this.btn_huy.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_huy.Name = "btn_huy";
+            this.btn_huy.Size = new System.Drawing.Size(144, 60);
+            this.btn_huy.TabIndex = 17;
+            this.btn_huy.Text = "Hủy";
+            this.btn_huy.Click += new System.EventHandler(this.btn_huy_Click);
+            // 
+            // btn_luu
+            // 
+            this.btn_luu.Appearance.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_luu.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btn_luu.Appearance.Options.UseFont = true;
+            this.btn_luu.Appearance.Options.UseForeColor = true;
+            this.btn_luu.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_luu.ImageOptions.Image")));
+            this.btn_luu.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btn_luu.Location = new System.Drawing.Point(551, 23);
+            this.btn_luu.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_luu.Name = "btn_luu";
+            this.btn_luu.Size = new System.Drawing.Size(144, 60);
+            this.btn_luu.TabIndex = 15;
+            this.btn_luu.Text = "Lưu";
+            this.btn_luu.Click += new System.EventHandler(this.btn_luu_Click);
+            // 
             // cbb_loai
             // 
             this.cbb_loai.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -150,7 +183,8 @@
             this.dgv_danhsachloaiphong.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
-            this.Column3});
+            this.Column3,
+            this.Column4});
             this.dgv_danhsachloaiphong.Location = new System.Drawing.Point(0, 105);
             this.dgv_danhsachloaiphong.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_danhsachloaiphong.Name = "dgv_danhsachloaiphong";
@@ -160,30 +194,6 @@
             this.dgv_danhsachloaiphong.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_danhsachloaiphong.Size = new System.Drawing.Size(859, 632);
             this.dgv_danhsachloaiphong.TabIndex = 1;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.DataPropertyName = "MALOAI";
-            this.Column1.HeaderText = "Loại phòng";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.DataPropertyName = "TENTB";
-            this.Column2.HeaderText = "Thiết bị";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.DataPropertyName = "SOLUONGTB";
-            this.Column3.HeaderText = "Số lượng";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
             // 
             // tivi
             // 
@@ -710,37 +720,38 @@
             this.groupBox2.Text = "Danh sách thiết bị";
             this.groupBox2.AutoSizeChanged += new System.EventHandler(this.numeric_giuongdoi_ValueChanged);
             // 
-            // btn_huy
+            // Column1
             // 
-            this.btn_huy.Appearance.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_huy.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.btn_huy.Appearance.Options.UseFont = true;
-            this.btn_huy.Appearance.Options.UseForeColor = true;
-            this.btn_huy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_huy.ImageOptions.Image")));
-            this.btn_huy.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btn_huy.Location = new System.Drawing.Point(703, 23);
-            this.btn_huy.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_huy.Name = "btn_huy";
-            this.btn_huy.Size = new System.Drawing.Size(144, 60);
-            this.btn_huy.TabIndex = 17;
-            this.btn_huy.Text = "Hủy";
-            this.btn_huy.Click += new System.EventHandler(this.btn_huy_Click);
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column1.DataPropertyName = "MALOAI";
+            this.Column1.HeaderText = "Loại phòng";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
             // 
-            // btn_luu
+            // Column2
             // 
-            this.btn_luu.Appearance.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_luu.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.btn_luu.Appearance.Options.UseFont = true;
-            this.btn_luu.Appearance.Options.UseForeColor = true;
-            this.btn_luu.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_luu.ImageOptions.Image")));
-            this.btn_luu.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btn_luu.Location = new System.Drawing.Point(551, 23);
-            this.btn_luu.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_luu.Name = "btn_luu";
-            this.btn_luu.Size = new System.Drawing.Size(144, 60);
-            this.btn_luu.TabIndex = 15;
-            this.btn_luu.Text = "Lưu";
-            this.btn_luu.Click += new System.EventHandler(this.btn_luu_Click);
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.DataPropertyName = "TENTB";
+            this.Column2.HeaderText = "Thiết bị";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column3.DataPropertyName = "SOLUONGTB";
+            this.Column3.HeaderText = "Số lượng";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "MATB";
+            this.Column4.HeaderText = "MATB";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.Visible = false;
+            this.Column4.Width = 125;
             // 
             // qlthietbi
             // 
@@ -794,9 +805,6 @@
         private System.Windows.Forms.DataGridView dgv_danhsachloaiphong;
         private DevExpress.XtraEditors.SimpleButton btn_luu;
         private DevExpress.XtraEditors.SimpleButton btn_huy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.CheckBox tivi;
         private System.Windows.Forms.CheckBox khan;
         private System.Windows.Forms.CheckBox chan;
@@ -836,5 +844,9 @@
         private System.Windows.Forms.NumericUpDown numeric_quattran;
         private System.Windows.Forms.NumericUpDown numeric_maylanh;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
     }
 }

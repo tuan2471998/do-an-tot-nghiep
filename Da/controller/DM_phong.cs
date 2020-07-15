@@ -13,16 +13,18 @@ namespace Da.controller
 {
     public partial class DM_phong : DevExpress.XtraEditors.XtraUserControl
     {
-        connect conn = new connect();
+        public connect conn;
 
         DataSet ds_loaiph = new DataSet();
         SqlDataAdapter da_loaiph;
         DataSet ds_ph = new DataSet();
         SqlDataAdapter da_ph;
         DataColumn[] key = new DataColumn[1];
-        public DM_phong()
+
+        public DM_phong(connect _conn)
         {
             InitializeComponent();
+            conn = _conn;
         }
 
         public void Load_LoaiPH()
@@ -119,14 +121,14 @@ namespace Da.controller
 
         private void btn_Themloaiphong_Click(object sender, EventArgs e)
         {
-            them_loaiphong themloaiphong = new them_loaiphong(this);
+            them_loaiphong themloaiphong = new them_loaiphong(this, conn);
             themloaiphong.StartPosition = FormStartPosition.CenterScreen;
             themloaiphong.Show();
         }
 
         private void btn_Themphong_Click(object sender, EventArgs e)
         {
-            them_phong themphong = new them_phong(this);
+            them_phong themphong = new them_phong(this, conn);
             themphong.StartPosition = FormStartPosition.CenterScreen;
             themphong.Show();
         }

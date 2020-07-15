@@ -19,13 +19,20 @@ namespace Da.controller
         SqlDataAdapter da;
         DataSet ds_ph;
         SqlDataAdapter da_ph;
-        connect conn = new connect();
+        public connect conn;
         DataColumn[] key = new DataColumn[1];
         public frm_phieuthue()
         {
 
             InitializeComponent();
             dataGridView2.Controls.Clear();
+        }
+        public frm_phieuthue(connect _conn)
+        {
+
+            InitializeComponent();
+            dataGridView2.Controls.Clear();
+            conn = _conn;
         }
 
         private void load_cbb_loai()
@@ -425,6 +432,7 @@ namespace Da.controller
             newRow[5] = dtp_ngaytra.Value;
             newRow[6] = int.Parse(textBoxsl.Text);
             newRow[7] = 1;
+            newRow[8] = 0;
             //dt.Rows.Add(newRow);
 
             ds.Tables["PhieuThem1"].Rows.Add(newRow);

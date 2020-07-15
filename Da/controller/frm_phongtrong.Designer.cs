@@ -68,26 +68,26 @@
             this.dọnDẹpToolStripMenuItem,
             this.sửaChữaToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 104);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(158, 76);
             // 
             // thuêPhòngToolStripMenuItem
             // 
             this.thuêPhòngToolStripMenuItem.Name = "thuêPhòngToolStripMenuItem";
-            this.thuêPhòngToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.thuêPhòngToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
             this.thuêPhòngToolStripMenuItem.Text = "Thuê phòng";
             this.thuêPhòngToolStripMenuItem.Click += new System.EventHandler(this.thuêPhòngToolStripMenuItem_Click);
             // 
             // dọnDẹpToolStripMenuItem
             // 
             this.dọnDẹpToolStripMenuItem.Name = "dọnDẹpToolStripMenuItem";
-            this.dọnDẹpToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.dọnDẹpToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
             this.dọnDẹpToolStripMenuItem.Text = "Dọn dẹp";
             this.dọnDẹpToolStripMenuItem.Click += new System.EventHandler(this.dọnDẹpToolStripMenuItem_Click);
             // 
             // sửaChữaToolStripMenuItem
             // 
             this.sửaChữaToolStripMenuItem.Name = "sửaChữaToolStripMenuItem";
-            this.sửaChữaToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.sửaChữaToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
             this.sửaChữaToolStripMenuItem.Text = "Sửa chữa";
             this.sửaChữaToolStripMenuItem.Click += new System.EventHandler(this.sửaChữaToolStripMenuItem_Click);
             // 
@@ -104,6 +104,7 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frm_phongtrong";
             this.Size = new System.Drawing.Size(259, 224);
+            this.Load += new System.EventHandler(this.frm_phongtrong_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);

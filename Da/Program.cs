@@ -22,7 +22,7 @@ namespace Da
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(frm_dangnhap= new frm_dangnhap());
+            Application.Run(frm_dangnhap = new frm_dangnhap());
         }
     }
 }

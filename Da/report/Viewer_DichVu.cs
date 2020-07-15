@@ -18,21 +18,18 @@ namespace Da.report
         private ThanhToanThe ttt;
         string matp;
 
-        public Viewer_DichVu()
-        {
-            InitializeComponent();
-        }
-
-        public Viewer_DichVu(ThanhToanHoaDon _tthd)
+        public Viewer_DichVu(ThanhToanHoaDon _tthd, connect _conn)
         {
             InitializeComponent();
             tthd = _tthd;
+            conn = _conn;
         }
 
-        public Viewer_DichVu(ThanhToanThe _ttt)
+        public Viewer_DichVu(ThanhToanThe _ttt, connect _conn)
         {
             InitializeComponent();
             ttt = _ttt;
+            conn = _conn;
         }
 
         public void get_matp(string _matp)
@@ -41,7 +38,7 @@ namespace Da.report
         }
 
 
-        connect conn = new connect();
+        public connect conn;
         DataSet ds_dv;
         SqlDataAdapter da_dv;
 

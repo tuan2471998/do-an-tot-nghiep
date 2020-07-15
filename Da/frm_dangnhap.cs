@@ -14,7 +14,7 @@ namespace Da
 {
     public partial class frm_dangnhap : DevExpress.XtraEditors.XtraForm
     {
-        connect conn = new connect();
+        public connect conn = new connect();
         public frm_dangnhap()
         {
             InitializeComponent();
@@ -40,7 +40,8 @@ namespace Da
                 e.Cancel = true;
             }
         }
-
+        DataSet ds;
+        SqlDataAdapter da;
         private void dangnhap()
         {
             //lưu nhân viên đang xài chương trình !!!cấm xóa  
@@ -50,30 +51,24 @@ namespace Da
 
             try
             {
-                connect conn = new connect();
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
+
                 string selsql = "select * from TAIKHOAN where TENTK='" + txtten.Text + "' and MK='" + txtmk.Text + "'";
-                SqlCommand cmd = new SqlCommand(selsql, conn.cnn);
-                SqlDataReader read = cmd.ExecuteReader();
-                if (read.Read() == true)
+                ds = new DataSet();
+                da = new SqlDataAdapter(selsql, conn.cnn);
+                da.Fill(ds);
+                if (ds.Tables[0].Rows.Count != 0)
                 {
-
-                    if (Program.frm_khachsan == null || Program.frm_khachsan.IsDisposed)
-                    {
-                        Program.frm_khachsan = new frm_khachsan();
-                        this.Hide();
-                        Program.frm_khachsan.Show();                        
-                    }
-                    else
-                    {
-                        this.Hide();
-                        Program.frm_khachsan.Show();                       
-                    }
-
+                    frm_khachsan frm_ks = new frm_khachsan(conn);
+                    this.Hide();
+                    frm_ks.Show();
                 }
                 else
                 {
                     MessageBox.Show("Tài khoản hoặc mật khẩu không chính xác");
-                }
+                }               
+                conn.cnn.Close();
             }
             catch
             {
