@@ -263,7 +263,7 @@
             this.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frm_thuephongtrong";
-            this.Text = "frm_thuephongtrong";
+            this.Text = "Thuê phòng trống";
             this.Load += new System.EventHandler(this.frm_thuephongtrong_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

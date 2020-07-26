@@ -179,7 +179,7 @@
             this.dateTimePicker_ngayvaolam.CustomFormat = "dd/MM/yyyy";
             this.dateTimePicker_ngayvaolam.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker_ngayvaolam.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker_ngayvaolam.Location = new System.Drawing.Point(631, 274);
+            this.dateTimePicker_ngayvaolam.Location = new System.Drawing.Point(631, 268);
             this.dateTimePicker_ngayvaolam.Name = "dateTimePicker_ngayvaolam";
             this.dateTimePicker_ngayvaolam.Size = new System.Drawing.Size(282, 34);
             this.dateTimePicker_ngayvaolam.TabIndex = 30;
@@ -409,7 +409,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "them_nhanvien";
-            this.Text = "them_nhanvien";
+            this.Text = "Thêm thông tin nhân viên";
             this.Load += new System.EventHandler(this.them_nhanvien_Load);
             ((System.ComponentModel.ISupportInitialize)(this.radioGroup1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

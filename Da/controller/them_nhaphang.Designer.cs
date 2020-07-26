@@ -65,7 +65,6 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nhanvien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,7 +78,7 @@
             // 
             // panel8
             // 
-            this.panel8.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel8.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel8.Location = new System.Drawing.Point(1153, 332);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(280, 2);
@@ -87,7 +86,7 @@
             // 
             // panel7
             // 
-            this.panel7.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel7.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel7.Location = new System.Drawing.Point(1153, 275);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(280, 2);
@@ -95,7 +94,7 @@
             // 
             // panel6
             // 
-            this.panel6.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel6.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel6.Location = new System.Drawing.Point(1153, 209);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(280, 2);
@@ -103,7 +102,7 @@
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel5.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel5.Location = new System.Drawing.Point(1153, 148);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(280, 2);
@@ -111,7 +110,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel3.Location = new System.Drawing.Point(686, 271);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(280, 2);
@@ -119,7 +118,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel2.Location = new System.Drawing.Point(686, 206);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(280, 2);
@@ -127,7 +126,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel1.Location = new System.Drawing.Point(159, 333);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(280, 2);
@@ -135,7 +134,7 @@
             // 
             // txt_sdtncc
             // 
-            this.txt_sdtncc.BackColor = System.Drawing.SystemColors.Control;
+            this.txt_sdtncc.BackColor = System.Drawing.Color.Silver;
             this.txt_sdtncc.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_sdtncc.Enabled = false;
             this.txt_sdtncc.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -158,7 +157,7 @@
             // 
             // txt_diachincc
             // 
-            this.txt_diachincc.BackColor = System.Drawing.SystemColors.Control;
+            this.txt_diachincc.BackColor = System.Drawing.Color.Silver;
             this.txt_diachincc.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_diachincc.Enabled = false;
             this.txt_diachincc.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -181,7 +180,7 @@
             // 
             // cbb_nhacungcap
             // 
-            this.cbb_nhacungcap.BackColor = System.Drawing.Color.White;
+            this.cbb_nhacungcap.BackColor = System.Drawing.SystemColors.Control;
             this.cbb_nhacungcap.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbb_nhacungcap.FormattingEnabled = true;
             this.cbb_nhacungcap.Location = new System.Drawing.Point(686, 101);
@@ -203,7 +202,7 @@
             // 
             // txt_nhanvien
             // 
-            this.txt_nhanvien.BackColor = System.Drawing.SystemColors.Control;
+            this.txt_nhanvien.BackColor = System.Drawing.Color.Silver;
             this.txt_nhanvien.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_nhanvien.Enabled = false;
             this.txt_nhanvien.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -215,7 +214,7 @@
             // 
             // txt_ghichu
             // 
-            this.txt_ghichu.BackColor = System.Drawing.SystemColors.Control;
+            this.txt_ghichu.BackColor = System.Drawing.Color.Silver;
             this.txt_ghichu.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_ghichu.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_ghichu.Location = new System.Drawing.Point(1153, 292);
@@ -236,7 +235,7 @@
             // 
             // txt_thanhtien
             // 
-            this.txt_thanhtien.BackColor = System.Drawing.SystemColors.Control;
+            this.txt_thanhtien.BackColor = System.Drawing.Color.Silver;
             this.txt_thanhtien.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_thanhtien.Enabled = false;
             this.txt_thanhtien.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -260,7 +259,7 @@
             // 
             // txt_soluong
             // 
-            this.txt_soluong.BackColor = System.Drawing.SystemColors.Control;
+            this.txt_soluong.BackColor = System.Drawing.Color.Silver;
             this.txt_soluong.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_soluong.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_soluong.Location = new System.Drawing.Point(1153, 162);
@@ -283,7 +282,7 @@
             // 
             // txt_dongia
             // 
-            this.txt_dongia.BackColor = System.Drawing.SystemColors.Control;
+            this.txt_dongia.BackColor = System.Drawing.Color.Silver;
             this.txt_dongia.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_dongia.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_dongia.Location = new System.Drawing.Point(1153, 106);
@@ -307,7 +306,7 @@
             // 
             // cbb_loaihang
             // 
-            this.cbb_loaihang.BackColor = System.Drawing.Color.White;
+            this.cbb_loaihang.BackColor = System.Drawing.SystemColors.Control;
             this.cbb_loaihang.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbb_loaihang.FormattingEnabled = true;
             this.cbb_loaihang.Location = new System.Drawing.Point(155, 229);
@@ -328,7 +327,7 @@
             // 
             // cbb_loainhap
             // 
-            this.cbb_loainhap.BackColor = System.Drawing.Color.White;
+            this.cbb_loainhap.BackColor = System.Drawing.SystemColors.Control;
             this.cbb_loainhap.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbb_loainhap.FormattingEnabled = true;
             this.cbb_loainhap.Location = new System.Drawing.Point(155, 163);
@@ -361,7 +360,9 @@
             // 
             // tungay
             // 
+            this.tungay.CalendarMonthBackground = System.Drawing.SystemColors.Control;
             this.tungay.CustomFormat = "dd/MM/yyyy";
+            this.tungay.Enabled = false;
             this.tungay.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tungay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.tungay.Location = new System.Drawing.Point(158, 99);
@@ -413,7 +414,6 @@
             this.Column1,
             this.Column2,
             this.Nhanvien,
-            this.Column3,
             this.Column4,
             this.Column5,
             this.Column6,
@@ -431,6 +431,7 @@
             // NGAYNHAP
             // 
             this.NGAYNHAP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NGAYNHAP.DataPropertyName = "ngaynhap";
             this.NGAYNHAP.HeaderText = "Ngày Nhập";
             this.NGAYNHAP.MinimumWidth = 6;
             this.NGAYNHAP.Name = "NGAYNHAP";
@@ -438,6 +439,7 @@
             // Column1
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column1.DataPropertyName = "hangnhap";
             this.Column1.HeaderText = "Hàng Nhập";
             this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
@@ -445,6 +447,7 @@
             // Column2
             // 
             this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.DataPropertyName = "loaihang";
             this.Column2.HeaderText = "Loại Hàng";
             this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
@@ -452,20 +455,15 @@
             // Nhanvien
             // 
             this.Nhanvien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Nhanvien.DataPropertyName = "nhanvien";
             this.Nhanvien.HeaderText = "Nhân Viên";
             this.Nhanvien.MinimumWidth = 6;
             this.Nhanvien.Name = "Nhanvien";
             // 
-            // Column3
-            // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.HeaderText = "Tên Hàng";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            // 
             // Column4
             // 
             this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column4.DataPropertyName = "dongia";
             this.Column4.HeaderText = "Đơn Giá";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
@@ -473,6 +471,7 @@
             // Column5
             // 
             this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column5.DataPropertyName = "soluong";
             this.Column5.HeaderText = "Số lượng";
             this.Column5.MinimumWidth = 6;
             this.Column5.Name = "Column5";
@@ -480,6 +479,7 @@
             // Column6
             // 
             this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column6.DataPropertyName = "thanhtien";
             this.Column6.HeaderText = "Thành Tiền";
             this.Column6.MinimumWidth = 6;
             this.Column6.Name = "Column6";
@@ -487,13 +487,16 @@
             // Column7
             // 
             this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column7.DataPropertyName = "ghichu";
             this.Column7.HeaderText = "Ghi Chú";
             this.Column7.MinimumWidth = 6;
             this.Column7.Name = "Column7";
             // 
             // btn_Luu
             // 
+            this.btn_Luu.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.btn_Luu.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Luu.Appearance.Options.UseBackColor = true;
             this.btn_Luu.Appearance.Options.UseFont = true;
             this.btn_Luu.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_Luu.ImageOptions.Image")));
             this.btn_Luu.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
@@ -506,7 +509,9 @@
             // 
             // btn_Huy
             // 
+            this.btn_Huy.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.btn_Huy.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Huy.Appearance.Options.UseBackColor = true;
             this.btn_Huy.Appearance.Options.UseFont = true;
             this.btn_Huy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_Huy.ImageOptions.Image")));
             this.btn_Huy.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
@@ -518,7 +523,9 @@
             // 
             // btn_Dong
             // 
+            this.btn_Dong.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.btn_Dong.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Dong.Appearance.Options.UseBackColor = true;
             this.btn_Dong.Appearance.Options.UseFont = true;
             this.btn_Dong.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_Dong.ImageOptions.Image")));
             this.btn_Dong.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
@@ -533,6 +540,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(1454, 760);
             this.Controls.Add(this.btn_Dong);
             this.Controls.Add(this.btn_Huy);
@@ -571,7 +579,8 @@
             this.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "them_nhaphang";
-            this.Text = "them_nhaphang";
+            this.Text = "Thêm thông tinh nhập hàng";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.them_nhaphang_FormClosing);
             this.Load += new System.EventHandler(this.them_nhaphang_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_nhaphang)).EndInit();
@@ -614,17 +623,16 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgv_nhaphang;
+        private DevExpress.XtraEditors.SimpleButton btn_Luu;
+        private DevExpress.XtraEditors.SimpleButton btn_Huy;
+        private DevExpress.XtraEditors.SimpleButton btn_Dong;
         private System.Windows.Forms.DataGridViewTextBoxColumn NGAYNHAP;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nhanvien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private DevExpress.XtraEditors.SimpleButton btn_Luu;
-        private DevExpress.XtraEditors.SimpleButton btn_Huy;
-        private DevExpress.XtraEditors.SimpleButton btn_Dong;
     }
 }

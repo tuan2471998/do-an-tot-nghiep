@@ -47,12 +47,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txt_soluong = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_cthddv)).BeginInit();
             this.SuspendLayout();
             // 
             // txt_mahddv
             // 
+            this.txt_mahddv.BackColor = System.Drawing.Color.Silver;
             this.txt_mahddv.Enabled = false;
             this.txt_mahddv.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_mahddv.Location = new System.Drawing.Point(201, 14);
@@ -63,13 +63,15 @@
             // 
             // btndong
             // 
+            this.btndong.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.btndong.Appearance.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btndong.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btndong.Appearance.Options.UseBackColor = true;
             this.btndong.Appearance.Options.UseFont = true;
             this.btndong.Appearance.Options.UseForeColor = true;
             this.btndong.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btndong.ImageOptions.Image")));
             this.btndong.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btndong.Location = new System.Drawing.Point(367, 101);
+            this.btndong.Location = new System.Drawing.Point(367, 104);
             this.btndong.Margin = new System.Windows.Forms.Padding(4);
             this.btndong.Name = "btndong";
             this.btndong.Size = new System.Drawing.Size(158, 63);
@@ -81,7 +83,7 @@
             // 
             this.dgv_cthddv.AllowUserToAddRows = false;
             this.dgv_cthddv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv_cthddv.BackgroundColor = System.Drawing.Color.White;
+            this.dgv_cthddv.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgv_cthddv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_cthddv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -139,13 +141,15 @@
             // 
             // btn_luu
             // 
+            this.btn_luu.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.btn_luu.Appearance.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_luu.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btn_luu.Appearance.Options.UseBackColor = true;
             this.btn_luu.Appearance.Options.UseFont = true;
             this.btn_luu.Appearance.Options.UseForeColor = true;
             this.btn_luu.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_luu.ImageOptions.Image")));
             this.btn_luu.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btn_luu.Location = new System.Drawing.Point(15, 101);
+            this.btn_luu.Location = new System.Drawing.Point(201, 104);
             this.btn_luu.Margin = new System.Windows.Forms.Padding(4);
             this.btn_luu.Name = "btn_luu";
             this.btn_luu.Size = new System.Drawing.Size(158, 63);
@@ -155,6 +159,7 @@
             // 
             // txt_thanhtien
             // 
+            this.txt_thanhtien.BackColor = System.Drawing.Color.Silver;
             this.txt_thanhtien.Enabled = false;
             this.txt_thanhtien.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_thanhtien.Location = new System.Drawing.Point(655, 104);
@@ -166,6 +171,7 @@
             // 
             // cbo_dichvu
             // 
+            this.cbo_dichvu.BackColor = System.Drawing.SystemColors.Control;
             this.cbo_dichvu.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbo_dichvu.FormattingEnabled = true;
             this.cbo_dichvu.Location = new System.Drawing.Point(201, 58);
@@ -177,6 +183,7 @@
             // 
             // txt_dongia
             // 
+            this.txt_dongia.BackColor = System.Drawing.Color.Silver;
             this.txt_dongia.Enabled = false;
             this.txt_dongia.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_dongia.Location = new System.Drawing.Point(655, 58);
@@ -232,6 +239,7 @@
             // 
             // txt_soluong
             // 
+            this.txt_soluong.BackColor = System.Drawing.Color.Silver;
             this.txt_soluong.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_soluong.Location = new System.Drawing.Point(655, 14);
             this.txt_soluong.Margin = new System.Windows.Forms.Padding(6);
@@ -252,27 +260,12 @@
             this.label1.TabIndex = 20;
             this.label1.Text = "Mã hóa đơn dịch vụ:";
             // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.Appearance.Options.UseForeColor = true;
-            this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.simpleButton1.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.simpleButton1.Location = new System.Drawing.Point(191, 101);
-            this.simpleButton1.Margin = new System.Windows.Forms.Padding(4);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(158, 63);
-            this.simpleButton1.TabIndex = 33;
-            this.simpleButton1.Text = "Sửa";
-            // 
             // themchitietdichvu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(998, 524);
-            this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.txt_mahddv);
             this.Controls.Add(this.btndong);
             this.Controls.Add(this.dgv_cthddv);
@@ -289,7 +282,7 @@
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "themchitietdichvu";
-            this.Text = "themchitietdichvu";
+            this.Text = "Thêm dịch vụ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.themchitietdichvu_FormClosing);
             this.Load += new System.EventHandler(this.Themchitietdichvu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_cthddv)).EndInit();
@@ -318,6 +311,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn DONGIA;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }

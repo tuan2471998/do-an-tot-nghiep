@@ -32,6 +32,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.thanhToánToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chuyểnPhòngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lb_sophong = new System.Windows.Forms.Label();
             this.lb_maphieudat = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -54,16 +55,24 @@
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chuyểnPhòngToolStripMenuItem,
             this.thanhToánToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 28);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(174, 52);
             // 
             // thanhToánToolStripMenuItem
             // 
             this.thanhToánToolStripMenuItem.Name = "thanhToánToolStripMenuItem";
-            this.thanhToánToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.thanhToánToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.thanhToánToolStripMenuItem.Text = "Thanh toán";
             this.thanhToánToolStripMenuItem.Click += new System.EventHandler(this.thanhToánToolStripMenuItem_Click);
+            // 
+            // chuyểnPhòngToolStripMenuItem
+            // 
+            this.chuyểnPhòngToolStripMenuItem.Name = "chuyểnPhòngToolStripMenuItem";
+            this.chuyểnPhòngToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
+            this.chuyểnPhòngToolStripMenuItem.Text = "Chuyển phòng";
+            this.chuyểnPhòngToolStripMenuItem.Click += new System.EventHandler(this.chuyểnPhòngToolStripMenuItem_Click);
             // 
             // lb_sophong
             // 
@@ -113,5 +122,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem thanhToánToolStripMenuItem;
         private System.Windows.Forms.Label lb_maphieudat;
+        private System.Windows.Forms.ToolStripMenuItem chuyểnPhòngToolStripMenuItem;
     }
 }

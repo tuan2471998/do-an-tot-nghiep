@@ -33,10 +33,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.datatk = new System.Windows.Forms.DataGridView();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dtp_ngayvaolam = new System.Windows.Forms.DateTimePicker();
             this.dtp_ngaysinh = new System.Windows.Forms.DateTimePicker();
@@ -86,6 +82,10 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.xóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sửaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datatk)).BeginInit();
@@ -151,35 +151,6 @@
             this.datatk.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.datatk.Size = new System.Drawing.Size(419, 422);
             this.datatk.TabIndex = 3;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "TENTK";
-            this.Column7.HeaderText = "Tên tài khoản";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "MANV";
-            this.Column8.HeaderText = "Mã nhân viên";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "MK";
-            this.Column9.HeaderText = "MK";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.Visible = false;
-            // 
-            // Column10
-            // 
-            this.Column10.DataPropertyName = "QUYEN";
-            this.Column10.HeaderText = "Quyền";
-            this.Column10.MinimumWidth = 6;
-            this.Column10.Name = "Column10";
             // 
             // groupBox1
             // 
@@ -783,6 +754,36 @@
             this.sửaToolStripMenuItem.Text = "Sửa";
             this.sửaToolStripMenuItem.Click += new System.EventHandler(this.sửaToolStripMenuItem_Click);
             // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "TENTK";
+            this.Column7.HeaderText = "Tên tài khoản";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "MANV";
+            this.Column8.HeaderText = "Mã nhân viên";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
+            this.Column8.Visible = false;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "MK";
+            this.Column9.HeaderText = "MK";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            this.Column9.Visible = false;
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "QUYEN";
+            this.Column10.HeaderText = "Quyền";
+            this.Column10.MinimumWidth = 6;
+            this.Column10.Name = "Column10";
+            // 
             // DM_NhanVien
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
@@ -821,10 +822,6 @@
         private System.Windows.Forms.ToolStripMenuItem sửaToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView datatk;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cbb_bangcap;
         private System.Windows.Forms.Label label9;
@@ -869,5 +866,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DateTimePicker dtp_ngayvaolam;
         private System.Windows.Forms.DateTimePicker dtp_ngaysinh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
     }
 }

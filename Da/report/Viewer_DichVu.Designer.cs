@@ -51,7 +51,7 @@
             this.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Viewer_DichVu";
-            this.Text = "Viewer_DichVu";
+            this.Text = "Hóa đơn dịch vụ";
             this.Load += new System.EventHandler(this.Viewer_DichVu_Load);
             this.ResumeLayout(false);
 

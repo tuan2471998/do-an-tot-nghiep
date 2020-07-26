@@ -172,7 +172,7 @@
             this.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "them_loaiphong";
-            this.Text = "them_loaiphong";
+            this.Text = "Thêm loại phòng";
             this.ResumeLayout(false);
             this.PerformLayout();
 

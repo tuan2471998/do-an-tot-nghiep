@@ -399,13 +399,13 @@
             // 
             this.textBox1.BackColor = System.Drawing.Color.LightBlue;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Times New Roman", 40.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Font = new System.Drawing.Font("Times New Roman", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox1.Location = new System.Drawing.Point(0, 5);
+            this.textBox1.Location = new System.Drawing.Point(0, 19);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(1731, 78);
+            this.textBox1.Size = new System.Drawing.Size(1731, 58);
             this.textBox1.TabIndex = 13;
-            this.textBox1.Text = "Phân quyền tài khoản";
+            this.textBox1.Text = "PHÂN QUYỀN TÀI KHOẢN";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Phanquyen

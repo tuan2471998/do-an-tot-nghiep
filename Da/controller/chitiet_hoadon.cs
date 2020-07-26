@@ -32,102 +32,142 @@ namespace Da.controller
 
         private void get_matp(string _mahd)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-                conn.cnn.Open();
+            try
+            {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
 
-            string sql = "select MATP from CT_HD where MAHD = '" + _mahd + "'";
-            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-            matp = (string)cmd.ExecuteScalar();
+                string sql = "select MATP from CT_HD where MAHD = '" + _mahd + "'";
+                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                matp = (string)cmd.ExecuteScalar();
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Lỗi");
+                conn.cnn.Close();
+            }
         }
 
         private void get_thongtin_phong(string _matp)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                string sql = "select tp.maph, giaphong from ct_thuephong tp\n";
+                sql += "inner join phong ph on tp.maph = ph.maph\n";
+                sql += "where tp.matp = '" + _matp + "'";
+
+                ds = new DataSet();
+                da = new SqlDataAdapter(sql, conn.cnn);
+                da.Fill(ds, "PHONG");
+
+                dgv_phong.DataSource = ds.Tables["PHONG"];
+
+                conn.cnn.Close();
             }
-            string sql = "select tp.maph, giaphong from ct_thuephong tp\n";
-            sql += "inner join phong ph on tp.maph = ph.maph\n";
-            sql += "where tp.matp = '" + _matp + "'";
-
-            ds = new DataSet();
-            da = new SqlDataAdapter(sql, conn.cnn);
-            da.Fill(ds, "PHONG");
-
-            dgv_phong.DataSource = ds.Tables["PHONG"];
-
-            conn.cnn.Close();
+            catch
+            {
+                MessageBox.Show("Lỗi");
+                conn.cnn.Close();
+            }
         }
 
         private void get_thongtin_dichvu(string _matp)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                string sql = "select hddv.MAPH, dv.TENDV, cthddv.DONGIA, cthddv.SOLUONG, cthddv.THANHTIEN ";
+                sql += "from dichvu dv, ct_hd_dichvu cthddv, hd_dichvu hddv, phieuthue pt ";
+                sql += "where cthddv.MADV = dv.MADV ";
+                sql += "and hddv.MAHD_DICHVU = cthddv.MAHD_DICHVU ";
+                sql += "and pt.MATP = hddv.MATP\n";
+                sql += "and hddv.MATP = '" + _matp + "'";
+
+                ds = new DataSet();
+                da = new SqlDataAdapter(sql, conn.cnn);
+                da.Fill(ds, "DICHVU");
+
+                dgv_dichvu.DataSource = ds.Tables["DICHVU"];
+
+                conn.cnn.Close();
             }
-            string sql = "select hddv.MAPH, dv.TENDV, cthddv.DONGIA, cthddv.SOLUONG, cthddv.THANHTIEN ";
-            sql += "from dichvu dv, ct_hd_dichvu cthddv, hd_dichvu hddv, phieuthue pt ";
-            sql += "where cthddv.MADV = dv.MADV ";
-            sql += "and hddv.MAHD_DICHVU = cthddv.MAHD_DICHVU ";
-            sql += "and pt.MATP = hddv.MATP\n";
-            sql += "and hddv.MATP = '" + _matp + "'";
-
-            ds = new DataSet();
-            da = new SqlDataAdapter(sql, conn.cnn);
-            da.Fill(ds, "DICHVU");
-
-            dgv_dichvu.DataSource = ds.Tables["DICHVU"];
-
-            conn.cnn.Close();
+            catch
+            {
+                MessageBox.Show("Lỗi");
+                conn.cnn.Close();
+            }
         }
 
         private void get_thongtin_chitiet_hoadon(string _matp)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            string sql = "select distinct hd.MAHD, pt.MAKH, kh.HOTEN, pt.NGAYNHAN, hd.NGAYLAP, cthd.TIEN_PH, cthd.TIEN_DV, cthd.TIEN_MENU, cthd.TIEN_PHUTHU, hd.TONGTIEN, hd.TIENMAT, hd.TIENTHE, pt.TIENCOC\n";
-            sql += "from hoadon hd, phieuthue pt, ct_thuephong cttp, ct_hd cthd, khachhang kh\n";
-            sql += "where cthd.MAHD = hd.MAHD\n";
-            sql += "and kh.MAKH = pt.MAKH\n";
-            sql += "and pt.MATP = cthd.MATP\n";
-            sql += "and pt.MATP = '" + _matp + "'";
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                string sql = "select distinct hd.MAHD, pt.MAKH, kh.HOTEN, pt.NGAYNHAN, hd.NGAYLAP, cthd.TIEN_PH, cthd.TIEN_DV, cthd.TIEN_MENU, cthd.TIEN_PHUTHU, hd.TONGTIEN, hd.TIENMAT, hd.TIENTHE, pt.TIENCOC\n";
+                sql += "from hoadon hd, phieuthue pt, ct_thuephong cttp, ct_hd cthd, khachhang kh\n";
+                sql += "where cthd.MAHD = hd.MAHD\n";
+                sql += "and kh.MAKH = pt.MAKH\n";
+                sql += "and pt.MATP = cthd.MATP\n";
+                sql += "and pt.MATP = '" + _matp + "'";
 
-            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
+                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    txt_mahd.Text = dr["MAHD"].ToString();
+                    txt_khachhang.Text = dr["HOTEN"].ToString();
+                    txt_ngayvao.Text = Convert.ToDateTime(dr["NGAYNHAN"]).ToString("dd/MM/yyyy");
+                    txt_ngayra.Text = Convert.ToDateTime(dr["NGAYLAP"]).ToString("dd/MM/yyyy");
+                    txt_tienphong.Text = dr["TIEN_PH"].ToString();
+                    txt_tiendichvu.Text = dr["TIEN_DV"].ToString();
+                    txt_tienthucdon.Text = dr["TIEN_MENU"].ToString();
+                    txt_tienphuthu.Text = dr["TIEN_PHUTHU"].ToString();
+                    txt_tongtien.Text = dr["TONGTIEN"].ToString();
+                    txt_tienmat.Text = dr["TIENMAT"].ToString();
+                    txt_tienthe.Text = dr["TIENTHE"].ToString();
+                    txt_tiencoc.Text = dr["TIENCOC"].ToString();
+                }
+
+                dr.Close();
+                conn.cnn.Close();
+            }
+            catch
             {
-                txt_mahd.Text = dr["MAHD"].ToString();
-                txt_khachhang.Text = dr["HOTEN"].ToString();
-                txt_ngayvao.Text = Convert.ToDateTime(dr["NGAYNHAN"]).ToString("dd/MM/yyyy");
-                txt_ngayra.Text = Convert.ToDateTime(dr["NGAYLAP"]).ToString("dd/MM/yyyy");
-                txt_tienphong.Text = dr["TIEN_PH"].ToString();
-                txt_tiendichvu.Text = dr["TIEN_DV"].ToString();
-                txt_tienthucdon.Text = dr["TIEN_MENU"].ToString();
-                txt_tienphuthu.Text = dr["TIEN_PHUTHU"].ToString();
-                txt_tongtien.Text = dr["TONGTIEN"].ToString();
-                txt_tienmat.Text = dr["TIENMAT"].ToString();
-                txt_tienthe.Text = dr["TIENTHE"].ToString();
-                txt_tiencoc.Text = dr["TIENCOC"].ToString();
+                MessageBox.Show("Lỗi");
+                conn.cnn.Close();
             }
-
-            dr.Close();
-            conn.cnn.Close();
         }
 
         private void chitiet_hoadon_Load(object sender, EventArgs e)
         {
-            get_matp(mahd);
-            get_thongtin_phong(matp);
-            get_thongtin_dichvu(matp);
-            get_thongtin_chitiet_hoadon(matp);
+            try
+            {
+                get_matp(mahd);
+                get_thongtin_phong(matp);
+                get_thongtin_dichvu(matp);
+                get_thongtin_chitiet_hoadon(matp);
 
-            dgv_phong.Columns[1].DefaultCellStyle.Format = "N0";
-            dgv_dichvu.Columns[2].DefaultCellStyle.Format = "N0";
-            dgv_dichvu.Columns[4].DefaultCellStyle.Format = "N0";
+                dgv_phong.Columns[1].DefaultCellStyle.Format = "N0";
+                dgv_dichvu.Columns[2].DefaultCellStyle.Format = "N0";
+                dgv_dichvu.Columns[4].DefaultCellStyle.Format = "N0";
+            }
+            catch
+            {
+                MessageBox.Show("Lỗi");
+                conn.cnn.Close();
+            }
         }
 
         private void txt_tienphong_TextChanged(object sender, EventArgs e)

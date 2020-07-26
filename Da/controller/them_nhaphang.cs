@@ -15,11 +15,13 @@ namespace Da.controller
     public partial class them_nhaphang : Form
     {
         public connect conn;
+        frm_Nhaphang nhaphang;
 
-        public them_nhaphang(connect _conn)
+        public them_nhaphang(connect _conn, frm_Nhaphang _nhaphang)
         {
             InitializeComponent();
             conn = _conn;
+            nhaphang = _nhaphang;
         }
 
         private void btn_Dong_Click(object sender, EventArgs e)
@@ -214,36 +216,35 @@ namespace Da.controller
 
         private void luu_thongtin_nhaphang()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-            {
-                conn.cnn.Open();
-            }
-            DataRow insert_New = ds.Tables["NHAPHANG"].NewRow();
-            insert_New["MANHAPHANG"] = manhaphang;
-            insert_New["MANCC"] = cbb_nhacungcap.SelectedValue;
-            insert_New["MANV"] = Properties.Settings.Default.MaNV;
-            insert_New["NGAYNHAPHANG"] = DateTime.Now;
-            if (kiemtra(DateTime.Now.ToString("yyyy-MM-dd")) == 0)
-            {
-                insert_New["TONGTIEN"] = thanhtien;
-            }
-            else
-            {
-                insert_New["TONGTIEN"] = get_tongtien_nhaphang(DateTime.Now.ToString("yyyy-MM-dd"));
-            }
-
-
-            ds.Tables["NHAPHANG"].Rows.Add(insert_New);
-
-            SqlCommandBuilder cmb = new SqlCommandBuilder(da);
-            da.Update(ds, "NHAPHANG");
-
-            ds.Tables["NHAPHANG"].Clear();
-
-            conn.cnn.Close();
             try
             {
-                
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                DataRow insert_New = ds.Tables["NHAPHANG"].NewRow();
+                insert_New["MANHAPHANG"] = manhaphang;
+                insert_New["MANCC"] = cbb_nhacungcap.SelectedValue;
+                insert_New["MANV"] = Properties.Settings.Default.MaNV;
+                insert_New["NGAYNHAPHANG"] = DateTime.Now;
+                if (kiemtra(DateTime.Now.ToString("yyyy-MM-dd")) == 0)
+                {
+                    insert_New["TONGTIEN"] = thanhtien;
+                }
+                else
+                {
+                    insert_New["TONGTIEN"] = get_tongtien_nhaphang(DateTime.Now.ToString("yyyy-MM-dd"));
+                }
+
+
+                ds.Tables["NHAPHANG"].Rows.Add(insert_New);
+
+                SqlCommandBuilder cmb = new SqlCommandBuilder(da);
+                da.Update(ds, "NHAPHANG");
+
+                ds.Tables["NHAPHANG"].Clear();
+
+                conn.cnn.Close();
             }
             catch
             {
@@ -253,7 +254,7 @@ namespace Da.controller
         }
 
         private void luu_thongtin_ctnhaphang()
-        {          
+        {
             try
             {
                 if (conn.cnn.State == ConnectionState.Closed)
@@ -287,9 +288,11 @@ namespace Da.controller
 
         private void them_nhaphang_Load(object sender, EventArgs e)
         {
+            tungay.Value = DateTime.Now;
             load_cbb_loainhap();
             load_cbb_nhacungcap();
             get_tennhanvien(Properties.Settings.Default.MaNV);
+            create_table_gridview();
         }
 
         private void cbb_loainhap_SelectedIndexChanged(object sender, EventArgs e)
@@ -373,25 +376,49 @@ namespace Da.controller
             return (string)cmd.ExecuteScalar();
         }
 
+        private int kiemtra()
+        {
+            if (string.IsNullOrEmpty(txt_soluong.Text))
+            {
+                MessageBox.Show("Chưa nhập số lượng hàng");
+                return 0;
+            }
+            else if(string.IsNullOrEmpty(txt_dongia.Text))
+            {
+                MessageBox.Show("Chưa nhập đơn giá nhập hàng");
+                return 0;
+            }
+            else
+                return 1;
+        }
+
         private void update_soluong_hang()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-                conn.cnn.Open();
-
-            create_table_hang();
-
-            DataRow update_New = ds.Tables["HANG"].Rows.Find(get_mahang(cbb_loaihang.SelectedValue.ToString()));
-            if (update_New != null)
+            try
             {
-                update_New["SOLUONGHANG"] = get_soluong(cbb_loaihang.SelectedValue.ToString()) + int.Parse(txt_soluong.Text);
 
-                SqlCommandBuilder cmb = new SqlCommandBuilder(da);
-                da.Update(ds, "HANG");
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
+                create_table_hang();
+
+                DataRow update_New = ds.Tables["HANG"].Rows.Find(get_mahang(cbb_loaihang.SelectedValue.ToString()));
+                if (update_New != null)
+                {
+                    update_New["SOLUONGHANG"] = get_soluong(cbb_loaihang.SelectedValue.ToString()) + int.Parse(txt_soluong.Text);
+
+                    SqlCommandBuilder cmb = new SqlCommandBuilder(da);
+                    da.Update(ds, "HANG");
+                }
+
+                ds.Tables["HANG"].Clear();
+
+                conn.cnn.Close();
             }
-
-            ds.Tables["HANG"].Clear();
-
-            conn.cnn.Close();
+            catch
+            {
+                MessageBox.Show("Lỗi");
+                conn.cnn.Close();
+            }
         }
 
         private int kiemtra(string ngaynhaphang)
@@ -404,18 +431,62 @@ namespace Da.controller
             return (int)cmd.ExecuteScalar();
         }
 
+        DataTable dt;
+
+        private void create_table_gridview()
+        {
+            dt = new DataTable();
+            dt.Columns.Add("ngaynhap");
+            dt.Columns.Add("hangnhap");
+            dt.Columns.Add("loaihang");
+            dt.Columns.Add("nhanvien");
+            dt.Columns.Add("dongia");
+            dt.Columns.Add("soluong");
+            dt.Columns.Add("thanhtien");
+            dt.Columns.Add("ghichu");
+        }
+
+        DataRow dr;
+
+        private void them_gridview()      
+        {
+            dr = dt.NewRow();
+
+            dr["ngaynhap"] = tungay.Value.ToString();
+            dr["hangnhap"] = cbb_loainhap.Text;
+            dr["loaihang"] = cbb_loaihang.Text;
+            dr["nhanvien"] = txt_nhanvien.Text;
+            dr["dongia"] = txt_dongia.Text;
+            dr["soluong"] = txt_soluong.Text;
+            dr["thanhtien"] = txt_thanhtien.Text;
+            dr["ghichu"] = txt_ghichu.Text;
+
+            dt.Rows.Add(dr);
+
+            dgv_nhaphang.DataSource = dt;
+        }
+
         private void btn_Luu_Click(object sender, EventArgs e)
         {
-            update_soluong_hang();
-            if (kiemtra(DateTime.Now.ToString("yyyy-MM-dd")) > 0)
+            if (kiemtra() == 1)
             {
-                update_tongtien();
-            }
-            create_manhaphang();
-            luu_thongtin_nhaphang();
-            luu_thongtin_ctnhaphang();
-            
-            MessageBox.Show("Nhập hàng thành công");
+                update_soluong_hang();
+                if (kiemtra(DateTime.Now.ToString("yyyy-MM-dd")) > 0)
+                {
+                    update_tongtien();
+                }
+                create_manhaphang();
+                luu_thongtin_nhaphang();
+                luu_thongtin_ctnhaphang();
+                them_gridview();
+
+                MessageBox.Show("Nhập hàng thành công");
+            }            
+        }
+
+        private void them_nhaphang_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            nhaphang.gop_data();
         }
     }
 }

@@ -2,6 +2,7 @@
 using Da.report;
 using DevExpress.Data.Mask;
 using DevExpress.XtraEditors;
+using DevExpress.XtraPivotGrid.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -78,6 +79,122 @@ namespace Da
                 txt_tientratruoc.Text = string.Format("{0:0,0}", double.Parse(tientratruoc));
             }
         }
+        int kq_phieuthue_cha;
+        private void kt_phieuthue_cha()
+        {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
+
+            string sql = "select count(matp_cha) from phieuthue where matp = '" + txt_mathuephong.Text + "'";
+            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+            kq_phieuthue_cha = (int)cmd.ExecuteScalar();
+
+            conn.cnn.Close();
+        }
+
+        string matp_cu;
+        private void get_matp_cu()
+        {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
+
+            string sql = "select matp_cha from phieuthue where matp = '" + txt_mathuephong.Text + "'";
+            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+            matp_cu = (string)cmd.ExecuteScalar();
+
+            conn.cnn.Close();
+        }
+
+        DataSet ds_cu;
+        SqlDataAdapter da_cu;
+        double tiendv_cu = 0;
+        double tienph_cu = 0;
+        DateTime ngayvao_cu;
+        DateTime ngayra_cu;
+
+        private decimal get_tienphong(string maph)
+        {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
+
+            string sql = "select GIAPHONG from PHONG where MAPH = '" + maph + "'";
+            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+            return (decimal)cmd.ExecuteScalar();
+        }
+
+        private void get_thoigian_cu()
+        {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
+
+            string sql = "select NGAYNHAN, NGAYTRA from PHIEUTHUE where MATP = '" + matp_cu + "'";
+            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                ngayvao_cu = Convert.ToDateTime(dr["NGAYNHAN"].ToString());
+                ngayra_cu = Convert.ToDateTime(dr["NGAYTRA"].ToString());
+            }
+            dr.Close();
+
+            conn.cnn.Close();
+        }
+
+        private void get_tien_dichvu_cu()
+        {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
+            string sql = "select TONGTIEN from HD_DICHVU where MATP = '" + matp_cu + "'";
+
+            ds_cu = new DataSet();
+            da_cu = new SqlDataAdapter(sql, conn.cnn);
+            da_cu.Fill(ds_cu, "DICHVU");
+
+            foreach (DataRow row in ds_cu.Tables["DICHVU"].Rows)
+            {
+                tiendv_cu += double.Parse(row["TONGTIEN"].ToString());
+            }
+
+            conn.cnn.Close();
+        }
+
+        private void get_tien_phong_cu()
+        {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
+
+            string sql = "select MAPH from CT_THUEPHONG where MATP = '" + matp_cu + "'";
+
+            ds_cu = new DataSet();
+            da_cu = new SqlDataAdapter(sql, conn.cnn);
+            da_cu.Fill(ds_cu, "PHONG");
+
+            TimeSpan time = ngayra_cu.Subtract(ngayvao_cu);
+
+            foreach (DataRow row in ds_cu.Tables["PHONG"].Rows)
+            {
+                int songay;
+                if (time.Days < 1)
+                    songay = 1;
+                else
+                    songay = time.Days;
+                tienph_cu += ( songay * double.Parse((get_tienphong(row["MAPH"].ToString())).ToString()) );
+            }
+
+            conn.cnn.Close();
+        }
 
         private void frm_tt_Load(object sender, EventArgs e)
         {
@@ -85,16 +202,33 @@ namespace Da
             string ngaytra = DateTime.Now.ToString("dd/MM/yyyy - hh:mm:ss tt");
             txt_ngaytra.Text = ngaytra;
 
-            get_thongtin_dichvu(txt_mathuephong.Text);
-            dgv_thongtin_dichvu.Columns[2].DefaultCellStyle.Format = "N0";
-            dgv_thongtin_dichvu.Columns[3].DefaultCellStyle.Format = "N0";
+            kt_phieuthue_cha();
 
-            get_thongtin_phong(txt_mathuephong.Text);
-            dgv_thongtin_phong.Columns[1].DefaultCellStyle.Format = "N0";
-            dgv_thongtin_phong.Columns[2].DefaultCellStyle.Format = "N0";
+            if (kq_phieuthue_cha == 0)
+            {
+                get_thongtin_dichvu(txt_mathuephong.Text);
+                dgv_thongtin_dichvu.Columns[2].DefaultCellStyle.Format = "N0";
+                dgv_thongtin_dichvu.Columns[3].DefaultCellStyle.Format = "N0";
 
-            dgv_thongtin_thucdon.Columns[2].DefaultCellStyle.Format = "N0";
-            dgv_thongtin_thucdon.Columns[3].DefaultCellStyle.Format = "N0";
+                get_thongtin_phong(txt_mathuephong.Text);
+            }
+            else
+            {
+                get_matp_cu();
+                lb_tienthuephongcu.Visible = true;
+                txt_tienthuephongcu.Visible = true;
+
+                get_thoigian_cu();
+                get_tien_phong_cu();
+                get_tien_dichvu_cu();
+                txt_tienthuephongcu.Text = (tiendv_cu + tienph_cu).ToString("###,##");
+
+                get_thongtin_dichvu(txt_mathuephong.Text);
+                dgv_thongtin_dichvu.Columns[2].DefaultCellStyle.Format = "N0";
+                dgv_thongtin_dichvu.Columns[3].DefaultCellStyle.Format = "N0";
+
+                get_thongtin_phong(txt_mathuephong.Text);
+            }
         }
 
         private DateTime get_ngaynhan(string matp)
@@ -209,8 +343,8 @@ namespace Da
                     else
                         giatien = time.Days * tienphong + (tienphong * 0.5);
                     newrow["maph"] = row["maph"];
-                    newrow["giaphong"] = tienphong;
-                    newrow["thanhtien"] = giatien;
+                    newrow["giaphong"] = tienphong.ToString("###,##");
+                    newrow["thanhtien"] = giatien.ToString("###,##");
                     phong.Rows.Add(newrow);
                 }
             }
@@ -238,16 +372,10 @@ namespace Da
         {
             foreach (DataGridViewRow row in dgv_thongtin_thucdon.Rows)
             {
-                tien_menu += double.Parse(row.Cells[3].Value.ToString());
+                tien_menu += double.Parse(row.Cells[3].Value.ToString().Replace(",",""));
             }
 
             txt_tienthucdon.Text = string.Format("{0:0,0}", double.Parse(tien_menu.ToString()));
-        }
-
-        public void format_dgv_menu()
-        {
-            dgv_thongtin_thucdon.Columns[2].DefaultCellStyle.Format = "N0";
-            dgv_thongtin_thucdon.Columns[3].DefaultCellStyle.Format = "N0";
         }
 
         private void btn_thanhtoan_Click(object sender, EventArgs e)
@@ -265,6 +393,7 @@ namespace Da
                 double tienmenu;
                 double tientratruoc = double.Parse(txt_tientratruoc.Text);
                 double tongtien;
+                double tienphongcu = 0;
                 
                 if (chb_phuthu.Checked && !string.IsNullOrEmpty(txt_phuthu.Text))
                     tienphuthu = double.Parse(txt_phuthu.Text.Replace(",", ""));
@@ -280,6 +409,11 @@ namespace Da
                     tienmenu = 0;
                 }
 
+                if (txt_tienthuephongcu.Visible == true)
+                {
+                    tienphongcu = double.Parse(txt_tienthuephongcu.Text.Replace(",", ""));
+                }
+
                 foreach (DataGridViewRow row in dgv_thongtin_dichvu.Rows)
                 {
                     tiendichvu += double.Parse(row.Cells[3].Value.ToString());
@@ -288,7 +422,7 @@ namespace Da
                 {
                     tienthuephong += double.Parse(row1.Cells[2].Value.ToString());
                 }
-                tongtien = tiendichvu + tienthuephong - tientratruoc + tienphuthu + tienmenu;
+                tongtien = tiendichvu + tienthuephong - tientratruoc + tienphuthu + tienmenu + tienphongcu;
 
                 if (cbb_hinhthuc.SelectedIndex == 1)
                 {

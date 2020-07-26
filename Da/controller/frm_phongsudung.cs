@@ -137,5 +137,13 @@ namespace Da.controller
         {
             lb_sophong.Text = sophong;
         }
+
+        private void chuyểnPhòngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_chuyenphong frm = new frm_chuyenphong(conn, dsphong);
+            frm.get_matp_cu(lb_maphieudat.Text, lb_sophong.Text);
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.Show();
+        }
     }
 }

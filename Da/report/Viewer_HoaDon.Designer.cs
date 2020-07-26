@@ -51,7 +51,7 @@
             this.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Viewer_HoaDon";
-            this.Text = "Viewer_HoaDon";
+            this.Text = "Hóa đơn";
             this.Load += new System.EventHandler(this.Viewer_HoaDon_Load);
             this.ResumeLayout(false);
 

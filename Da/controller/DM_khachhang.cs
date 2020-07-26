@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Data.SqlClient;
+using DevExpress.ClipboardSource.SpreadsheetML;
 
 namespace Da.controller
 {
@@ -65,9 +66,9 @@ namespace Da.controller
 
         private void clear_gridview()
         {
-            foreach (DataGridViewRow row in datakhachhang.Rows)
+            while (datakhachhang.Rows.Count > 0)
             {
-                datakhachhang.Rows.Remove(row);
+                datakhachhang.Rows.RemoveAt(0);
             }
         }
 
@@ -117,7 +118,7 @@ namespace Da.controller
 
         public void loadData_quoctich(string quoctich)
         {
-            da = new SqlDataAdapter("select * from KHACHHANG where QUOCTICH like " + quoctich + "%'", conn.cnn);
+            da = new SqlDataAdapter("select * from KHACHHANG where QUOCTICH like '%" + quoctich + "%'", conn.cnn);
             da.Fill(ds, "KHACHHANG_quoctich");
             datakhachhang.DataSource = ds.Tables["KHACHHANG_quoctich"];
             key[0] = ds.Tables["KHACHHANG_quoctich"].Columns[0];
@@ -202,31 +203,35 @@ namespace Da.controller
 
         private void btn_timkiem_Click(object sender, EventArgs e)
         {
-            clear_gridview();
             //tìm theo mã khách hàng
             if (string.IsNullOrEmpty(txtmkh.Text) == false)
             {
+                clear_gridview();
                 loadData_makh(txtmkh.Text.TrimEnd());
             }
             //tìm theo tên khách hàng
             else if (string.IsNullOrEmpty(txttenkh.Text) == false)
             {
+                clear_gridview();
                 loadData_tenkh(txttenkh.Text.TrimEnd());
             }
             //tìm theo số căn cước/cmnd
             else if (string.IsNullOrEmpty(txtcmnd.Text) == false)
             {
+                clear_gridview();
                 loadData_cmnd(txtcmnd.Text.TrimEnd());
             }
             //tìm theo số điện thoại
             else if (string.IsNullOrEmpty(txtsdt.Text) == false)
             {
+                clear_gridview();
                 loadData_sdt(txtsdt.Text.TrimEnd());
             }
             // tìm theo quốc tịch
             else if (string.IsNullOrEmpty(txtquoctich.Text) == false)
             {
-                loadData_quoctich(txtquoctich.Text.TrimEnd());
+                clear_gridview();
+                loadData_quoctich(txtquoctich.Text.Trim());
             }
             else
                 MessageBox.Show("Thông tin khách hàng không chính xác");

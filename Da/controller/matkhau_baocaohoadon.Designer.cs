@@ -42,7 +42,7 @@
             this.label1.Font = new System.Drawing.Font("Times New Roman", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(104, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(305, 38);
+            this.label1.Size = new System.Drawing.Size(290, 37);
             this.label1.TabIndex = 0;
             this.label1.Text = "Xác minh tài khoản";
             // 
@@ -102,9 +102,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "matkhau_baocaohoadon";
-            this.Text = "matkhau_baocaohoadon";
+            this.Text = "Xác minh";
             this.ResumeLayout(false);
             this.PerformLayout();
 

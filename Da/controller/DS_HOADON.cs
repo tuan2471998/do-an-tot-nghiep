@@ -51,62 +51,60 @@ namespace Da.controller
 
         private void btn_timkiem_Click(object sender, EventArgs e)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-                conn.cnn.Open();
-
-            string sql = "select distinct hd.MAHD, hd.MANV_LAPPHIEU, pt.MAKH, pt.NGAYNHAN, hd.NGAYLAP, cthd.TIEN_PH, cthd.TIEN_DV, cthd.TIEN_MENU, cthd.TIEN_PHUTHU, cthd.GHICHU_PHUTHU, hd.TONGTIEN, hd.TIENMAT, hd.TIENTHE, pt.TIENCOC, kh.HOTEN\n";
-            sql += "from hoadon hd, phieuthue pt, ct_thuephong cttp, ct_hd cthd, khachhang kh\n";
-            sql += "where cthd.MAHD = hd.MAHD\n";
-            sql += "and kh.MAKH = pt.MAKH\n";
-            sql += "and pt.MATP = cthd.MATP\n";
-            sql += "and convert(date,hd.NGAYLAP) between '" + dtp_tungay.Value.ToString("yyyy-MM-dd") + "' and '" + dtp_denngay.Value.ToString("yyyy-MM-dd") + "'\n";
-
-            if (cbb_nhanvien.SelectedIndex >= 1)
-            {
-                sql += "and MANV_LAPPHIEU = '" + cbb_nhanvien.SelectedValue.ToString() + "'";
-            }
-
-            ds = new DataSet();
-            da = new SqlDataAdapter(sql, conn.cnn);
-            da.Fill(ds, "BAOCAO");
-
-            double tienphong = 0;
-            double tiendv = 0;
-            double tienphuthu = 0;
-            double tienthucdon = 0;
-            double tongtien = 0;
-            double tienmat = 0;
-            double tienthe = 0;
-            double tiencoc = 0;
-
-            foreach (DataRow row in ds.Tables[0].Rows)
-            {
-                tienphong += double.Parse(row["TIEN_PH"].ToString());
-                tiendv += double.Parse(row["TIEN_DV"].ToString());
-                tienphuthu += double.Parse(row["TIEN_PHUTHU"].ToString());
-                //tienthucdon += double.Parse(row["TIEN_MENU"].ToString());
-                tongtien += double.Parse(row["TONGTIEN"].ToString());
-                tienmat += double.Parse(row["TIENMAT"].ToString());
-                tienthe += double.Parse(row["TIENTHE"].ToString());
-                tiencoc += double.Parse(row["TIENCOC"].ToString());
-            }
-
-            txt_tienphong.Text = tienphong.ToString();
-            txt_tiendichvu.Text = tiendv.ToString();
-            txt_tienphuthu.Text = tienphuthu.ToString();
-            txt_tienthucdon.Text = tienthucdon.ToString();
-            txt_tongtien.Text = tongtien.ToString();
-            txt_tienmat.Text = tienmat.ToString();
-            txt_tienthe.Text = tienthe.ToString();
-            txt_tiencoc.Text = tiencoc.ToString();
-
-            dgv_thongkehoadon.DataSource = ds.Tables["BAOCAO"];
-            btn_Xuatbaocao.Enabled = true;
-
             conn.cnn.Close();
             try
             {
-                
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
+
+                string sql = "select distinct hd.MAHD, hd.MANV_LAPPHIEU, pt.MAKH, pt.NGAYNHAN, hd.NGAYLAP, cthd.TIEN_PH, cthd.TIEN_DV, cthd.TIEN_MENU, cthd.TIEN_PHUTHU, cthd.GHICHU_PHUTHU, hd.TONGTIEN, hd.TIENMAT, hd.TIENTHE, pt.TIENCOC, kh.HOTEN\n";
+                sql += "from hoadon hd, phieuthue pt, ct_thuephong cttp, ct_hd cthd, khachhang kh\n";
+                sql += "where cthd.MAHD = hd.MAHD\n";
+                sql += "and kh.MAKH = pt.MAKH\n";
+                sql += "and pt.MATP = cthd.MATP\n";
+                sql += "and convert(date,hd.NGAYLAP) between '" + dtp_tungay.Value.ToString("yyyy-MM-dd") + "' and '" + dtp_denngay.Value.ToString("yyyy-MM-dd") + "'\n";
+
+                if (cbb_nhanvien.SelectedIndex >= 1)
+                {
+                    sql += "and MANV_LAPPHIEU = '" + cbb_nhanvien.SelectedValue.ToString() + "'";
+                }
+
+                ds = new DataSet();
+                da = new SqlDataAdapter(sql, conn.cnn);
+                da.Fill(ds, "BAOCAO");
+
+                double tienphong = 0;
+                double tiendv = 0;
+                double tienphuthu = 0;
+                double tienthucdon = 0;
+                double tongtien = 0;
+                double tienmat = 0;
+                double tienthe = 0;
+                double tiencoc = 0;
+
+                foreach (DataRow row in ds.Tables["BAOCAO"].Rows)
+                {
+                    tienphong += double.Parse(row["TIEN_PH"].ToString());
+                    tiendv += double.Parse(row["TIEN_DV"].ToString());
+                    tienphuthu += double.Parse(row["TIEN_PHUTHU"].ToString());
+                    tienthucdon += double.Parse(row["TIEN_MENU"].ToString());
+                    tongtien += double.Parse(row["TONGTIEN"].ToString());
+                    tienmat += double.Parse(row["TIENMAT"].ToString());
+                    tienthe += double.Parse(row["TIENTHE"].ToString());
+                    tiencoc += double.Parse(row["TIENCOC"].ToString());
+                }
+
+                txt_tienphong.Text = tienphong.ToString();
+                txt_tiendichvu.Text = tiendv.ToString();
+                txt_tienphuthu.Text = tienphuthu.ToString();
+                txt_tienthucdon.Text = tienthucdon.ToString();
+                txt_tongtien.Text = tongtien.ToString();
+                txt_tienmat.Text = tienmat.ToString();
+                txt_tienthe.Text = tienthe.ToString();
+                txt_tiencoc.Text = tiencoc.ToString();
+
+                dgv_thongkehoadon.DataSource = ds.Tables["BAOCAO"];
+                btn_Xuatbaocao.Enabled = true;
             }
             catch
             {

@@ -148,6 +148,12 @@
     <Compile Include="controller\DS_NHAPHANG.Designer.cs">
       <DependentUpon>DS_NHAPHANG.cs</DependentUpon>
     </Compile>
+    <Compile Include="controller\frm_chuyenphong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="controller\frm_chuyenphong.Designer.cs">
+      <DependentUpon>frm_chuyenphong.cs</DependentUpon>
+    </Compile>
     <Compile Include="controller\frm_danhsachphong.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -159,6 +165,12 @@
     </Compile>
     <Compile Include="controller\frm_Nhaphang.Designer.cs">
       <DependentUpon>frm_Nhaphang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="controller\frm_phongchuyen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controller\frm_phongchuyen.Designer.cs">
+      <DependentUpon>frm_phongchuyen.cs</DependentUpon>
     </Compile>
     <Compile Include="controller\frm_phongdondep.cs">
       <SubType>UserControl</SubType>
@@ -396,11 +408,17 @@
     <EmbeddedResource Include="controller\DS_NHAPHANG.resx">
       <DependentUpon>DS_NHAPHANG.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="controller\frm_chuyenphong.resx">
+      <DependentUpon>frm_chuyenphong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="controller\frm_danhsachphong.resx">
       <DependentUpon>frm_danhsachphong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="controller\frm_Nhaphang.resx">
       <DependentUpon>frm_Nhaphang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controller\frm_phongchuyen.resx">
+      <DependentUpon>frm_phongchuyen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="controller\frm_phongdondep.resx">
       <DependentUpon>frm_phongdondep.cs</DependentUpon>
@@ -653,6 +671,12 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Untitled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\form_main.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -331,7 +331,7 @@ namespace Da
             // 
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem1);
             this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 741);
-            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
             this.ribbonStatusBar1.Size = new System.Drawing.Size(1278, 33);
@@ -383,7 +383,7 @@ namespace Da
             this.barButtonItem5,
             this.barButtonItem6});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonControl1.MaxItemId = 46;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -512,7 +512,7 @@ namespace Da
             // 
             this.popupControlContainer1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.popupControlContainer1.Location = new System.Drawing.Point(0, 0);
-            this.popupControlContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.popupControlContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.popupControlContainer1.Name = "popupControlContainer1";
             this.popupControlContainer1.Ribbon = this.ribbonControl1;
             this.popupControlContainer1.Size = new System.Drawing.Size(312, 162);
@@ -831,7 +831,7 @@ namespace Da
             this.hienthi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.hienthi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hienthi.Location = new System.Drawing.Point(192, 183);
-            this.hienthi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.hienthi.Margin = new System.Windows.Forms.Padding(4);
             this.hienthi.Name = "hienthi";
             this.hienthi.Size = new System.Drawing.Size(1086, 558);
             this.hienthi.TabIndex = 11;
@@ -851,7 +851,7 @@ namespace Da
             // pictureBox3
             // 
             this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox3.Image = global::Da.Properties.Resources._1_1;
+            this.pictureBox3.Image = global::Da.Properties.Resources.form_main;
             this.pictureBox3.Location = new System.Drawing.Point(192, 183);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(1086, 558);
@@ -879,7 +879,6 @@ namespace Da
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.popupControlContainer1);
             this.Name = "frm_khachsan";
-            this.Text = "frm_khachsan";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_khachsan_FormClosing);
             this.Load += new System.EventHandler(this.frm_khachsan_Load);

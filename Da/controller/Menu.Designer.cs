@@ -325,12 +325,14 @@
             // 
             // btn_luu
             // 
+            this.btn_luu.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.btn_luu.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_luu.Appearance.Options.UseBackColor = true;
             this.btn_luu.Appearance.Options.UseFont = true;
             this.btn_luu.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_luu.ImageOptions.Image")));
             this.btn_luu.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btn_luu.Location = new System.Drawing.Point(164, 385);
-            this.btn_luu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_luu.Margin = new System.Windows.Forms.Padding(4);
             this.btn_luu.Name = "btn_luu";
             this.btn_luu.Size = new System.Drawing.Size(179, 71);
             this.btn_luu.TabIndex = 21;
@@ -339,12 +341,14 @@
             // 
             // btn_huy
             // 
+            this.btn_huy.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.btn_huy.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_huy.Appearance.Options.UseBackColor = true;
             this.btn_huy.Appearance.Options.UseFont = true;
             this.btn_huy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_huy.ImageOptions.Image")));
             this.btn_huy.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btn_huy.Location = new System.Drawing.Point(351, 385);
-            this.btn_huy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_huy.Margin = new System.Windows.Forms.Padding(4);
             this.btn_huy.Name = "btn_huy";
             this.btn_huy.Size = new System.Drawing.Size(179, 71);
             this.btn_huy.TabIndex = 22;
@@ -355,6 +359,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(730, 476);
             this.Controls.Add(this.btn_huy);
             this.Controls.Add(this.btn_luu);

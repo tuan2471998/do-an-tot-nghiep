@@ -42,10 +42,10 @@
             // lblten
             // 
             this.lblten.Appearance.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblten.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblten.Appearance.ForeColor = System.Drawing.Color.Black;
             this.lblten.Appearance.Options.UseFont = true;
             this.lblten.Appearance.Options.UseForeColor = true;
-            this.lblten.Location = new System.Drawing.Point(12, 197);
+            this.lblten.Location = new System.Drawing.Point(31, 177);
             this.lblten.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblten.Name = "lblten";
             this.lblten.Size = new System.Drawing.Size(175, 31);
@@ -55,10 +55,10 @@
             // lblmk
             // 
             this.lblmk.Appearance.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblmk.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblmk.Appearance.ForeColor = System.Drawing.Color.Black;
             this.lblmk.Appearance.Options.UseFont = true;
             this.lblmk.Appearance.Options.UseForeColor = true;
-            this.lblmk.Location = new System.Drawing.Point(22, 245);
+            this.lblmk.Location = new System.Drawing.Point(31, 228);
             this.lblmk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblmk.Name = "lblmk";
             this.lblmk.Size = new System.Drawing.Size(114, 31);
@@ -67,13 +67,15 @@
             // 
             // btndn
             // 
+            this.btndn.Appearance.BackColor = System.Drawing.Color.DarkGreen;
             this.btndn.Appearance.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btndn.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btndn.Appearance.Options.UseBackColor = true;
             this.btndn.Appearance.Options.UseFont = true;
             this.btndn.Appearance.Options.UseForeColor = true;
             this.btndn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btndn.ImageOptions.Image")));
             this.btndn.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btndn.Location = new System.Drawing.Point(157, 290);
+            this.btndn.Location = new System.Drawing.Point(102, 281);
             this.btndn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btndn.Name = "btndn";
             this.btndn.Size = new System.Drawing.Size(153, 52);
@@ -83,11 +85,13 @@
             // 
             // btnthoat
             // 
+            this.btnthoat.Appearance.BackColor = System.Drawing.Color.DarkGreen;
             this.btnthoat.Appearance.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnthoat.Appearance.Options.UseBackColor = true;
             this.btnthoat.Appearance.Options.UseFont = true;
             this.btnthoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnthoat.ImageOptions.Image")));
             this.btnthoat.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnthoat.Location = new System.Drawing.Point(343, 290);
+            this.btnthoat.Location = new System.Drawing.Point(288, 281);
             this.btnthoat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnthoat.Name = "btnthoat";
             this.btnthoat.Size = new System.Drawing.Size(147, 52);
@@ -97,8 +101,8 @@
             // 
             // txtten
             // 
-            this.txtten.EditValue = "NV001     ";
-            this.txtten.Location = new System.Drawing.Point(203, 199);
+            this.txtten.EditValue = "";
+            this.txtten.Location = new System.Drawing.Point(222, 179);
             this.txtten.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtten.Name = "txtten";
             this.txtten.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -111,7 +115,7 @@
             // 
             // txtmk
             // 
-            this.txtmk.Location = new System.Drawing.Point(203, 250);
+            this.txtmk.Location = new System.Drawing.Point(222, 230);
             this.txtmk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtmk.Name = "txtmk";
             this.txtmk.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -130,8 +134,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayoutStore = System.Windows.Forms.ImageLayout.Stretch;
-            this.BackgroundImageStore = global::Da.Properties.Resources.DN;
-            this.ClientSize = new System.Drawing.Size(567, 353);
+            this.BackgroundImageStore = global::Da.Properties.Resources.Untitled;
+            this.ClientSize = new System.Drawing.Size(547, 366);
             this.Controls.Add(this.txtmk);
             this.Controls.Add(this.txtten);
             this.Controls.Add(this.btnthoat);
@@ -140,6 +144,7 @@
             this.Controls.Add(this.lblten);
             this.DoubleBuffered = true;
             this.Name = "frm_dangnhap";
+            this.Text = "Đăng nhập";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_dangnhap_FormClosing);
             this.Load += new System.EventHandler(this.frm_dangnhap_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_dangnhap_KeyDown);

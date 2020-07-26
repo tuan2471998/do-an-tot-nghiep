@@ -51,7 +51,7 @@
             // 
             // txt_mahddv
             // 
-            this.txt_mahddv.BackColor = System.Drawing.Color.White;
+            this.txt_mahddv.BackColor = System.Drawing.Color.Silver;
             this.txt_mahddv.Enabled = false;
             this.txt_mahddv.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_mahddv.Location = new System.Drawing.Point(196, 28);
@@ -125,7 +125,7 @@
             // 
             // txt_thanhtien
             // 
-            this.txt_thanhtien.BackColor = System.Drawing.Color.White;
+            this.txt_thanhtien.BackColor = System.Drawing.Color.Silver;
             this.txt_thanhtien.Enabled = false;
             this.txt_thanhtien.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_thanhtien.Location = new System.Drawing.Point(650, 114);
@@ -137,7 +137,7 @@
             // 
             // txt_dongia
             // 
-            this.txt_dongia.BackColor = System.Drawing.Color.White;
+            this.txt_dongia.BackColor = System.Drawing.Color.Silver;
             this.txt_dongia.Enabled = false;
             this.txt_dongia.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_dongia.Location = new System.Drawing.Point(650, 72);
@@ -193,7 +193,7 @@
             // 
             // txt_soluong
             // 
-            this.txt_soluong.BackColor = System.Drawing.Color.White;
+            this.txt_soluong.BackColor = System.Drawing.Color.Silver;
             this.txt_soluong.Enabled = false;
             this.txt_soluong.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_soluong.Location = new System.Drawing.Point(650, 28);
@@ -216,7 +216,7 @@
             // 
             // txt_tendichvu
             // 
-            this.txt_tendichvu.BackColor = System.Drawing.Color.White;
+            this.txt_tendichvu.BackColor = System.Drawing.Color.Silver;
             this.txt_tendichvu.Enabled = false;
             this.txt_tendichvu.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_tendichvu.Location = new System.Drawing.Point(196, 114);
@@ -228,7 +228,7 @@
             // 
             // txt_madichvu
             // 
-            this.txt_madichvu.BackColor = System.Drawing.Color.White;
+            this.txt_madichvu.BackColor = System.Drawing.Color.Silver;
             this.txt_madichvu.Enabled = false;
             this.txt_madichvu.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_madichvu.Location = new System.Drawing.Point(196, 72);
@@ -253,6 +253,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(991, 512);
             this.Controls.Add(this.txt_madichvu);
             this.Controls.Add(this.label6);
@@ -270,7 +271,7 @@
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "chitiet_hoadon_dichvu";
-            this.Text = "chitiet_hoadon_dichvu";
+            this.Text = "Chi tiết hóa đơn dịch vụ";
             this.Load += new System.EventHandler(this.chitiet_hoadon_dichvu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_cthddv)).EndInit();
             this.ResumeLayout(false);

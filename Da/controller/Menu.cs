@@ -113,8 +113,8 @@ namespace Da
                             newrow = menu.NewRow();
                             newrow["tentd"] = control.Text;
                             newrow["soluong"] = ((NumericUpDown)num).Value;
-                            newrow["dongia"] = get_dongia(control.Text);
-                            newrow["thanhtien"] = decimal.Parse(((NumericUpDown)num).Value.ToString()) * decimal.Parse(get_dongia(control.Text).ToString());
+                            newrow["dongia"] = get_dongia(control.Text).ToString("###,##");
+                            newrow["thanhtien"] = (decimal.Parse(((NumericUpDown)num).Value.ToString()) * decimal.Parse(get_dongia(control.Text).ToString())).ToString("###,##");
 
                             menu.Rows.Add(newrow);
                         }
@@ -126,7 +126,6 @@ namespace Da
 
             tt.get_thongtin_menu(menu);
             tt.get_tienmenu();
-            tt.format_dgv_menu();
 
             if (conn.cnn.State == ConnectionState.Open)
             {

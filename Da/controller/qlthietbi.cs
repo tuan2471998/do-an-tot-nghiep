@@ -257,14 +257,32 @@ namespace Da.controller
             conn.cnn.Close();
         }
 
+        int soluongphong = 0;
+        private void get_soluongphong()
+        {
+            if (conn.cnn.State == ConnectionState.Closed)
+            {
+                conn.cnn.Open();
+            }
+
+            string sql = "select count(MAPH) from PHONG where MALOAI = '" + cbb_loai.SelectedValue.ToString() + "'";
+            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+            soluongphong = (int)cmd.ExecuteScalar();
+
+            conn.cnn.Close();
+        }
+
         private void btn_luu_Click(object sender, EventArgs e)
         {
             if (conn.cnn.State == ConnectionState.Closed)
             {
                 conn.cnn.Open();
             }
+            get_soluongphong();
+
             foreach (DataGridViewRow row in dgv_danhsachloaiphong.Rows)
             {
+                int sltb = soluongphong * int.Parse(row.Cells[2].Value.ToString());
                 if (kiemtra_data(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString()) != 0)
                 {
                     if (int.Parse(row.Cells[2].Value.ToString()) == 0)
@@ -272,30 +290,30 @@ namespace Da.controller
                         xoa_ct_thietbi(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
                     }
                     else
-                    {
-                        if (get_soluong_hang(get_matb(row.Cells[1].Value.ToString())) < int.Parse(row.Cells[2].Value.ToString()))
+                    {                       
+                        if (get_soluong_hang(get_matb(row.Cells[1].Value.ToString())) < sltb)
                         {
                             MessageBox.Show("Số lượng " + row.Cells[1].Value.ToString() + " trong kho không đủ");
                         }
                         else
                         {
-                            update_ct_thietbi(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), int.Parse(row.Cells[2].Value.ToString()));
-                            update_soluong_hang(get_matb(row.Cells[1].Value.ToString()), int.Parse(row.Cells[2].Value.ToString()));
-                            MessageBox.Show("Cập nhật dữ liệu thành công");
+                            update_ct_thietbi(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), sltb);
+                            update_soluong_hang(get_matb(row.Cells[1].Value.ToString()), sltb);
+                            MessageBox.Show("Cập nhật số lượng " + row.Cells[1].Value.ToString() + " trong " + soluongphong + " phòng loại " + cbb_loai.Text.Trim() + " thành công");
                         }
                     }
                 }
                 else
                 {
-                    if (get_soluong_hang(get_matb(row.Cells[1].Value.ToString())) < int.Parse(row.Cells[2].Value.ToString()))
+                    if (get_soluong_hang(get_matb(row.Cells[1].Value.ToString())) < sltb)
                     {
                         MessageBox.Show("Số lượng " + row.Cells[1].Value.ToString() + " trong kho không đủ");
                     }
                     else
                     {
-                        insert_ct_thietbi(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), int.Parse(row.Cells[2].Value.ToString()));
-                        update_soluong_hang(get_matb(row.Cells[1].Value.ToString()), int.Parse(row.Cells[2].Value.ToString()));
-                        MessageBox.Show("Cập nhật dữ liệu thành công");
+                        insert_ct_thietbi(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), sltb);
+                        update_soluong_hang(get_matb(row.Cells[1].Value.ToString()), sltb);
+                        MessageBox.Show("Thêm thành công " + sltb + " " + row.Cells[1].Value.ToString() + " vào " + soluongphong + " phòng loại " + cbb_loai.Text.Trim());
                     }
                 }
             }

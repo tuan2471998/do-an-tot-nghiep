@@ -187,7 +187,6 @@ namespace Da
                 conn.cnn.Open();
             }
             get_mathanhtoan();
-            string khachdua = txt_khachdua.Text.Replace(",", "");
             DataRow insert_New = ds.Tables["HOADON"].NewRow();
             insert_New["MAHD"] = mahd;
             insert_New["MATT"] = matt;
@@ -203,7 +202,6 @@ namespace Da
                 insert_New["TIENTHE"] = tienthe;
             }
             insert_New["TONGTIEN"] = tongtien;
-            insert_New["KHACHDUA"] = double.Parse(khachdua);
             insert_New["SOLANIN"] = 1;
             insert_New["NGAYLAP"] = DateTime.Now;
 

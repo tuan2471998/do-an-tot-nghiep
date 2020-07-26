@@ -52,12 +52,14 @@
             // 
             // btn_thanhtoanthe
             // 
+            this.btn_thanhtoanthe.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.btn_thanhtoanthe.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_thanhtoanthe.Appearance.Options.UseBackColor = true;
             this.btn_thanhtoanthe.Appearance.Options.UseFont = true;
             this.btn_thanhtoanthe.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_thanhtoanthe.ImageOptions.Image")));
             this.btn_thanhtoanthe.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btn_thanhtoanthe.Location = new System.Drawing.Point(265, 192);
-            this.btn_thanhtoanthe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_thanhtoanthe.Margin = new System.Windows.Forms.Padding(4);
             this.btn_thanhtoanthe.Name = "btn_thanhtoanthe";
             this.btn_thanhtoanthe.Size = new System.Drawing.Size(216, 68);
             this.btn_thanhtoanthe.TabIndex = 19;
@@ -66,7 +68,7 @@
             // 
             // txt_tralai
             // 
-            this.txt_tralai.BackColor = System.Drawing.Color.White;
+            this.txt_tralai.BackColor = System.Drawing.Color.LightGray;
             this.txt_tralai.Enabled = false;
             this.txt_tralai.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_tralai.Location = new System.Drawing.Point(174, 149);
@@ -78,7 +80,7 @@
             // 
             // txt_khachdua
             // 
-            this.txt_khachdua.BackColor = System.Drawing.Color.White;
+            this.txt_khachdua.BackColor = System.Drawing.Color.LightGray;
             this.txt_khachdua.Enabled = false;
             this.txt_khachdua.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_khachdua.Location = new System.Drawing.Point(174, 91);
@@ -124,7 +126,7 @@
             // 
             // txt_tongtien
             // 
-            this.txt_tongtien.BackColor = System.Drawing.Color.White;
+            this.txt_tongtien.BackColor = System.Drawing.Color.LightGray;
             this.txt_tongtien.Enabled = false;
             this.txt_tongtien.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_tongtien.Location = new System.Drawing.Point(174, 32);
@@ -158,6 +160,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(645, 288);
             this.Controls.Add(this.lb_count);
             this.Controls.Add(this.lb_nguon);
@@ -172,7 +175,7 @@
             this.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ThanhToanThe";
-            this.Text = "ThanhToanThe";
+            this.Text = "Thanh toán";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ThanhToanThe_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();

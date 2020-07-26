@@ -541,7 +541,18 @@ namespace Da.controller
                 txtMaKH.Focus();
                 return 0;
             }
-            else if (ngaydat > ngaytra || hientai < ngaydat || hientai < ngaytra)
+
+            else if (ngaydat > ngaytra)
+            {
+                MessageBox.Show("Ngày đặt phòng không hợp lệ");
+                return 0;
+            }
+            else if (hientai > ngaydat)
+            {
+                MessageBox.Show("Ngày đặt phòng không hợp lệ");
+                return 0;
+            }
+            else if (hientai > ngaytra)
             {
                 MessageBox.Show("Ngày đặt phòng không hợp lệ");
                 return 0;

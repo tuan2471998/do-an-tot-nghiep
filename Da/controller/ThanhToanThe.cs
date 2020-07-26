@@ -123,7 +123,6 @@ namespace Da.controller
             insert_New["TIENMAT"] = 0;
             insert_New["TIENTHE"] = double.Parse(tongtien);
             insert_New["TONGTIEN"] = double.Parse(tongtien);
-            insert_New["KHACHDUA"] = double.Parse(tongtien);
             insert_New["SOLANIN"] = 1;
             insert_New["NGAYLAP"] = DateTime.Now;
 
@@ -327,22 +326,25 @@ namespace Da.controller
 
         public void get_thongtin_menu(DataTable _menu)
         {
-            menu = new DataTable();
-            menu.Columns.Add("tentd");
-            menu.Columns.Add("soluong");
-            menu.Columns.Add("dongia");
-            menu.Columns.Add("thanhtien");
-
-            DataRow newrow;
-            foreach (DataRow row in _menu.Rows)
+            if (_menu != null)
             {
-                newrow = menu.NewRow();
-                newrow["tentd"] = row["tentd"].ToString();
-                newrow["soluong"] = row["soluong"].ToString();
-                newrow["dongia"] = row["dongia"].ToString();
-                newrow["thanhtien"] = row["thanhtien"].ToString();
+                menu = new DataTable();
+                menu.Columns.Add("tentd");
+                menu.Columns.Add("soluong");
+                menu.Columns.Add("dongia");
+                menu.Columns.Add("thanhtien");
 
-                menu.Rows.Add(newrow);
+                DataRow newrow;
+                foreach (DataRow row in _menu.Rows)
+                {
+                    newrow = menu.NewRow();
+                    newrow["tentd"] = row["tentd"].ToString();
+                    newrow["soluong"] = row["soluong"].ToString();
+                    newrow["dongia"] = row["dongia"].ToString();
+                    newrow["thanhtien"] = row["thanhtien"].ToString();
+
+                    menu.Rows.Add(newrow);
+                }
             }
         }
 

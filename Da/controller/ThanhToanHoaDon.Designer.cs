@@ -43,7 +43,7 @@
             // 
             // txt_tongtien
             // 
-            this.txt_tongtien.BackColor = System.Drawing.Color.White;
+            this.txt_tongtien.BackColor = System.Drawing.Color.LightGray;
             this.txt_tongtien.Enabled = false;
             this.txt_tongtien.Location = new System.Drawing.Point(172, 30);
             this.txt_tongtien.Margin = new System.Windows.Forms.Padding(5);
@@ -85,6 +85,7 @@
             // 
             // txt_khachdua
             // 
+            this.txt_khachdua.BackColor = System.Drawing.Color.LightGray;
             this.txt_khachdua.Location = new System.Drawing.Point(172, 89);
             this.txt_khachdua.Margin = new System.Windows.Forms.Padding(5);
             this.txt_khachdua.Name = "txt_khachdua";
@@ -96,7 +97,7 @@
             // 
             // txt_tralai
             // 
-            this.txt_tralai.BackColor = System.Drawing.Color.White;
+            this.txt_tralai.BackColor = System.Drawing.Color.LightGray;
             this.txt_tralai.Enabled = false;
             this.txt_tralai.Location = new System.Drawing.Point(172, 147);
             this.txt_tralai.Margin = new System.Windows.Forms.Padding(5);
@@ -108,13 +109,15 @@
             // 
             // btn_thanhtoanthe
             // 
+            this.btn_thanhtoanthe.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.btn_thanhtoanthe.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_thanhtoanthe.Appearance.Options.UseBackColor = true;
             this.btn_thanhtoanthe.Appearance.Options.UseFont = true;
             this.btn_thanhtoanthe.Enabled = false;
             this.btn_thanhtoanthe.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btn_thanhtoanthe.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_thanhtoanthe.ImageOptions.SvgImage")));
             this.btn_thanhtoanthe.Location = new System.Drawing.Point(405, 191);
-            this.btn_thanhtoanthe.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btn_thanhtoanthe.Margin = new System.Windows.Forms.Padding(5);
             this.btn_thanhtoanthe.Name = "btn_thanhtoanthe";
             this.btn_thanhtoanthe.Size = new System.Drawing.Size(215, 61);
             this.btn_thanhtoanthe.TabIndex = 10;
@@ -133,12 +136,14 @@
             // 
             // btn_luuvain
             // 
+            this.btn_luuvain.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.btn_luuvain.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_luuvain.Appearance.Options.UseBackColor = true;
             this.btn_luuvain.Appearance.Options.UseFont = true;
             this.btn_luuvain.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_luuvain.ImageOptions.Image")));
             this.btn_luuvain.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btn_luuvain.Location = new System.Drawing.Point(172, 191);
-            this.btn_luuvain.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btn_luuvain.Margin = new System.Windows.Forms.Padding(5);
             this.btn_luuvain.Name = "btn_luuvain";
             this.btn_luuvain.Size = new System.Drawing.Size(215, 61);
             this.btn_luuvain.TabIndex = 8;
@@ -159,6 +164,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(645, 288);
             this.Controls.Add(this.lb_count);
             this.Controls.Add(this.lb_solanin);
@@ -173,7 +179,7 @@
             this.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "ThanhToanHoaDon";
-            this.Text = "ThanhToanHoaDon";
+            this.Text = "Thanh toán";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ThanhToanHoaDon_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -215,7 +215,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "them_khachhang";
-            this.Text = "them_khachhang";
+            this.Text = "Thêm khách hàng";
             this.Load += new System.EventHandler(this.them_khachhang_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

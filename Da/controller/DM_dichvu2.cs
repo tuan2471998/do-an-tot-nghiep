@@ -27,60 +27,84 @@ namespace Da.controller
         }
         public void loadData_madv(string ma)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            da = new SqlDataAdapter("select * from DICHVU where MADV like'" + ma + "%'", conn.cnn);
-            da.Fill(ds, "DICHVU_madv");
-            dgv_dichvu.DataSource = ds.Tables["DICHVU_madv"];
-            key[0] = ds.Tables["DICHVU_madv"].Columns[0];
-            ds.Tables["DICHVU_madv"].PrimaryKey = key;
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                da = new SqlDataAdapter("select * from DICHVU where MADV like'" + ma + "%'", conn.cnn);
+                da.Fill(ds, "DICHVU_madv");
+                dgv_dichvu.DataSource = ds.Tables["DICHVU_madv"];
+                key[0] = ds.Tables["DICHVU_madv"].Columns[0];
+                ds.Tables["DICHVU_madv"].PrimaryKey = key;
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Lỗi");
+                conn.cnn.Close();
+            }
         }
 
         public void loadData_tendv(string ten)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            da = new SqlDataAdapter("select * from DICHVU where TENDV like'" + ten + "%'", conn.cnn);
-            da.Fill(ds, "DICHVU_tendv");
-            dgv_dichvu.DataSource = ds.Tables["DICHVU_tendv"];
-            key[0] = ds.Tables["DICHVU_tendv"].Columns[0];
-            ds.Tables["DICHVU_tendv"].PrimaryKey = key;
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                da = new SqlDataAdapter("select * from DICHVU where TENDV like'" + ten + "%'", conn.cnn);
+                da.Fill(ds, "DICHVU_tendv");
+                dgv_dichvu.DataSource = ds.Tables["DICHVU_tendv"];
+                key[0] = ds.Tables["DICHVU_tendv"].Columns[0];
+                ds.Tables["DICHVU_tendv"].PrimaryKey = key;
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Lỗi");
+                conn.cnn.Close();
+            }
         }
 
         public void Load_DGV_Dichvu()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            ds = new DataSet();
-            da = new SqlDataAdapter(" select * from DICHVU", conn.cnn);
-            da.Fill(ds, "DICHVU");
-            dgv_dichvu.DataSource = ds.Tables["DICHVU"];
-            key[0] = ds.Tables["DICHVU"].Columns[0];
-            ds.Tables["DICHVU"].PrimaryKey = key;
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                ds = new DataSet();
+                da = new SqlDataAdapter(" select * from DICHVU", conn.cnn);
+                da.Fill(ds, "DICHVU");
+                dgv_dichvu.DataSource = ds.Tables["DICHVU"];
+                key[0] = ds.Tables["DICHVU"].Columns[0];
+                ds.Tables["DICHVU"].PrimaryKey = key;
 
-            for (int i = 0; i < dgv_dichvu.Rows.Count; i++)
+                for (int i = 0; i < dgv_dichvu.Rows.Count; i++)
+                {
+                    txt_madv.AutoCompleteCustomSource.Add(ds.Tables["DICHVU"].Rows[i][0].ToString());
+                    txt_tendv.AutoCompleteCustomSource.Add(ds.Tables["DICHVU"].Rows[i][1].ToString());
+                }
+
+                txt_madv.AutoCompleteMode = AutoCompleteMode.Append;
+                txt_madv.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+                txt_tendv.AutoCompleteMode = AutoCompleteMode.Append;
+                txt_tendv.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+                conn.cnn.Close();
+            }
+            catch
             {
-                txt_madv.AutoCompleteCustomSource.Add(ds.Tables["DICHVU"].Rows[i][0].ToString());
-                txt_tendv.AutoCompleteCustomSource.Add(ds.Tables["DICHVU"].Rows[i][1].ToString());
+                MessageBox.Show("Lỗi");
+                conn.cnn.Close();
             }
-
-            txt_madv.AutoCompleteMode = AutoCompleteMode.Append;
-            txt_madv.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-            txt_tendv.AutoCompleteMode = AutoCompleteMode.Append;
-            txt_tendv.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-            conn.cnn.Close();
         }
 
         private void Clear_txt()

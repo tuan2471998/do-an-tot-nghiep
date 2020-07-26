@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Data.SqlClient;
 using DevExpress.CodeParser.Diagnostics;
+using DevExpress.XtraBars.Painters;
 
 namespace Da.controller
 {
@@ -48,13 +49,20 @@ namespace Da.controller
             conn.cnn.Close();
         }
 
-        private void load_ct_thuephong(string matp)
+        private void load_ct_thuephong(string maph)
         {
             if (conn.cnn.State == ConnectionState.Closed)
             {
                 conn.cnn.Open();
             }
-            da = new SqlDataAdapter(" select * from CT_THUEPHONG where MATP = '"+matp+"'", conn.cnn);
+
+            string sql = "select cttp.*\n";
+            sql += "from ct_thuephong cttp, phieuthue pt\n";
+            sql += "where cttp.matp = pt.matp\n";
+            sql += "and pt.tinhtrang = 1\n";
+            sql += "and maph = '" + maph + "'";
+
+            da = new SqlDataAdapter(sql, conn.cnn);
             da.Fill(ds, "CT_THUEPHONG");
             dgv_dsphieuthue.DataSource = ds.Tables["CT_THUEPHONG"];
             key1[0] = ds.Tables["CT_THUEPHONG"].Columns[0];
@@ -211,7 +219,6 @@ namespace Da.controller
         private void dgv_phieudichvu_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             txt_maphdv.Text = dgv_phieudichvu.CurrentRow.Cells[0].Value.ToString();
-            txt_maphieuthue.Text = dgv_phieudichvu.CurrentRow.Cells[1].Value.ToString();
             txt_maph.Text = dgv_phieudichvu.CurrentRow.Cells[2].Value.ToString();
             txt_ngaylap.Text = dgv_phieudichvu.CurrentRow.Cells[3].Value.ToString();
 

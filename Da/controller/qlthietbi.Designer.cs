@@ -36,6 +36,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.dgv_danhsachloaiphong = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tivi = new System.Windows.Forms.CheckBox();
             this.khan = new System.Windows.Forms.CheckBox();
             this.chan = new System.Windows.Forms.CheckBox();
@@ -75,10 +79,7 @@
             this.numeric_quattran = new System.Windows.Forms.NumericUpDown();
             this.numeric_maylanh = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_danhsachloaiphong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_giuongdoi)).BeginInit();
@@ -101,6 +102,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numeric_quattran)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_maylanh)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -185,15 +187,49 @@
             this.Column2,
             this.Column3,
             this.Column4});
-            this.dgv_danhsachloaiphong.Location = new System.Drawing.Point(0, 105);
+            this.dgv_danhsachloaiphong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_danhsachloaiphong.Location = new System.Drawing.Point(3, 26);
             this.dgv_danhsachloaiphong.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_danhsachloaiphong.Name = "dgv_danhsachloaiphong";
             this.dgv_danhsachloaiphong.RowHeadersVisible = false;
             this.dgv_danhsachloaiphong.RowHeadersWidth = 51;
             this.dgv_danhsachloaiphong.RowTemplate.Height = 24;
             this.dgv_danhsachloaiphong.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_danhsachloaiphong.Size = new System.Drawing.Size(859, 632);
+            this.dgv_danhsachloaiphong.Size = new System.Drawing.Size(849, 589);
             this.dgv_danhsachloaiphong.TabIndex = 1;
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column1.DataPropertyName = "MALOAI";
+            this.Column1.HeaderText = "Loại phòng";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.DataPropertyName = "TENTB";
+            this.Column2.HeaderText = "Thiết bị";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column3.DataPropertyName = "SOLUONGTB";
+            this.Column3.HeaderText = "Số lượng";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "MATB";
+            this.Column4.HeaderText = "MATB";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.Visible = false;
+            this.Column4.Width = 125;
             // 
             // tivi
             // 
@@ -720,38 +756,15 @@
             this.groupBox2.Text = "Danh sách thiết bị";
             this.groupBox2.AutoSizeChanged += new System.EventHandler(this.numeric_giuongdoi_ValueChanged);
             // 
-            // Column1
+            // groupBox3
             // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.DataPropertyName = "MALOAI";
-            this.Column1.HeaderText = "Loại phòng";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.DataPropertyName = "TENTB";
-            this.Column2.HeaderText = "Thiết bị";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.DataPropertyName = "SOLUONGTB";
-            this.Column3.HeaderText = "Số lượng";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "MATB";
-            this.Column4.HeaderText = "MATB";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.Visible = false;
-            this.Column4.Width = 125;
+            this.groupBox3.Controls.Add(this.dgv_danhsachloaiphong);
+            this.groupBox3.Location = new System.Drawing.Point(4, 119);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(855, 618);
+            this.groupBox3.TabIndex = 3;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Chi tiết thiết bị mỗi phòng";
             // 
             // qlthietbi
             // 
@@ -761,8 +774,8 @@
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.dgv_danhsachloaiphong);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "qlthietbi";
@@ -792,6 +805,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numeric_maylanh)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -848,5 +862,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }

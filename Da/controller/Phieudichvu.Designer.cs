@@ -345,16 +345,16 @@
             this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
             this.label5.Location = new System.Drawing.Point(6, 36);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(136, 23);
+            this.label5.Size = new System.Drawing.Size(100, 23);
             this.label5.TabIndex = 11;
-            this.label5.Text = "Mã phiếu thuê:";
+            this.label5.Text = "Mã phòng:";
             // 
             // txt_maphieuthue
             // 
             this.txt_maphieuthue.BackColor = System.Drawing.SystemColors.Control;
-            this.txt_maphieuthue.Location = new System.Drawing.Point(148, 34);
+            this.txt_maphieuthue.Location = new System.Drawing.Point(112, 34);
             this.txt_maphieuthue.Name = "txt_maphieuthue";
-            this.txt_maphieuthue.Size = new System.Drawing.Size(214, 30);
+            this.txt_maphieuthue.Size = new System.Drawing.Size(250, 30);
             this.txt_maphieuthue.TabIndex = 2;
             this.txt_maphieuthue.Click += new System.EventHandler(this.txt_maphieuthue_Click);
             // 
