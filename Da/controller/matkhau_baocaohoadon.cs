@@ -23,6 +23,12 @@ namespace Da.controller
             khachsan = _khachsan;
         }
 
+        public static string Base64Decode(string base64EncodedData)
+        {
+            var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
+            return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+        }
+
         private string get_matkhau(string tentk)
         {
             if (conn.cnn.State == ConnectionState.Closed)
@@ -49,7 +55,7 @@ namespace Da.controller
 
         public void kiemtra()
         {
-            if (get_matkhau(txt_taikhoan.Text).Trim() == txt_matkhau.Text.Trim() && get_quyen(txt_taikhoan.Text).Trim() == "ADMIN" )
+            if (Base64Decode(get_matkhau(txt_taikhoan.Text)) == txt_matkhau.Text.Trim() && get_quyen(txt_taikhoan.Text).Trim() == "ADMIN" )
             {
                 kq = 1;
             }
@@ -59,7 +65,7 @@ namespace Da.controller
             }
         }
 
-        private void btn_xacminh_Click(object sender, EventArgs e)
+        private void dangnhap()
         {
             kiemtra();
             if (kq == 1)
@@ -71,6 +77,17 @@ namespace Da.controller
             {
                 MessageBox.Show("Lỗi xác minh");
             }
+        }
+
+        private void btn_xacminh_Click(object sender, EventArgs e)
+        {
+            dangnhap();
+        }
+
+        private void txt_taikhoan_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                dangnhap();
         }
     }
 }

@@ -54,6 +54,7 @@
             this.txt_matkhau.PasswordChar = '*';
             this.txt_matkhau.Size = new System.Drawing.Size(265, 34);
             this.txt_matkhau.TabIndex = 10;
+            this.txt_matkhau.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_taikhoan_KeyDown);
             // 
             // txt_taikhoan
             // 
@@ -61,6 +62,7 @@
             this.txt_taikhoan.Name = "txt_taikhoan";
             this.txt_taikhoan.Size = new System.Drawing.Size(265, 34);
             this.txt_taikhoan.TabIndex = 9;
+            this.txt_taikhoan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_taikhoan_KeyDown);
             // 
             // label3
             // 

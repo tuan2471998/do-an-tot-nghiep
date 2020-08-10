@@ -269,23 +269,46 @@ namespace Da.controller
             conn.cnn.Close();
         }
 
+        DataSet _ds;
+        SqlDataAdapter _da;
+
         private void luu_ct_phieuthue_moi()
         {
             if (conn.cnn.State == ConnectionState.Closed)
             {
                 conn.cnn.Open();
             }
+            DataRow newRow;
+            SqlCommandBuilder builda;
+
+            _da = new SqlDataAdapter("select * from CT_THUEPHONG where MATP = '" + matp_cu + "'", conn.cnn);
+            _ds = new DataSet();
+            _da.Fill(_ds, "CTTP_CU");
 
             da = new SqlDataAdapter("select * from CT_THUEPHONG", conn.cnn);
             ds = new DataSet();
             da.Fill(ds, "CTTP");
 
-            DataRow newRow = ds.Tables["CTTP"].NewRow();
+            foreach (DataRow row in _ds.Tables["CTTP_CU"].Rows)
+            {
+                if (row["MAPH"].ToString() != maph_cu)
+                {
+                    newRow = ds.Tables["CTTP"].NewRow();
+                    newRow[0] = matp_moi;
+                    newRow[1] = row["MAPH"].ToString();
+
+                    ds.Tables["CTTP"].Rows.Add(newRow);
+                    builda = new SqlCommandBuilder(da);
+                    da.Update(ds, "CTTP");
+                }
+            }
+
+            newRow = ds.Tables["CTTP"].NewRow();
             newRow[0] = matp_moi;
             newRow[1] = maph_moi;
 
             ds.Tables["CTTP"].Rows.Add(newRow);
-            SqlCommandBuilder builda = new SqlCommandBuilder(da);
+            builda = new SqlCommandBuilder(da);
             da.Update(ds, "CTTP");
 
             conn.cnn.Close();

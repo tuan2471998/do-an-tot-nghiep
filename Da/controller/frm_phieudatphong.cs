@@ -171,7 +171,7 @@ namespace Da.controller
             string ngaydat = dtp_ngaydat.Value.ToShortDateString();
             string ngaytra = dtp_ngaytra.Value.ToShortDateString();
             DataSet ds_ph = new DataSet();
-            SqlDataAdapter da_phCT = new SqlDataAdapter("select PHONG.MAPH from PHONG,CT_PHIEUDAT,PHIEUDAT WHERE PHONG.MAPH=CT_PHIEUDAT.MAPH  AND CT_PHIEUDAT.MADP=PHIEUDAT.MADP AND NGAYNHAN_DUKIEN<='" + ngaytra + "' AND NGAYTRA_DUKIEN>='" + ngaydat + "'", conn.cnn);
+            SqlDataAdapter da_phCT = new SqlDataAdapter("select PHONG.MAPH from PHONG,CT_PHIEUDAT,PHIEUDAT WHERE PHONG.MAPH=CT_PHIEUDAT.MAPH AND CT_PHIEUDAT.MADP=PHIEUDAT.MADP AND PHONG.TINHTRANG=0 AND NGAYNHAN_DUKIEN<='" + ngaytra + "' AND NGAYTRA_DUKIEN>='" + ngaydat + "'", conn.cnn);
 
             da_phCT.Fill(ds_ph, "PHONG1");
             DataTable dt1 = ds_ph.Tables["PHONG1"];
@@ -183,7 +183,7 @@ namespace Da.controller
                     return false;
                 }
             }
-            SqlDataAdapter da_phCTThue = new SqlDataAdapter("select PHONG.MAPH from PHONG,CT_THUEPHONG,PHIEUTHUE WHERE PHONG.MAPH=CT_THUEPHONG.MAPH AND CT_THUEPHONG.MATP=PHIEUTHUE.MATP AND NGAYNHAN<='" + ngaytra + "' AND NGAYTRA>='" + ngaydat + "'", conn.cnn);
+            SqlDataAdapter da_phCTThue = new SqlDataAdapter("select PHONG.MAPH from PHONG,CT_THUEPHONG,PHIEUTHUE WHERE PHONG.MAPH=CT_THUEPHONG.MAPH AND CT_THUEPHONG.MATP=PHIEUTHUE.MATP AND PHONG.TINHTRANG=0 AND NGAYNHAN<='" + ngaytra + "' AND NGAYTRA>='" + ngaytra + "'", conn.cnn);
             da_phCTThue.Fill(ds_ph, "PHONG2");
             DataTable dt2 = ds_ph.Tables["PHONG2"];
 
@@ -498,7 +498,7 @@ namespace Da.controller
             message += " voi Ma Dat Phong la " + textBoxmaphieudat.Text.Trim();
             message += ". Vui long den truoc 14 gio de nhan phong.";
             sp = new SerialPort();
-            sp.PortName = "COM5";
+            sp.PortName = "COM10";
             sp.Open();
             sp.WriteLine("AT" + Environment.NewLine);
             Thread.Sleep(100);
@@ -523,26 +523,26 @@ namespace Da.controller
         private void btnLuu_Click(object sender, EventArgs e)
         {
             if (textBoxmanhanvien.Text.Length > 0 && string.IsNullOrEmpty(txtMaKH.Text) == false && textBoxtiencoc.Text.Length > 0 && textBoxmaphieudat.Text.Length > 0 && textBoxsoluong.Text.Length > 0)
+            {              
+                try
                 {
-                    try
-                    {
-                        chuyenTrangThaiPhong();
-                        themPhieuDAt();
-                        themChiTietPhieuDat();
-                        //guisms();
-                        MessageBox.Show("Lập phiếu đặt thành công");
-                        reload();
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Lỗi");
-                    }
+                    chuyenTrangThaiPhong();
+                    themPhieuDAt();
+                    themChiTietPhieuDat();
+                    guisms();
+                    MessageBox.Show("Lập phiếu đặt thành công");
+                    reload();
+                }
+                catch
+                {
+                    MessageBox.Show("Lỗi");
+                }
 
-                }
-                else
-                {
-                    MessageBox.Show("Bạn vui lòng nhập đầy đủ dữ liệu !!!!!");
-                }
+            }
+            else
+            {
+                MessageBox.Show("Bạn vui lòng nhập đầy đủ dữ liệu !!!!!");
+            }
         }
 
         private void chb_tang_CheckedChanged(object sender, EventArgs e)
@@ -584,16 +584,16 @@ namespace Da.controller
                 MessageBox.Show("Ngày đặt phòng không hợp lệ");
                 return 0;
             }
-            else if ( hientai > ngaydat )
+            else if ( hientai < ngaydat && hientai < ngaytra )
             {
                 MessageBox.Show("Ngày đặt phòng không hợp lệ");
                 return 0;
             }
-            else if ( hientai > ngaytra)
-            {
-                MessageBox.Show("Ngày đặt phòng không hợp lệ");
-                return 0;
-            }
+            //else if (  > ngaytra)
+            //{
+            //    MessageBox.Show("Ngày đặt phòng không hợp lệ");
+            //    return 0;
+            //}
             else
                 return 1;
         }

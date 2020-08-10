@@ -122,7 +122,6 @@ namespace Da.controller
                 {
                     conn.cnn.Open();
                 }
-                conn.cnn.Open();
                 DialogResult r;
                 r = MessageBox.Show("Bạn có chắc muốn xóa không?", "Thông báo xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                 if (r == DialogResult.Yes)

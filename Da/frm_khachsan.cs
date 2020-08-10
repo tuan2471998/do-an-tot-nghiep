@@ -233,11 +233,25 @@ namespace Da
             }
         }
 
-        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        public void show_baocaonhaphang()
         {
             hienthi.TabPages.Clear();
             DS_NHAPHANG frm = new DS_NHAPHANG(conn);
-            AddTabControl(frm, "Danh sách nhập hàng");
+            AddTabControl(frm, "Báo cáo nhập hàng");
+        }
+
+        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (quyen == "NVIEN")
+            {
+                matkhau_baocaonhaphang nhaphang = new matkhau_baocaonhaphang(conn, this);
+                nhaphang.StartPosition = FormStartPosition.CenterScreen;
+                nhaphang.Show();
+            }
+            else
+            {
+                show_baocaonhaphang();
+            }
         }
 
         public void show_baocaohoadon()
@@ -261,11 +275,25 @@ namespace Da
             }
         }
 
-        private void barButtonItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        public void show_doanhthu()
         {
             hienthi.TabPages.Clear();
             BAOCAOTONGHOP frm = new BAOCAOTONGHOP(conn);
             AddTabControl(frm, "Báo cáo tổng hợp");
+        }
+
+        private void barButtonItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (quyen == "NVIEN")
+            {
+                matkhau_doanhthu mk = new matkhau_doanhthu(conn, this);
+                mk.StartPosition = FormStartPosition.CenterScreen;
+                mk.Show();
+            }
+            else
+            {
+                show_doanhthu();
+            }
         }
 
         private void navBar_danhsachphong_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)

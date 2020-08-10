@@ -50,8 +50,7 @@ namespace Da.controller
         }
 
         private void btn_timkiem_Click(object sender, EventArgs e)
-        {
-            conn.cnn.Close();
+        {           
             try
             {
                 if (conn.cnn.State == ConnectionState.Closed)
@@ -105,6 +104,8 @@ namespace Da.controller
 
                 dgv_thongkehoadon.DataSource = ds.Tables["BAOCAO"];
                 btn_Xuatbaocao.Enabled = true;
+
+                conn.cnn.Close();
             }
             catch
             {

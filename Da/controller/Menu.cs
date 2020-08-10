@@ -126,6 +126,7 @@ namespace Da
 
             tt.get_thongtin_menu(menu);
             tt.get_tienmenu();
+            tt.enable_menu();
 
             if (conn.cnn.State == ConnectionState.Open)
             {

@@ -150,7 +150,7 @@ namespace Da.controller
                     conn.cnn.Open();
                 }
                 int sl = int.Parse(textBoxsl.Text);
-                string sql = "INSERT INTO PHIEUTHUE VALUES('" + textBox_MATP.Text + "','" + textBox_MANV.Text + "','" + textBoxmkh.Text + "','" + comboBox_madatphong.SelectedValue.ToString() + "','" + DateTime.Now + "','" + dtp_ngaytra.Value + "'," + sl + ",1,'" + textBox_tiencoc.Text + "')";
+                string sql = "INSERT INTO PHIEUTHUE VALUES('" + textBox_MATP.Text + "','" + textBox_MANV.Text + "','" + textBoxmkh.Text + "','" + comboBox_madatphong.SelectedValue.ToString() + "','" + DateTime.Now + "','" + dtp_ngaytra.Value + "'," + sl + ",1,'" + textBox_tiencoc.Text + "', null)";
                 SqlCommand cmd = new SqlCommand(sql, conn.cnn);
                 cmd.ExecuteNonQuery();
                 conn.cnn.Close();

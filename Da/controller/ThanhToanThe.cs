@@ -181,6 +181,7 @@ namespace Da.controller
             insert_New["MATP"] = matp;
             insert_New["TIEN_PH"] = tienphong;
             insert_New["TIEN_DV"] = tiendv;
+            insert_New["TIEN_MENU"] = tienmenu;
             insert_New["TIEN_PHUTHU"] = tienphuthu;
             insert_New["GHICHU_PHUTHU"] = ghichu;
 
@@ -193,13 +194,15 @@ namespace Da.controller
 
         double tienphong;
         double tiendv;
+        double tienmenu;
         double tienphuthu;
         string ghichu;
 
-        public void get_tien(double _tienphong, double _tiendv, double _tienphuthu, string _ghichu)
+        public void get_tien(double _tienphong, double _tiendv, double _tienmenu, double _tienphuthu, string _ghichu)
         {
             tienphong = _tienphong;
             tiendv = _tiendv;
+            tienmenu = _tienmenu;
             tienphuthu = _tienphuthu;
             ghichu = _ghichu;
         }
@@ -360,26 +363,29 @@ namespace Da.controller
 
         private void luu_ct_menu()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-                conn.cnn.Open();
-
-            ds = new DataSet();
-            da = new SqlDataAdapter(" select * from CT_MENU", conn.cnn);
-            da.Fill(ds, "CT_MENU");
-
-            foreach (DataRow row in menu.Rows)
+            if (menu != null)
             {
-                DataRow insert_New = ds.Tables["CT_MENU"].NewRow();
-                insert_New["MAHD"] = mahd;
-                insert_New["IDMENU"] = get_mamenu(row["tentd"].ToString());
-                insert_New["SOLUONG"] = int.Parse(row["soluong"].ToString());
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
 
-                ds.Tables["CT_MENU"].Rows.Add(insert_New);
-                SqlCommandBuilder cmb = new SqlCommandBuilder(da);
-                da.Update(ds, "CT_MENU");
+                ds = new DataSet();
+                da = new SqlDataAdapter(" select * from CT_MENU", conn.cnn);
+                da.Fill(ds, "CT_MENU");
+
+                foreach (DataRow row in menu.Rows)
+                {
+                    DataRow insert_New = ds.Tables["CT_MENU"].NewRow();
+                    insert_New["MAHD"] = mahd;
+                    insert_New["IDMENU"] = get_mamenu(row["tentd"].ToString());
+                    insert_New["SOLUONG"] = int.Parse(row["soluong"].ToString());
+
+                    ds.Tables["CT_MENU"].Rows.Add(insert_New);
+                    SqlCommandBuilder cmb = new SqlCommandBuilder(da);
+                    da.Update(ds, "CT_MENU");
+                }
+
+                conn.cnn.Close();
             }
-
-            conn.cnn.Close();
         }
 
         private void btn_thanhtoanthe_Click(object sender, EventArgs e)

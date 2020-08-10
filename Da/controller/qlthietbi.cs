@@ -348,15 +348,19 @@ namespace Da.controller
             }
         }
 
+        DataTable dt;
+        DataRow newrow;
         private void load_data_ct_thietbi()
         {
             if (conn.cnn.State == ConnectionState.Closed)
             {
                 conn.cnn.Open();
             }
+            get_soluongphong();
             ds = new DataSet();
             da = new SqlDataAdapter("select MALOAI, TENTB, SOLUONGTB, CT_THIETBI.MATB from CT_THIETBI, THIETBI where CT_THIETBI.MATB = THIETBI.MATB and MALOAI = '" + cbb_loai.SelectedValue + "'", conn.cnn);
             da.Fill(ds, "CT_THIETBI");
+
 
             dgv_danhsachloaiphong.DataSource = ds.Tables["CT_THIETBI"];
 

@@ -46,22 +46,33 @@ namespace Da.controller
 
         public void loadData()
         {
-            da = new SqlDataAdapter(" select * from KHACHHANG", conn.cnn);
-            da.Fill(ds, "KHACHHANG");
-            datakhachhang.DataSource = ds.Tables["KHACHHANG"];
-            key[0] = ds.Tables["KHACHHANG"].Columns[0];
-            ds.Tables["KHACHHANG"].PrimaryKey = key;
-
-            for (int i = 0; i < datakhachhang.Rows.Count; i++)
+            try
             {
-                txtmkh.AutoCompleteCustomSource.Add(ds.Tables["KHACHHANG"].Rows[i][0].ToString());
-                txttenkh.AutoCompleteCustomSource.Add(ds.Tables["KHACHHANG"].Rows[i][1].ToString());
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
+
+                da = new SqlDataAdapter(" select * from KHACHHANG", conn.cnn);
+                da.Fill(ds, "KHACHHANG");
+                datakhachhang.DataSource = ds.Tables["KHACHHANG"];
+                key[0] = ds.Tables["KHACHHANG"].Columns[0];
+                ds.Tables["KHACHHANG"].PrimaryKey = key;
+
+                for (int i = 0; i < datakhachhang.Rows.Count; i++)
+                {
+                    txtmkh.AutoCompleteCustomSource.Add(ds.Tables["KHACHHANG"].Rows[i][0].ToString());
+                    txttenkh.AutoCompleteCustomSource.Add(ds.Tables["KHACHHANG"].Rows[i][1].ToString());
+                }
+
+                txttenkh.AutoCompleteMode = AutoCompleteMode.Append;
+                txttenkh.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+                conn.cnn.Close();
             }
-
-            txttenkh.AutoCompleteMode = AutoCompleteMode.Append;
-            txttenkh.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-            conn.cnn.Close();
+            catch
+            {
+                MessageBox.Show("Lỗi");
+                conn.cnn.Close();
+            }
         }
 
         private void clear_gridview()
@@ -74,57 +85,108 @@ namespace Da.controller
 
         public void loadData_makh(string ma)
         {
-            da = new SqlDataAdapter("select * from KHACHHANG where MAKH like'" + ma +"%'", conn.cnn);
-            da.Fill(ds, "KHACHHANG_ma");
-            datakhachhang.DataSource = ds.Tables["KHACHHANG_ma"];
-            key[0] = ds.Tables["KHACHHANG_ma"].Columns[0];
-            ds.Tables["KHACHHANG_ma"].PrimaryKey = key;
+            try
+            {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
+                da = new SqlDataAdapter("select * from KHACHHANG where MAKH like'" + ma + "%'", conn.cnn);
+                da.Fill(ds, "KHACHHANG_ma");
+                datakhachhang.DataSource = ds.Tables["KHACHHANG_ma"];
+                key[0] = ds.Tables["KHACHHANG_ma"].Columns[0];
+                ds.Tables["KHACHHANG_ma"].PrimaryKey = key;
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Lỗi");
+                conn.cnn.Close();
+            }
         }
 
         public void loadData_tenkh(string ten)
         {
-            da = new SqlDataAdapter("select * from KHACHHANG where HOTEN like'" + ten + "%'", conn.cnn);
-            da.Fill(ds, "KHACHHANG_tenkh");
-            datakhachhang.DataSource = ds.Tables["KHACHHANG_tenkh"];
-            key[0] = ds.Tables["KHACHHANG_tenkh"].Columns[0];
-            ds.Tables["KHACHHANG_tenkh"].PrimaryKey = key;
+            try
+            {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
+                da = new SqlDataAdapter("select * from KHACHHANG where HOTEN like'" + ten + "%'", conn.cnn);
+                da.Fill(ds, "KHACHHANG_tenkh");
+                datakhachhang.DataSource = ds.Tables["KHACHHANG_tenkh"];
+                key[0] = ds.Tables["KHACHHANG_tenkh"].Columns[0];
+                ds.Tables["KHACHHANG_tenkh"].PrimaryKey = key;
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Lỗi");
+                conn.cnn.Close();
+            }
         }
 
         public void loadData_cmnd(string cmnd)
         {
-            da = new SqlDataAdapter("select * from KHACHHANG where SOCMND like '" + cmnd +"%'", conn.cnn);
-            da.Fill(ds, "KHACHHANG_cmnd");
-            datakhachhang.DataSource = ds.Tables["KHACHHANG_cmnd"];
-            key[0] = ds.Tables["KHACHHANG_cmnd"].Columns[0];
-            ds.Tables["KHACHHANG_cmnd"].PrimaryKey = key;
+            try
+            {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
+                da = new SqlDataAdapter("select * from KHACHHANG where SOCMND like '" + cmnd + "%'", conn.cnn);
+                da.Fill(ds, "KHACHHANG_cmnd");
+                datakhachhang.DataSource = ds.Tables["KHACHHANG_cmnd"];
+                key[0] = ds.Tables["KHACHHANG_cmnd"].Columns[0];
+                ds.Tables["KHACHHANG_cmnd"].PrimaryKey = key;
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Lỗi");
+                conn.cnn.Close();
+            }
         }
 
         public void loadData_sdt(string sdt)
         {
-            da = new SqlDataAdapter("select * from KHACHHANG where SDT like '" + sdt + "%'", conn.cnn);
-            da.Fill(ds, "KHACHHANG_sdt");
-            datakhachhang.DataSource = ds.Tables["KHACHHANG_sdt"];
-            key[0] = ds.Tables["KHACHHANG_sdt"].Columns[0];
-            ds.Tables["KHACHHANG_sdt"].PrimaryKey = key;
+            try
+            {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
 
-            conn.cnn.Close();
+                da = new SqlDataAdapter("select * from KHACHHANG where SDT like '" + sdt + "%'", conn.cnn);
+                da.Fill(ds, "KHACHHANG_sdt");
+                datakhachhang.DataSource = ds.Tables["KHACHHANG_sdt"];
+                key[0] = ds.Tables["KHACHHANG_sdt"].Columns[0];
+                ds.Tables["KHACHHANG_sdt"].PrimaryKey = key;
+
+                conn.cnn.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Lỗi");
+                conn.cnn.Close();
+            }
         }
 
         public void loadData_quoctich(string quoctich)
         {
-            da = new SqlDataAdapter("select * from KHACHHANG where QUOCTICH like '%" + quoctich + "%'", conn.cnn);
-            da.Fill(ds, "KHACHHANG_quoctich");
-            datakhachhang.DataSource = ds.Tables["KHACHHANG_quoctich"];
-            key[0] = ds.Tables["KHACHHANG_quoctich"].Columns[0];
-            ds.Tables["KHACHHANG_quoctich"].PrimaryKey = key;
+            try
+            {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
+                da = new SqlDataAdapter("select * from KHACHHANG where QUOCTICH like '%" + quoctich + "%'", conn.cnn);
+                da.Fill(ds, "KHACHHANG_quoctich");
+                datakhachhang.DataSource = ds.Tables["KHACHHANG_quoctich"];
+                key[0] = ds.Tables["KHACHHANG_quoctich"].Columns[0];
+                ds.Tables["KHACHHANG_quoctich"].PrimaryKey = key;
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Lỗi");
+                conn.cnn.Close();
+            }
         }
 
         public void DM_khachhang_Load(object sender, EventArgs e)

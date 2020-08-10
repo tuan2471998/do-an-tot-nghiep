@@ -34,7 +34,7 @@ namespace Da.controller
             da = new SqlDataAdapter("select MK from TAIKHOAN where TENTK ='" + tkcu + "'", conn.cnn);
             da.Fill(ds, "MK");
 
-            if (string.Compare(txtmatkhaucu.Text, ds.Tables["MK"].Rows[0]["MK"].ToString()) != 0)
+            if (string.Compare(txtmatkhaucu.Text, Base64Decode(ds.Tables["MK"].Rows[0]["MK"].ToString())) != 0)
             {
                 MessageBox.Show("Nhập sai mật khẩu cũ");
                 txtmatkhaucu.Focus();
@@ -62,6 +62,16 @@ namespace Da.controller
                 return 1;
         }
 
+        public static string Base64Encode(string plainText)
+        {
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
+            return System.Convert.ToBase64String(plainTextBytes);
+        }
+        public static string Base64Decode(string base64EncodedData)
+        {
+            var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
+            return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+        }
         private void btn_doimatkhau_Click(object sender, EventArgs e)
         {
             try
@@ -75,7 +85,7 @@ namespace Da.controller
                     {
                         if (String.Compare(txtnhaplai.Text, txtmatkhaumoi.Text, true) == 0)
                         {
-                            string sel = "update TAIKHOAN set MK='" + txtmatkhaumoi.Text + "' where TENTK='" + tkcu + "' and MK='" + txtmatkhaucu.Text + "'";
+                            string sel = "update TAIKHOAN set MK='" + Base64Encode(txtmatkhaumoi.Text) + "' where TENTK='" + tkcu + "' and MK='" + Base64Encode(txtmatkhaucu.Text) + "'";
                             SqlCommand cmd = new SqlCommand(sel, conn.cnn);
                             cmd.ExecuteNonQuery();
                             MessageBox.Show("Đổi  mật khẩu thành công !");

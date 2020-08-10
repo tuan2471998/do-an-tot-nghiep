@@ -244,6 +244,18 @@
     <Compile Include="controller\matkhau_baocaohoadon.Designer.cs">
       <DependentUpon>matkhau_baocaohoadon.cs</DependentUpon>
     </Compile>
+    <Compile Include="controller\matkhau_baocaonhaphang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="controller\matkhau_baocaonhaphang.Designer.cs">
+      <DependentUpon>matkhau_baocaonhaphang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="controller\matkhau_doanhthu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="controller\matkhau_doanhthu.Designer.cs">
+      <DependentUpon>matkhau_doanhthu.cs</DependentUpon>
+    </Compile>
     <Compile Include="controller\matkhau_nhaphang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -455,6 +467,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="controller\matkhau_baocaohoadon.resx">
       <DependentUpon>matkhau_baocaohoadon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controller\matkhau_baocaonhaphang.resx">
+      <DependentUpon>matkhau_baocaonhaphang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controller\matkhau_doanhthu.resx">
+      <DependentUpon>matkhau_doanhthu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="controller\matkhau_nhaphang.resx">
       <DependentUpon>matkhau_nhaphang.cs</DependentUpon>

@@ -231,7 +231,7 @@ namespace Da.controller
                     soluong = int.Parse(row["SL_PHONG"].ToString());
                     tinhtrang = row["TINHTRANG"].ToString();
                 }
-                string sql1 = "INSERT INTO PHIEUTHUE VALUES('" + maphieuthue + "','" + manv + "','" + makh + "','" + madp + "','" + ngaynhan + "','" + ngaytra + "'," + soluong + ",1,'" + tinhtrang + "')";
+                string sql1 = "INSERT INTO PHIEUTHUE VALUES('" + maphieuthue + "','" + manv + "','" + makh + "','" + madp + "','" + ngaynhan + "','" + ngaytra + "'," + soluong + ",1,'" + tinhtrang + "', null)";
                 SqlCommand cmd1 = new SqlCommand(sql1, conn.cnn);
                 int kq = (int)cmd1.ExecuteNonQuery();
 

@@ -400,14 +400,10 @@ namespace Da
                 else
                     tienphuthu = 0;
 
-                if (!string.IsNullOrEmpty(txt_tienthucdon.Text))
-                {
-                    tienmenu = double.Parse(txt_tienthucdon.Text);
-                }
-                else
-                {
+                if (txt_tienthucdon.Visible == false)
                     tienmenu = 0;
-                }
+                else
+                    tienmenu = double.Parse(txt_tienthucdon.Text.Replace(",",""));
 
                 if (txt_tienthuephongcu.Visible == true)
                 {
@@ -440,7 +436,7 @@ namespace Da
                     ThanhToanThe the = new ThanhToanThe(this, conn);
                     the.nguon("frm_thanhtoan");
                     the.get_matp_from_frmThanhtoan(txt_mathuephong.Text);
-                    the.get_tien(tienthuephong, tiendichvu, tienphuthu, txt_ghichu.Text);
+                    the.get_tien(tienthuephong, tiendichvu, tienmenu, tienphuthu, txt_ghichu.Text);
                     the.get_thongtin_thanhtoan(tongtien);
                     the.get_thongtin_menu(menu);
                     the.get_thanhtoan(cbb_hinhthuc.Text);
@@ -464,6 +460,12 @@ namespace Da
         private void frm_tt_FormClosing(object sender, FormClosingEventArgs e)
         {
             dsphong.Load_control_all();
+        }
+
+        public void enable_menu()
+        {
+            lb_tienthucdon.Visible = true;
+            txt_tienthucdon.Visible = true;
         }
     }
 }

@@ -51,7 +51,7 @@
             this.txt_tiendichvu = new System.Windows.Forms.TextBox();
             this.chb_phuthu = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lb_tienthucdon = new System.Windows.Forms.Label();
             this.txt_tientratruoc = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -126,7 +126,7 @@
             this.groupBox1.Controls.Add(this.txt_tiendichvu);
             this.groupBox1.Controls.Add(this.chb_phuthu);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.lb_tienthucdon);
             this.groupBox1.Controls.Add(this.txt_tientratruoc);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
@@ -336,6 +336,7 @@
             this.txt_tienthucdon.ReadOnly = true;
             this.txt_tienthucdon.Size = new System.Drawing.Size(352, 30);
             this.txt_tienthucdon.TabIndex = 14;
+            this.txt_tienthucdon.Visible = false;
             // 
             // cbb_hinhthuc
             // 
@@ -385,15 +386,16 @@
             this.label7.TabIndex = 10;
             this.label7.Text = "Tiền dịch vụ:";
             // 
-            // label6
+            // lb_tienthucdon
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 296);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(163, 26);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Tiền thực đơn:";
+            this.lb_tienthucdon.AutoSize = true;
+            this.lb_tienthucdon.Location = new System.Drawing.Point(8, 296);
+            this.lb_tienthucdon.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_tienthucdon.Name = "lb_tienthucdon";
+            this.lb_tienthucdon.Size = new System.Drawing.Size(163, 26);
+            this.lb_tienthucdon.TabIndex = 9;
+            this.lb_tienthucdon.Text = "Tiền thực đơn:";
+            this.lb_tienthucdon.Visible = false;
             // 
             // txt_tientratruoc
             // 
@@ -700,7 +702,7 @@
         private System.Windows.Forms.TextBox txt_tiendichvu;
         private System.Windows.Forms.CheckBox chb_phuthu;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lb_tienthucdon;
         private System.Windows.Forms.TextBox txt_tientratruoc;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;

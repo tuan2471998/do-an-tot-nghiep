@@ -59,6 +59,12 @@ namespace Da.controller
             }
         }
 
+        public static string Base64Encode(string plainText)
+        {
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
+            return System.Convert.ToBase64String(plainTextBytes);
+        }
+
         int kiemtra_thongtin()
         {
             if (string.IsNullOrEmpty(txt_hoten.Text))
@@ -199,7 +205,7 @@ namespace Da.controller
                 DataRow insert_New_tk = ds.Tables["TAIKHOAN"].NewRow();
                 insert_New_tk["TENTK"] = manv;
                 insert_New_tk["MANV"] = manv;
-                insert_New_tk["MK"] = "123";
+                insert_New_tk["MK"] = Base64Encode("123");
                 insert_New_tk["QUYEN"] = "NVIEN";
 
                 ds.Tables["TAIKHOAN"].Rows.Add(insert_New_tk);

@@ -40,6 +40,19 @@ namespace Da
                 e.Cancel = true;
             }
         }
+
+        public static string Base64Decode(string base64EncodedData)
+        {
+            var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
+            return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+        }
+
+        public static string Base64Encode(string plainText)
+        {
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
+            return System.Convert.ToBase64String(plainTextBytes);
+        }
+
         DataSet ds;
         SqlDataAdapter da;
         private void dangnhap()
@@ -54,7 +67,7 @@ namespace Da
                 if (conn.cnn.State == ConnectionState.Closed)
                     conn.cnn.Open();
 
-                string selsql = "select * from TAIKHOAN where TENTK='" + txtten.Text + "' and MK='" + txtmk.Text + "'";
+                string selsql = "select * from TAIKHOAN where TENTK='" + txtten.Text + "' and MK='" + Base64Encode(txtmk.Text) + "'";
                 ds = new DataSet();
                 da = new SqlDataAdapter(selsql, conn.cnn);
                 da.Fill(ds);
