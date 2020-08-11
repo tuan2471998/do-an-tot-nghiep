@@ -126,7 +126,7 @@ namespace Da
         }
 
 
-        public void get_thongtin_thanhtoan(string _tentt, double _tienphong, double _tiendv, string _matp, double _tongtien, double _tienphuthu, double _tienmenu, string _ghichu)
+        public void get_thongtin_thanhtoan(string _tentt, double _tienphong, double _tiendv, string _matp, double _tongtien, double _tienphuthu, string _ghichu)
         {
             tentt = _tentt;
             tienphong = _tienphong;
@@ -134,7 +134,6 @@ namespace Da
             matp = _matp;
             tongtien = _tongtien;
             tienphuthu = _tienphuthu;
-            tienmenu = _tienmenu;
             ghichu_phuthu = _ghichu;
         }
 

@@ -49,12 +49,6 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.txt_tongtien = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.txt_tienthucdon = new System.Windows.Forms.TextBox();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txt_tienphuthu = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.txt_tiencoc = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -76,6 +70,9 @@
             this.panel12 = new System.Windows.Forms.Panel();
             this.txt_khachhang = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txt_tienphuthu = new System.Windows.Forms.TextBox();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_phong)).BeginInit();
@@ -312,78 +309,6 @@
             this.label9.Size = new System.Drawing.Size(117, 26);
             this.label9.TabIndex = 301;
             this.label9.Text = "Tổng tiền:";
-            // 
-            // panel6
-            // 
-            this.panel6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel6.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.panel6.Location = new System.Drawing.Point(643, 177);
-            this.panel6.Margin = new System.Windows.Forms.Padding(4);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(223, 2);
-            this.panel6.TabIndex = 294;
-            this.panel6.UseWaitCursor = true;
-            // 
-            // txt_tienthucdon
-            // 
-            this.txt_tienthucdon.BackColor = System.Drawing.Color.Silver;
-            this.txt_tienthucdon.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt_tienthucdon.Enabled = false;
-            this.txt_tienthucdon.ForeColor = System.Drawing.Color.Black;
-            this.txt_tienthucdon.Location = new System.Drawing.Point(644, 151);
-            this.txt_tienthucdon.Name = "txt_tienthucdon";
-            this.txt_tienthucdon.ReadOnly = true;
-            this.txt_tienthucdon.Size = new System.Drawing.Size(223, 27);
-            this.txt_tienthucdon.TabIndex = 297;
-            this.txt_tienthucdon.TextChanged += new System.EventHandler(this.txt_tienthucdon_TextChanged);
-            // 
-            // panel5
-            // 
-            this.panel5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel5.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.panel5.Location = new System.Drawing.Point(642, 238);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(223, 2);
-            this.panel5.TabIndex = 299;
-            this.panel5.UseWaitCursor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(458, 150);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(163, 26);
-            this.label8.TabIndex = 291;
-            this.label8.Text = "Tiền thực đơn:";
-            // 
-            // txt_tienphuthu
-            // 
-            this.txt_tienphuthu.BackColor = System.Drawing.Color.Silver;
-            this.txt_tienphuthu.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt_tienphuthu.Enabled = false;
-            this.txt_tienphuthu.ForeColor = System.Drawing.Color.Black;
-            this.txt_tienphuthu.Location = new System.Drawing.Point(642, 213);
-            this.txt_tienphuthu.Name = "txt_tienphuthu";
-            this.txt_tienphuthu.ReadOnly = true;
-            this.txt_tienphuthu.Size = new System.Drawing.Size(223, 27);
-            this.txt_tienphuthu.TabIndex = 300;
-            this.txt_tienphuthu.TextChanged += new System.EventHandler(this.txt_tienphuthu_TextChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(458, 212);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(151, 26);
-            this.label3.TabIndex = 298;
-            this.label3.Text = "Tiền phụ thu:";
             // 
             // panel4
             // 
@@ -633,6 +558,42 @@
             this.label12.TabIndex = 289;
             this.label12.Text = "Khách hàng:";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(458, 153);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(151, 26);
+            this.label3.TabIndex = 298;
+            this.label3.Text = "Tiền phụ thu:";
+            // 
+            // txt_tienphuthu
+            // 
+            this.txt_tienphuthu.BackColor = System.Drawing.Color.Silver;
+            this.txt_tienphuthu.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_tienphuthu.Enabled = false;
+            this.txt_tienphuthu.ForeColor = System.Drawing.Color.Black;
+            this.txt_tienphuthu.Location = new System.Drawing.Point(642, 154);
+            this.txt_tienphuthu.Name = "txt_tienphuthu";
+            this.txt_tienphuthu.ReadOnly = true;
+            this.txt_tienphuthu.Size = new System.Drawing.Size(223, 27);
+            this.txt_tienphuthu.TabIndex = 300;
+            this.txt_tienphuthu.TextChanged += new System.EventHandler(this.txt_tienphuthu_TextChanged);
+            // 
+            // panel5
+            // 
+            this.panel5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel5.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel5.Location = new System.Drawing.Point(642, 179);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(223, 2);
+            this.panel5.TabIndex = 299;
+            this.panel5.UseWaitCursor = true;
+            // 
             // chitiet_hoadon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 25F);
@@ -660,10 +621,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txt_tongtien);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.panel6);
-            this.Controls.Add(this.txt_tienthucdon);
             this.Controls.Add(this.panel5);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.txt_tienphuthu);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel4);
@@ -707,12 +665,6 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.TextBox txt_tongtien;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.TextBox txt_tienthucdon;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txt_tienphuthu;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox txt_tiencoc;
         private System.Windows.Forms.Panel panel2;
@@ -741,5 +693,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txt_tienphuthu;
+        private System.Windows.Forms.Panel panel5;
     }
 }

@@ -320,40 +320,7 @@ namespace Da
                 conn.cnn.Close();
             }
         }
-
-        DataTable menu;
-        public void get_thongtin_menu(DataTable _menu)
-        {
-            try
-            {
-                menu = new DataTable();
-                menu.Columns.Add("tentd");
-                menu.Columns.Add("soluong");
-                menu.Columns.Add("dongia");
-                menu.Columns.Add("thanhtien");
-
-                DataRow newrow;
-
-                foreach (DataRow row in _menu.Rows)
-                {
-                    newrow = menu.NewRow();
-                    newrow["tentd"] = row["tentd"].ToString();
-                    newrow["soluong"] = row["soluong"].ToString();
-                    newrow["dongia"] = row["dongia"].ToString();
-                    newrow["thanhtien"] = row["thanhtien"].ToString();
-
-                    menu.Rows.Add(newrow);
-                }
-
-                dgv_thongtin_thucdon.DataSource = menu;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                conn.cnn.Close();
-            }
-        }
-
+        
         private void get_thongtin_phong(string matp)
         {
             try
@@ -430,25 +397,6 @@ namespace Da
             this.Close();
         }
 
-        private void btn_menu_Click(object sender, EventArgs e)
-        {
-            Menu menu = new Menu(this, conn);
-            menu.StartPosition = FormStartPosition.CenterScreen;
-            menu.ShowDialog();
-        }
-
-        double tien_menu = 0;
-
-        public void get_tienmenu()
-        {
-            foreach (DataGridViewRow row in dgv_thongtin_thucdon.Rows)
-            {
-                tien_menu += double.Parse(row.Cells[3].Value.ToString().Replace(",",""));
-            }
-
-            txt_tienthucdon.Text = string.Format("{0:0,0}", double.Parse(tien_menu.ToString()));
-        }
-
         private void btn_thanhtoan_Click(object sender, EventArgs e)
         {          
             try
@@ -463,7 +411,6 @@ namespace Da
                     double tiendichvu = 0;
                     double tienthuephong = 0;
                     double tienphuthu;
-                    double tienmenu;
                     double tientratruoc = double.Parse(txt_tientratruoc.Text);
                     double tongtien;
                     double tienphongcu = 0;
@@ -472,11 +419,6 @@ namespace Da
                         tienphuthu = double.Parse(txt_phuthu.Text.Replace(",", ""));
                     else
                         tienphuthu = 0;
-
-                    if (txt_tienthucdon.Visible == false)
-                        tienmenu = 0;
-                    else
-                        tienmenu = double.Parse(txt_tienthucdon.Text.Replace(",", ""));
 
                     if (txt_tienthuephongcu.Visible == true)
                     {
@@ -491,16 +433,15 @@ namespace Da
                     {
                         tienthuephong += double.Parse(row1.Cells[2].Value.ToString());
                     }
-                    tongtien = tiendichvu + tienthuephong - tientratruoc + tienphuthu + tienmenu + tienphongcu;
+                    tongtien = tiendichvu + tienthuephong - tientratruoc + tienphuthu  + tienphongcu;
 
                     if (cbb_hinhthuc.SelectedIndex == 1)
                     {
                         ThanhToanHoaDon thanhtoan = new ThanhToanHoaDon(this, conn);
                         thanhtoan.get_tongtien(tongtien);
-                        thanhtoan.get_thongtin_thanhtoan(tentt, tienthuephong, tiendichvu, txt_mathuephong.Text, tongtien, tienphuthu, tienmenu, txt_ghichu.Text);
+                        thanhtoan.get_thongtin_thanhtoan(tentt, tienthuephong, tiendichvu, txt_mathuephong.Text, tongtien, tienphuthu, txt_ghichu.Text);
                         thanhtoan.get_maphieuthue(txt_mathuephong.Text);
                         thanhtoan.get_thanhtoan(cbb_hinhthuc.Text);
-                        thanhtoan.get_thongtin_menu(menu);
                         thanhtoan.StartPosition = FormStartPosition.CenterScreen;
                         thanhtoan.ShowDialog();
                     }
@@ -509,9 +450,8 @@ namespace Da
                         ThanhToanThe the = new ThanhToanThe(this, conn);
                         the.nguon("frm_thanhtoan");
                         the.get_matp_from_frmThanhtoan(txt_mathuephong.Text);
-                        the.get_tien(tienthuephong, tiendichvu, tienmenu, tienphuthu, txt_ghichu.Text);
+                        the.get_tien(tienthuephong, tiendichvu, tienphuthu, txt_ghichu.Text);
                         the.get_thongtin_thanhtoan(tongtien);
-                        the.get_thongtin_menu(menu);
                         the.get_thanhtoan(cbb_hinhthuc.Text);
                         the.StartPosition = FormStartPosition.CenterScreen;
                         the.ShowDialog();
@@ -538,12 +478,6 @@ namespace Da
         private void frm_tt_FormClosing(object sender, FormClosingEventArgs e)
         {
             dsphong.Load_control_all();
-        }
-
-        public void enable_menu()
-        {
-            lb_tienthucdon.Visible = true;
-            txt_tienthucdon.Visible = true;
         }
 
         private void txt_phuthu_KeyPress(object sender, KeyPressEventArgs e)

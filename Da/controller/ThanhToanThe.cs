@@ -215,7 +215,6 @@ namespace Da.controller
                 insert_New["MATP"] = matp;
                 insert_New["TIEN_PH"] = tienphong;
                 insert_New["TIEN_DV"] = tiendv;
-                insert_New["TIEN_MENU"] = tienmenu;
                 insert_New["TIEN_PHUTHU"] = tienphuthu;
                 insert_New["GHICHU_PHUTHU"] = ghichu;
 
@@ -234,15 +233,13 @@ namespace Da.controller
 
         double tienphong;
         double tiendv;
-        double tienmenu;
         double tienphuthu;
         string ghichu;
 
-        public void get_tien(double _tienphong, double _tiendv, double _tienmenu, double _tienphuthu, string _ghichu)
+        public void get_tien(double _tienphong, double _tiendv, double _tienphuthu, string _ghichu)
         {
             tienphong = _tienphong;
             tiendv = _tiendv;
-            tienmenu = _tienmenu;
             tienphuthu = _tienphuthu;
             ghichu = _ghichu;
         }

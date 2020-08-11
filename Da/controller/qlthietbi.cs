@@ -411,8 +411,6 @@ namespace Da.controller
             }
         }
 
-        DataTable dt;
-        DataRow newrow;
         private void load_data_ct_thietbi()
         {
             try

@@ -35,7 +35,6 @@
             this.txt_tienthuephongcu = new System.Windows.Forms.TextBox();
             this.lb_tienthuephongcu = new System.Windows.Forms.Label();
             this.btn_thanhtoan = new DevExpress.XtraEditors.SimpleButton();
-            this.btn_menu = new DevExpress.XtraEditors.SimpleButton();
             this.btn_dong = new DevExpress.XtraEditors.SimpleButton();
             this.txt_ghichu = new System.Windows.Forms.TextBox();
             this.lb_ghichu = new System.Windows.Forms.Label();
@@ -46,12 +45,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txt_phuthu = new System.Windows.Forms.TextBox();
-            this.txt_tienthucdon = new System.Windows.Forms.TextBox();
             this.cbb_hinhthuc = new System.Windows.Forms.ComboBox();
             this.txt_tiendichvu = new System.Windows.Forms.TextBox();
             this.chb_phuthu = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.lb_tienthucdon = new System.Windows.Forms.Label();
             this.txt_tientratruoc = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -70,19 +67,11 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.dgv_thongtin_thucdon = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_thongtin_dichvu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_thongtin_phong)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_thongtin_thucdon)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -110,7 +99,6 @@
             this.groupBox1.Controls.Add(this.txt_tienthuephongcu);
             this.groupBox1.Controls.Add(this.lb_tienthuephongcu);
             this.groupBox1.Controls.Add(this.btn_thanhtoan);
-            this.groupBox1.Controls.Add(this.btn_menu);
             this.groupBox1.Controls.Add(this.btn_dong);
             this.groupBox1.Controls.Add(this.txt_ghichu);
             this.groupBox1.Controls.Add(this.lb_ghichu);
@@ -121,12 +109,10 @@
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.txt_phuthu);
-            this.groupBox1.Controls.Add(this.txt_tienthucdon);
             this.groupBox1.Controls.Add(this.cbb_hinhthuc);
             this.groupBox1.Controls.Add(this.txt_tiendichvu);
             this.groupBox1.Controls.Add(this.chb_phuthu);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.lb_tienthucdon);
             this.groupBox1.Controls.Add(this.txt_tientratruoc);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
@@ -150,7 +136,7 @@
             this.txt_tienthuephongcu.BackColor = System.Drawing.Color.LightGray;
             this.txt_tienthuephongcu.Enabled = false;
             this.txt_tienthuephongcu.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_tienthuephongcu.Location = new System.Drawing.Point(199, 341);
+            this.txt_tienthuephongcu.Location = new System.Drawing.Point(200, 293);
             this.txt_tienthuephongcu.Margin = new System.Windows.Forms.Padding(4);
             this.txt_tienthuephongcu.Name = "txt_tienthuephongcu";
             this.txt_tienthuephongcu.ReadOnly = true;
@@ -161,7 +147,7 @@
             // lb_tienthuephongcu
             // 
             this.lb_tienthuephongcu.AutoSize = true;
-            this.lb_tienthuephongcu.Location = new System.Drawing.Point(8, 343);
+            this.lb_tienthuephongcu.Location = new System.Drawing.Point(9, 295);
             this.lb_tienthuephongcu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lb_tienthuephongcu.Name = "lb_tienthuephongcu";
             this.lb_tienthuephongcu.Size = new System.Drawing.Size(165, 26);
@@ -179,7 +165,7 @@
             this.btn_thanhtoan.Appearance.Options.UseFont = true;
             this.btn_thanhtoan.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_thanhtoan.ImageOptions.Image")));
             this.btn_thanhtoan.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btn_thanhtoan.Location = new System.Drawing.Point(1072, 82);
+            this.btn_thanhtoan.Location = new System.Drawing.Point(1072, 95);
             this.btn_thanhtoan.Margin = new System.Windows.Forms.Padding(4, 7, 4, 7);
             this.btn_thanhtoan.Name = "btn_thanhtoan";
             this.btn_thanhtoan.Size = new System.Drawing.Size(187, 60);
@@ -187,25 +173,6 @@
             this.btn_thanhtoan.Text = "Thanh toán";
             this.btn_thanhtoan.UseWaitCursor = true;
             this.btn_thanhtoan.Click += new System.EventHandler(this.btn_thanhtoan_Click);
-            // 
-            // btn_menu
-            // 
-            this.btn_menu.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_menu.Appearance.BackColor = System.Drawing.SystemColors.Control;
-            this.btn_menu.Appearance.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_menu.Appearance.Options.UseBackColor = true;
-            this.btn_menu.Appearance.Options.UseBorderColor = true;
-            this.btn_menu.Appearance.Options.UseFont = true;
-            this.btn_menu.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_menu.ImageOptions.Image")));
-            this.btn_menu.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btn_menu.Location = new System.Drawing.Point(1072, 156);
-            this.btn_menu.Margin = new System.Windows.Forms.Padding(4, 7, 4, 7);
-            this.btn_menu.Name = "btn_menu";
-            this.btn_menu.Size = new System.Drawing.Size(187, 60);
-            this.btn_menu.TabIndex = 39;
-            this.btn_menu.Text = "Menu";
-            this.btn_menu.UseWaitCursor = true;
-            this.btn_menu.Click += new System.EventHandler(this.btn_menu_Click);
             // 
             // btn_dong
             // 
@@ -217,7 +184,7 @@
             this.btn_dong.Appearance.Options.UseFont = true;
             this.btn_dong.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_dong.ImageOptions.Image")));
             this.btn_dong.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btn_dong.Location = new System.Drawing.Point(1072, 230);
+            this.btn_dong.Location = new System.Drawing.Point(1072, 169);
             this.btn_dong.Margin = new System.Windows.Forms.Padding(4, 7, 4, 7);
             this.btn_dong.Name = "btn_dong";
             this.btn_dong.Size = new System.Drawing.Size(187, 60);
@@ -326,19 +293,6 @@
             this.txt_phuthu.TextChanged += new System.EventHandler(this.txt_phuthu_TextChanged);
             this.txt_phuthu.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_phuthu_KeyPress);
             // 
-            // txt_tienthucdon
-            // 
-            this.txt_tienthucdon.BackColor = System.Drawing.Color.LightGray;
-            this.txt_tienthucdon.Enabled = false;
-            this.txt_tienthucdon.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_tienthucdon.Location = new System.Drawing.Point(199, 295);
-            this.txt_tienthucdon.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_tienthucdon.Name = "txt_tienthucdon";
-            this.txt_tienthucdon.ReadOnly = true;
-            this.txt_tienthucdon.Size = new System.Drawing.Size(352, 30);
-            this.txt_tienthucdon.TabIndex = 14;
-            this.txt_tienthucdon.Visible = false;
-            // 
             // cbb_hinhthuc
             // 
             this.cbb_hinhthuc.BackColor = System.Drawing.SystemColors.Control;
@@ -386,17 +340,6 @@
             this.label7.Size = new System.Drawing.Size(146, 26);
             this.label7.TabIndex = 10;
             this.label7.Text = "Tiền dịch vụ:";
-            // 
-            // lb_tienthucdon
-            // 
-            this.lb_tienthucdon.AutoSize = true;
-            this.lb_tienthucdon.Location = new System.Drawing.Point(8, 296);
-            this.lb_tienthucdon.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lb_tienthucdon.Name = "lb_tienthucdon";
-            this.lb_tienthucdon.Size = new System.Drawing.Size(163, 26);
-            this.lb_tienthucdon.TabIndex = 9;
-            this.lb_tienthucdon.Text = "Tiền thực đơn:";
-            this.lb_tienthucdon.Visible = false;
             // 
             // txt_tientratruoc
             // 
@@ -494,7 +437,7 @@
             this.dgv_thongtin_dichvu.RowHeadersWidth = 51;
             this.dgv_thongtin_dichvu.RowTemplate.Height = 24;
             this.dgv_thongtin_dichvu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_thongtin_dichvu.Size = new System.Drawing.Size(647, 203);
+            this.dgv_thongtin_dichvu.Size = new System.Drawing.Size(647, 470);
             this.dgv_thongtin_dichvu.TabIndex = 3;
             // 
             // Column2
@@ -580,7 +523,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(655, 238);
+            this.groupBox2.Size = new System.Drawing.Size(655, 505);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông tin dịch vụ";
@@ -598,79 +541,12 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Thông tin phòng";
             // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.dgv_thongtin_thucdon);
-            this.groupBox4.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(19, 642);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox4.Size = new System.Drawing.Size(655, 259);
-            this.groupBox4.TabIndex = 6;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Thông tin thực đơn";
-            // 
-            // dgv_thongtin_thucdon
-            // 
-            this.dgv_thongtin_thucdon.AllowUserToAddRows = false;
-            this.dgv_thongtin_thucdon.BackgroundColor = System.Drawing.Color.White;
-            this.dgv_thongtin_thucdon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_thongtin_thucdon.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4});
-            this.dgv_thongtin_thucdon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_thongtin_thucdon.Location = new System.Drawing.Point(4, 31);
-            this.dgv_thongtin_thucdon.Margin = new System.Windows.Forms.Padding(4);
-            this.dgv_thongtin_thucdon.Name = "dgv_thongtin_thucdon";
-            this.dgv_thongtin_thucdon.RowHeadersVisible = false;
-            this.dgv_thongtin_thucdon.RowHeadersWidth = 51;
-            this.dgv_thongtin_thucdon.RowTemplate.Height = 24;
-            this.dgv_thongtin_thucdon.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_thongtin_thucdon.Size = new System.Drawing.Size(647, 224);
-            this.dgv_thongtin_thucdon.TabIndex = 3;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "tentd";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Tên thực đơn";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "soluong";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Số lượng";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "dongia";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Đơn giá";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "thanhtien";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Thành tiền";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
             // frm_tt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(1296, 906);
-            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -686,8 +562,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_thongtin_phong)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_thongtin_thucdon)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -698,12 +572,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txt_phuthu;
-        private System.Windows.Forms.TextBox txt_tienthucdon;
         private System.Windows.Forms.ComboBox cbb_hinhthuc;
         private System.Windows.Forms.TextBox txt_tiendichvu;
         private System.Windows.Forms.CheckBox chb_phuthu;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label lb_tienthucdon;
         private System.Windows.Forms.TextBox txt_tientratruoc;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -723,7 +595,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private DevExpress.XtraEditors.SimpleButton btn_dong;
         private DevExpress.XtraEditors.SimpleButton btn_thanhtoan;
-        private DevExpress.XtraEditors.SimpleButton btn_menu;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
@@ -731,12 +602,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.DataGridView dgv_thongtin_thucdon;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.TextBox txt_tienthuephongcu;
         private System.Windows.Forms.Label lb_tienthuephongcu;
         private System.Windows.Forms.TextBox txt_ghichu;

@@ -64,7 +64,7 @@ namespace Da.controller
                 if (conn.cnn.State == ConnectionState.Closed)
                     conn.cnn.Open();
 
-                string sql = "select distinct hd.MAHD, hd.MANV_LAPPHIEU, pt.MAKH, pt.NGAYNHAN, hd.NGAYLAP, cthd.TIEN_PH, cthd.TIEN_DV, cthd.TIEN_MENU, cthd.TIEN_PHUTHU, cthd.GHICHU_PHUTHU, hd.TONGTIEN, hd.TIENMAT, hd.TIENTHE, pt.TIENCOC, kh.HOTEN\n";
+                string sql = "select distinct hd.MAHD, hd.MANV_LAPPHIEU, pt.MAKH, pt.NGAYNHAN, hd.NGAYLAP, cthd.TIEN_PH, cthd.TIEN_DV, cthd.TIEN_PHUTHU, cthd.GHICHU_PHUTHU, hd.TONGTIEN, hd.TIENMAT, hd.TIENTHE, pt.TIENCOC, kh.HOTEN\n";
                 sql += "from hoadon hd, phieuthue pt, ct_thuephong cttp, ct_hd cthd, khachhang kh\n";
                 sql += "where cthd.MAHD = hd.MAHD\n";
                 sql += "and kh.MAKH = pt.MAKH\n";
@@ -83,7 +83,6 @@ namespace Da.controller
                 double tienphong = 0;
                 double tiendv = 0;
                 double tienphuthu = 0;
-                double tienthucdon = 0;
                 double tongtien = 0;
                 double tienmat = 0;
                 double tienthe = 0;
@@ -94,7 +93,6 @@ namespace Da.controller
                     tienphong += double.Parse(row["TIEN_PH"].ToString());
                     tiendv += double.Parse(row["TIEN_DV"].ToString());
                     tienphuthu += double.Parse(row["TIEN_PHUTHU"].ToString());
-                    tienthucdon += double.Parse(row["TIEN_MENU"].ToString());
                     tongtien += double.Parse(row["TONGTIEN"].ToString());
                     tienmat += double.Parse(row["TIENMAT"].ToString());
                     tienthe += double.Parse(row["TIENTHE"].ToString());
@@ -104,7 +102,6 @@ namespace Da.controller
                 txt_tienphong.Text = tienphong.ToString();
                 txt_tiendichvu.Text = tiendv.ToString();
                 txt_tienphuthu.Text = tienphuthu.ToString();
-                txt_tienthucdon.Text = tienthucdon.ToString();
                 txt_tongtien.Text = tongtien.ToString();
                 txt_tienmat.Text = tienmat.ToString();
                 txt_tienthe.Text = tienthe.ToString();
@@ -151,17 +148,6 @@ namespace Da.controller
                 double value = double.Parse(txt_tiendichvu.Text, System.Globalization.NumberStyles.Any);
                 txt_tiendichvu.Text = String.Format(culture, "{0:N0}", value);
                 txt_tiendichvu.Select(txt_tiendichvu.Text.Length, 0);
-            }
-        }
-
-        private void txt_tienthucdon_TextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txt_tienthucdon.Text) == false)
-            {
-                System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
-                double value = double.Parse(txt_tienthucdon.Text, System.Globalization.NumberStyles.Any);
-                txt_tienthucdon.Text = String.Format(culture, "{0:N0}", value);
-                txt_tienthucdon.Select(txt_tienthucdon.Text.Length, 0);
             }
         }
 
@@ -267,7 +253,7 @@ namespace Da.controller
                 int fontSizeTenTruong = 14;
                 int fontSizeNoiDung = 12;
 
-                Range row_TieuDe_ThongKeHoaDon = ws.get_Range("A1", "P1");
+                Range row_TieuDe_ThongKeHoaDon = ws.get_Range("A1", "O1");
                 row_TieuDe_ThongKeHoaDon.Merge();
                 row_TieuDe_ThongKeHoaDon.Font.Size = fontSizeTieuDe;
                 row_TieuDe_ThongKeHoaDon.Font.Name = fontName;
@@ -317,13 +303,6 @@ namespace Da.controller
                 row_tiendv.Cells.HorizontalAlignment = XlHAlign.xlHAlignLeft;
                 row_tiendv.Value2 = "Tiền dịch vụ: " + txt_tiendichvu.Text;
 
-
-                Range row_tienthucdon = ws.get_Range("D4", "E4");
-                row_tienthucdon.Merge();
-                row_tienthucdon.Font.Size = fontSizeTenTruong;
-                row_tienthucdon.Font.Name = fontName;
-                row_tienthucdon.Cells.HorizontalAlignment = XlHAlign.xlHAlignLeft;
-                row_tienthucdon.Value2 = "Tiền thực đơn: " + txt_tienthucdon.Text;
 
                 Range row_tienphuthu = ws.get_Range("F2", "G2");
                 row_tienphuthu.Merge();
@@ -417,43 +396,37 @@ namespace Da.controller
                 row_TienDichVu.Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
                 row_TienDichVu.Value2 = "Tiền dịch vụ";
 
-                Range row_TienThucDon = ws.get_Range("J6");
-                row_TienThucDon.Font.Size = fontSizeTenTruong;
-                row_TienThucDon.Font.Name = fontName;
-                row_TienThucDon.Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
-                row_TienThucDon.Value2 = "Tiền thực đơn";
-
-                Range row_TienPhuThu = ws.get_Range("K6");
+                Range row_TienPhuThu = ws.get_Range("J6");
                 row_TienPhuThu.Font.Size = fontSizeTenTruong;
                 row_TienPhuThu.Font.Name = fontName;
                 row_TienPhuThu.Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
                 row_TienPhuThu.Value2 = "Tiền phụ thu";
 
-                Range row_GhiChu = ws.get_Range("L6");
+                Range row_GhiChu = ws.get_Range("K6");
                 row_GhiChu.Font.Size = fontSizeTenTruong;
                 row_GhiChu.Font.Name = fontName;
                 row_GhiChu.Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
                 row_GhiChu.Value2 = "Ghi chú phụ thu";
 
-                Range row_TongTien = ws.get_Range("M6");
+                Range row_TongTien = ws.get_Range("L6");
                 row_TongTien.Font.Size = fontSizeTenTruong;
                 row_TongTien.Font.Name = fontName;
                 row_TongTien.Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
                 row_TongTien.Value2 = "Tổng tiền";
 
-                Range row_TienMat = ws.get_Range("N6");
+                Range row_TienMat = ws.get_Range("M6");
                 row_TienMat.Font.Size = fontSizeTenTruong;
                 row_TienMat.Font.Name = fontName;
                 row_TienMat.Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
                 row_TienMat.Value2 = "Tiền mặt";
 
-                Range row_TienThe = ws.get_Range("O6");
+                Range row_TienThe = ws.get_Range("N6");
                 row_TienThe.Font.Size = fontSizeTenTruong;
                 row_TienThe.Font.Name = fontName;
                 row_TienThe.Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
                 row_TienThe.Value2 = "Tiền thẻ";
 
-                Range row_TienCoc = ws.get_Range("P6");
+                Range row_TienCoc = ws.get_Range("O6");
                 row_TienCoc.Font.Size = fontSizeTenTruong;
                 row_TienCoc.Font.Name = fontName;
                 row_TienCoc.Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
@@ -461,7 +434,7 @@ namespace Da.controller
 
 
                 //Tô nền vàng các cột tiêu đề:
-                Range row_CotTieuDe = ws.get_Range("A6", "P6");
+                Range row_CotTieuDe = ws.get_Range("A6", "O6");
                 //nền vàng
                 row_CotTieuDe.Interior.Color = ColorTranslator.ToOle(System.Drawing.Color.Yellow);
                 //in đậm
@@ -476,8 +449,8 @@ namespace Da.controller
                 {
                     stt++;
                     row++;
-                    dynamic[] arr = { stt, datarow["MAHD"], datarow["MANV_LAPPHIEU"], datarow["MAKH"], datarow["HOTEN"], datarow["NGAYNHAN"], datarow["NGAYLAP"], datarow["TIEN_PH"], datarow["TIEN_DV"], datarow["TIEN_MENU"], datarow["TIEN_PHUTHU"], datarow["GHICHU_PHUTHU"], datarow["TONGTIEN"], datarow["TIENMAT"], datarow["TIENTHE"], datarow["TIENCOC"] };
-                    Range rowData = ws.get_Range("A" + row, "P" + row);//Lấy dòng thứ row ra để đổ dữ liệu
+                    dynamic[] arr = { stt, datarow["MAHD"], datarow["MANV_LAPPHIEU"], datarow["MAKH"], datarow["HOTEN"], datarow["NGAYNHAN"], datarow["NGAYLAP"], datarow["TIEN_PH"], datarow["TIEN_DV"], datarow["TIEN_PHUTHU"], datarow["GHICHU_PHUTHU"], datarow["TONGTIEN"], datarow["TIENMAT"], datarow["TIENTHE"], datarow["TIENCOC"] };
+                    Range rowData = ws.get_Range("A" + row, "O" + row);//Lấy dòng thứ row ra để đổ dữ liệu
                     rowData.Font.Size = fontSizeNoiDung;
                     rowData.Font.Name = fontName;
                     rowData.Columns.AutoFit();
@@ -497,7 +470,7 @@ namespace Da.controller
                     rowData.Value2 = arr;
                 }
                 //Kẻ khung toàn bộ
-                BorderAround(ws.get_Range("A6", "P" + row));
+                BorderAround(ws.get_Range("A6", "O" + row));
 
                 //Lưu file excel xuống Ổ cứng
                 wb.SaveAs(saveExcelFile);

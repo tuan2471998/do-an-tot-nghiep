@@ -115,7 +115,7 @@ namespace Da.controller
                 {
                     conn.cnn.Open();
                 }
-                string sql = "select distinct hd.MAHD, pt.MAKH, kh.HOTEN, pt.NGAYNHAN, hd.NGAYLAP, cthd.TIEN_PH, cthd.TIEN_DV, cthd.TIEN_MENU, cthd.TIEN_PHUTHU, hd.TONGTIEN, hd.TIENMAT, hd.TIENTHE, pt.TIENCOC\n";
+                string sql = "select distinct hd.MAHD, pt.MAKH, kh.HOTEN, pt.NGAYNHAN, hd.NGAYLAP, cthd.TIEN_PH, cthd.TIEN_DV, cthd.TIEN_PHUTHU, hd.TONGTIEN, hd.TIENMAT, hd.TIENTHE, pt.TIENCOC\n";
                 sql += "from hoadon hd, phieuthue pt, ct_thuephong cttp, ct_hd cthd, khachhang kh\n";
                 sql += "where cthd.MAHD = hd.MAHD\n";
                 sql += "and kh.MAKH = pt.MAKH\n";
@@ -132,7 +132,6 @@ namespace Da.controller
                     txt_ngayra.Text = Convert.ToDateTime(dr["NGAYLAP"]).ToString("dd/MM/yyyy");
                     txt_tienphong.Text = dr["TIEN_PH"].ToString();
                     txt_tiendichvu.Text = dr["TIEN_DV"].ToString();
-                    txt_tienthucdon.Text = dr["TIEN_MENU"].ToString();
                     txt_tienphuthu.Text = dr["TIEN_PHUTHU"].ToString();
                     txt_tongtien.Text = dr["TONGTIEN"].ToString();
                     txt_tienmat.Text = dr["TIENMAT"].ToString();
@@ -192,28 +191,6 @@ namespace Da.controller
             }
         }
 
-        private void txt_tienthucdon_TextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txt_tienthucdon.Text) == false)
-            {
-                System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
-                double value = double.Parse(txt_tienthucdon.Text, System.Globalization.NumberStyles.Any);
-                txt_tienthucdon.Text = String.Format(culture, "{0:N0}", value);
-                txt_tienthucdon.Select(txt_tienthucdon.Text.Length, 0);
-            }
-        }
-
-        private void txt_tienphuthu_TextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txt_tienphuthu.Text) == false)
-            {
-                System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
-                double value = double.Parse(txt_tienphuthu.Text, System.Globalization.NumberStyles.Any);
-                txt_tienphuthu.Text = String.Format(culture, "{0:N0}", value);
-                txt_tienphuthu.Select(txt_tienphuthu.Text.Length, 0);
-            }
-        }
-
         private void txt_tongtien_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txt_tongtien.Text) == false)
@@ -255,6 +232,17 @@ namespace Da.controller
                 double value = double.Parse(txt_tiencoc.Text, System.Globalization.NumberStyles.Any);
                 txt_tiencoc.Text = String.Format(culture, "{0:N0}", value);
                 txt_tiencoc.Select(txt_tiencoc.Text.Length, 0);
+            }
+        }
+
+        private void txt_tienphuthu_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txt_tienphuthu.Text) == false)
+            {
+                System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
+                double value = double.Parse(txt_tienphuthu.Text, System.Globalization.NumberStyles.Any);
+                txt_tienphuthu.Text = String.Format(culture, "{0:N0}", value);
+                txt_tienphuthu.Select(txt_tienphuthu.Text.Length, 0);
             }
         }
     }
