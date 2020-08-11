@@ -68,9 +68,9 @@ namespace Da.controller
 
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
@@ -97,9 +97,9 @@ namespace Da.controller
 
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
@@ -118,9 +118,9 @@ namespace Da.controller
 
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
@@ -139,9 +139,9 @@ namespace Da.controller
 
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
@@ -161,9 +161,9 @@ namespace Da.controller
 
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
@@ -182,9 +182,9 @@ namespace Da.controller
 
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
@@ -257,9 +257,10 @@ namespace Da.controller
                 }
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show(" Cập nhật không thành công");
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
             }
         }
 

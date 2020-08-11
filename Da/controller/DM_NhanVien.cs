@@ -31,65 +31,97 @@ namespace Da.controller
 
         public void loadNhanVien()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            DataSet ds = new DataSet();
-            da = new SqlDataAdapter(" select * from NHANVIEN", conn.cnn);
-            da.Fill(ds, "NHANVIEN");
-            datadanhsachnhanvien.DataSource = ds.Tables["NHANVIEN"];
-            key[0] = ds.Tables["NHANVIEN"].Columns[0];
-            ds.Tables["NHANVIEN"].PrimaryKey = key;
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                DataSet ds = new DataSet();
+                da = new SqlDataAdapter(" select * from NHANVIEN", conn.cnn);
+                da.Fill(ds, "NHANVIEN");
+                datadanhsachnhanvien.DataSource = ds.Tables["NHANVIEN"];
+                key[0] = ds.Tables["NHANVIEN"].Columns[0];
+                ds.Tables["NHANVIEN"].PrimaryKey = key;
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
 
         }
         public void loadNV()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            da = new SqlDataAdapter(" select * from NHANVIEN", conn.cnn);
-            ds = new DataSet();
-            da.Fill(ds, "NHANVIEN");
-            key[0] = ds.Tables["NHANVIEN"].Columns[0];
-            ds.Tables["NHANVIEN"].PrimaryKey = key;
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                da = new SqlDataAdapter(" select * from NHANVIEN", conn.cnn);
+                ds = new DataSet();
+                da.Fill(ds, "NHANVIEN");
+                key[0] = ds.Tables["NHANVIEN"].Columns[0];
+                ds.Tables["NHANVIEN"].PrimaryKey = key;
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
         public void loadTKNhanVien()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            ds = new DataSet();
-            da = new SqlDataAdapter(" select * from TAIKHOAN ", conn.cnn);
-            da.Fill(ds, "TAIKHOAN");
-            datatk.DataSource = ds.Tables["TAIKHOAN"];
-            key[0] = ds.Tables["TAIKHOAN"].Columns[0];
-            ds.Tables["TAIKHOAN"].PrimaryKey = key;
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                ds = new DataSet();
+                da = new SqlDataAdapter(" select * from TAIKHOAN ", conn.cnn);
+                da.Fill(ds, "TAIKHOAN");
+                datatk.DataSource = ds.Tables["TAIKHOAN"];
+                key[0] = ds.Tables["TAIKHOAN"].Columns[0];
+                ds.Tables["TAIKHOAN"].PrimaryKey = key;
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
 
         }
 
         public void loadTK()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            ds = new DataSet();
-            da = new SqlDataAdapter(" select * from TAIKHOAN ", conn.cnn);
-            da.Fill(ds, "TAIKHOAN");
-            //datatk.DataSource = ds.Tables["TAIKHOAN"];
-            key[0] = ds.Tables["TAIKHOAN"].Columns[0];
-            ds.Tables["TAIKHOAN"].PrimaryKey = key;
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                ds = new DataSet();
+                da = new SqlDataAdapter(" select * from TAIKHOAN ", conn.cnn);
+                da.Fill(ds, "TAIKHOAN");
+                //datatk.DataSource = ds.Tables["TAIKHOAN"];
+                key[0] = ds.Tables["TAIKHOAN"].Columns[0];
+                ds.Tables["TAIKHOAN"].PrimaryKey = key;
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         void clear_row()
@@ -148,14 +180,26 @@ namespace Da.controller
         }
         public void xoatk()
         {
-            loadTK();
-            DataRow dr_xoa = ds.Tables["TAIKHOAN"].Rows.Find(txtma.Text);
-
-            if (dr_xoa != null)
+            try
             {
-                dr_xoa.Delete();
-                SqlCommandBuilder db = new SqlCommandBuilder(da);
-                da.Update(ds, "TAIKHOAN");
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
+                loadTK();
+                DataRow dr_xoa = ds.Tables["TAIKHOAN"].Rows.Find(txtma.Text);
+
+                if (dr_xoa != null)
+                {
+                    dr_xoa.Delete();
+                    SqlCommandBuilder db = new SqlCommandBuilder(da);
+                    da.Update(ds, "TAIKHOAN");
+                }
+
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
             }
         }
 
@@ -221,9 +265,9 @@ namespace Da.controller
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Hãy thao tác lại ");
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -256,9 +300,9 @@ namespace Da.controller
                     btn_Sua.Enabled = btn_Xoa.Enabled = false;
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Hãy thao tác lại");
+                MessageBox.Show(ex.Message);
             }
         }
 

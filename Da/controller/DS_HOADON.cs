@@ -30,23 +30,31 @@ namespace Da.controller
 
         private void load_cbb_nhanvien()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-                conn.cnn.Open();
+            try
+            {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
 
-            string sql = "select MANV from NHANVIEN";
-            ds = new DataSet();
-            da = new SqlDataAdapter(sql, conn.cnn);
-            da.Fill(ds, "MANV");
+                string sql = "select MANV from NHANVIEN";
+                ds = new DataSet();
+                da = new SqlDataAdapter(sql, conn.cnn);
+                da.Fill(ds, "MANV");
 
-            cbb_nhanvien.DisplayMember = cbb_nhanvien.ValueMember = "MANV"; ;
-            
-            cbb_nhanvien.DataSource = ds.Tables["MANV"];
+                cbb_nhanvien.DisplayMember = cbb_nhanvien.ValueMember = "MANV"; ;
 
-            DataRow row = ds.Tables["MANV"].NewRow();
-            row["MANV"] = "Tất cả";
-            ds.Tables["MANV"].Rows.InsertAt(row, 0);
+                cbb_nhanvien.DataSource = ds.Tables["MANV"];
 
-            conn.cnn.Close();
+                DataRow row = ds.Tables["MANV"].NewRow();
+                row["MANV"] = "Tất cả";
+                ds.Tables["MANV"].Rows.InsertAt(row, 0);
+
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void btn_timkiem_Click(object sender, EventArgs e)
@@ -107,9 +115,9 @@ namespace Da.controller
 
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }

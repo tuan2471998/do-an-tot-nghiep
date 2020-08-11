@@ -56,28 +56,36 @@ namespace Da.controller
 
         private void frm_thongtinnhanvien_Load(object sender, EventArgs e)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                DataSet ds = new DataSet();
+                da = new SqlDataAdapter("select * from NHANVIEN where MANV = '" + tk + "'", conn.cnn);
+                da.Fill(ds, "NHANVIEN");
+
+                txtmanv.Text = tk;
+                txthoten.Text += ds.Tables["NHANVIEN"].Rows[0]["HOTEN"].ToString();
+                txtcmnd.Text += ds.Tables["NHANVIEN"].Rows[0]["SOCMND"].ToString();
+                txtsdt.Text += ds.Tables["NHANVIEN"].Rows[0]["SDT"].ToString();
+                txtdiachi.Text += ds.Tables["NHANVIEN"].Rows[0]["DIACHI"].ToString();
+                txtgioitinh.Text += ds.Tables["NHANVIEN"].Rows[0]["GIOITINH"].ToString();
+                txtemail.Text += ds.Tables["NHANVIEN"].Rows[0]["EMAIL"].ToString();
+                txtngayvaolam.Text += DateTime.Parse(ds.Tables["NHANVIEN"].Rows[0]["NGAYVAOLAM"].ToString()).ToString("dd/MM/yyyy");
+                txtbangcap.Text += ds.Tables["NHANVIEN"].Rows[0]["BANGCAP"].ToString();
+                txtngaysinh.Text += DateTime.Parse(ds.Tables["NHANVIEN"].Rows[0]["NGAYSINH"].ToString()).ToString("dd/MM/yyyy");
+
+                pictureBox_avatar.Image = Base64ToImage(ds.Tables["NHANVIEN"].Rows[0]["HINHANH"].ToString());
+
+                conn.cnn.Close();
             }
-            DataSet ds = new DataSet();
-            da = new SqlDataAdapter("select * from NHANVIEN where MANV = '" + tk + "'", conn.cnn);
-            da.Fill(ds, "NHANVIEN");
-
-            txtmanv.Text = tk;
-            txthoten.Text += ds.Tables["NHANVIEN"].Rows[0]["HOTEN"].ToString();
-            txtcmnd.Text += ds.Tables["NHANVIEN"].Rows[0]["SOCMND"].ToString();
-            txtsdt.Text += ds.Tables["NHANVIEN"].Rows[0]["SDT"].ToString();
-            txtdiachi.Text += ds.Tables["NHANVIEN"].Rows[0]["DIACHI"].ToString();
-            txtgioitinh.Text += ds.Tables["NHANVIEN"].Rows[0]["GIOITINH"].ToString();
-            txtemail.Text += ds.Tables["NHANVIEN"].Rows[0]["EMAIL"].ToString();
-            txtngayvaolam.Text += DateTime.Parse(ds.Tables["NHANVIEN"].Rows[0]["NGAYVAOLAM"].ToString()).ToString("dd/MM/yyyy");
-            txtbangcap.Text += ds.Tables["NHANVIEN"].Rows[0]["BANGCAP"].ToString();
-            txtngaysinh.Text += DateTime.Parse(ds.Tables["NHANVIEN"].Rows[0]["NGAYSINH"].ToString()).ToString("dd/MM/yyyy");
-
-            pictureBox_avatar.Image = Base64ToImage(ds.Tables["NHANVIEN"].Rows[0]["HINHANH"].ToString());
-
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
     }
 }

@@ -43,9 +43,9 @@ namespace Da.controller
 
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
@@ -70,9 +70,9 @@ namespace Da.controller
 
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
@@ -100,9 +100,9 @@ namespace Da.controller
 
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
@@ -143,9 +143,9 @@ namespace Da.controller
                 dr.Close();
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
@@ -163,9 +163,9 @@ namespace Da.controller
                 dgv_dichvu.Columns[2].DefaultCellStyle.Format = "N0";
                 dgv_dichvu.Columns[4].DefaultCellStyle.Format = "N0";
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }

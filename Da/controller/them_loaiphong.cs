@@ -98,9 +98,9 @@ namespace Da.controller
 
                     conn.cnn.Close();
                 }
-                catch
+                catch(Exception ex)
                 {
-                    MessageBox.Show("Đã xảy ra lỗi");
+                    MessageBox.Show(ex.Message);
                     conn.cnn.Close();
                 }
             }

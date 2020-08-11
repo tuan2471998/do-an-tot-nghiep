@@ -28,25 +28,32 @@ namespace Da.controller
             conn = _conn;
         }
 
-
         private void load_cbb_loaiphong()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                ds = new DataSet();
+                da = new SqlDataAdapter("select * from LOAIPHONG", conn.cnn);
+                da.Fill(ds, "LOAIPHONG");
+
+                cbb_loai.DisplayMember = "TENLOAI";
+                cbb_loai.ValueMember = "MALOAI";
+                cbb_loai.DataSource = ds.Tables["LOAIPHONG"];
+
+                DataRow row = ds.Tables["LOAIPHONG"].NewRow();
+                row[1] = "[Chọn loại phòng]";
+                ds.Tables["LOAIPHONG"].Rows.InsertAt(row, 0);
+                conn.cnn.Close();
             }
-            ds = new DataSet();
-            da = new SqlDataAdapter("select * from LOAIPHONG", conn.cnn);
-            da.Fill(ds, "LOAIPHONG");
-
-            cbb_loai.DisplayMember = "TENLOAI";
-            cbb_loai.ValueMember = "MALOAI";
-            cbb_loai.DataSource = ds.Tables["LOAIPHONG"];
-
-            DataRow row = ds.Tables["LOAIPHONG"].NewRow();
-            row[1] = "[Chọn loại phòng]";
-            ds.Tables["LOAIPHONG"].Rows.InsertAt(row, 0);
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void qlthietbi_Load(object sender, EventArgs e)
@@ -92,29 +99,37 @@ namespace Da.controller
 
         private void numeric_giuongdoi_ValueChanged(object sender, EventArgs e)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                lay_tentb((sender as NumericUpDown).Name);
+                if ((sender as NumericUpDown).Enabled)
+                {
+                    da_chitiet = new SqlDataAdapter("select MALOAI, TENTB, SOLUONGTB, CT_THIETBI.MATB from CT_THIETBI, THIETBI where CT_THIETBI.MATB = THIETBI.MATB and MALOAI = '0'", conn.cnn);
+                    da_chitiet.Fill(ds_chitiet, "CHITIET");
+                    chitiet = ds_chitiet.Tables["CHITIET"];
+
+                    DataRow dr = chitiet.NewRow();
+                    dr[0] = cbb_loai.SelectedValue.ToString();
+                    dr[1] = tentb;
+                    dr[2] = (sender as NumericUpDown).Value;
+                    dr[3] = get_matb(tentb);
+
+                    clear_gridview(dr[0].ToString(), dr[1].ToString());
+
+                    chitiet.Rows.Add(dr);
+                    dgv_danhsachloaiphong.DataSource = chitiet;
+                }
+                conn.cnn.Close();
             }
-            lay_tentb((sender as NumericUpDown).Name);
-            if ((sender as NumericUpDown).Enabled)
+            catch (Exception ex)
             {
-                da_chitiet = new SqlDataAdapter("select MALOAI, TENTB, SOLUONGTB, CT_THIETBI.MATB from CT_THIETBI, THIETBI where CT_THIETBI.MATB = THIETBI.MATB and MALOAI = '0'", conn.cnn);
-                da_chitiet.Fill(ds_chitiet, "CHITIET");
-                chitiet = ds_chitiet.Tables["CHITIET"];
-
-                DataRow dr = chitiet.NewRow();
-                dr[0] = cbb_loai.SelectedValue.ToString();
-                dr[1] = tentb;
-                dr[2] = (sender as NumericUpDown).Value;
-                dr[3] = get_matb(tentb);
-
-                clear_gridview(dr[0].ToString(), dr[1].ToString());
-
-                chitiet.Rows.Add(dr);
-                dgv_danhsachloaiphong.DataSource = chitiet;
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
             }
-            conn.cnn.Close();
         }
 
         private void clear_gridview()
@@ -183,52 +198,76 @@ namespace Da.controller
 
         private void insert_ct_thietbi(string maloai, string tentb, int soluong)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                DataSet ds = new DataSet();
+                da = new SqlDataAdapter("select * from CT_THIETBI", conn.cnn);
+                da.Fill(ds, "INSERT_CT_THIETBI");
+
+                DataRow insert_New = ds.Tables["INSERT_CT_THIETBI"].NewRow();
+                insert_New["MALOAI"] = maloai;
+                insert_New["MATB"] = get_matb(tentb);
+                insert_New["SOLUONGTB"] = soluong;
+
+                ds.Tables["INSERT_CT_THIETBI"].Rows.Add(insert_New);
+                SqlCommandBuilder cmb = new SqlCommandBuilder(da);
+                da.Update(ds, "INSERT_CT_THIETBI");
+
+                ds.Tables["INSERT_CT_THIETBI"].Clear();
+
+                conn.cnn.Close();
             }
-            DataSet ds = new DataSet();
-            da = new SqlDataAdapter("select * from CT_THIETBI", conn.cnn);
-            da.Fill(ds, "INSERT_CT_THIETBI");
-
-            DataRow insert_New = ds.Tables["INSERT_CT_THIETBI"].NewRow();
-            insert_New["MALOAI"] = maloai;
-            insert_New["MATB"] = get_matb(tentb);
-            insert_New["SOLUONGTB"] = soluong;
-
-            ds.Tables["INSERT_CT_THIETBI"].Rows.Add(insert_New);
-            SqlCommandBuilder cmb = new SqlCommandBuilder(da);
-            da.Update(ds, "INSERT_CT_THIETBI");
-
-            ds.Tables["INSERT_CT_THIETBI"].Clear();
-
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void update_ct_thietbi(string loaiphong, string tentb, int slmoi)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            string sql = "update CT_THIETBI set SOLUONGTB = " + slmoi + "  where MALOAI = '" + loaiphong + "' and MATB = '" + get_matb(tentb) + "'";
-            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-            int kq = cmd.ExecuteNonQuery();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                string sql = "update CT_THIETBI set SOLUONGTB = " + slmoi + "  where MALOAI = '" + loaiphong + "' and MATB = '" + get_matb(tentb) + "'";
+                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                int kq = cmd.ExecuteNonQuery();
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void xoa_ct_thietbi(string loaiphong, string tentb)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            string sql = "delete from CT_THIETBI where MALOAI = '" + loaiphong + "' and MATB = '" + get_matb(tentb) + "'";
-            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-            int kq = cmd.ExecuteNonQuery();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                string sql = "delete from CT_THIETBI where MALOAI = '" + loaiphong + "' and MATB = '" + get_matb(tentb) + "'";
+                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                int kq = cmd.ExecuteNonQuery();
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private int get_soluong_hang(string mahang)
@@ -245,82 +284,106 @@ namespace Da.controller
 
         private void update_soluong_hang(string mahang, int soluong)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+
+                string sql = "update HANG set SOLUONGHANG = SOLUONGHANG - " + soluong + " where TENHANG = '" + mahang + "' ";
+                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                int kq = cmd.ExecuteNonQuery();
+
+                conn.cnn.Close();
             }
-
-            string sql = "update HANG set SOLUONGHANG = SOLUONGHANG - " + soluong + " where TENHANG = '" + mahang + "' ";
-            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-            int kq = cmd.ExecuteNonQuery();
-
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         int soluongphong = 0;
         private void get_soluongphong()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+
+                string sql = "select count(MAPH) from PHONG where MALOAI = '" + cbb_loai.SelectedValue.ToString() + "'";
+                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                soluongphong = (int)cmd.ExecuteScalar();
+
+                conn.cnn.Close();
             }
-
-            string sql = "select count(MAPH) from PHONG where MALOAI = '" + cbb_loai.SelectedValue.ToString() + "'";
-            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-            soluongphong = (int)cmd.ExecuteScalar();
-
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void btn_luu_Click(object sender, EventArgs e)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            get_soluongphong();
-
-            foreach (DataGridViewRow row in dgv_danhsachloaiphong.Rows)
-            {
-                int sltb = soluongphong * int.Parse(row.Cells[2].Value.ToString());
-                if (kiemtra_data(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString()) != 0)
+                if (conn.cnn.State == ConnectionState.Closed)
                 {
-                    if (int.Parse(row.Cells[2].Value.ToString()) == 0)
+                    conn.cnn.Open();
+                }
+                get_soluongphong();
+
+                foreach (DataGridViewRow row in dgv_danhsachloaiphong.Rows)
+                {
+                    int sltb = soluongphong * int.Parse(row.Cells[2].Value.ToString());
+                    if (kiemtra_data(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString()) != 0)
                     {
-                        xoa_ct_thietbi(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
+                        if (int.Parse(row.Cells[2].Value.ToString()) == 0)
+                        {
+                            xoa_ct_thietbi(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
+                        }
+                        else
+                        {
+                            if (get_soluong_hang(get_matb(row.Cells[1].Value.ToString())) < sltb)
+                            {
+                                MessageBox.Show("Số lượng " + row.Cells[1].Value.ToString() + " trong kho không đủ");
+                            }
+                            else
+                            {
+                                update_ct_thietbi(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), sltb);
+                                update_soluong_hang(get_matb(row.Cells[1].Value.ToString()), sltb);
+                                MessageBox.Show("Cập nhật số lượng " + row.Cells[1].Value.ToString() + " trong " + soluongphong + " phòng loại " + cbb_loai.Text.Trim() + " thành công");
+                            }
+                        }
                     }
                     else
-                    {                       
+                    {
                         if (get_soluong_hang(get_matb(row.Cells[1].Value.ToString())) < sltb)
                         {
                             MessageBox.Show("Số lượng " + row.Cells[1].Value.ToString() + " trong kho không đủ");
                         }
                         else
                         {
-                            update_ct_thietbi(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), sltb);
+                            insert_ct_thietbi(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), sltb);
                             update_soluong_hang(get_matb(row.Cells[1].Value.ToString()), sltb);
-                            MessageBox.Show("Cập nhật số lượng " + row.Cells[1].Value.ToString() + " trong " + soluongphong + " phòng loại " + cbb_loai.Text.Trim() + " thành công");
+                            MessageBox.Show("Thêm thành công " + sltb + " " + row.Cells[1].Value.ToString() + " vào " + soluongphong + " phòng loại " + cbb_loai.Text.Trim());
                         }
                     }
                 }
-                else
-                {
-                    if (get_soluong_hang(get_matb(row.Cells[1].Value.ToString())) < sltb)
-                    {
-                        MessageBox.Show("Số lượng " + row.Cells[1].Value.ToString() + " trong kho không đủ");
-                    }
-                    else
-                    {
-                        insert_ct_thietbi(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), sltb);
-                        update_soluong_hang(get_matb(row.Cells[1].Value.ToString()), sltb);
-                        MessageBox.Show("Thêm thành công " + sltb + " " + row.Cells[1].Value.ToString() + " vào " + soluongphong + " phòng loại " + cbb_loai.Text.Trim());
-                    }
-                }
+
+                clear_control();
+
+                conn.cnn.Close();
             }
-
-            clear_control();
-
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         string tentb;
@@ -352,19 +415,27 @@ namespace Da.controller
         DataRow newrow;
         private void load_data_ct_thietbi()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                get_soluongphong();
+                ds = new DataSet();
+                da = new SqlDataAdapter("select MALOAI, TENTB, SOLUONGTB, CT_THIETBI.MATB from CT_THIETBI, THIETBI where CT_THIETBI.MATB = THIETBI.MATB and MALOAI = '" + cbb_loai.SelectedValue + "'", conn.cnn);
+                da.Fill(ds, "CT_THIETBI");
+
+
+                dgv_danhsachloaiphong.DataSource = ds.Tables["CT_THIETBI"];
+
+                conn.cnn.Close();
             }
-            get_soluongphong();
-            ds = new DataSet();
-            da = new SqlDataAdapter("select MALOAI, TENTB, SOLUONGTB, CT_THIETBI.MATB from CT_THIETBI, THIETBI where CT_THIETBI.MATB = THIETBI.MATB and MALOAI = '" + cbb_loai.SelectedValue + "'", conn.cnn);
-            da.Fill(ds, "CT_THIETBI");
-
-
-            dgv_danhsachloaiphong.DataSource = ds.Tables["CT_THIETBI"];
-
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void cbb_loai_SelectionChangeCommitted(object sender, EventArgs e)

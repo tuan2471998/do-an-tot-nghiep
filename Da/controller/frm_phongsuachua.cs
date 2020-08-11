@@ -29,19 +29,27 @@ namespace Da.controller
         }
         private void hoànThànhToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                string sql = "update PHONG set TINHTRANG = 0 where MAPH = '" + lb_sophong.Text + "'";
+                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                int kq = cmd.ExecuteNonQuery();
+                if (kq == 1)
+                {
+                    MessageBox.Show("Cập nhật thành công");
+                }
+                _frm_danhsachphong.Load_control_all();
+                conn.cnn.Close();
             }
-            string sql = "update PHONG set TINHTRANG = 0 where MAPH = '" + lb_sophong.Text + "'";
-            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-            int kq = cmd.ExecuteNonQuery();
-            if (kq == 1)
+            catch (Exception ex)
             {
-                MessageBox.Show("Cập nhật thành công");
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
             }
-            _frm_danhsachphong.Load_control_all();
-            conn.cnn.Close();
         }
 
         private void frm_phongsuachua_Load(object sender, EventArgs e)

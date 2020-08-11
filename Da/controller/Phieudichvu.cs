@@ -32,59 +32,83 @@ namespace Da.controller
         }
         private void load_ct_thuephong()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            string sql = "select ct.MATP, ct.MAPH from CT_THUEPHONG ct\n";
-            sql += "inner join PHIEUTHUE pt on ct.MATP = pt.MATP\n";
-            sql += "where TINHTRANG = 1";
-            da = new SqlDataAdapter(sql, conn.cnn);
-            da.Fill(ds, "CT_THUEPHONG");
-            dgv_dsphieuthue.DataSource = ds.Tables["CT_THUEPHONG"];
-            key1[0] = ds.Tables["CT_THUEPHONG"].Columns[0];
-            key1[1] = ds.Tables["CT_THUEPHONG"].Columns[1];
-            ds.Tables["CT_THUEPHONG"].PrimaryKey = key1;
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                string sql = "select ct.MATP, ct.MAPH from CT_THUEPHONG ct\n";
+                sql += "inner join PHIEUTHUE pt on ct.MATP = pt.MATP\n";
+                sql += "where TINHTRANG = 1";
+                da = new SqlDataAdapter(sql, conn.cnn);
+                da.Fill(ds, "CT_THUEPHONG");
+                dgv_dsphieuthue.DataSource = ds.Tables["CT_THUEPHONG"];
+                key1[0] = ds.Tables["CT_THUEPHONG"].Columns[0];
+                key1[1] = ds.Tables["CT_THUEPHONG"].Columns[1];
+                ds.Tables["CT_THUEPHONG"].PrimaryKey = key1;
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void load_ct_thuephong(string maph)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+
+                string sql = "select cttp.*\n";
+                sql += "from ct_thuephong cttp, phieuthue pt\n";
+                sql += "where cttp.matp = pt.matp\n";
+                sql += "and pt.tinhtrang = 1\n";
+                sql += "and maph = '" + maph + "'";
+
+                da = new SqlDataAdapter(sql, conn.cnn);
+                da.Fill(ds, "CT_THUEPHONG");
+                dgv_dsphieuthue.DataSource = ds.Tables["CT_THUEPHONG"];
+                key1[0] = ds.Tables["CT_THUEPHONG"].Columns[0];
+                key1[1] = ds.Tables["CT_THUEPHONG"].Columns[1];
+                ds.Tables["CT_THUEPHONG"].PrimaryKey = key1;
+
+                conn.cnn.Close();
             }
-
-            string sql = "select cttp.*\n";
-            sql += "from ct_thuephong cttp, phieuthue pt\n";
-            sql += "where cttp.matp = pt.matp\n";
-            sql += "and pt.tinhtrang = 1\n";
-            sql += "and maph = '" + maph + "'";
-
-            da = new SqlDataAdapter(sql, conn.cnn);
-            da.Fill(ds, "CT_THUEPHONG");
-            dgv_dsphieuthue.DataSource = ds.Tables["CT_THUEPHONG"];
-            key1[0] = ds.Tables["CT_THUEPHONG"].Columns[0];
-            key1[1] = ds.Tables["CT_THUEPHONG"].Columns[1];
-            ds.Tables["CT_THUEPHONG"].PrimaryKey = key1;
-
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         public void load_hd_dichvu()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            da = new SqlDataAdapter(" select * from HD_DICHVU where MATP='" + txt_matp.Text + "' and MAPH ='" + txt_maph.Text + "' ", conn.cnn);
-            da.Fill(ds, "HD_DICHVU");
-            dgv_phieudichvu.DataSource = ds.Tables["HD_DICHVU"];
-            key[0] = ds.Tables["HD_DICHVU"].Columns[0];
-            ds.Tables["HD_DICHVU"].PrimaryKey = key;
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                da = new SqlDataAdapter(" select * from HD_DICHVU where MATP='" + txt_matp.Text + "' and MAPH ='" + txt_maph.Text + "' ", conn.cnn);
+                da.Fill(ds, "HD_DICHVU");
+                dgv_phieudichvu.DataSource = ds.Tables["HD_DICHVU"];
+                key[0] = ds.Tables["HD_DICHVU"].Columns[0];
+                ds.Tables["HD_DICHVU"].PrimaryKey = key;
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void delete_dgv()
@@ -129,9 +153,9 @@ namespace Da.controller
                     conn.cnn.Close();
 
                 }
-                catch
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Thao tác của bạn đã bị lỗi");
+                    MessageBox.Show(ex.Message);
                     conn.cnn.Close();
                 }
             }

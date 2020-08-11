@@ -32,65 +32,89 @@ namespace Da.controller
 
         public void get_giaphong(string maphong)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                string sql = "select GIAPHONG from PHONG where MAPH = '" + maphong + "'";
+                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                txt_giathue.Text = string.Format("{0:0,0}", (decimal)cmd.ExecuteScalar());
+                conn.cnn.Close();
             }
-            string sql = "select GIAPHONG from PHONG where MAPH = '" + maphong + "'";
-            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-            txt_giathue.Text = string.Format("{0:0,0}", (decimal)cmd.ExecuteScalar());
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         public void get_maphieuthue()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            int max = 0;
-            ds = new DataSet();
-            da = new SqlDataAdapter("select MATP from PHIEUTHUE", conn.cnn);
-            da.Fill(ds, "MATP");
-            foreach (DataRow row in ds.Tables["MATP"].Rows)
-            {
-                int stt = int.Parse(row["MATP"].ToString().Substring(2));
-                if (max < stt)
-                    max = stt;
-            }
-            if (max >= 0 && max <= 8)
-                txt_maphieuthue.Text = "TP00" + (max + 1).ToString();
-            else if (max >= 9 && max <= 99)
-                txt_maphieuthue.Text = "TP0" + (max + 1).ToString();
-            else
-                txt_maphieuthue.Text = "TP" + (max + 1).ToString();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                int max = 0;
+                ds = new DataSet();
+                da = new SqlDataAdapter("select MATP from PHIEUTHUE", conn.cnn);
+                da.Fill(ds, "MATP");
+                foreach (DataRow row in ds.Tables["MATP"].Rows)
+                {
+                    int stt = int.Parse(row["MATP"].ToString().Substring(2));
+                    if (max < stt)
+                        max = stt;
+                }
+                if (max >= 0 && max <= 8)
+                    txt_maphieuthue.Text = "TP00" + (max + 1).ToString();
+                else if (max >= 9 && max <= 99)
+                    txt_maphieuthue.Text = "TP0" + (max + 1).ToString();
+                else
+                    txt_maphieuthue.Text = "TP" + (max + 1).ToString();
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void frm_thuephongtrong_Load(object sender, EventArgs e)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            da = new SqlDataAdapter("select * from KHACHHANG", conn.cnn);
-            ds = new DataSet();
-            da.Fill(ds, "KHACHHANG");
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                da = new SqlDataAdapter("select * from KHACHHANG", conn.cnn);
+                ds = new DataSet();
+                da.Fill(ds, "KHACHHANG");
 
-            foreach (DataRow row in ds.Tables["KHACHHANG"].Rows)
+                foreach (DataRow row in ds.Tables["KHACHHANG"].Rows)
+                {
+                    txt_cmnd.AutoCompleteCustomSource.Add(row["SOCMND"].ToString());
+                    txt_sdt.AutoCompleteCustomSource.Add(row["SDT"].ToString());
+                }
+
+                txt_cmnd.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                txt_cmnd.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+                txt_sdt.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                txt_sdt.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
             {
-                txt_cmnd.AutoCompleteCustomSource.Add(row["SOCMND"].ToString());
-                txt_sdt.AutoCompleteCustomSource.Add(row["SDT"].ToString());
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
             }
-
-            txt_cmnd.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            txt_cmnd.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-            txt_sdt.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            txt_sdt.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-            conn.cnn.Close();
         }
 
         private void TimTenKH()
@@ -191,63 +215,87 @@ namespace Da.controller
 
         private void themPhieuThue()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                string manv = Properties.Settings.Default.MaNV.ToString();
+                SqlDataAdapter da = new SqlDataAdapter("select * from PHIEUTHUE", conn.cnn);
+                ds = new DataSet();
+                da.Fill(ds, "PhieuThem");
+
+                DataRow newRow = ds.Tables["PhieuThem"].NewRow();
+                newRow[0] = txt_maphieuthue.Text;
+                newRow[1] = manv;
+                newRow[2] = get_makh(txt_cmnd.Text);
+                newRow[4] = dtp_ngaythue.Value;
+                newRow[5] = dtp_ngaytra.Value;
+                newRow[6] = 1;
+                newRow[7] = 1;
+                newRow[8] = 0;
+
+                ds.Tables["PhieuThem"].Rows.Add(newRow);
+                SqlCommandBuilder builda = new SqlCommandBuilder(da);
+                da.Update(ds, "PhieuThem");
+
+                conn.cnn.Close();
             }
-            string manv = Properties.Settings.Default.MaNV.ToString();
-            SqlDataAdapter da = new SqlDataAdapter("select * from PHIEUTHUE", conn.cnn);
-            ds = new DataSet();
-            da.Fill(ds, "PhieuThem");
-
-            DataRow newRow = ds.Tables["PhieuThem"].NewRow();
-            newRow[0] = txt_maphieuthue.Text;
-            newRow[1] = manv;
-            newRow[2] = get_makh(txt_cmnd.Text);
-            newRow[4] = dtp_ngaythue.Value;
-            newRow[5] = dtp_ngaytra.Value;
-            newRow[6] = 1;
-            newRow[7] = 1;
-            newRow[8] = 0;
-
-            ds.Tables["PhieuThem"].Rows.Add(newRow);
-            SqlCommandBuilder builda = new SqlCommandBuilder(da);
-            da.Update(ds, "PhieuThem");
-
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
         private void themChiTietPhieuTHUE()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                SqlDataAdapter da = new SqlDataAdapter("select * from CT_THUEPHONG", conn.cnn);
+                DataSet ds = new DataSet();
+                da.Fill(ds, "CTPhieuThem");
+
+                DataRow row = ds.Tables["CTPhieuThem"].NewRow();
+                row[0] = txt_maphieuthue.Text;
+                row[1] = txt_maphong.Text;
+
+                ds.Tables["CTPhieuThem"].Rows.Add(row);
+                SqlCommandBuilder builda = new SqlCommandBuilder(da);
+                da.Update(ds, "CTPhieuThem");
+
+                conn.cnn.Close();
             }
-            SqlDataAdapter da = new SqlDataAdapter("select * from CT_THUEPHONG", conn.cnn);
-            DataSet ds = new DataSet();
-            da.Fill(ds, "CTPhieuThem");
-
-            DataRow row = ds.Tables["CTPhieuThem"].NewRow();
-            row[0] = txt_maphieuthue.Text;
-            row[1] = txt_maphong.Text;
-
-            ds.Tables["CTPhieuThem"].Rows.Add(row);
-            SqlCommandBuilder builda = new SqlCommandBuilder(da);
-            da.Update(ds, "CTPhieuThem");
-
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void update_tinhtrang_phong()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            string sql = "update PHONG set TINHTRANG = 1 where MAPH = '" + txt_maphong.Text + "'";
-            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-            int kq = cmd.ExecuteNonQuery();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                string sql = "update PHONG set TINHTRANG = 1 where MAPH = '" + txt_maphong.Text + "'";
+                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                int kq = cmd.ExecuteNonQuery();
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private string tao_makh()
@@ -278,33 +326,48 @@ namespace Da.controller
 
         private void kiemtra_tenkh()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                if (string.IsNullOrEmpty(txt_hoten.Text))
+                {
+                    string sql = "insert into KHACHHANG (MAKH, SOCMND, SDT) values ('" + tao_makh() + "','" + txt_cmnd.Text + "','" + txt_sdt.Text + "')";
+                    SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                    int kq = cmd.ExecuteNonQuery();
+                }
+                conn.cnn.Close();
             }
-            if (string.IsNullOrEmpty(txt_hoten.Text))
+            catch (Exception ex)
             {
-                string sql = "insert into KHACHHANG (MAKH, SOCMND, SDT) values ('" + tao_makh() + "','" + txt_cmnd.Text + "','" + txt_sdt.Text + "')";
-                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-                int kq = cmd.ExecuteNonQuery();
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
             }
-            conn.cnn.Close();
         }
 
         private void btn_thuephong_Click(object sender, EventArgs e)
         {
-            int kt = kiemtra();
-            if (kt == 1)
+            try
             {
-                string ngaythue = dtp_ngaythue.Value.ToString("dd/MM/yyyy");
-                string ngaytra = dtp_ngaytra.Value.ToString("dd/MM/yyyy");
-                kiemtra_tenkh();
-                themPhieuThue();
-                themChiTietPhieuTHUE();
-                update_tinhtrang_phong();
-                MessageBox.Show("Lập phiếu thuê thành công cho phòng " + txt_maphong.Text.Trim() + " từ ngày " + ngaythue + " đến ngày " + ngaytra);
-                this.Close();
-                _frm_danhsachphong.Load_control_all();
+                int kt = kiemtra();
+                if (kt == 1)
+                {
+                    string ngaythue = dtp_ngaythue.Value.ToString("dd/MM/yyyy");
+                    string ngaytra = dtp_ngaytra.Value.ToString("dd/MM/yyyy");
+                    kiemtra_tenkh();
+                    themPhieuThue();
+                    themChiTietPhieuTHUE();
+                    update_tinhtrang_phong();
+                    MessageBox.Show("Lập phiếu thuê thành công cho phòng " + txt_maphong.Text.Trim() + " từ ngày " + ngaythue + " đến ngày " + ngaytra);
+                    this.Close();
+                    _frm_danhsachphong.Load_control_all();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

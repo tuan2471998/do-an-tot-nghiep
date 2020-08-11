@@ -39,100 +39,140 @@ namespace Da.controller
 
         private void LoadTK()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            ds = new DataSet();
-            string sql = "SELECT TENTK, TAIKHOAN.MANV, HOTEN, QUYEN FROM TAIKHOAN, NHANVIEN WHERE TAIKHOAN.MANV = NHANVIEN.MANV";
-            da = new SqlDataAdapter(sql, conn.cnn);
-            da.Fill(ds, "TAIKHOAN");
-            dgv_taikhoan.DataSource = ds.Tables["TAIKHOAN"];
-            key[0] = ds.Tables["TAIKHOAN"].Columns[0];
-            ds.Tables["TAIKHOAN"].PrimaryKey = key;
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                ds = new DataSet();
+                string sql = "SELECT TENTK, TAIKHOAN.MANV, HOTEN, QUYEN FROM TAIKHOAN, NHANVIEN WHERE TAIKHOAN.MANV = NHANVIEN.MANV";
+                da = new SqlDataAdapter(sql, conn.cnn);
+                da.Fill(ds, "TAIKHOAN");
+                dgv_taikhoan.DataSource = ds.Tables["TAIKHOAN"];
+                key[0] = ds.Tables["TAIKHOAN"].Columns[0];
+                ds.Tables["TAIKHOAN"].PrimaryKey = key;
 
-            for (int i = 0; i < dgv_taikhoan.Rows.Count; i++)
+                for (int i = 0; i < dgv_taikhoan.Rows.Count; i++)
+                {
+                    txttentk.AutoCompleteCustomSource.Add(ds.Tables["TAIKHOAN"].Rows[i][0].ToString());
+                    txttennv.AutoCompleteCustomSource.Add(ds.Tables["TAIKHOAN"].Rows[i][2].ToString());
+                }
+
+                txttentk.AutoCompleteMode = AutoCompleteMode.Append;
+                txttentk.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+                txttennv.AutoCompleteMode = AutoCompleteMode.Append;
+                txttennv.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
             {
-                txttentk.AutoCompleteCustomSource.Add(ds.Tables["TAIKHOAN"].Rows[i][0].ToString());
-                txttennv.AutoCompleteCustomSource.Add(ds.Tables["TAIKHOAN"].Rows[i][2].ToString());
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
             }
-
-            txttentk.AutoCompleteMode = AutoCompleteMode.Append;
-            txttentk.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-            txttennv.AutoCompleteMode = AutoCompleteMode.Append;
-            txttennv.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-            conn.cnn.Close();
         }
 
         private void LoadTK_nhomquyen()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                lay_nhomquyen();
+
+                DataSet ds = new DataSet();
+                string sql = "SELECT TENTK, TAIKHOAN.MANV, HOTEN, QUYEN FROM TAIKHOAN, NHANVIEN WHERE TAIKHOAN.MANV = NHANVIEN.MANV AND QUYEN = '" + nhomquyen + "'";
+                da = new SqlDataAdapter(sql, conn.cnn);
+                da.Fill(ds, "TAIKHOAN_nhomquyen");
+                dgv_tktheonhomquyen.DataSource = ds.Tables["TAIKHOAN_nhomquyen"];
+                key[0] = ds.Tables["TAIKHOAN_nhomquyen"].Columns[0];
+                ds.Tables["TAIKHOAN_nhomquyen"].PrimaryKey = key;
+
+                conn.cnn.Close();
             }
-            lay_nhomquyen();
-
-            DataSet ds = new DataSet();
-            string sql = "SELECT TENTK, TAIKHOAN.MANV, HOTEN, QUYEN FROM TAIKHOAN, NHANVIEN WHERE TAIKHOAN.MANV = NHANVIEN.MANV AND QUYEN = '" + nhomquyen + "'"; 
-            da = new SqlDataAdapter(sql, conn.cnn);
-            da.Fill(ds, "TAIKHOAN_nhomquyen");
-            dgv_tktheonhomquyen.DataSource = ds.Tables["TAIKHOAN_nhomquyen"];
-            key[0] = ds.Tables["TAIKHOAN_nhomquyen"].Columns[0];
-            ds.Tables["TAIKHOAN_nhomquyen"].PrimaryKey = key;
-
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void LoadTK_nhomquyen(string nhomquyen)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            DataSet ds = new DataSet();
-            string sql = "SELECT TENTK, TAIKHOAN.MANV, HOTEN, QUYEN FROM TAIKHOAN, NHANVIEN WHERE TAIKHOAN.MANV = NHANVIEN.MANV AND QUYEN = '" + nhomquyen + "'";
-            da = new SqlDataAdapter(sql, conn.cnn);
-            da.Fill(ds, "TAIKHOAN_nhomquyen");
-            dgv_tktheonhomquyen.DataSource = ds.Tables["TAIKHOAN_nhomquyen"];
-            key[0] = ds.Tables["TAIKHOAN_nhomquyen"].Columns[0];
-            ds.Tables["TAIKHOAN_nhomquyen"].PrimaryKey = key;
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                DataSet ds = new DataSet();
+                string sql = "SELECT TENTK, TAIKHOAN.MANV, HOTEN, QUYEN FROM TAIKHOAN, NHANVIEN WHERE TAIKHOAN.MANV = NHANVIEN.MANV AND QUYEN = '" + nhomquyen + "'";
+                da = new SqlDataAdapter(sql, conn.cnn);
+                da.Fill(ds, "TAIKHOAN_nhomquyen");
+                dgv_tktheonhomquyen.DataSource = ds.Tables["TAIKHOAN_nhomquyen"];
+                key[0] = ds.Tables["TAIKHOAN_nhomquyen"].Columns[0];
+                ds.Tables["TAIKHOAN_nhomquyen"].PrimaryKey = key;
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void LoadTK_nhomquyen_tentk(string tentk)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                DataSet ds = new DataSet();
+                string sql = "SELECT TENTK, TAIKHOAN.MANV, HOTEN, QUYEN FROM TAIKHOAN, NHANVIEN WHERE TAIKHOAN.MANV = NHANVIEN.MANV AND TENTK like '" + tentk + "%'";
+                da = new SqlDataAdapter(sql, conn.cnn);
+                da.Fill(ds, "TAIKHOAN_nhomquyen");
+                dgv_tktheonhomquyen.DataSource = ds.Tables["TAIKHOAN_nhomquyen"];
+                key[0] = ds.Tables["TAIKHOAN_nhomquyen"].Columns[0];
+                ds.Tables["TAIKHOAN_nhomquyen"].PrimaryKey = key;
+                conn.cnn.Close();
             }
-            DataSet ds = new DataSet();
-            string sql = "SELECT TENTK, TAIKHOAN.MANV, HOTEN, QUYEN FROM TAIKHOAN, NHANVIEN WHERE TAIKHOAN.MANV = NHANVIEN.MANV AND TENTK like '" + tentk + "%'";
-            da = new SqlDataAdapter(sql, conn.cnn);
-            da.Fill(ds, "TAIKHOAN_nhomquyen");
-            dgv_tktheonhomquyen.DataSource = ds.Tables["TAIKHOAN_nhomquyen"];
-            key[0] = ds.Tables["TAIKHOAN_nhomquyen"].Columns[0];
-            ds.Tables["TAIKHOAN_nhomquyen"].PrimaryKey = key;
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void LoadTK_nhomquyen_tennv(string tennv)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            DataSet ds = new DataSet();
-            string sql = "SELECT TENTK, TAIKHOAN.MANV, HOTEN, QUYEN FROM TAIKHOAN, NHANVIEN WHERE TAIKHOAN.MANV = NHANVIEN.MANV AND HOTEN like N'" + tennv + "%'";
-            da = new SqlDataAdapter(sql, conn.cnn);
-            da.Fill(ds, "TAIKHOAN_nhomquyen");
-            dgv_tktheonhomquyen.DataSource = ds.Tables["TAIKHOAN_nhomquyen"];
-            key[0] = ds.Tables["TAIKHOAN_nhomquyen"].Columns[0];
-            ds.Tables["TAIKHOAN_nhomquyen"].PrimaryKey = key;
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                DataSet ds = new DataSet();
+                string sql = "SELECT TENTK, TAIKHOAN.MANV, HOTEN, QUYEN FROM TAIKHOAN, NHANVIEN WHERE TAIKHOAN.MANV = NHANVIEN.MANV AND HOTEN like N'" + tennv + "%'";
+                da = new SqlDataAdapter(sql, conn.cnn);
+                da.Fill(ds, "TAIKHOAN_nhomquyen");
+                dgv_tktheonhomquyen.DataSource = ds.Tables["TAIKHOAN_nhomquyen"];
+                key[0] = ds.Tables["TAIKHOAN_nhomquyen"].Columns[0];
+                ds.Tables["TAIKHOAN_nhomquyen"].PrimaryKey = key;
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void Phanquyen_Load(object sender, EventArgs e)
@@ -144,38 +184,45 @@ namespace Da.controller
 
         private void btntimkiem_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txttentk.Text) == false)
+            try
             {
-                clear_row_tk();
-                clear_row_tknhomquyen();
-                for (int i = 0; i < dgv_taikhoan.Rows.Count; i++)
+                if (string.IsNullOrEmpty(txttentk.Text) == false)
                 {
-                    LoadTK_nhomquyen_tentk(txttentk.Text);
-                    //if (string.Compare(txttentk.Text, dgv_taikhoan.Rows[i].Cells[0].Value.ToString()) == 0)
-                    //{
-                    //    dgv_taikhoan.Rows[i].Selected = true;                        
-                    //}
+                    clear_row_tk();
+                    clear_row_tknhomquyen();
+                    for (int i = 0; i < dgv_taikhoan.Rows.Count; i++)
+                    {
+                        LoadTK_nhomquyen_tentk(txttentk.Text);
+                        //if (string.Compare(txttentk.Text, dgv_taikhoan.Rows[i].Cells[0].Value.ToString()) == 0)
+                        //{
+                        //    dgv_taikhoan.Rows[i].Selected = true;                        
+                        //}
+                    }
+                }
+                else if (string.IsNullOrEmpty(txttennv.Text) == false)
+                {
+                    clear_row_tk();
+                    for (int i = 0; i < dgv_taikhoan.Rows.Count; i++)
+                    {
+                        LoadTK_nhomquyen_tennv(txttennv.Text);
+                        //if (string.Compare(txttennv.Text, dgv_taikhoan.Rows[i].Cells[2].Value.ToString()) == 0)
+                        //{
+                        //    dgv_taikhoan.Rows[i].Selected = true;                       
+                        //}
+                    }
+                }
+                else if (cbb_nhomquyen.SelectedIndex != 0)
+                {
+                    LoadTK_nhomquyen();
+                }
+                else
+                {
+                    MessageBox.Show("Thông tin tìm kiếm không chính xác");
                 }
             }
-            else if (string.IsNullOrEmpty(txttennv.Text) == false)
+            catch (Exception ex)
             {
-                clear_row_tk();
-                for (int i = 0; i < dgv_taikhoan.Rows.Count; i++)
-                {
-                    LoadTK_nhomquyen_tennv(txttennv.Text);
-                    //if (string.Compare(txttennv.Text, dgv_taikhoan.Rows[i].Cells[2].Value.ToString()) == 0)
-                    //{
-                    //    dgv_taikhoan.Rows[i].Selected = true;                       
-                    //}
-                }
-            }
-            else if (cbb_nhomquyen.SelectedIndex != 0)
-            {
-                LoadTK_nhomquyen();
-            }
-            else
-            {
-                MessageBox.Show("Thông tin tìm kiếm không chính xác");
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -265,9 +312,9 @@ namespace Da.controller
                     conn.cnn.Close();
                     
                 }
-                catch
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Tài khoản chọn không phù hợp");
+                    MessageBox.Show(ex.Message);
                     conn.cnn.Close();
                 }
             }
@@ -307,9 +354,9 @@ namespace Da.controller
                 }
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Hãy thao tác lại");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }

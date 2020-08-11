@@ -28,34 +28,50 @@ namespace Da.controller
 
         private void get_thongtin_thietbi()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-                conn.cnn.Open();
+            try
+            {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
 
-            string sql = "select tb.matb, tb.tentb, h.soluonghang\n";
-            sql += "from thietbi tb, hang h\n";
-            sql += "where tb.MATB = h.TENHANG";
+                string sql = "select tb.matb, tb.tentb, h.soluonghang\n";
+                sql += "from thietbi tb, hang h\n";
+                sql += "where tb.MATB = h.TENHANG";
 
-            ds = new DataSet();
-            da = new SqlDataAdapter(sql, conn.cnn);
-            da.Fill(ds, "THIETBI");
+                ds = new DataSet();
+                da = new SqlDataAdapter(sql, conn.cnn);
+                da.Fill(ds, "THIETBI");
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void get_thongtin_menu()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-                conn.cnn.Open();
+            try
+            {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
 
-            string sql = "select menu.idmenu, menu.tenmenu, h.soluonghang\n";
-            sql += "from menu, hang h\n";
-            sql += "where menu.idmenu = h.tenhang";
+                string sql = "select menu.idmenu, menu.tenmenu, h.soluonghang\n";
+                sql += "from menu, hang h\n";
+                sql += "where menu.idmenu = h.tenhang";
 
-            ds = new DataSet();
-            da = new SqlDataAdapter(sql, conn.cnn);
-            da.Fill(ds, "MENU");
+                ds = new DataSet();
+                da = new SqlDataAdapter(sql, conn.cnn);
+                da.Fill(ds, "MENU");
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         DataTable dt;

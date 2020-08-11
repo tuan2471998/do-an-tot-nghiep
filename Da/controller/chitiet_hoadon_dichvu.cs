@@ -46,9 +46,9 @@ namespace Da.controller
                 conn.cnn.Close();
 
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }

@@ -62,18 +62,35 @@ namespace Da.controller
                 kq = 0;
             }
         }
-
+        private int kiemtra_control()
+        {
+            if (string.IsNullOrEmpty(txt_taikhoan.Text))
+            {
+                MessageBox.Show("Chưa nhập tên tài khoản");
+                return 0;
+            }
+            if (string.IsNullOrEmpty(txt_matkhau.Text))
+            {
+                MessageBox.Show("Chưa nhập mật khẩu");
+                return 0;
+            }
+            return 1;
+        }
         private void dangnhap()
         {
             kiemtra();
-            if (kq == 1)
+            int ktcl = kiemtra_control();
+            if (ktcl == 1)
             {
-                khachsan.show_nhaphang();
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Lỗi xác minh");
+                if (kq == 1)
+                {
+                    khachsan.show_nhaphang();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi xác minh");
+                }
             }
         }
         private void btn_xacminh_Click(object sender, EventArgs e)

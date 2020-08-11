@@ -35,31 +35,47 @@ namespace Da.controller
 
         private void Load_LoaiPH()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            ds_loaiph = new DataSet();
-            da_loaiph = new SqlDataAdapter("select * from LOAIPHONG", conn.cnn);
-            da_loaiph.Fill(ds_loaiph, "LOAIPHONG");
-            key[0] = ds_loaiph.Tables["LOAIPHONG"].Columns[0];
-            ds_loaiph.Tables["LOAIPHONG"].PrimaryKey = key;
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                ds_loaiph = new DataSet();
+                da_loaiph = new SqlDataAdapter("select * from LOAIPHONG", conn.cnn);
+                da_loaiph.Fill(ds_loaiph, "LOAIPHONG");
+                key[0] = ds_loaiph.Tables["LOAIPHONG"].Columns[0];
+                ds_loaiph.Tables["LOAIPHONG"].PrimaryKey = key;
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void Load_combobox_maloai()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            Load_LoaiPH();
-            cbb_maloai.DataSource = ds_loaiph.Tables["LOAIPHONG"];
-            cbb_maloai.ValueMember = "MALOAI";
-            cbb_maloai.DisplayMember = "TENLOAI";
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                Load_LoaiPH();
+                cbb_maloai.DataSource = ds_loaiph.Tables["LOAIPHONG"];
+                cbb_maloai.ValueMember = "MALOAI";
+                cbb_maloai.DisplayMember = "TENLOAI";
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void btn_thoat_Click(object sender, EventArgs e)
@@ -148,9 +164,9 @@ namespace Da.controller
                 conn.cnn.Close();
                 MessageBox.Show(" Thêm Thành công");
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Hãy thao tác lại");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }

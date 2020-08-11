@@ -30,19 +30,27 @@ namespace Da.controller
 
         private void load_cbb_loai()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                ds = new DataSet();
+                da = new SqlDataAdapter("select * from LOAIPHONG", conn.cnn);
+                da.Fill(ds, "LOAIPHONG");
+
+                cbb_loai.DisplayMember = "TENLOAI";
+                cbb_loai.ValueMember = "MALOAI";
+                cbb_loai.DataSource = ds.Tables["LOAIPHONG"];
+
+                conn.cnn.Close();
             }
-            ds = new DataSet();
-            da = new SqlDataAdapter("select * from LOAIPHONG", conn.cnn);
-            da.Fill(ds, "LOAIPHONG");
-
-            cbb_loai.DisplayMember = "TENLOAI";
-            cbb_loai.ValueMember = "MALOAI";
-            cbb_loai.DataSource = ds.Tables["LOAIPHONG"];
-
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void frm_chuyenphong_Load(object sender, EventArgs e)
@@ -75,110 +83,135 @@ namespace Da.controller
 
         private bool kiemtra(DataRow drPhong)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            DataSet ds_ph = new DataSet();
-            SqlDataAdapter da_phCT = new SqlDataAdapter("select MAPH from PHONG where TINHTRANG = 0", conn.cnn);
-
-            da_phCT.Fill(ds_ph, "PHONG1");
-            DataTable dt1 = ds_ph.Tables["PHONG1"];
-
-            foreach (DataRow dr in dt1.Rows)
-            {
-                if (drPhong["MAPH"].ToString() == dr["MAPH"].ToString())
+                if (conn.cnn.State == ConnectionState.Closed)
                 {
-                    return true;
+                    conn.cnn.Open();
                 }
+                DataSet ds_ph = new DataSet();
+                SqlDataAdapter da_phCT = new SqlDataAdapter("select MAPH from PHONG where TINHTRANG = 0", conn.cnn);
+
+                da_phCT.Fill(ds_ph, "PHONG1");
+                DataTable dt1 = ds_ph.Tables["PHONG1"];
+
+                foreach (DataRow dr in dt1.Rows)
+                {
+                    if (drPhong["MAPH"].ToString() == dr["MAPH"].ToString())
+                    {
+                        return true;
+                    }
+                }
+                conn.cnn.Close();
+                return false;
             }
-            conn.cnn.Close();
-            return false;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+                return false;
+            }
         }
 
         private void Load_hinhanh()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            panelphong.Controls.Clear();
-            DataTable dtPHONG = ds_ph.Tables["PHONG"];
-            int x = 0;
-            int y = 0;
-            int bac = 0;
-            foreach (DataRow drPhong in dtPHONG.Rows)
-            {
-                bool kq = kiemtra(drPhong);
-                if (kq)
+                if (conn.cnn.State == ConnectionState.Closed)
                 {
-                    //tạo control động cho các phòng
-                    frm_phongchuyen frm = new frm_phongchuyen(this, drPhong[0].ToString());
-
-                    frm.Location = new Point(x, y);
-                    panelphong.Controls.Add(frm);
-                    x += 150;
-                    if (bac >= 5)
+                    conn.cnn.Open();
+                }
+                panelphong.Controls.Clear();
+                DataTable dtPHONG = ds_ph.Tables["PHONG"];
+                int x = 0;
+                int y = 0;
+                int bac = 0;
+                foreach (DataRow drPhong in dtPHONG.Rows)
+                {
+                    bool kq = kiemtra(drPhong);
+                    if (kq)
                     {
-                        y += 150;
-                        x = 0;
-                        bac = 0;
+                        //tạo control động cho các phòng
+                        frm_phongchuyen frm = new frm_phongchuyen(this, drPhong[0].ToString());
 
-                    }
-                    else
-                    {
-                        bac++;
+                        frm.Location = new Point(x, y);
+                        panelphong.Controls.Add(frm);
+                        x += 150;
+                        if (bac >= 5)
+                        {
+                            y += 150;
+                            x = 0;
+                            bac = 0;
+
+                        }
+                        else
+                        {
+                            bac++;
+                        }
                     }
                 }
+                conn.cnn.Close();
             }
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void Loadctroldong()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            if (chb_tang.Checked && !chb_loai.Checked)
-            {
-                ds_ph = new DataSet();
-                int index = cbb_tang.SelectedIndex + 1;
-                da_ph = new SqlDataAdapter("select PHONG.MAPH from PHONG WHERE VTPHONG = '" + index + "'", conn.cnn);
-                da_ph.Fill(ds_ph, "PHONG");
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                if (chb_tang.Checked && !chb_loai.Checked)
+                {
+                    ds_ph = new DataSet();
+                    int index = cbb_tang.SelectedIndex + 1;
+                    da_ph = new SqlDataAdapter("select PHONG.MAPH from PHONG WHERE VTPHONG = '" + index + "'", conn.cnn);
+                    da_ph.Fill(ds_ph, "PHONG");
 
-                //load danh sach
-                Load_hinhanh();
-            }
-            else if (chb_loai.Checked && !chb_tang.Checked)
-            {
-                ds_ph = new DataSet();
-                da_ph = new SqlDataAdapter("select PHONG.MAPH from PHONG WHERE PHONG.MALOAI='" + cbb_loai.SelectedValue + "'", conn.cnn);
-                da_ph.Fill(ds_ph, "PHONG");
+                    //load danh sach
+                    Load_hinhanh();
+                }
+                else if (chb_loai.Checked && !chb_tang.Checked)
+                {
+                    ds_ph = new DataSet();
+                    da_ph = new SqlDataAdapter("select PHONG.MAPH from PHONG WHERE PHONG.MALOAI='" + cbb_loai.SelectedValue + "'", conn.cnn);
+                    da_ph.Fill(ds_ph, "PHONG");
 
-                //load danh sach
-                Load_hinhanh();
-            }
-            else if (chb_loai.Checked && chb_tang.Checked)
-            {
-                ds_ph = new DataSet();
-                int index = cbb_tang.SelectedIndex + 1;
-                da_ph = new SqlDataAdapter("select PHONG.MAPH from PHONG WHERE VTPHONG = '" + index + "' AND MALOAI= '" + cbb_loai.SelectedValue + "'", conn.cnn);
-                da_ph.Fill(ds_ph, "PHONG");
+                    //load danh sach
+                    Load_hinhanh();
+                }
+                else if (chb_loai.Checked && chb_tang.Checked)
+                {
+                    ds_ph = new DataSet();
+                    int index = cbb_tang.SelectedIndex + 1;
+                    da_ph = new SqlDataAdapter("select PHONG.MAPH from PHONG WHERE VTPHONG = '" + index + "' AND MALOAI= '" + cbb_loai.SelectedValue + "'", conn.cnn);
+                    da_ph.Fill(ds_ph, "PHONG");
 
-                //load danh sach
-                Load_hinhanh();
-            }
-            else
-            {
-                ds_ph = new DataSet();
-                da_ph = new SqlDataAdapter("select PHONG.MAPH from PHONG", conn.cnn);
-                da_ph.Fill(ds_ph, "PHONG");
+                    //load danh sach
+                    Load_hinhanh();
+                }
+                else
+                {
+                    ds_ph = new DataSet();
+                    da_ph = new SqlDataAdapter("select PHONG.MAPH from PHONG", conn.cnn);
+                    da_ph.Fill(ds_ph, "PHONG");
 
-                //load danh sach
-                Load_hinhanh();
+                    //load danh sach
+                    Load_hinhanh();
+                }
+                conn.cnn.Close();
             }
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         string maph_cu;
@@ -204,28 +237,36 @@ namespace Da.controller
 
         private void create_matp()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            int max = 0;
-            ds = new DataSet();
-            da = new SqlDataAdapter("select MATP from PHIEUTHUE", conn.cnn);
-            da.Fill(ds, "MATP");
-            foreach (DataRow row in ds.Tables["MATP"].Rows)
-            {
-                int stt = int.Parse(row["MATP"].ToString().Substring(2));
-                if (max < stt)
-                    max = stt;
-            }
-            if (max >= 0 && max <= 8)
-                matp_moi = "TP00" + (max + 1).ToString();
-            else if (max >= 9 && max <= 99)
-                matp_moi = "TP0" + (max + 1).ToString();
-            else
-                matp_moi = "TP" + (max + 1).ToString();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                int max = 0;
+                ds = new DataSet();
+                da = new SqlDataAdapter("select MATP from PHIEUTHUE", conn.cnn);
+                da.Fill(ds, "MATP");
+                foreach (DataRow row in ds.Tables["MATP"].Rows)
+                {
+                    int stt = int.Parse(row["MATP"].ToString().Substring(2));
+                    if (max < stt)
+                        max = stt;
+                }
+                if (max >= 0 && max <= 8)
+                    matp_moi = "TP00" + (max + 1).ToString();
+                else if (max >= 9 && max <= 99)
+                    matp_moi = "TP0" + (max + 1).ToString();
+                else
+                    matp_moi = "TP" + (max + 1).ToString();
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         DataSet ds_phieuthue_cu;
@@ -233,40 +274,48 @@ namespace Da.controller
 
         private void luu_phieuthue_moi()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+
+                da_phieuthue_cu = new SqlDataAdapter("select * from PHIEUTHUE where MATP = '" + matp_cu + "'", conn.cnn);
+                ds_phieuthue_cu = new DataSet();
+                da_phieuthue_cu.Fill(ds_phieuthue_cu, "PHIEUTHUECU");
+
+                string manv = Properties.Settings.Default.MaNV.ToString();
+                da = new SqlDataAdapter("select * from PHIEUTHUE", conn.cnn);
+                ds = new DataSet();
+                da.Fill(ds, "PhieuThem");
+
+                foreach (DataRow row in ds_phieuthue_cu.Tables["PHIEUTHUECU"].Rows)
+                {
+                    DataRow newRow = ds.Tables["PhieuThem"].NewRow();
+                    newRow[0] = matp_moi;
+                    newRow[1] = manv;
+                    newRow[2] = row["MAKH"].ToString();
+                    newRow[4] = DateTime.Now;
+                    newRow[5] = row["NGAYTRA"].ToString();
+                    newRow[6] = row["SOLUONG"].ToString();
+                    newRow[7] = 1;
+                    newRow[8] = row["TIENCOC"].ToString();
+                    newRow[9] = matp_cu;
+
+                    ds.Tables["PhieuThem"].Rows.Add(newRow);
+                    SqlCommandBuilder builda = new SqlCommandBuilder(da);
+                    da.Update(ds, "PhieuThem");
+
+                }
+
+                conn.cnn.Close();
             }
-
-            da_phieuthue_cu = new SqlDataAdapter("select * from PHIEUTHUE where MATP = '" + matp_cu + "'", conn.cnn);
-            ds_phieuthue_cu = new DataSet();
-            da_phieuthue_cu.Fill(ds_phieuthue_cu, "PHIEUTHUECU");
-
-            string manv = Properties.Settings.Default.MaNV.ToString();
-            da = new SqlDataAdapter("select * from PHIEUTHUE", conn.cnn);
-            ds = new DataSet();
-            da.Fill(ds, "PhieuThem");
-
-            foreach (DataRow row in ds_phieuthue_cu.Tables["PHIEUTHUECU"].Rows)
+            catch (Exception ex)
             {
-                DataRow newRow = ds.Tables["PhieuThem"].NewRow();
-                newRow[0] = matp_moi;
-                newRow[1] = manv;
-                newRow[2] = row["MAKH"].ToString();
-                newRow[4] = DateTime.Now;
-                newRow[5] = row["NGAYTRA"].ToString();
-                newRow[6] = row["SOLUONG"].ToString();
-                newRow[7] = 1;
-                newRow[8] = row["TIENCOC"].ToString();
-                newRow[9] = matp_cu;
-
-                ds.Tables["PhieuThem"].Rows.Add(newRow);
-                SqlCommandBuilder builda = new SqlCommandBuilder(da);
-                da.Update(ds, "PhieuThem");
-
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
             }
-
-            conn.cnn.Close();
         }
 
         DataSet _ds;
@@ -274,86 +323,118 @@ namespace Da.controller
 
         private void luu_ct_phieuthue_moi()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            DataRow newRow;
-            SqlCommandBuilder builda;
-
-            _da = new SqlDataAdapter("select * from CT_THUEPHONG where MATP = '" + matp_cu + "'", conn.cnn);
-            _ds = new DataSet();
-            _da.Fill(_ds, "CTTP_CU");
-
-            da = new SqlDataAdapter("select * from CT_THUEPHONG", conn.cnn);
-            ds = new DataSet();
-            da.Fill(ds, "CTTP");
-
-            foreach (DataRow row in _ds.Tables["CTTP_CU"].Rows)
-            {
-                if (row["MAPH"].ToString() != maph_cu)
+                if (conn.cnn.State == ConnectionState.Closed)
                 {
-                    newRow = ds.Tables["CTTP"].NewRow();
-                    newRow[0] = matp_moi;
-                    newRow[1] = row["MAPH"].ToString();
-
-                    ds.Tables["CTTP"].Rows.Add(newRow);
-                    builda = new SqlCommandBuilder(da);
-                    da.Update(ds, "CTTP");
+                    conn.cnn.Open();
                 }
+                DataRow newRow;
+                SqlCommandBuilder builda;
+
+                _da = new SqlDataAdapter("select * from CT_THUEPHONG where MATP = '" + matp_cu + "'", conn.cnn);
+                _ds = new DataSet();
+                _da.Fill(_ds, "CTTP_CU");
+
+                da = new SqlDataAdapter("select * from CT_THUEPHONG", conn.cnn);
+                ds = new DataSet();
+                da.Fill(ds, "CTTP");
+
+                foreach (DataRow row in _ds.Tables["CTTP_CU"].Rows)
+                {
+                    if (row["MAPH"].ToString() != maph_cu)
+                    {
+                        newRow = ds.Tables["CTTP"].NewRow();
+                        newRow[0] = matp_moi;
+                        newRow[1] = row["MAPH"].ToString();
+
+                        ds.Tables["CTTP"].Rows.Add(newRow);
+                        builda = new SqlCommandBuilder(da);
+                        da.Update(ds, "CTTP");
+                    }
+                }
+
+                newRow = ds.Tables["CTTP"].NewRow();
+                newRow[0] = matp_moi;
+                newRow[1] = maph_moi;
+
+                ds.Tables["CTTP"].Rows.Add(newRow);
+                builda = new SqlCommandBuilder(da);
+                da.Update(ds, "CTTP");
+
+                conn.cnn.Close();
             }
-
-            newRow = ds.Tables["CTTP"].NewRow();
-            newRow[0] = matp_moi;
-            newRow[1] = maph_moi;
-
-            ds.Tables["CTTP"].Rows.Add(newRow);
-            builda = new SqlCommandBuilder(da);
-            da.Update(ds, "CTTP");
-
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void chuyen_trangthai_phong_cu()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+
+                string sql = "update PHONG set TINHTRANG = 0 where MAPH = '" + maph_cu + "'";
+                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                int kq = cmd.ExecuteNonQuery();
+
+                conn.cnn.Close();
             }
-
-            string sql = "update PHONG set TINHTRANG = 0 where MAPH = '" + maph_cu + "'";
-            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-            int kq = cmd.ExecuteNonQuery();
-
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void chuyen_trangthai_phong_moi()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+
+                string sql = "update PHONG set TINHTRANG = 1 where MAPH = '" + maph_moi + "'";
+                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                int kq = cmd.ExecuteNonQuery();
+
+                conn.cnn.Close();
             }
-
-            string sql = "update PHONG set TINHTRANG = 1 where MAPH = '" + maph_moi + "'";
-            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-            int kq = cmd.ExecuteNonQuery();
-
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void chuyen_trangthai_phieuthue_cu()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+
+                string sql = "update PHIEUTHUE set TINHTRANG = 0, NGAYTRA = '" + DateTime.Now + "' where MATP = '" + matp_cu + "'";
+                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                int kq = cmd.ExecuteNonQuery();
+
+                conn.cnn.Close();
             }
-
-            string sql = "update PHIEUTHUE set TINHTRANG = 0, NGAYTRA = '" + DateTime.Now + "' where MATP = '" + matp_cu + "'";
-            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-            int kq = cmd.ExecuteNonQuery();
-
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void btnTimkiem_Click(object sender, EventArgs e)

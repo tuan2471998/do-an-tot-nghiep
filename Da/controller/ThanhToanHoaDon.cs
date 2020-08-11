@@ -53,7 +53,7 @@ namespace Da
             if (string.IsNullOrEmpty(txt_tongtien.Text) == false)
             {
                 System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
-                double value = double.Parse(txt_tongtien.Text, System.Globalization.NumberStyles.AllowThousands);
+                double value = double.Parse(txt_tongtien.Text, System.Globalization.NumberStyles.Any);
                 txt_tongtien.Text = String.Format(culture, "{0:N0}", value);
                 txt_tongtien.Select(txt_tongtien.Text.Length, 0);
             }
@@ -140,27 +140,35 @@ namespace Da
 
         private void create_mahd()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            ds = new DataSet();
-            da = new SqlDataAdapter("select * from HOADON", conn.cnn);
-            da.Fill(ds, "HOADON");
-            int max_mahd = 0;
-            foreach (DataRow row in ds.Tables["HOADON"].Rows)
-            {
-                int stt = int.Parse(row["mahd"].ToString().Substring(2));
-                if (max_mahd < stt)
+                if (conn.cnn.State == ConnectionState.Closed)
                 {
-                    max_mahd = stt;
+                    conn.cnn.Open();
                 }
+                ds = new DataSet();
+                da = new SqlDataAdapter("select * from HOADON", conn.cnn);
+                da.Fill(ds, "HOADON");
+                int max_mahd = 0;
+                foreach (DataRow row in ds.Tables["HOADON"].Rows)
+                {
+                    int stt = int.Parse(row["mahd"].ToString().Substring(2));
+                    if (max_mahd < stt)
+                    {
+                        max_mahd = stt;
+                    }
+                }
+                if (max_mahd <= 8)
+                    mahd = "HD00" + (max_mahd + 1).ToString();
+                else
+                    mahd = "HD0" + (max_mahd + 1).ToString();
+                conn.cnn.Close();
             }
-            if (max_mahd <= 8)
-                mahd = "HD00" + (max_mahd + 1).ToString();
-            else
-                mahd = "HD0" + (max_mahd + 1).ToString();
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         public void get_thanhtoan(string _thanhtoan)
@@ -170,107 +178,147 @@ namespace Da
 
         private void get_mathanhtoan()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-                conn.cnn.Open();
+            try
+            {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
 
-            string sql = "select MATT from THANHTOAN where TENTT like N'%" + thanhtoan + "%'";
-            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-            matt = (string)cmd.ExecuteScalar();
+                string sql = "select MATT from THANHTOAN where TENTT like N'%" + thanhtoan + "%'";
+                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                matt = (string)cmd.ExecuteScalar();
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void luu_hoadon()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            get_mathanhtoan();
-            DataRow insert_New = ds.Tables["HOADON"].NewRow();
-            insert_New["MAHD"] = mahd;
-            insert_New["MATT"] = matt;
-            insert_New["MANV_LAPPHIEU"] = Properties.Settings.Default.MaNV;
-            if (dem == 0)
-            {
-                insert_New["TIENMAT"] = double.Parse(txt_khachdua.Text);
-                insert_New["TIENTHE"] = 0;
-            }
-            else
-            {
-                insert_New["TIENMAT"] = tienmat;
-                insert_New["TIENTHE"] = tienthe;
-            }
-            insert_New["TONGTIEN"] = tongtien;
-            insert_New["SOLANIN"] = 1;
-            insert_New["NGAYLAP"] = DateTime.Now;
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                get_mathanhtoan();
+                DataRow insert_New = ds.Tables["HOADON"].NewRow();
+                insert_New["MAHD"] = mahd;
+                insert_New["MATT"] = matt;
+                insert_New["MANV_LAPPHIEU"] = Properties.Settings.Default.MaNV;
+                if (dem == 0)
+                {
+                    insert_New["TIENMAT"] = double.Parse(txt_khachdua.Text);
+                    insert_New["TIENTHE"] = 0;
+                }
+                else
+                {
+                    insert_New["TIENMAT"] = tienmat;
+                    insert_New["TIENTHE"] = tienthe;
+                }
+                insert_New["TONGTIEN"] = tongtien;
+                insert_New["SOLANIN"] = 1;
+                insert_New["NGAYLAP"] = DateTime.Now;
 
-            ds.Tables["HOADON"].Rows.Add(insert_New);
-            SqlCommandBuilder cmb = new SqlCommandBuilder(da);
-            da.Update(ds, "HOADON");
+                ds.Tables["HOADON"].Rows.Add(insert_New);
+                SqlCommandBuilder cmb = new SqlCommandBuilder(da);
+                da.Update(ds, "HOADON");
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void create_macthd()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            ds = new DataSet();
-            da = new SqlDataAdapter("select * from CT_HD", conn.cnn);
-            da.Fill(ds, "CT_HD");
-            int max_macthd = 0;
-            foreach (DataRow row in ds.Tables["CT_HD"].Rows)
-            {
-                int stt = int.Parse(row["mact_hd"].ToString().Substring(4));
-                if (max_macthd < stt)
+                if (conn.cnn.State == ConnectionState.Closed)
                 {
-                    max_macthd = stt;
+                    conn.cnn.Open();
                 }
-            }
-            if (max_macthd <= 8)
-                ma_cthd = "CTHD00" + (max_macthd + 1).ToString();
-            else
-                ma_cthd = "CTHD0" + (max_macthd + 1).ToString();
+                ds = new DataSet();
+                da = new SqlDataAdapter("select * from CT_HD", conn.cnn);
+                da.Fill(ds, "CT_HD");
+                int max_macthd = 0;
+                foreach (DataRow row in ds.Tables["CT_HD"].Rows)
+                {
+                    int stt = int.Parse(row["mact_hd"].ToString().Substring(4));
+                    if (max_macthd < stt)
+                    {
+                        max_macthd = stt;
+                    }
+                }
+                if (max_macthd <= 8)
+                    ma_cthd = "CTHD00" + (max_macthd + 1).ToString();
+                else
+                    ma_cthd = "CTHD0" + (max_macthd + 1).ToString();
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
         private void luu_chitiethoadon()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                DataRow insert_New = ds.Tables["CT_HD"].NewRow();
+                insert_New["MACT_HD"] = ma_cthd;
+                insert_New["MAHD"] = mahd;
+                insert_New["MATP"] = matp;
+                insert_New["TIEN_PH"] = tienphong;
+                insert_New["TIEN_DV"] = tiendv;
+                insert_New["TIEN_PHUTHU"] = tienphuthu;
+                insert_New["TIEN_MENU"] = tienmenu;
+                insert_New["GHICHU_PHUTHU"] = ghichu_phuthu;
+
+                ds.Tables["CT_HD"].Rows.Add(insert_New);
+                SqlCommandBuilder cmb = new SqlCommandBuilder(da);
+                da.Update(ds, "CT_HD");
+
+                conn.cnn.Close();
             }
-            DataRow insert_New = ds.Tables["CT_HD"].NewRow();
-            insert_New["MACT_HD"] = ma_cthd;
-            insert_New["MAHD"] = mahd;
-            insert_New["MATP"] = matp;
-            insert_New["TIEN_PH"] = tienphong;
-            insert_New["TIEN_DV"] = tiendv;
-            insert_New["TIEN_PHUTHU"] = tienphuthu;
-            insert_New["TIEN_MENU"] = tienmenu;
-            insert_New["GHICHU_PHUTHU"] = ghichu_phuthu;
-
-            ds.Tables["CT_HD"].Rows.Add(insert_New);
-            SqlCommandBuilder cmb = new SqlCommandBuilder(da);
-            da.Update(ds, "CT_HD");
-
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void update_solanin()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            string sql = "update HOADON set SOLANIN = SOLANIN + 1 where MAHD = '" + mahd + "'";
-            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-            int kq = cmd.ExecuteNonQuery();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                string sql = "update HOADON set SOLANIN = SOLANIN + 1 where MAHD = '" + mahd + "'";
+                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                int kq = cmd.ExecuteNonQuery();
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void luu_thongtin_thanhtoan()
@@ -300,56 +348,72 @@ namespace Da
 
         private void chuyen_trang_thai_phong()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            ds = new DataSet();
-            da = new SqlDataAdapter("select MAPH from CT_THUEPHONG where MATP = '" + maphieuthue + "'", conn.cnn);
-            da.Fill(ds, "MAPH");
-
-            ds_ph = new DataSet();
-            da_ph = new SqlDataAdapter("select * from PHONG", conn.cnn);
-            da_ph.Fill(ds_ph, "PHONG");
-            key[0] = ds_ph.Tables["PHONG"].Columns[0];
-            ds_ph.Tables["PHONG"].PrimaryKey = key;
-            foreach (DataRow row in ds.Tables["MAPH"].Rows)
-            {
-                string maph = row["MAPH"].ToString();
-                DataRow update_New = ds_ph.Tables["PHONG"].Rows.Find(maph);
-                if (update_New != null)
+                if (conn.cnn.State == ConnectionState.Closed)
                 {
-                    update_New["TINHTRANG"] = 3;
-                    update_New["TIME_DONDEP_KT"] = DateTime.Now.AddHours(2);
-
-                    SqlCommandBuilder cmb = new SqlCommandBuilder(da_ph);
-                    da_ph.Update(ds_ph, "PHONG");
+                    conn.cnn.Open();
                 }
+                ds = new DataSet();
+                da = new SqlDataAdapter("select MAPH from CT_THUEPHONG where MATP = '" + maphieuthue + "'", conn.cnn);
+                da.Fill(ds, "MAPH");
+
+                ds_ph = new DataSet();
+                da_ph = new SqlDataAdapter("select * from PHONG", conn.cnn);
+                da_ph.Fill(ds_ph, "PHONG");
+                key[0] = ds_ph.Tables["PHONG"].Columns[0];
+                ds_ph.Tables["PHONG"].PrimaryKey = key;
+                foreach (DataRow row in ds.Tables["MAPH"].Rows)
+                {
+                    string maph = row["MAPH"].ToString();
+                    DataRow update_New = ds_ph.Tables["PHONG"].Rows.Find(maph);
+                    if (update_New != null)
+                    {
+                        update_New["TINHTRANG"] = 3;
+                        update_New["TIME_DONDEP_KT"] = DateTime.Now.AddHours(2);
+
+                        SqlCommandBuilder cmb = new SqlCommandBuilder(da_ph);
+                        da_ph.Update(ds_ph, "PHONG");
+                    }
+                }
+                conn.cnn.Close();
             }
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void chuyen_trangthai_phieuthue()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                ds = new DataSet();
+                da = new SqlDataAdapter("select * from PHIEUTHUE where MATP = '" + maphieuthue + "'", conn.cnn);
+                da.Fill(ds, "PHIEUTHUE");
+                key[0] = ds.Tables["PHIEUTHUE"].Columns[0];
+                ds.Tables["PHIEUTHUE"].PrimaryKey = key;
+                DataRow update_New = ds.Tables["PHIEUTHUE"].Rows.Find(maphieuthue);
+                if (update_New != null)
+                {
+                    update_New["TINHTRANG"] = 0;
+
+                    SqlCommandBuilder cmb = new SqlCommandBuilder(da);
+                    da.Update(ds, "PHIEUTHUE");
+                }
+
+                conn.cnn.Close();
             }
-            ds = new DataSet();
-            da = new SqlDataAdapter("select * from PHIEUTHUE where MATP = '" + maphieuthue + "'", conn.cnn);
-            da.Fill(ds, "PHIEUTHUE");
-            key[0] = ds.Tables["PHIEUTHUE"].Columns[0];
-            ds.Tables["PHIEUTHUE"].PrimaryKey = key;
-            DataRow update_New = ds.Tables["PHIEUTHUE"].Rows.Find(maphieuthue);
-            if (update_New != null)
+            catch (Exception ex)
             {
-                update_New["TINHTRANG"] = 0;
-
-                SqlCommandBuilder cmb = new SqlCommandBuilder(da);
-                da.Update(ds, "PHIEUTHUE");
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
             }
-
-            conn.cnn.Close();
         }
 
         private int get_solanin()
@@ -414,70 +478,77 @@ namespace Da
 
         private void luu_ct_menu()
         {
-            if (menu != null)
+            try
             {
-                if (conn.cnn.State == ConnectionState.Closed)
-                    conn.cnn.Open();
-
-                ds = new DataSet();
-                da = new SqlDataAdapter(" select * from CT_MENU", conn.cnn);
-                da.Fill(ds, "CT_MENU");
-
-                foreach (DataRow row in menu.Rows)
+                if (menu != null)
                 {
-                    DataRow insert_New = ds.Tables["CT_MENU"].NewRow();
-                    insert_New["MAHD"] = mahd;
-                    insert_New["IDMENU"] = get_mamenu(row["tentd"].ToString());
-                    insert_New["SOLUONG"] = int.Parse(row["soluong"].ToString());
+                    if (conn.cnn.State == ConnectionState.Closed)
+                        conn.cnn.Open();
 
-                    ds.Tables["CT_MENU"].Rows.Add(insert_New);
-                    SqlCommandBuilder cmb = new SqlCommandBuilder(da);
-                    da.Update(ds, "CT_MENU");
+                    ds = new DataSet();
+                    da = new SqlDataAdapter(" select * from CT_MENU", conn.cnn);
+                    da.Fill(ds, "CT_MENU");
+
+                    foreach (DataRow row in menu.Rows)
+                    {
+                        DataRow insert_New = ds.Tables["CT_MENU"].NewRow();
+                        insert_New["MAHD"] = mahd;
+                        insert_New["IDMENU"] = get_mamenu(row["tentd"].ToString());
+                        insert_New["SOLUONG"] = int.Parse(row["soluong"].ToString());
+
+                        ds.Tables["CT_MENU"].Rows.Add(insert_New);
+                        SqlCommandBuilder cmb = new SqlCommandBuilder(da);
+                        da.Update(ds, "CT_MENU");
+                    }
+
+                    conn.cnn.Close();
                 }
-
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
 
         private void btn_luuvain_Click(object sender, EventArgs e)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-            {
-                conn.cnn.Open();
-            }
-            if (string.IsNullOrEmpty(txt_khachdua.Text))
-            {
-                MessageBox.Show("Chưa nhập số tiền khách đưa");
-                txt_khachdua.Focus();
-            }
-            else
-            {
-                luu_thongtin_thanhtoan();
-                luu_ct_menu();
-                lb_count.Text = get_solanin().ToString();
-                chuyen_trang_thai_phong();
-                chuyen_trangthai_phieuthue();
-                kiemtra();
-                if (!string.IsNullOrEmpty(kt))
-                {
-                    Viewer_DichVu dichvu = new Viewer_DichVu(this, conn);
-                    dichvu.get_matp(maphieuthue);
-                    dichvu.StartPosition = FormStartPosition.CenterScreen;
-                    dichvu.Show();
-                }
-                Viewer_HoaDon viewer = new Viewer_HoaDon(this, conn);
-                viewer.get_matp(maphieuthue);
-                viewer.StartPosition = FormStartPosition.CenterScreen;
-                viewer.Show();
-            }
-            conn.cnn.Close();
             try
             {
-                
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                if (string.IsNullOrEmpty(txt_khachdua.Text))
+                {
+                    MessageBox.Show("Chưa nhập số tiền khách đưa");
+                    txt_khachdua.Focus();
+                }
+                else
+                {
+                    luu_thongtin_thanhtoan();
+                    luu_ct_menu();
+                    lb_count.Text = get_solanin().ToString();
+                    chuyen_trang_thai_phong();
+                    chuyen_trangthai_phieuthue();
+                    kiemtra();
+                    if (!string.IsNullOrEmpty(kt))
+                    {
+                        Viewer_DichVu dichvu = new Viewer_DichVu(this, conn);
+                        dichvu.get_matp(maphieuthue);
+                        dichvu.StartPosition = FormStartPosition.CenterScreen;
+                        dichvu.Show();
+                    }
+                    Viewer_HoaDon viewer = new Viewer_HoaDon(this, conn);
+                    viewer.get_matp(maphieuthue);
+                    viewer.StartPosition = FormStartPosition.CenterScreen;
+                    viewer.Show();
+                }
+                conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }

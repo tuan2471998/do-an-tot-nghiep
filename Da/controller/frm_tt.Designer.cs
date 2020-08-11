@@ -324,6 +324,7 @@
             this.txt_phuthu.TabIndex = 15;
             this.txt_phuthu.Visible = false;
             this.txt_phuthu.TextChanged += new System.EventHandler(this.txt_phuthu_TextChanged);
+            this.txt_phuthu.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_phuthu_KeyPress);
             // 
             // txt_tienthucdon
             // 

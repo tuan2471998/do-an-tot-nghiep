@@ -61,79 +61,95 @@ namespace Da
 
         private void update_soluong_hang()
         {
-            foreach (Control chb in this.Controls)
+            try
             {
-                if (chb is CheckBox && ((CheckBox)chb).Checked)
+                foreach (Control chb in this.Controls)
                 {
-                    foreach (Control num in this.Controls)
+                    if (chb is CheckBox && ((CheckBox)chb).Checked)
                     {
-                        if (num is NumericUpDown && num.Name == "numeric_" + chb.Name && num.Enabled == true)
+                        foreach (Control num in this.Controls)
                         {
-                            if (conn.cnn.State == ConnectionState.Closed)
-                                conn.cnn.Open();
+                            if (num is NumericUpDown && num.Name == "numeric_" + chb.Name && num.Enabled == true)
+                            {
+                                if (conn.cnn.State == ConnectionState.Closed)
+                                    conn.cnn.Open();
 
-                            string sql = "update HANG set SOLUONGHANG = SOLUONGHANG - " + ((NumericUpDown)num).Value + " where TENHANG = '" + get_mamenu(chb.Text) + "'";
-                            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-                            int kq = cmd.ExecuteNonQuery();
+                                string sql = "update HANG set SOLUONGHANG = SOLUONGHANG - " + ((NumericUpDown)num).Value + " where TENHANG = '" + get_mamenu(chb.Text) + "'";
+                                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                                int kq = cmd.ExecuteNonQuery();
 
-                            conn.cnn.Close();
+                                conn.cnn.Close();
+                            }
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
             }
         }
 
         private void btn_luu_Click(object sender, EventArgs e)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            string sql = "select * from MENU";
-            ds = new DataSet();
-            da = new SqlDataAdapter(sql, conn.cnn);
-            da.Fill(ds, "MENU");
-
-            DataTable menu = new DataTable();
-            menu.Columns.Add("tentd");
-            menu.Columns.Add("soluong");
-            menu.Columns.Add("dongia");
-            menu.Columns.Add("thanhtien");
-
-            DataRow newrow;
-
-            foreach (Control control in this.Controls)
-            {
-                if (control is CheckBox && ((CheckBox)control).Checked == true)
+                if (conn.cnn.State == ConnectionState.Closed)
                 {
-                    foreach (Control num in this.Controls)
-                    {
-                        if (num is NumericUpDown && num.Name == "numeric_" + control.Name && num.Enabled == true)
-                        {
-                            newrow = menu.NewRow();
-                            newrow["tentd"] = control.Text;
-                            newrow["soluong"] = ((NumericUpDown)num).Value;
-                            newrow["dongia"] = get_dongia(control.Text).ToString("###,##");
-                            newrow["thanhtien"] = (decimal.Parse(((NumericUpDown)num).Value.ToString()) * decimal.Parse(get_dongia(control.Text).ToString())).ToString("###,##");
+                    conn.cnn.Open();
+                }
+                string sql = "select * from MENU";
+                ds = new DataSet();
+                da = new SqlDataAdapter(sql, conn.cnn);
+                da.Fill(ds, "MENU");
 
-                            menu.Rows.Add(newrow);
+                DataTable menu = new DataTable();
+                menu.Columns.Add("tentd");
+                menu.Columns.Add("soluong");
+                menu.Columns.Add("dongia");
+                menu.Columns.Add("thanhtien");
+
+                DataRow newrow;
+
+                foreach (Control control in this.Controls)
+                {
+                    if (control is CheckBox && ((CheckBox)control).Checked == true)
+                    {
+                        foreach (Control num in this.Controls)
+                        {
+                            if (num is NumericUpDown && num.Name == "numeric_" + control.Name && num.Enabled == true)
+                            {
+                                newrow = menu.NewRow();
+                                newrow["tentd"] = control.Text;
+                                newrow["soluong"] = ((NumericUpDown)num).Value;
+                                newrow["dongia"] = get_dongia(control.Text).ToString("###,##");
+                                newrow["thanhtien"] = (decimal.Parse(((NumericUpDown)num).Value.ToString()) * decimal.Parse(get_dongia(control.Text).ToString())).ToString("###,##");
+
+                                menu.Rows.Add(newrow);
+                            }
                         }
                     }
                 }
+
+                update_soluong_hang();
+
+                tt.get_thongtin_menu(menu);
+                tt.get_tienmenu();
+                tt.enable_menu();
+
+                if (conn.cnn.State == ConnectionState.Open)
+                {
+                    conn.cnn.Close();
+                }
+
+                this.Close();
             }
-
-            update_soluong_hang();
-
-            tt.get_thongtin_menu(menu);
-            tt.get_tienmenu();
-            tt.enable_menu();
-
-            if (conn.cnn.State == ConnectionState.Open)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
-
-            this.Close();
         }
 
         private void nuocsuoi_CheckedChanged(object sender, EventArgs e)

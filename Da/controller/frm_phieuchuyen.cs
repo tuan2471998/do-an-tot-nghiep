@@ -31,20 +31,28 @@ namespace Da.controller
 
         public void loadcbxMaKH()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                SqlDataAdapter da = new SqlDataAdapter("select * from PHIEUDAT", conn.cnn);
+
+                ds = new DataSet();
+                da.Fill(ds, "PHIEUDAT");
+                comboBox_madatphong.DataSource = ds.Tables["PHIEUDAT"];
+                comboBox_madatphong.DisplayMember = "MADP";
+                comboBox_madatphong.ValueMember = "MADP";
+                comboBox_madatphong.SelectedIndex = -1;
+
+                conn.cnn.Close();
             }
-            SqlDataAdapter da = new SqlDataAdapter("select * from PHIEUDAT", conn.cnn);
-
-            ds = new DataSet();
-            da.Fill(ds, "PHIEUDAT");
-            comboBox_madatphong.DataSource = ds.Tables["PHIEUDAT"];
-            comboBox_madatphong.DisplayMember = "MADP";
-            comboBox_madatphong.ValueMember = "MADP";
-            comboBox_madatphong.SelectedIndex = -1;
-
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
         public void load_dgvPD()
         {
@@ -62,51 +70,60 @@ namespace Da.controller
                 ds.Tables["PHIEUDAT"].PrimaryKey = key;
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Hãy thao tác lại !");
+                MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         private string sinhtudongMaphieuthue()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            DataSet ds_ph = new DataSet();
-            SqlDataAdapter da_phCT = new SqlDataAdapter("select * from PHIEUTHUE", conn.cnn);
-            // Ánh xạ dữ liệu từ DB vào dataset, đặt tên Sach
-            da_phCT.Fill(ds_ph, "PHIEUTHUE");
-            DataTable dt1 = ds_ph.Tables["PHIEUTHUE"];
-            int bien1;
-            int bien2;
-            int bien3 = 1;
-            if (dt1 == null)
-            {
-                bien1 = 1;
-                bien2 = bien1;
-                bien3 = 1;
-            }
-            if (dt1.Rows.Count == 0)
-            {
-                return "TP001";
-            }
-            else
-            {
-                bien1 = dt1.Rows.Count + 1;
-                bien2 = bien1;
-                bien3 = 1;
-            }
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                DataSet ds_ph = new DataSet();
+                SqlDataAdapter da_phCT = new SqlDataAdapter("select * from PHIEUTHUE", conn.cnn);
+                // Ánh xạ dữ liệu từ DB vào dataset, đặt tên Sach
+                da_phCT.Fill(ds_ph, "PHIEUTHUE");
+                DataTable dt1 = ds_ph.Tables["PHIEUTHUE"];
+                int bien1;
+                int bien2;
+                int bien3 = 1;
+                if (dt1 == null)
+                {
+                    bien1 = 1;
+                    bien2 = bien1;
+                    bien3 = 1;
+                }
+                if (dt1.Rows.Count == 0)
+                {
+                    return "TP001";
+                }
+                else
+                {
+                    bien1 = dt1.Rows.Count + 1;
+                    bien2 = bien1;
+                    bien3 = 1;
+                }
 
-            while (bien2 < 999)
-            {
-                bien2 = bien1 + bien3;
-                bien3 *= 10;
+                while (bien2 < 999)
+                {
+                    bien2 = bien1 + bien3;
+                    bien3 *= 10;
+                }
+                conn.cnn.Close();
+                return "TP" + bien2.ToString().Substring(1, 3);
             }
-            conn.cnn.Close();
-            return "TP" + bien2.ToString().Substring(1, 3);
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+                return "Lỗi";
+            }
         }
 
 
@@ -155,9 +172,9 @@ namespace Da.controller
                 cmd.ExecuteNonQuery();
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Vui lòng thực hiện lại thao tác chuyển phòng!");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
@@ -181,24 +198,32 @@ namespace Da.controller
                 }
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Vui lòng thực hiện lại thao tác chuyển phòng!");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
 
         private void xoaCTPhieuDat()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            string sql = "delete from CT_PHIEUDAT where MADP = '" + comboBox_madatphong.SelectedValue + "'";
-            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-            int kq = (int)cmd.ExecuteNonQuery();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                string sql = "delete from CT_PHIEUDAT where MADP = '" + comboBox_madatphong.SelectedValue + "'";
+                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                int kq = (int)cmd.ExecuteNonQuery();
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void xoaPhieuDat()
@@ -216,40 +241,48 @@ namespace Da.controller
                     MessageBox.Show("Lập phiếu thành công");
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Đã xảy ra lỗi");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
 
         private void chuyenTrangThaiPhong()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            DataSet ds_ctphieudat = new DataSet();
-            SqlDataAdapter da_ctphieudat = new SqlDataAdapter("select * from CT_PHIEUDAT where MADP = '" + comboBox_madatphong.SelectedValue.ToString() + "'", conn.cnn);
-            da_ctphieudat.Fill(ds_ctphieudat, "CT_PHIEUDAT");
-
-            DataSet ds_phong = new DataSet();
-            SqlDataAdapter da_phong = new SqlDataAdapter("select * from PHONG", conn.cnn);
-            da_phong.Fill(ds_phong, "PHONG");
-            key[0] = ds_phong.Tables["PHONG"].Columns[0];
-            ds_phong.Tables["PHONG"].PrimaryKey = key;
-
-            foreach (DataRow row in ds_ctphieudat.Tables["CT_PHIEUDAT"].Rows)
-            {
-                DataRow update = ds_phong.Tables["PHONG"].Rows.Find(row["MAPH"].ToString());
-                if (update != null)
+                if (conn.cnn.State == ConnectionState.Closed)
                 {
-                    update["TINHTRANG"] = 1;
-                    SqlCommandBuilder cmb = new SqlCommandBuilder(da_phong);
-                    da_phong.Update(ds_phong, "PHONG");
+                    conn.cnn.Open();
                 }
+                DataSet ds_ctphieudat = new DataSet();
+                SqlDataAdapter da_ctphieudat = new SqlDataAdapter("select * from CT_PHIEUDAT where MADP = '" + comboBox_madatphong.SelectedValue.ToString() + "'", conn.cnn);
+                da_ctphieudat.Fill(ds_ctphieudat, "CT_PHIEUDAT");
+
+                DataSet ds_phong = new DataSet();
+                SqlDataAdapter da_phong = new SqlDataAdapter("select * from PHONG", conn.cnn);
+                da_phong.Fill(ds_phong, "PHONG");
+                key[0] = ds_phong.Tables["PHONG"].Columns[0];
+                ds_phong.Tables["PHONG"].PrimaryKey = key;
+
+                foreach (DataRow row in ds_ctphieudat.Tables["CT_PHIEUDAT"].Rows)
+                {
+                    DataRow update = ds_phong.Tables["PHONG"].Rows.Find(row["MAPH"].ToString());
+                    if (update != null)
+                    {
+                        update["TINHTRANG"] = 1;
+                        SqlCommandBuilder cmb = new SqlCommandBuilder(da_phong);
+                        da_phong.Update(ds_phong, "PHONG");
+                    }
+                }
+                conn.cnn.Close();
             }
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void comboBox_madatphong_SelectedValueChanged(object sender, EventArgs e)

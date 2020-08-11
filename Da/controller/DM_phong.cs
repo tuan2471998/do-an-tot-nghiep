@@ -29,27 +29,43 @@ namespace Da.controller
 
         public void Load_LoaiPH()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-                conn.cnn.Open();
-            da_loaiph = new SqlDataAdapter(" select * from LOAIPHONG", conn.cnn);
-            da_loaiph.Fill(ds_loaiph, "LOAIPHONG");
-            dgv_loaiph.DataSource = ds_loaiph.Tables["LOAIPHONG"];
-            key[0] = ds_loaiph.Tables["LOAIPHONG"].Columns[0];
-            ds_loaiph.Tables["LOAIPHONG"].PrimaryKey = key;
+            try
+            {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
+                da_loaiph = new SqlDataAdapter(" select * from LOAIPHONG", conn.cnn);
+                da_loaiph.Fill(ds_loaiph, "LOAIPHONG");
+                dgv_loaiph.DataSource = ds_loaiph.Tables["LOAIPHONG"];
+                key[0] = ds_loaiph.Tables["LOAIPHONG"].Columns[0];
+                ds_loaiph.Tables["LOAIPHONG"].PrimaryKey = key;
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
         public void Load_PH()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-                conn.cnn.Open();
-            da_ph = new SqlDataAdapter(" select * from PHONG where MALOAI = '" + txt_maloai.Text + "'", conn.cnn);
-            da_ph.Fill(ds_ph, "PHONG");
-            dgv_ph.DataSource = ds_ph.Tables["PHONG"];
-            key[0] = ds_ph.Tables["PHONG"].Columns[0];
-            ds_ph.Tables["PHONG"].PrimaryKey = key;
+            try
+            {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
+                da_ph = new SqlDataAdapter(" select * from PHONG where MALOAI = '" + txt_maloai.Text + "'", conn.cnn);
+                da_ph.Fill(ds_ph, "PHONG");
+                dgv_ph.DataSource = ds_ph.Tables["PHONG"];
+                key[0] = ds_ph.Tables["PHONG"].Columns[0];
+                ds_ph.Tables["PHONG"].PrimaryKey = key;
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void clear_txt_phong()
@@ -193,34 +209,42 @@ namespace Da.controller
                 }
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Bạn đã xóa không thành công!");
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void xoaphong()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-                conn.cnn.Open();
-            ds_ph = new DataSet();
-            da_ph = new SqlDataAdapter(" select * from PHONG where MALOAI = '" + txt_maloai.Text + "'", conn.cnn);
-            da_ph.Fill(ds_ph, "PHONG");
-            key[0] = ds_ph.Tables["PHONG"].Columns[0];
-            ds_ph.Tables["PHONG"].PrimaryKey = key;
-
-            while (ds_ph.Tables["PHONG"].Rows.Count > 0)
+            try
             {
-                DataRow dr_xoa = ds_ph.Tables["PHONG"].Rows.Find(ds_ph.Tables["PHONG"].Rows[0]["MAPH"].ToString());
-                if (dr_xoa != null)
-                {
-                    dr_xoa.Delete();
-                    SqlCommandBuilder db = new SqlCommandBuilder(da_ph);
-                    da_ph.Update(ds_ph, "PHONG");
-                }
-            };
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
+                ds_ph = new DataSet();
+                da_ph = new SqlDataAdapter(" select * from PHONG where MALOAI = '" + txt_maloai.Text + "'", conn.cnn);
+                da_ph.Fill(ds_ph, "PHONG");
+                key[0] = ds_ph.Tables["PHONG"].Columns[0];
+                ds_ph.Tables["PHONG"].PrimaryKey = key;
 
-            conn.cnn.Close();
+                while (ds_ph.Tables["PHONG"].Rows.Count > 0)
+                {
+                    DataRow dr_xoa = ds_ph.Tables["PHONG"].Rows.Find(ds_ph.Tables["PHONG"].Rows[0]["MAPH"].ToString());
+                    if (dr_xoa != null)
+                    {
+                        dr_xoa.Delete();
+                        SqlCommandBuilder db = new SqlCommandBuilder(da_ph);
+                        da_ph.Update(ds_ph, "PHONG");
+                    }
+                };
+
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void btn_Xoaloaiphong_Click(object sender, EventArgs e)
@@ -263,9 +287,9 @@ namespace Da.controller
                 }
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Thao tác thực hiện của bạn không thành công! Bạn hãy thao tác lại");
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -279,73 +303,89 @@ namespace Da.controller
 
         private void cap_nhat_gia_phong()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-                conn.cnn.Open();
-            ds_ph = new DataSet();
-            da_ph = new SqlDataAdapter(" select * from PHONG where MALOAI = '" + txt_maloai.Text + "'", conn.cnn);
-            da_ph.Fill(ds_ph, "PHONG");
-            key[0] = ds_ph.Tables["PHONG"].Columns[0];
-            ds_ph.Tables["PHONG"].PrimaryKey = key;
-
-            foreach (DataRow row in ds_ph.Tables["PHONG"].Rows)
+            try
             {
-                DataRow dr_update_giaphong = ds_ph.Tables["PHONG"].Rows.Find(row["MAPH"].ToString());
-                if (dr_update_giaphong != null)
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
+                ds_ph = new DataSet();
+                da_ph = new SqlDataAdapter(" select * from PHONG where MALOAI = '" + txt_maloai.Text + "'", conn.cnn);
+                da_ph.Fill(ds_ph, "PHONG");
+                key[0] = ds_ph.Tables["PHONG"].Columns[0];
+                ds_ph.Tables["PHONG"].PrimaryKey = key;
+
+                foreach (DataRow row in ds_ph.Tables["PHONG"].Rows)
                 {
-                    string giaphong = txt_gia.Text.Replace(",", "");
-                    double gialoaiph = double.Parse(giaphong.Replace(" VNĐ", ""));
-                    int vitri = int.Parse(row["VTPHONG"].ToString());
-                    dr_update_giaphong["GIAPHONG"] = gialoaiph + (vitri - 1) * 50000;
-                    SqlCommandBuilder db = new SqlCommandBuilder(da_ph);
-                    da_ph.Update(ds_ph, "PHONG");
+                    DataRow dr_update_giaphong = ds_ph.Tables["PHONG"].Rows.Find(row["MAPH"].ToString());
+                    if (dr_update_giaphong != null)
+                    {
+                        string giaphong = txt_gia.Text.Replace(",", "");
+                        double gialoaiph = double.Parse(giaphong.Replace(" VNĐ", ""));
+                        int vitri = int.Parse(row["VTPHONG"].ToString());
+                        dr_update_giaphong["GIAPHONG"] = gialoaiph + (vitri - 1) * 50000;
+                        SqlCommandBuilder db = new SqlCommandBuilder(da_ph);
+                        da_ph.Update(ds_ph, "PHONG");
+                    }
                 }
+                conn.cnn.Close();
             }
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void btn_Sualoaiphong_Click(object sender, EventArgs e)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-                conn.cnn.Open();
-            DataRow update_New = ds_loaiph.Tables["LOAIPHONG"].Rows.Find(txt_maloai.Text);
-            if (update_New != null)
+            try
             {
-                string giaphong = txt_gia.Text.Replace(",", "");               
-                update_New["TENLOAI"] = txt_tenloai.Text;
-                update_New["GIAPH"] = giaphong.Replace(" VNĐ", "");
-                update_New["GHICHU"] = txt_ghichu.Text;
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
+                DataRow update_New = ds_loaiph.Tables["LOAIPHONG"].Rows.Find(txt_maloai.Text);
+                if (update_New != null)
+                {
+                    string giaphong = txt_gia.Text.Replace(",", "");
+                    update_New["TENLOAI"] = txt_tenloai.Text;
+                    update_New["GIAPH"] = giaphong.Replace(" VNĐ", "");
+                    update_New["GHICHU"] = txt_ghichu.Text;
 
-                SqlCommandBuilder cmb = new SqlCommandBuilder(da_loaiph);
-                da_loaiph.Update(ds_loaiph, "LOAIPHONG");
-                cap_nhat_gia_phong();
+                    SqlCommandBuilder cmb = new SqlCommandBuilder(da_loaiph);
+                    da_loaiph.Update(ds_loaiph, "LOAIPHONG");
+                    cap_nhat_gia_phong();
 
-                MessageBox.Show(" Cập nhật Thành công");
+                    MessageBox.Show(" Cập nhật Thành công");
 
-                Load_LoaiPH();
-                Load_PH();
-                clear_txt_loaiphong();
-                clear_row_loaiphong();
+                    Load_LoaiPH();
+                    Load_PH();
+                    clear_txt_loaiphong();
+                    clear_row_loaiphong();
 
-                btn_Sualoaiphong.Enabled = false;
-                btn_Xoaloaiphong.Enabled = false;
+                    btn_Sualoaiphong.Enabled = false;
+                    btn_Xoaloaiphong.Enabled = false;
+                }
+                //if (string.IsNullOrEmpty(txt_tenloai.Text) || string.IsNullOrEmpty(txt_gia.Text) || string.IsNullOrEmpty(txt_ghichu.Text))
+                //{
+                //    MessageBox.Show("Thông tin loại phòng không chính xác");
+                //}
+                //else
+                //{
+                //    try
+                //    {
+
+                //    }
+                //    catch
+                //    {
+                //        MessageBox.Show(" Cập nhật không thành công");
+                //    }
+                //}
+
+                conn.cnn.Close();
             }
-            //if (string.IsNullOrEmpty(txt_tenloai.Text) || string.IsNullOrEmpty(txt_gia.Text) || string.IsNullOrEmpty(txt_ghichu.Text))
-            //{
-            //    MessageBox.Show("Thông tin loại phòng không chính xác");
-            //}
-            //else
-            //{
-            //    try
-            //    {
-
-            //    }
-            //    catch
-            //    {
-            //        MessageBox.Show(" Cập nhật không thành công");
-            //    }
-            //}
-
-            conn.cnn.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void txt_gia_TextChanged(object sender, EventArgs e)

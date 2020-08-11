@@ -34,16 +34,24 @@ namespace Da.controller
 
         public void loadData_themkh()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            da = new SqlDataAdapter(" select * from KHACHHANG", conn.cnn);
-            da.Fill(ds, "KHACHHANG");
-            key[0] = ds.Tables["KHACHHANG"].Columns[0];
-            ds.Tables["KHACHHANG"].PrimaryKey = key;
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                da = new SqlDataAdapter(" select * from KHACHHANG", conn.cnn);
+                da.Fill(ds, "KHACHHANG");
+                key[0] = ds.Tables["KHACHHANG"].Columns[0];
+                ds.Tables["KHACHHANG"].PrimaryKey = key;
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         int kiemtra_thongtin()
@@ -76,33 +84,33 @@ namespace Da.controller
 
         void them_thong_tin_kh()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-            {
-                conn.cnn.Open();
-            }
-            da = new SqlDataAdapter(" select * from KHACHHANG", conn.cnn);
-            da.Fill(ds, "KHACHHANG");
-            key[0] = ds.Tables["KHACHHANG"].Columns[0];
-            ds.Tables["KHACHHANG"].PrimaryKey = key;
-
-            int max = 0;
-            foreach (DataRow row in ds.Tables["KHACHHANG"].Rows)
-            {
-                int stt;
-                stt = int.Parse(row["MAKH"].ToString().Substring(2));
-                if (max < stt)
-                    max = stt;
-            }
-            string makh;
-            // tự động tạo mã khách hàng
-            if(max >0 && max < 10)
-                makh = "KH00" + (max + 1).ToString();
-            if (max < 100)
-                makh = "KH0" + (max + 1).ToString();
-            else
-                makh = "KH" + (max + 1).ToString();
             try
             {
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                da = new SqlDataAdapter(" select * from KHACHHANG", conn.cnn);
+                da.Fill(ds, "KHACHHANG");
+                key[0] = ds.Tables["KHACHHANG"].Columns[0];
+                ds.Tables["KHACHHANG"].PrimaryKey = key;
+
+                int max = 0;
+                foreach (DataRow row in ds.Tables["KHACHHANG"].Rows)
+                {
+                    int stt;
+                    stt = int.Parse(row["MAKH"].ToString().Substring(2));
+                    if (max < stt)
+                        max = stt;
+                }
+                string makh;
+                // tự động tạo mã khách hàng
+                if (max > 0 && max < 10)
+                    makh = "KH00" + (max + 1).ToString();
+                if (max < 100)
+                    makh = "KH0" + (max + 1).ToString();
+                else
+                    makh = "KH" + (max + 1).ToString();
                 DataRow insert_New = ds.Tables["KHACHHANG"].NewRow();
                 insert_New["MAKH"] = makh;
                 insert_New["HOTEN"] = txt_tenkh.Text;
@@ -117,9 +125,9 @@ namespace Da.controller
 
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Hãy thao tác lại");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }

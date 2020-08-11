@@ -36,101 +36,149 @@ namespace Da.controller
 
         private void load_cbb_loainhap()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-                conn.cnn.Open();
+            try
+            {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
 
-            string sql = "select * from HANGNHAP";
-            ds = new DataSet();
-            da = new SqlDataAdapter(sql, conn.cnn);
-            da.Fill(ds, "HANGNHAP");
+                string sql = "select * from HANGNHAP";
+                ds = new DataSet();
+                da = new SqlDataAdapter(sql, conn.cnn);
+                da.Fill(ds, "HANGNHAP");
 
-            cbb_loainhap.ValueMember = "MAHANGNHAP";
-            cbb_loainhap.DisplayMember = "TENHANGNHAP";
-            cbb_loainhap.DataSource = ds.Tables["HANGNHAP"];
+                cbb_loainhap.ValueMember = "MAHANGNHAP";
+                cbb_loainhap.DisplayMember = "TENHANGNHAP";
+                cbb_loainhap.DataSource = ds.Tables["HANGNHAP"];
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void load_cbb_nhacungcap()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-                conn.cnn.Open();
+            try
+            {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
 
-            string sql = "select * from NHACC";
-            ds = new DataSet();
-            da = new SqlDataAdapter(sql, conn.cnn);
-            da.Fill(ds, "NHACC");
+                string sql = "select * from NHACC";
+                ds = new DataSet();
+                da = new SqlDataAdapter(sql, conn.cnn);
+                da.Fill(ds, "NHACC");
 
-            cbb_nhacungcap.ValueMember = "MANCC";
-            cbb_nhacungcap.DisplayMember = "TENNCC";
-            cbb_nhacungcap.DataSource = ds.Tables["NHACC"];
+                cbb_nhacungcap.ValueMember = "MANCC";
+                cbb_nhacungcap.DisplayMember = "TENNCC";
+                cbb_nhacungcap.DataSource = ds.Tables["NHACC"];
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void load_cbb_loaihang_thietbi()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-                conn.cnn.Open();
+            try
+            {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
 
-            string sql = "select * from THIETBI";
-            ds = new DataSet();
-            da = new SqlDataAdapter(sql, conn.cnn);
-            da.Fill(ds, "THIETBI");
+                string sql = "select * from THIETBI";
+                ds = new DataSet();
+                da = new SqlDataAdapter(sql, conn.cnn);
+                da.Fill(ds, "THIETBI");
 
-            cbb_loaihang.ValueMember = "MATB";
-            cbb_loaihang.DisplayMember = "TENTB";
-            cbb_loaihang.DataSource = ds.Tables["THIETBI"];
+                cbb_loaihang.ValueMember = "MATB";
+                cbb_loaihang.DisplayMember = "TENTB";
+                cbb_loaihang.DataSource = ds.Tables["THIETBI"];
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void load_cbb_loaihang_menu()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-                conn.cnn.Open();
+            try
+            {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
 
-            string sql = "select * from MENU";
-            ds = new DataSet();
-            da = new SqlDataAdapter(sql, conn.cnn);
-            da.Fill(ds, "MENU");
+                string sql = "select * from MENU";
+                ds = new DataSet();
+                da = new SqlDataAdapter(sql, conn.cnn);
+                da.Fill(ds, "MENU");
 
-            cbb_loaihang.ValueMember = "IDMENU";
-            cbb_loaihang.DisplayMember = "TENMENU";
-            cbb_loaihang.DataSource = ds.Tables["MENU"];
+                cbb_loaihang.ValueMember = "IDMENU";
+                cbb_loaihang.DisplayMember = "TENMENU";
+                cbb_loaihang.DataSource = ds.Tables["MENU"];
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void get_tennhanvien(string manv)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-                conn.cnn.Open();
+            try
+            {
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
 
-            string sql = "select HOTEN from NHANVIEN where MANV = '" + manv + "'";
-            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-            txt_nhanvien.Text = (string)cmd.ExecuteScalar();
+                string sql = "select HOTEN from NHANVIEN where MANV = '" + manv + "'";
+                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                txt_nhanvien.Text = (string)cmd.ExecuteScalar();
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void get_thongtin_nhacc(string mancc)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
-                conn.cnn.Open();
-
-            string sql = "select DIACHI_NCC, SDT from NHACC where MANCC = '" + mancc + "'";
-            ds = new DataSet();
-            da = new SqlDataAdapter(sql, conn.cnn);
-            da.Fill(ds, "NHACC");
-
-            foreach (DataRow row in ds.Tables["NHACC"].Rows)
+            try
             {
-                txt_diachincc.Text = row["DIACHI_NCC"].ToString();
-                txt_sdtncc.Text = row["SDT"].ToString();
-            }
+                if (conn.cnn.State == ConnectionState.Closed)
+                    conn.cnn.Open();
 
-            conn.cnn.Close();
+                string sql = "select DIACHI_NCC, SDT from NHACC where MANCC = '" + mancc + "'";
+                ds = new DataSet();
+                da = new SqlDataAdapter(sql, conn.cnn);
+                da.Fill(ds, "NHACC");
+
+                foreach (DataRow row in ds.Tables["NHACC"].Rows)
+                {
+                    txt_diachincc.Text = row["DIACHI_NCC"].ToString();
+                    txt_sdtncc.Text = row["SDT"].ToString();
+                }
+
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         int stt = 0;
@@ -246,9 +294,9 @@ namespace Da.controller
 
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Hãy thao tác lại");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
@@ -279,9 +327,9 @@ namespace Da.controller
 
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Hãy thao tác lại");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
@@ -414,9 +462,9 @@ namespace Da.controller
 
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
@@ -468,20 +516,27 @@ namespace Da.controller
 
         private void btn_Luu_Click(object sender, EventArgs e)
         {
-            if (kiemtra() == 1)
+            try
             {
-                update_soluong_hang();
-                if (kiemtra(DateTime.Now.ToString("yyyy-MM-dd")) > 0)
+                if (kiemtra() == 1)
                 {
-                    update_tongtien();
-                }
-                create_manhaphang();
-                luu_thongtin_nhaphang();
-                luu_thongtin_ctnhaphang();
-                them_gridview();
+                    update_soluong_hang();
+                    if (kiemtra(DateTime.Now.ToString("yyyy-MM-dd")) > 0)
+                    {
+                        update_tongtien();
+                    }
+                    create_manhaphang();
+                    luu_thongtin_nhaphang();
+                    luu_thongtin_ctnhaphang();
+                    them_gridview();
 
-                MessageBox.Show("Nhập hàng thành công");
-            }            
+                    MessageBox.Show("Nhập hàng thành công");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void them_nhaphang_FormClosing(object sender, FormClosingEventArgs e)

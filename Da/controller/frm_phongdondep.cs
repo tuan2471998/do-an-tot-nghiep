@@ -33,20 +33,28 @@ namespace Da.controller
 
         private void hoànThànhToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            string sql = "update PHONG set TINHTRANG = 0, TIME_DONDEP_KT = null where MAPH = '" + lb_sophong.Text + "'";
-            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-            int kq = cmd.ExecuteNonQuery();
-            if (kq == 1)
-            {
-                MessageBox.Show("Cập nhật thành công");
-            }
-            frm_danhsachphong.Load_control_all();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                string sql = "update PHONG set TINHTRANG = 0, TIME_DONDEP_KT = null where MAPH = '" + lb_sophong.Text + "'";
+                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                int kq = cmd.ExecuteNonQuery();
+                if (kq == 1)
+                {
+                    MessageBox.Show("Cập nhật thành công");
+                }
+                frm_danhsachphong.Load_control_all();
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         DateTime batdau;
@@ -54,26 +62,41 @@ namespace Da.controller
 
         private void get_time_ketthuc()
         {
-            if (conn.cnn.State == ConnectionState.Closed)
+            try
             {
-                conn.cnn.Open();
-            }
-            string sql = "select TIME_DONDEP_KT from PHONG where MAPH = '" + lb_sophong.Text + "'";
-            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-            ketthuc = (DateTime)cmd.ExecuteScalar();
+                if (conn.cnn.State == ConnectionState.Closed)
+                {
+                    conn.cnn.Open();
+                }
+                string sql = "select TIME_DONDEP_KT from PHONG where MAPH = '" + lb_sophong.Text + "'";
+                SqlCommand cmd = new SqlCommand(sql, conn.cnn);
+                ketthuc = (DateTime)cmd.ExecuteScalar();
 
-            conn.cnn.Close();
+                conn.cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
+            }
         }
 
         private void lb_sophong_TextChanged(object sender, EventArgs e)
         {
-            get_time_ketthuc();
-            batdau = DateTime.Now;
-            conlai = ketthuc - batdau;
-            gio = conlai.Hours;
-            phut = conlai.Minutes;
-            giay = conlai.Seconds;
-            timer1.Start();
+            try
+            {
+                get_time_ketthuc();
+                batdau = DateTime.Now;
+                conlai = ketthuc - batdau;
+                gio = conlai.Hours;
+                phut = conlai.Minutes;
+                giay = conlai.Seconds;
+                timer1.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         TimeSpan conlai;

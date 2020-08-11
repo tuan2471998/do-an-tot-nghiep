@@ -48,9 +48,9 @@ namespace Da.controller
 
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
@@ -110,9 +110,9 @@ namespace Da.controller
 
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
@@ -165,9 +165,9 @@ namespace Da.controller
 
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
@@ -230,9 +230,10 @@ namespace Da.controller
 
                 dgv_baocaotonghop.DataSource = dt_gop_15ngay;
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
             }
         }
 
@@ -266,9 +267,9 @@ namespace Da.controller
 
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
@@ -296,9 +297,9 @@ namespace Da.controller
 
                 conn.cnn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
                 conn.cnn.Close();
             }
         }
@@ -366,9 +367,10 @@ namespace Da.controller
 
                 dgv_baocaotonghop.DataSource = dt;
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");
+                MessageBox.Show(ex.Message);
+                conn.cnn.Close();
             }
 
         }
@@ -403,9 +405,9 @@ namespace Da.controller
                 txt_tiennhaphang.Text = tiennhaphang.ToString("###,##");
                 txt_thucthu.Text = thucthu.ToString("###,##");
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi");;
+                MessageBox.Show(ex.Message);
             }
         }
     }
