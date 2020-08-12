@@ -13,7 +13,7 @@ namespace Da
 
         public connect()
         {           
-            cnn = new SqlConnection(@"Data Source=DESKTOP-K4654OG;Initial Catalog=QL_KHACHSAN;Integrated Security=True");
+            cnn = new SqlConnection(@"Data Source=DESKTOP-BA0VSK6;Initial Catalog=QL_KHACHSAN;Integrated Security=True");
             if (cnn.State == System.Data.ConnectionState.Closed)
             {
                 cnn.Open();

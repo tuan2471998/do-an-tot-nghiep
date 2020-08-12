@@ -29,7 +29,6 @@ namespace Da
         double tienmat;
         double tienthe;
         double tongtien;
-        double tienmenu;
         string thanhtoan;
         int dem = 0;
         DataSet ds;
@@ -283,7 +282,6 @@ namespace Da
                 insert_New["TIEN_PH"] = tienphong;
                 insert_New["TIEN_DV"] = tiendv;
                 insert_New["TIEN_PHUTHU"] = tienphuthu;
-                insert_New["TIEN_MENU"] = tienmenu;
                 insert_New["GHICHU_PHUTHU"] = ghichu_phuthu;
 
                 ds.Tables["CT_HD"].Rows.Add(insert_New);
@@ -438,77 +436,7 @@ namespace Da
             kt = (string)cmd.ExecuteScalar();
 
             conn.cnn.Close();
-        }
-
-        DataTable menu; 
-        public void get_thongtin_menu(DataTable _menu)
-        {
-            if (_menu != null)
-            {
-                menu = new DataTable();
-                menu.Columns.Add("tentd");
-                menu.Columns.Add("soluong");
-                menu.Columns.Add("dongia");
-                menu.Columns.Add("thanhtien");
-
-                DataRow newrow;
-                foreach (DataRow row in _menu.Rows)
-                {
-                    newrow = menu.NewRow();
-                    newrow["tentd"] = row["tentd"].ToString();
-                    newrow["soluong"] = row["soluong"].ToString();
-                    newrow["dongia"] = row["dongia"].ToString();
-                    newrow["thanhtien"] = row["thanhtien"].ToString();
-
-                    menu.Rows.Add(newrow);
-                }
-            }
-        }
-
-        private string get_mamenu(string tenmenu)
-        {
-            if (conn.cnn.State == ConnectionState.Closed)
-                conn.cnn.Open();
-
-            string sql = "select IDMENU from MENU where TENMENU like N'%" + tenmenu + "%'";
-            SqlCommand cmd = new SqlCommand(sql, conn.cnn);
-            return (string)cmd.ExecuteScalar();
-        }
-
-        private void luu_ct_menu()
-        {
-            try
-            {
-                if (menu != null)
-                {
-                    if (conn.cnn.State == ConnectionState.Closed)
-                        conn.cnn.Open();
-
-                    ds = new DataSet();
-                    da = new SqlDataAdapter(" select * from CT_MENU", conn.cnn);
-                    da.Fill(ds, "CT_MENU");
-
-                    foreach (DataRow row in menu.Rows)
-                    {
-                        DataRow insert_New = ds.Tables["CT_MENU"].NewRow();
-                        insert_New["MAHD"] = mahd;
-                        insert_New["IDMENU"] = get_mamenu(row["tentd"].ToString());
-                        insert_New["SOLUONG"] = int.Parse(row["soluong"].ToString());
-
-                        ds.Tables["CT_MENU"].Rows.Add(insert_New);
-                        SqlCommandBuilder cmb = new SqlCommandBuilder(da);
-                        da.Update(ds, "CT_MENU");
-                    }
-
-                    conn.cnn.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                conn.cnn.Close();
-            }
-        }
+        }      
 
         private void btn_luuvain_Click(object sender, EventArgs e)
         {
@@ -526,19 +454,18 @@ namespace Da
                 else
                 {
                     luu_thongtin_thanhtoan();
-                    luu_ct_menu();
                     lb_count.Text = get_solanin().ToString();
                     chuyen_trang_thai_phong();
                     chuyen_trangthai_phieuthue();
-                    kiemtra();
-                    if (!string.IsNullOrEmpty(kt))
-                    {
-                        Viewer_DichVu dichvu = new Viewer_DichVu(this, conn);
-                        dichvu.get_matp(maphieuthue);
-                        dichvu.StartPosition = FormStartPosition.CenterScreen;
-                        dichvu.Show();
-                    }
-                    Viewer_HoaDon viewer = new Viewer_HoaDon(this, conn);
+                    //kiemtra();
+                    //if (!string.IsNullOrEmpty(kt))
+                    //{
+                    //    Viewer_DichVu dichvu = new Viewer_DichVu(this, conn);
+                    //    dichvu.get_matp(maphieuthue);
+                    //    dichvu.StartPosition = FormStartPosition.CenterScreen;
+                    //    dichvu.Show();
+                    //}
+                    Viewer_Tong viewer = new Viewer_Tong(this, conn);
                     viewer.get_matp(maphieuthue);
                     viewer.StartPosition = FormStartPosition.CenterScreen;
                     viewer.Show();
